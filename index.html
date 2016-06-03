@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset='utf-8'>
+        <title>KNORA | Knowledge Organization, Representation and Annotation</title>
+        <link rel='shortcut icon' href='favicon.ico'>
+        <meta name='description' content='KNORA is an awsome platform for creating Knowledge Organization, Representation and Annotation applications. Created by the Digital Humanities lab (dhlab), University of Basel'>
+        <meta name='keywords' content='knora, knowledge, organization, representation, annotation, dhlab, digital, humanities, basel, switzerland'>
+
+        <meta name='viewport' content='width=480, user-scalable=no'>
+        <meta name='viewport' content='initial-scale=0.8, maximum-scale=1'>
+
+        <script type='text/javascript' src='js/jquery-1.10.2.min.js'></script>
+        <script type='text/javascript' src='js/jquery.center.js'></script>
+
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.blue_grey-indigo.min.css" />
+        <script defer src="https://code.getmdl.io/1.1.3/material.min.js"></script>
+
+        <style>
+            @import url(http://fonts.googleapis.com/css?family=Raleway);
+            * {
+                margin: 0;
+                padding: 0;
+            }
+            body {
+                font-family: 'Raleway', Palatino, sans-serif;
+                color: #414141;
+                letter-spacing: 2px;
+                min-height: auto;
+            }
+            a {
+                color: rgb(96, 125, 139);
+                text-decoration: none;
+            }
+            section {
+                width: 100%;
+                position: relative;
+                margin-bottom: 30px;
+            }
+            section.banner {
+                margin-top: 10vh;
+                text-align: center;
+            }
+            h1, h2, h3, h4, h5, h6, p {
+                font-family: 'Raleway', Palatino, sans-serif;
+            }
+            h4 {
+                font-weight: bolder;
+            }
+            img.logo {
+                width: 640px;
+            }
+            .mdl-tabs__panel {
+                margin: 40px;
+                width: 640px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .button-container {
+                margin-top: 80px;
+                margin-bottom: 80px;
+            }
+            /*
+            .mdl-tabs__tab-bar {
+                border-bottom: none;
+                border-top: 1px solid #e0e0e0;
+
+            }
+            .mdl-tabs.is-upgraded .mdl-tabs__tab.is-active::before {
+                animation: 0.2s cubic-bezier(0.4, 0, 0.4, 1) 0.01s alternate forwards 1 running border-expand;
+                background: rgb(96, 125, 139) none repeat scroll 0 0;
+                top: 0;
+                content: " ";
+                display: block;
+                height: 2px;
+                left: 0;
+                position: absolute;
+                transition: all 1s cubic-bezier(0.4, 0, 1, 1) 0s;
+                width: 100%;
+            }
+            .mdl-tabs.is-upgraded .mdl-tabs__tab.is-active::after {
+                background: none;
+                height: 0;
+            }
+            */
+            video {
+                width: 640px;
+                height: auto;
+            }
+            /* Phone */
+            @media screen and (max-width: 640px) {
+                img.logo {
+                    width: 320px;
+                }
+            }
+
+            footer.mdl-mini-footer {
+/*
+                position: fixed;
+                width: 100%;
+                bottom: 0px;
+                font-size: small;
+                text-align: center;
+*/
+                background-color: none;
+            }
+
+        </style>
+    </head>
+    <body>
+        <section class='banner'>
+            <h1><img src='media/images/knora-logo.png' alt='KNORA' title='Knowledge Organization, Representation, and Annotation' class='logo'></h1>
+            <h4>Knowledge Organization, Representation, and Annotation</h4>
+            <br />
+
+            <div class="button-container mdl-cell mdl-cell--12-col-desktop center">
+                <a class="cta-button mdl-typography--font-regular mdl-button mdl-button--raised mdl-button--primary" href="https://github.com/dhlab-basel/Knora">
+                    Preview on GitHub
+                </a>
+            </div>
+            <br />
+        </section>
+        <section>
+
+            <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+                <div class="mdl-tabs__tab-bar">
+                    <a href="#text-panel" class="mdl-tabs__tab is-active">Short Information</a>
+                    <a href="#video-panel" class="mdl-tabs__tab">Project presentation (video)</a>
+                </div>
+                <div class="mdl-tabs__panel is-active" id="text-panel">
+                    <br />
+                    <p><a href="http://www.knora.org/">Knora</a> is a software framework for storing, sharing, and working with primary sources and data in the humanities. </p>
+
+                    <p>It is developed by the <a href="http://dhlab.unibas.ch/">Digital Humanities Lab</a> at the <a href="https://unibas.ch/">University of Basel</a>, and is supported by the <a href="http://www.sagw.ch/en/sagw.html">Swiss Academy of Humanities and Social Sciences</a>.</p>
+
+                    <p>Knora is <a href="http://www.gnu.org/philosophy/free-sw.en.html">free software</a>, released under the <a href="http://www.gnu.org/licenses/agpl-3.0.en.html">GNU Affero General Public License</a>.</p>
+                </div>
+
+                <div class="mdl-tabs__panel" id="video-panel">
+                    <video controls="controls">
+                        <source src="media/video/FORGE-conference/FORGE-conference.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' />
+                        <source src="media/video/FORGE-conference/FORGE-conference.webm" type='video/webm; codecs="vp8, vorbis"' />
+                        Video tag not supported. Watch the video <a href="https://lecture2go.uni-hamburg.de/veranstaltungen/-/v/18300" target="_blank">here</a>.
+                    </video>
+                </div>
+            </div>
+
+        </section>
+        <footer class="mdl-mini-footer">
+          <div class="mdl-mini-footer__left-section">
+            <div class="mdl-logo"><a href="https://github.com/dhlab-basel/Knora">KnORA</a> | </div>
+            <ul class="mdl-mini-footer__link-list">
+              <li><a href="http://dhlab.unibas.ch">Digital Humanities Lab</a></li>
+              <li> | </li>
+              <li><a href="http://unibas.ch">University of Basel</a></li>
+            </ul>
+          </div>
+        </footer>
+<!--
+<footer>
+<p>
+
+</p>
+</footer>
+        <script type='text/javascript'>
+            $('section.banner').center();
+            $(window).resize(function() {
+                $('section.banner').center();
+            });
+        </script>
+    -->
+    </body>
+</html>
