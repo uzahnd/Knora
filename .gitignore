@@ -26,3 +26,12 @@ target/
 *.tdo
 *.toc
 .sbtrc
+
+*.map
+
+salsah2/app/**/*.js
+
+salsah2/node_modules/
+salsah2/typings/
+
+.sass-cache/

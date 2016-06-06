@@ -1,0 +1,55 @@
+@import 'mixins';
+@import 'variables';
+
+@import 'landingpage';
+@import 'workspace';
+
+a {
+	color: $link;
+	text-decoration: none;
+	&:hover {
+		color: $mute;
+	}
+	&:active {
+		color: $ink;
+	}
+}
+
+.center {
+    @include vertical-align-goldencut();
+    @include horizontal-align();
+}
+.center-horizontal {
+    @include horizontal-align();
+}
+.center-vertical {
+    @include vertical-align-goldencut();
+}
+
+footer {
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    height: 33px;
+    width: 100vw;
+    background-color: white;
+    copyright-info {
+        @include horizontal-align();
+    }
+}
+
+/* overwrite some default values from material design lite */
+// fix for ng2-page-scroll
+.mdl-layout {
+    overflow: inherit;
+    .mdl-layout__content {
+        overflow: inherit;
+    }
+}
+// test angular material 2
+.example-fill-remaining-space {
+  // This fills the remaining space, by using flexbox.
+  // Every toolbar row uses a flexbox row layout.
+  flex: 1 1 auto;
+}

@@ -1,0 +1,159 @@
+<section>
+
+    <md-card class="center login">
+        <md-card-subtitle>SALSAH</md-card-subtitle>
+        <md-card-title>Login</md-card-title>
+        <md-card-content>
+            <form name="login">
+
+                <md-input class="full-width" id="username" name="username" placeholder="Username" required type="text"></md-input>
+
+                <md-input class="full-width" id="password" name="password" placeholder="Password" required type="password"></md-input>
+
+                <button class="center-horizontal" md-button>LOGIN</button>
+
+            </form>
+        </md-card-content>
+        <md-card-actions>
+            <table class="small" style="width: 100%" cellspacing="0"><tr>
+              <td>
+                  <a class="btn btn-link set-account" ng-click="rotateElement($event, 'left')">Create an account</a>
+              </td>
+              <td>
+                  <a class="btn btn-link set-password" ng-click="rotateElement($event, 'right')">Forgot password?</a>
+              </td>
+            </tr></table>
+        </md-card-actions>
+
+    </md-card>
+
+</section>
+
+<div class="cardWrapper">
+    <div class="mdCardWrapper">
+        <!-- one card on the left side (register), one card in the middle (login) and one card on the right side (reset password) -->
+        <!-- register card: left -->
+        <md-card class="register">
+            <header>
+                <span class="logo"></span>
+            </header>
+            <!--
+            			<div class="box alert">
+            				<md-toast ng-bind="flash.message" ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }" ng-if="flash"></md-toast>
+            			</div>
+            		-->
+            <div class="alert alert-danger" ng-show="vm.error">{{vm.error}}</div>
+            <div class="content">
+                <form name="form" ng-submit="vm.register()" role="form">
+                    <div class="form-group" ng-class="{ 'has-error': form.firstName.$dirty && form.firstName.$error.required }">
+                        <md-input-container flex>
+                            <label ng-hide="form.firstName.$dirty && form.firstName.$error.required">First name</label>
+                            <label class="help-block" ng-show="form.firstName.$dirty && form.firstName.$error.required">First name is required</label>
+                            <input class="form-control" id="firstName" name="firstName" ng-model="vm.user.firstName" required type="text">
+                        </md-input-container>
+                        <div class="bar"></div>
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error': form.lastName.$dirty && form.lastName.$error.required }">
+                        <md-input-container flex>
+                            <label ng-hide="form.lastName.$dirty && form.lastName.$error.required">Last name</label>
+                            <label class="help-block" ng-show="form.lastName.$dirty && form.lastName.$error.required">Last name is required</label>
+                            <input class="form-control" id="lastname" name="lastName" ng-model="vm.user.lastName" required type="text">
+                        </md-input-container>
+                        <div class="bar"></div>
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error': form.username.$dirty && form.username.$error.required }">
+                        <md-input-container flex>
+                            <label ng-hide="form.username.$dirty && form.username.$error.required">Username</label>
+                            <label class="help-block" ng-show="form.username.$dirty && form.username.$error.required">Username is required</label>
+                            <input class="form-control" id="username" name="username" ng-model="vm.user.username" required type="text">
+                        </md-input-container>
+                        <div class="bar"></div>
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error': form.password.$dirty && form.password.$error.required }">
+                        <md-input-container flex>
+                            <label ng-hide="form.password.$dirty && form.password.$error.required">Password</label>
+                            <label class="help-block" ng-show="form.password.$dirty && form.password.$error.required">Password is required</label>
+                            <input class="form-control" id="password" name="password" ng-model="vm.user.password" required type="password">
+                        </md-input-container>
+                        <div class="bar"></div>
+                    </div>
+                    <div class="form-actions">
+                        <md-input-container flex>
+                            <md-button class="btn btn-primary" flex ng-disabled="form.$invalid || vm.dataLoading" type="submit">
+                                Register
+                                <img
+                                    ng-if="vm.dataLoading"
+                                    src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
+                            </md-button>
+                        </md-input-container>
+                    </div>
+                </form>
+            </div>
+            <footer>
+                <p class="right">
+                    <a class="btn btn-link" ng-click="rotateElement($event, '')">You have already an account? Go to the login page
+                        <span>
+                            <ng-md-icon icon="keyboard_arrow_right"></ng-md-icon>
+                        </span>
+                    </a>
+                </p>
+            </footer>
+        </md-card>
+        <!-- /.register card -->
+        <!-- login (main) card: front -->
+        <md-card class="login" ng-controller="LoginController">
+            <header>
+                <span class="logo"></span>
+            </header>
+            <div class="box alert">
+                <md-toast layout-align="center center" ng-bind="flash.message" ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }" ng-if="flash"></md-toast>
+            </div>
+            <div class="content"></div>
+        </md-card>
+        <!-- /.login (main) card -->
+        <!-- password card: right -->
+        <md-card class="password" ng-controller="PasswordController">
+            <header>
+                <span class="logo"></span>
+            </header>
+            <div class="box alert">
+                <md-toast layout-align="center center" ng-bind="flash.message" ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }" ng-if="flash"></md-toast>
+            </div>
+            <div class="content">
+                <form layout-align="center center" name="form" ng-submit="vm.password()" role="form">
+                    <div class="form-group" ng-class="{ 'has-error': form.email.$dirty && form.email.$error.required }">
+                        <md-input-container flex>
+                            <label ng-hide="form.email.$dirty && form.email.$error.required">eMail address</label>
+                            <label class="help-block" ng-show="form.email.$dirty && form.email.$error.required">eMail is required</label>
+                            <input class="form-control" id="email" name="email" ng-model="vm.email" required type="text">
+                        </md-input-container>
+                        <div class="bar"></div>
+                    </div>
+                    <div class="form-actions">
+                        <md-input-container flex>
+                            <md-button class="btn btn-primary" flex ng-disabled="form.$invalid || vm.dataLoading" type="submit">
+                                Reset password
+                                <img
+                                    ng-if="vm.dataLoading"
+                                    src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
+                            </md-button>
+                        </md-input-container>
+                    </div>
+                </form>
+            </div>
+            <footer>
+                <p class="left">
+                    <a class="btn btn-link" ng-click="rotateElement($event, '')">
+                        <span>
+                            <ng-md-icon icon="keyboard_arrow_left"></ng-md-icon>
+                        </span>
+                        If you remember your password? Go to the login page</a>
+                </p>
+            </footer>
+        </md-card>
+
+        <!-- /.password card -->
+    </div>
+    <!-- /.mdCardWrapper -->
+</div>
+<!-- /.cardWrapper -->

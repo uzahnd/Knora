@@ -1,0 +1,273 @@
+@mixin font-smoothing () {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+/* ------------------------------------------------------------------------- */
+/* Background Cover Image */
+@mixin background-cover ($img, $attachment: scroll) {
+    background-image: url($img);
+    // linear-gradient(rgba(255, 255, 255, 0.48), rgba(255, 255, 255, 0.48)),
+    background-position: center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    -webkit-attachment: $attachment;
+    -moz-attachment: $attachment;
+    -o-attachment: $attachment;
+    background-attachment: $attachment;
+}
+/* ------------------------------------------------------------------------- */
+/* ------------------------------------------------------------------------- */
+/* Border Radius Simple */
+@mixin border-radius ($radius: 5px) {
+    -webkit-border-radius: $radius;
+    -moz-border-radius: $radius;
+    border-radius: $radius;
+}
+/* Implementation *
+#someDiv {
+    @include border-radius(20px);
+}
+*/
+/* ------------------------------------------------------------------------- */
+/* Border Radius Custom */
+@mixin border-radius-custom ($topleft: 5px, $topright: 5px, $bottomright: 5px, $bottomleft: 5px) {
+    -webkit-border-radius: $topleft $topright $bottomright $bottomleft;
+    -moz-border-radius: $topleft $topright $bottomright $bottomleft;
+    border-radius: $topleft $topright $bottomright $bottomleft;
+}
+/* Implementation *
+#someDiv {
+    @include border-radius-custom(20px, 20px, 0px, 0px);
+}
+*/
+/* ------------------------------------------------------------------------- */
+/* Box Shadow */
+@mixin box-shadow ($x: 0px, $y: 1px, $blur: 3px, $alpha: 0.5) {
+    -webkit-box-shadow: $x $y $blur rgba(0, 0, 0, $alpha);
+    -moz-box-shadow: $x $y $blur rgba(0, 0, 0, $alpha);
+    box-shadow: $x $y $blur rgba(0, 0, 0, $alpha);
+}
+@mixin box-shadow-bottom ($x: 0px, $y: 5px, $blur: 6px, $side: -6px, $alpha: 0.5) {
+    -webkit-box-shadow: $x $y $blur $side rgba(0, 0, 0, $alpha);
+    -moz-box-shadow: $x $y $blur $side rgba(0, 0, 0, $alpha);
+    box-shadow: $x $y $blur $side rgba(0, 0, 0, $alpha);
+}
+/* Implementation *
+#someDiv {
+    @include box-shadow(5px, 5px, 6px, 0.3);
+}
+*/
+/* ------------------------------------------------------------------------- */
+/* Transition */
+@mixin transition ($prop: all, $time: 1s, $ease: linear) {
+    -webkit-transition: $prop $time $ease;
+    -moz-transition: $prop $time $ease;
+    -o-transition: $prop $time $ease;
+    -ms-transition: $prop $time $ease;
+    transition: $prop $time $ease;
+}
+/* Implementation *
+#someDiv {
+    @include transition(all, 0.5s, ease-in);
+}
+#somediv:hover {
+    opacity: 0;
+}
+*/
+/* ------------------------------------------------------------------------- */
+/* Transform */
+@mixin transform ($rotate: 90deg, $scale: 1, $skew: 1deg, $translate: 10px) {
+    -webkit-transform: rotate($rotate) scale($scale) skew($skew) translate($translate);
+    -moz-transform: rotate($rotate) scale($scale) skew($skew) translate($translate);
+    -o-transform: rotate($rotate) scale($scale) skew($skew) translate($translate);
+    -ms-transform: rotate($rotate) scale($scale) skew($skew) translate($translate);
+    transform: rotate($rotate) scale($scale) skew($skew) translate($translate);
+}
+/* Implementation *
+#someDiv {
+    @include transform(5deg, 0.5, 1deg, 0px);
+}
+*/
+/* ------------------------------------------------------------------------- */
+/* Linear Gradient */
+@mixin gradient ($origin: left, $start: #ffffff, $stop: #000000) {
+    background-color: $start;
+    background-image: -webkit-linear-gradient($origin, $start, $stop);
+    background-image: -moz-linear-gradient($origin, $start, $stop);
+    background-image: -o-linear-gradient($origin, $start, $stop);
+    background-image: -ms-linear-gradient($origin, $start, $stop);
+    background-image: linear-gradient($origin, $start, $stop);
+}
+/* Implementation *
+#someDiv {
+    @include gradient(left, #0b730b , #bada55);
+}
+*/
+/* ------------------------------------------------------------------------- */
+/* Quick Gradient */
+@mixin quick-gradient ($origin: left, $alpha: 0.2) {
+    background-image: -webkit-linear-gradient($origin, rgba(0,0,0,0.0), rgba(0,0,0,$alpha));
+    background-image: -moz-linear-gradient($origin, rgba(0,0,0,0.0), rgba(0,0,0,$alpha));
+    background-image: -o-linear-gradient($origin, rgba(0,0,0,0.0), rgba(0,0,0,$alpha));
+    background-image: -ms-linear-gradient($origin, rgba(0,0,0,0.0), rgba(0,0,0,$alpha));
+    background-image: linear-gradient($origin, rgba(0,0,0,0.0), rgba(0,0,0,$alpha));
+}
+/* Implementation *
+#someDiv {
+    background-color: #bada55;
+    @include quick-gradient(top, 0.2);
+}
+*/
+/* ------------------------------------------------------------------------- */
+/* Webkit Reflection */
+@mixin reflect ($length: 50%, $opacity: 0.2) {
+    -webkit-box-reflect: below 0 -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop($length, transparent), to(rgba(255,255,255,$opacity)));
+}
+/* Implementation *
+#someDiv {
+    @include reflect(20%, 0.2);
+}
+*/
+/* ------------------------------------------------------------------------- */
+/* Complementary Color Scheme */
+$base: #0b730b;
+$complement1: complement($base);
+$complement2: darken(complement($base), 5%);
+$lighten1: lighten($base, 15%);
+$lighten2: lighten($base, 30%);
+/* Implementation */
+/*
+.one   {color: $base;}
+.two   {color: $complement1;}
+.three {color: $complement2;}
+.four  {color: $lighten1;}
+.five  {color: $lighten2;}
+*/
+/* ------------------------------------------------------------------------- */
+/* Subtle Color Scheme */
+$base: #0b730b;
+$lighter1: lighten($base, 10%);
+$lighter2: lighten($base, 20%);
+$darker1: darken($base, 10%);
+$darker2: darken($base, 20%);
+/* Implementation */
+/*
+.one   {color: $base;}
+.two   {color: $lighter1;}
+.three {color: $lighter2;}
+.four  {color: $darker1;}
+.five  {color: $darker2;}
+*/
+/* ------------------------------------------------------------------------- */
+/* thanks to joshua johnson
+/* http://designshack.net/articles/css/10-less-css-examples-you-should-steal-for-your-projects/
+/* ------------------------------------------------------------------------- */
+/* ------------------------------------------------------------------------- */
+@mixin circle ($rotation: 0, $translate: 20) {
+    -webkit-transform: rotate($rotation*1deg) translate($translate*1px) rotate(-1deg*$rotation);
+    -moz-transform: rotate($rotation*1deg) translate($translate*1px) rotate(-1deg*$rotation);
+    -o-transform: rotate($rotation*1deg) translate($translate*1px) rotate(-1deg*$rotation);
+    transform: rotate($rotation*1deg) translate($translate*1px) rotate(-1deg*$rotation);
+}
+// burger function
+@mixin keyframes ($slideInRight) {
+     @keyframes ($slideInRight){
+        0% {
+            transform: translate3d(250px, 0, 0);
+            -ms-transform: translate3d(250px, 0, 0);
+            -webkit-transform: translate3d(250px, 0, 0);
+            visibility: visible;
+        }
+        100% {
+            transform: translate3d(0, 0, 0);
+            -ms-transform: translate3d(0, 0, 0);
+            -webkit-transform: translate3d(0, 0, 0);
+        }
+    }
+    @-webkit-keyframes ($slideInRight) {
+        0% {
+            transform: translate3d(250px, 0, 0);
+            -ms-transform: translate3d(250px, 0, 0);
+            -webkit-transform: translate3d(250px, 0, 0);
+            visibility: visible;
+        }
+        100% {
+            transform: translate3d(0, 0, 0);
+            -ms-transform: translate3d(0, 0, 0);
+            -webkit-transform: translate3d(0, 0, 0);
+        }
+    }
+}
+@mixin keyframes ($slideOutRight) {
+     @keyframes ($slideOutRight){
+        0% {
+            transform: translate3d(0, 0, 0);
+            -ms-transform: translate3d(0, 0, 0);
+            -webkit-transform: translate3d(0, 0, 0);
+        }
+        100% {
+            transform: translate3d(250px, 0, 0);
+            -ms-transform: translate3d(250px, 0, 0);
+            -webkit-transform: translate3d(250px, 0, 0);
+            visibility: hidden;
+        }
+    }
+    @-webkit-keyframes ($slideOutRight) {
+        0% {
+            transform: translate3d(0, 0, 0);
+            -ms-transform: translate3d(0, 0, 0);
+            -webkit-transform: translate3d(0, 0, 0);
+        }
+        100% {
+            transform: translate3d(250px, 0, 0);
+            -ms-transform: translate3d(250px, 0, 0);
+            -webkit-transform: translate3d(250px, 0, 0);
+            visibility: hidden;
+        }
+    }
+}
+@mixin opacity ($opacity: 0.8, $filter: 80) {
+    -moz-opacity: $opacity !important;
+    -webkit-opacity: $opacity !important;
+    -ms-filter:  "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)" !important;
+    filter:alpha(opacity=$filter) !important;
+    opacity: $opacity !important;
+}
+/* Vertical and horizontal centering */
+@mixin vertical-align($position: relative) {
+    position: $position;
+    top: 50%;
+    -webkit-transform: translateY(-25%);
+    -ms-transform: translateY(-25%);
+    transform: translateY(-25%);
+}
+@mixin vertical-align-goldencut($position: relative) {
+    position: $position;
+    top: 38.2vh;
+    /*
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+*/
+}
+@mixin horizontal-align($position: relative) {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+@mixin text-shadow() {
+    text-shadow: 0 0 4px rgb(11, 11, 11), -1px -1px rgba(66, 66, 66, 0.6), 1px 1px rgba(66, 66, 66, 0.6);
+}
+/* Reset HTML5 Search Input in Webkit */
+input[type=search]::-webkit-search-cancel-button,
+input[type=search]::-webkit-search-decoration,
+input[type=search]::-webkit-search-results-button,
+input[type=search]::-webkit-search-results-decoration {
+    -webkit-appearance: none;
+}
+input[type=search] {
+    -webkit-appearance: textfield;
+    -webkit-box-sizing: content-box;
+}

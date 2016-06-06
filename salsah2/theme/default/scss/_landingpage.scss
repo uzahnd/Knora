@@ -1,0 +1,106 @@
+landing-page {
+    md-toolbar.main-toolbar {
+        position: fixed;
+        z-index: 100;
+        span {
+            img.logo {
+                height: 55px;
+
+            }
+        }
+        nav.mdl-navigation {
+            button {
+                color: $white;
+                &.login {
+//                    border: 1px solid yellow;
+                    background-color: #ffc107;
+                }
+            }
+        }
+    }
+    main {
+        section {
+            margin: auto;
+            padding-top: 66px;
+            max-width: 900px;
+            min-height: 90vh;
+            img.article-image {
+                height: auto;
+                width: 100%;
+            }
+            &.start {
+//                margin-top: -75px;
+                height: 99vh;
+                max-width: 100vw;
+                color: $white;
+                @include background-cover('../img/background/bg_0.jpg', fixed);
+                div.welcome {
+                    @include vertical-align-goldencut();
+                    @include horizontal-align();
+                    max-width: 900px;
+                    a {
+                        color: $teal;
+                        font-weight: bolder;
+                        letter-spacing: 4px;
+                        font-size: large;
+                        padding: 16px;
+                        border: 2px solid $teal;
+                        @include border-radius(4px);
+                        span {
+                        }
+                    }
+                }
+            }
+            &.documentation {
+                iframe {
+                    margin-top: -85px;
+                    width: 944px;
+                    height: 100%;
+
+                }
+            }
+            .mdl-grid .feature-item {
+                margin-top: 72px;
+                h3 {
+
+                }
+            }
+        }
+    }
+    footer {
+
+    }
+}
+
+@media screen and (min-width: 840px) {
+    .mdl-cell.mdl-card__supporting-text {
+        p {
+            &.left {
+                text-align: right;
+            }
+            &.right {
+                text-align: left;
+            }
+        }
+    }
+    .mdl-cell.mdl-card__media {
+        align-items: flex-end;
+        background-size: cover;
+        box-sizing: border-box;
+        cursor: pointer;
+        display: flex;
+        flex-direction: row;
+        flex-grow: 1;
+        padding: 24px;
+        h3 {
+            margin: 0;
+            a {
+                color: inherit;
+            }
+        }
+        img.article-image {
+            height: auto;
+            width: 100%;
+        }
+    }
+}
