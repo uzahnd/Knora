@@ -69,7 +69,7 @@ object OntologyConstants {
 
         val ValueHasString = "http://www.knora.org/ontology/knora-base#valueHasString"
         val ValueHasInteger = "http://www.knora.org/ontology/knora-base#valueHasInteger"
-        val ValueHasFloat = "http://www.knora.org/ontology/knora-base#valueHasFloat"
+        val ValueHasDecimal = "http://www.knora.org/ontology/knora-base#valueHasDecimal"
         val ValueHasStandoff = "http://www.knora.org/ontology/knora-base#valueHasStandoff"
         val ValueHasResPtr = "http://www.knora.org/ontology/knora-base#valueHasResPtr"
         val ValueHasStartJDC = "http://www.knora.org/ontology/knora-base#valueHasStartJDC"
@@ -77,6 +77,8 @@ object OntologyConstants {
         val ValueHasCalendar = "http://www.knora.org/ontology/knora-base#valueHasCalendar"
         val ValueHasStartPrecision = "http://www.knora.org/ontology/knora-base#valueHasStartPrecision"
         val ValueHasEndPrecision = "http://www.knora.org/ontology/knora-base#valueHasEndPrecision"
+        val ValueHasBoolean = "http://www.knora.org/ontology/knora-base#valueHasBoolean"
+        val ValueHasUri = "http://www.knora.org/ontology/knora-base#valueHasUri"
         val ValueHasColor = "http://www.knora.org/ontology/knora-base#valueHasColor"
         val ValueHasGeometry = "http://www.knora.org/ontology/knora-base#valueHasGeometry"
         val ValueHasListNode = "http://www.knora.org/ontology/knora-base#valueHasListNode"
@@ -86,6 +88,7 @@ object OntologyConstants {
         val ValueHasOrder = "http://www.knora.org/ontology/knora-base#valueHasOrder"
         val ValueHasRefCount = "http://www.knora.org/ontology/knora-base#valueHasRefCount"
         val ValueHasComment = "http://www.knora.org/ontology/knora-base#valueHasComment"
+        val ValueHasGeonameCode = "http://www.knora.org/ontology/knora-base#valueHasGeonameCode"
 
         val PreviousValue = "http://www.knora.org/ontology/knora-base#previousValue"
 
@@ -113,7 +116,9 @@ object OntologyConstants {
 
         val TextValue = "http://www.knora.org/ontology/knora-base#TextValue"
         val IntValue = "http://www.knora.org/ontology/knora-base#IntValue"
-        val FloatValue = "http://www.knora.org/ontology/knora-base#FloatValue"
+        val BooleanValue = "http://www.knora.org/ontology/knora-base#BooleanValue"
+        val UriValue = "http://www.knora.org/ontology/knora-base#UriValue"
+        val DecimalValue = "http://www.knora.org/ontology/knora-base#DecimalValue"
         val DateValue = "http://www.knora.org/ontology/knora-base#DateValue"
         val ColorValue = "http://www.knora.org/ontology/knora-base#ColorValue"
         val GeomValue = "http://www.knora.org/ontology/knora-base#GeomValue"
@@ -124,6 +129,7 @@ object OntologyConstants {
         val MovingImageFileValue = "http://www.knora.org/ontology/knora-base#MovingImageFileValue"
         val FileValue = "http://www.knora.org/ontology/knora-base#FileValue"
         val LinkValue = "http://www.knora.org/ontology/knora-base#LinkValue"
+        val GeonameValue = "http://www.knora.org/ontology/knora-base#GeonameValue"
 
         val KnoraAdminPrefix = "http://www.knora.org/ontology/knora-base#"
         val IsInGroup = "http://www.knora.org/ontology/knora-base#isInGroup"
@@ -196,6 +202,8 @@ object OntologyConstants {
         val Time = "http://www.knora.org/ontology/salsah-gui#Time"
         val Interval = "http://www.knora.org/ontology/salsah-gui#Interval"
         val Geonames = "http://www.knora.org/ontology/salsah-gui#Geonames"
+        val Fileupload = "http://www.knora.org/ontology/salsah-gui#Fileupload"
+
         object attributeNames {
             val resourceClass = "restypeid"
             val assignmentOperator = "="

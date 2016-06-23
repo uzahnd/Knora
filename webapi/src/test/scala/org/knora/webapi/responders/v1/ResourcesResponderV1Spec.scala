@@ -287,7 +287,7 @@ class ResourcesResponderV1Spec extends CoreSpec() with ImplicitSender {
                     case (expected: ResourceCreateValueResponseV1, received: ResourceCreateValueResponseV1) =>
                         assert(expected.value.textval == received.value.textval, "textval did not match")
                         assert(expected.value.ival == received.value.ival, "ival did not match")
-                        assert(expected.value.fval == received.value.fval, "fval did not match")
+                        assert(expected.value.dval == received.value.dval, "dval did not match")
                         assert(expected.value.dateval1 == received.value.dateval1, "dateval1 did not match")
                         assert(expected.value.dateval2 == received.value.dateval2, "dateval2 did not match")
                         assert(expected.value.calendar == received.value.calendar, "calendar did not match")
@@ -329,7 +329,7 @@ class ResourcesResponderV1Spec extends CoreSpec() with ImplicitSender {
                     Some("Kommentar"),
                     Some("http://www.knora.org/ontology/knora-base#TextValue"),
                     Some("textval"),
-                    None,
+                    Some("richtext"),
                     "",
                     "0",
                     Vector(
@@ -451,6 +451,20 @@ class ResourcesResponderV1Spec extends CoreSpec() with ImplicitSender {
         assert(region1.length == 1, "No region found with Iri 'http://data.knora.org/021ec18f1735'")
 
         assert(region2.length == 1, "No region found with Iri 'http://data.knora.org/b6b64a62b006'")
+
+    }
+
+    private def compareNewPageContextResponse(received: ResourceContextResponseV1) = {
+
+        assert(received.resource_context.resinfo.nonEmpty)
+
+        // check that there is a preview
+        assert(received.resource_context.resinfo.get.preview.nonEmpty)
+
+        assert(received.resource_context.resinfo.get.locations.nonEmpty)
+
+        // check that there are 7 locations
+        assert(received.resource_context.resinfo.get.locations.get.length == 7)
 
     }
 
@@ -734,11 +748,11 @@ class ResourcesResponderV1Spec extends CoreSpec() with ImplicitSender {
                 internalFilename = "gaga.jpg",
                 originalFilename = "test.jpg",
                 originalMimeType = Some("image/jpg"),
-                dimX = 1000,
-                dimY = 1000,
-                qualityLevel = 100,
-                qualityName = Some("full"),
-                isPreview = false
+                dimX = 100,
+                dimY = 100,
+                qualityLevel = 10,
+                qualityName = Some("thumbnail"),
+                isPreview = true
             )
 
             val book = newResourceIri.get
@@ -779,6 +793,24 @@ class ResourcesResponderV1Spec extends CoreSpec() with ImplicitSender {
                 case response: ResourceCreateResponseV1 =>
                     newResourceIri.set(response.res_id)
                     checkResourceCreation(expected, response)
+            }
+        }
+
+        "get the context of a newly created incunabula:page and check its locations" in {
+
+            val resIri: IRI = newResourceIri.get
+
+            val pageGetContext = ResourceContextGetRequestV1(
+                iri = resIri,
+                resinfo = true,
+                userProfile = ResourcesResponderV1Spec.userProfile
+            )
+
+            actorUnderTest ! pageGetContext
+
+            expectMsgPF(timeout) {
+                case response: ResourceContextResponseV1 =>
+                    compareNewPageContextResponse(received = response)
             }
         }
 
