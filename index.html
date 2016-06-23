@@ -91,6 +91,11 @@
                 width: 640px;
                 height: auto;
             }
+            iframe.documentation {
+                width: 900px;
+                height: 900px;
+                margin-left: -120px;
+            }
             /* Phone */
             @media screen and (max-width: 640px) {
                 img.logo {
@@ -121,10 +126,6 @@
                 <a class="cta-button mdl-typography--font-regular mdl-button mdl-button--raised mdl-button--primary" href="https://github.com/dhlab-basel/Knora">
                     Preview on GitHub
                 </a>
-                OR
-                <a class="cta-button mdl-typography--font-regular mdl-button mdl-button--raised mdl-button--primary" href="media/documents/knora-base.pdf">
-                    Read more
-                </a>
             </div>
             <br />
         </section>
@@ -132,27 +133,27 @@
 
             <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
                 <div class="mdl-tabs__tab-bar">
-                    <a href="#text-panel" class="mdl-tabs__tab is-active">Short Information</a>
+                    <a href="#text-panel" class="mdl-tabs__tab is-active">About KNORA</a>
+                <!--
                     <a href="#video-panel" class="mdl-tabs__tab">Project presentation (video)</a>
+                -->
+                    <a href="#documentation-panel" class="mdl-tabs__tab">Documentation</a>
                 </div>
                 <div class="mdl-tabs__panel is-active" id="text-panel">
                     <br />
-                    <p><a href="http://www.knora.org/">Knora</a> is a software framework for storing, sharing, and working with primary sources and data in the humanities. </p>
-
-                    <p>It is developed by the <a href="http://dhlab.unibas.ch/">Digital Humanities Lab</a> at the <a href="https://unibas.ch/">University of Basel</a>, and is supported by the <a href="http://www.sagw.ch/en/sagw.html">Swiss Academy of Humanities and Social Sciences</a>.</p>
+                    <p>A software framework for storing, sharing, and working with primary sources and data in the humanities. </p>
+                    <iframe width="640" height="320" src="https://www.youtube.com/embed/9e1xvKWuqAk?rel=0" frameborder="0" allowfullscreen></iframe>
+                    <br /><br />
+                    <p>Knora is developed by the <a href="http://dhlab.unibas.ch/">Digital Humanities Lab</a> at the <a href="https://unibas.ch/">University of Basel</a>, and is supported by the <a href="http://www.sagw.ch/en/sagw.html">Swiss Academy of Humanities and Social Sciences</a>.</p>
 
                     <p>Knora is <a href="http://www.gnu.org/philosophy/free-sw.en.html">free software</a>, released under the <a href="http://www.gnu.org/licenses/agpl-3.0.en.html">GNU Affero General Public License</a>.</p>
                 </div>
 
                 <div class="mdl-tabs__panel" id="video-panel">
-                <!--
-                    <video controls="controls">
-                        <source src="media/video/FORGE-conference/FORGE-conference.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' />
-                        <source src="media/video/FORGE-conference/FORGE-conference.webm" type='video/webm; codecs="vp8, vorbis"' />
-                        Video tag not supported. Watch the video <a href="https://lecture2go.uni-hamburg.de/veranstaltungen/-/v/18300" target="_blank">here</a>.
-                    </video>
-                -->
-                    <iframe width="640" height="480" src="https://www.youtube.com/embed/9e1xvKWuqAk?rel=0" frameborder="0" allowfullscreen></iframe>
+
+                </div>
+                <div class="mdl-tabs__panel" id="documentation-panel">
+                    <iframe class="documentation" src="documentation/html/rst/index.html" frameboarder="0"></iframe>
                 </div>
             </div>
 
