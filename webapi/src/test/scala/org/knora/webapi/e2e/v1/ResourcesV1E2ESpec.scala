@@ -32,13 +32,12 @@ import org.knora.webapi.responders._
 import org.knora.webapi.responders.v1.ResponderManagerV1
 import org.knora.webapi.routing.v1.ResourcesRouteV1
 import org.knora.webapi.store._
-import spray.http._
+import spray.http.MediaTypes._
+import spray.http.{HttpEntity, _}
 import spray.json._
 
 import scala.concurrent.Await
 import scala.concurrent.duration._
-
-
 
 /**
   * End-to-end test specification for the resources endpoint. This specification uses the Spray Testkit as documented
@@ -71,7 +70,9 @@ class ResourcesV1E2ESpec extends E2ESpec {
         RdfDataObject(path = "_test_data/ontologies/incunabula-onto.ttl", name = "http://www.knora.org/ontology/incunabula"),
         RdfDataObject(path = "_test_data/all_data/incunabula-data.ttl", name = "http://www.knora.org/data/incunabula"),
         RdfDataObject(path = "_test_data/ontologies/images-demo-onto.ttl", name = "http://www.knora.org/ontology/images"),
-        RdfDataObject(path = "_test_data/demo_data/images-demo-data.ttl", name = "http://www.knora.org/data/images")
+        RdfDataObject(path = "_test_data/demo_data/images-demo-data.ttl", name = "http://www.knora.org/data/images"),
+        RdfDataObject(path = "_test_data/ontologies/anything-onto.ttl", name = "http://www.knora.org/ontology/anything"),
+        RdfDataObject(path = "_test_data/all_data/anything-data.ttl", name = "http://www.knora.org/data/anything")
     )
 
     "Load test data" in {
@@ -80,12 +81,11 @@ class ResourcesV1E2ESpec extends E2ESpec {
 
     "The Resources Endpoint" should {
         "provide a HTML representation of the resource properties " in {
-            /* Incunabula resources*/
-
-            /* A Book without a preview image */
+            /* Incunabula resource*/
             Get("/v1/resources.html/http%3A%2F%2Fdata.knora.org%2Fc5058f3a?noresedit=true&reqtype=properties") ~> resourcesPath ~> check {
                 //log.debug("==>> " + responseAs[String])
                 assert(status === StatusCodes.OK)
+                assert(responseAs[String] contains "preview")
                 assert(responseAs[String] contains "Phyiscal description")
                 assert(responseAs[String] contains "Location")
                 assert(responseAs[String] contains "Publication location")
@@ -94,15 +94,6 @@ class ResourcesV1E2ESpec extends E2ESpec {
                 assert(responseAs[String] contains "Datum der Herausgabe")
                 assert(responseAs[String] contains "Citation/reference")
                 assert(responseAs[String] contains "Publisher")
-            }
-
-            /* A Page with a preview image */
-            Get("/v1/resources.html/http%3A%2F%2Fdata.knora.org%2Fde6c38ce3401?noresedit=true&reqtype=properties") ~> resourcesPath ~> check {
-                //log.debug("==>> " + responseAs[String])
-                assert(status === StatusCodes.OK)
-                assert(responseAs[String] contains "preview")
-                assert(responseAs[String] contains "Ursprünglicher Dateiname")
-                assert(responseAs[String] contains "Page identifier")
             }
         }
 
@@ -140,6 +131,81 @@ class ResourcesV1E2ESpec extends E2ESpec {
                 assert(status == StatusCodes.OK)
             }
         }
+
+        "create a resource of type images:person" in {
+
+            val params =
+                """
+
+              {
+              	"restype_id": "http://www.knora.org/ontology/images#person",
+              	"label": "Testperson",
+              	"project_id": "http://data.knora.org/projects/images",
+              	"properties": {
+              		"http://www.knora.org/ontology/images#lastname": [{"richtext_value":{"textattr":"{}","resource_reference" :[],"utf8str":"Testname"}}],
+                    "http://www.knora.org/ontology/images#firstname": [{"richtext_value":{"textattr":"{}","resource_reference" :[],"utf8str":"Name"}}]
+              	}
+              }
+
+
+                """
+
+            Post("/v1/resources", HttpEntity(`application/json`, params)) ~> addCredentials(BasicHttpCredentials(user, password)) ~> resourcesPath ~> check {
+
+                assert(status == StatusCodes.OK)
+
+            }
+
+        }
+
+        "create a resource of type anything:Thing" in {
+            val params =
+                """
+              {
+              	"restype_id": "http://www.knora.org/ontology/anything#Thing",
+              	"label": "A thing",
+              	"project_id": "http://data.knora.org/projects/anything",
+              	"properties": {
+              		"http://www.knora.org/ontology/anything#hasText": [{"richtext_value":{"textattr":"{}","resource_reference" :[],"utf8str":"Test text"}}],
+                    "http://www.knora.org/ontology/anything#hasInteger": [{"int_value":12345}]
+              	}
+              }
+                """
+
+            Post("/v1/resources", HttpEntity(`application/json`, params)) ~> addCredentials(BasicHttpCredentials(user, password)) ~> resourcesPath ~> check {
+
+                assert(status == StatusCodes.OK)
+
+            }
+        }
+
+        "create a resource of type RTIproject:PTM" in {
+            val params =
+                """
+              {
+              	"restype_id": "http://www.knora.org/ontology/RTIproject#PTM",
+              	"label": "A PTM resource",
+              	"project_id": "http://data.knora.org/projects/RTIproject",
+              	"properties": {
+              		"http://www.knora.org/ontology/RTIproject#hasPTMCreator": [{"richtext_value":{"textattr":"{}","resource_reference" :[],"utf8str":"Test name"}}],
+                  "http://www.knora.org/ontology/RTIproject#hasPTMlocation": [{"richtext_value":{"textattr":"{}","resource_reference" :[],"utf8str":"Test location text"}}],
+                  "http://www.knora.org/ontology/RTIproject#hasPTMdate": [{"richtext_value":{"textattr":"{}","resource_reference" :[],"utf8str":"Test date"}}],
+                  "http://www.knora.org/ontology/RTIproject#hasPTMexib": [{"richtext_value":{"textattr":"{}","resource_reference" :[],"utf8str":"Test exibition lcation text"}}],
+                  "http://www.knora.org/ontology/RTIproject#hasPermissions": [{"richtext_value":{"textattr":"{}","resource_reference" :[],"utf8str":"Test permissions text"}}],
+                  "http://www.knora.org/ontology/RTIproject#setupIs": [{"richtext_value":{"textattr":"{}","resource_reference" :[],"utf8str":"Test setup info text"}}],
+                  "http://www.knora.org/ontology/RTIproject#hasPTMcomment": [{"richtext_value":{"textattr":"{}","resource_reference" :[],"utf8str":"Test comment"}}]
+              	}
+              }
+                """
+
+            Post("/v1/resources", HttpEntity(`application/json`, params)) ~> addCredentials(BasicHttpCredentials(user, password)) ~> resourcesPath ~> check {
+
+                assert(status == StatusCodes.OK)
+
+            }
+        }
+
+
 
     }
 
