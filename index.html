@@ -64,6 +64,11 @@
                 margin-top: 80px;
                 margin-bottom: 80px;
             }
+            a.center button{
+                width: 720px;
+                margin-left: auto;
+                margin-right: auto;
+            }
             /*
             .mdl-tabs__tab-bar {
                 border-bottom: none;
@@ -95,6 +100,11 @@
                 width: 900px;
                 height: 900px;
                 margin-left: -120px;
+            }
+            embed {
+                width: 720px;
+                height: 1024px;
+                border: 2px solid rgb(146,146,146);
             }
             /* Phone */
             @media screen and (max-width: 640px) {
@@ -137,8 +147,10 @@
                 <!--
                     <a href="#video-panel" class="mdl-tabs__tab">Project presentation (video)</a>
                 -->
-                    <a href="#documentation-panel" class="mdl-tabs__tab">Documentation</a>
+                    <a href="#knora-pdf-panel" class="mdl-tabs__tab">Documentation</a>
+                    <a href="#knora-base-pdf-panel" class="mdl-tabs__tab">Base Ontology</a>
                 </div>
+
                 <div class="mdl-tabs__panel is-active" id="text-panel">
                     <br />
                     <p>A software framework for storing, sharing, and working with primary sources and data in the humanities. </p>
@@ -148,12 +160,32 @@
 
                     <p>Knora is <a href="http://www.gnu.org/philosophy/free-sw.en.html">free software</a>, released under the <a href="http://www.gnu.org/licenses/agpl-3.0.en.html">GNU Affero General Public License</a>.</p>
                 </div>
-
+<!--
                 <div class="mdl-tabs__panel" id="video-panel">
-
+                    <iframe width="640" height="320" src="https://www.youtube.com/embed/9e1xvKWuqAk?rel=0" frameborder="0" allowfullscreen></iframe>
                 </div>
+-->
+<!--
                 <div class="mdl-tabs__panel" id="documentation-panel">
                     <iframe class="documentation" src="documentation/html/rst/index.html" frameboarder="0"></iframe>
+                </div>
+-->
+                <div class="mdl-tabs__panel" id="knora-pdf-panel">
+                    <a href="documentation/pdf/Knora.pdf" target="_blank" class="center">
+                        <button class="mdl-button mdl-js-button">
+                            Open the Documentation (pdf) in a new tab.
+                        </button>
+                    </a>
+                    <embed src="documentation/pdf/Knora.pdf" width="720" height="1024" type='application/pdf'>
+                </div>
+
+                <div class="mdl-tabs__panel" id="knora-base-pdf-panel">
+                    <a href="documentation/pdf/knora-base.pdf" target="_blank" class="center">
+                        <button class="mdl-button mdl-js-button">
+                            Open the knora base ontology (pdf) in a new tab.
+                        </button>
+                    </a>
+                    <embed src="documentation/pdf/knora-base.pdf" width="720" height="1024" type='application/pdf'>
                 </div>
             </div>
 
