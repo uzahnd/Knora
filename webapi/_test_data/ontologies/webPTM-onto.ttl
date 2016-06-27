@@ -99,6 +99,58 @@
 
 
 ### ###########################################
+### webPTMproject:haswebPTMscale
+
+
+:haswebPTMscale rdf:type owl:ObjectProperty ;
+
+             rdfs:subPropertyOf knora-base:hasValue ;
+
+             rdfs:comment """Used in the PTM algorithm"""@en ;
+
+             knora-base:subjectClassConstraint :webPTMdata ;
+
+             knora-base:objectClassConstraint knora-base:TextValue ;
+
+             salsah-gui:guiOrder "4"^^xsd:integer ;
+
+             salsah-gui:guiElement salsah-gui:Richtext ;
+
+             knora-base:hasDefaultViewPermission knora-base:KnownUser ,
+                                                 knora-base:UnknownUser ;
+
+             knora-base:hasDefaultModifyPermission knora-base:ProjectMember ;
+
+             knora-base:hasDefaultDeletePermission knora-base:Owner .
+
+
+### ###########################################
+### webPTMproject:haswebPTMbias
+
+:haswebPTMbias rdf:type owl:ObjectProperty ;
+
+             rdfs:subPropertyOf knora-base:hasValue ;
+
+             rdfs:comment """Used in the PTM algorithm"""@en ;
+
+             knora-base:subjectClassConstraint :webPTMdata ;
+
+             knora-base:objectClassConstraint knora-base:TextValue ;
+
+             salsah-gui:guiOrder "5"^^xsd:integer ;
+
+             salsah-gui:guiElement salsah-gui:Richtext ;
+
+             knora-base:hasDefaultViewPermission knora-base:KnownUser ,
+                                                 knora-base:UnknownUser ;
+
+             knora-base:hasDefaultModifyPermission knora-base:ProjectMember ;
+
+             knora-base:hasDefaultDeletePermission knora-base:Owner .
+
+
+
+### ###########################################
 ### webPTMproject:haswebPTMorientation
 
 :haswebPTMorientation rdf:type owl:ObjectProperty ;
@@ -111,7 +163,7 @@
 
              knora-base:objectClassConstraint knora-base:IntValue ;
 
-             salsah-gui:guiOrder "4"^^xsd:integer ;
+             salsah-gui:guiOrder "6"^^xsd:integer ;
 
              salsah-gui:guiElement salsah-gui:Richtext ;
 
@@ -136,7 +188,7 @@
 
              knora-base:objectClassConstraint knora-base:TextValue ;
 
-             salsah-gui:guiOrder "5"^^xsd:integer ;
+             salsah-gui:guiOrder "7"^^xsd:integer ;
 
              salsah-gui:guiElement salsah-gui:Richtext ;
 
@@ -162,7 +214,7 @@
 
              knora-base:objectClassConstraint knora-base:IntValue ;
 
-             salsah-gui:guiOrder "6"^^xsd:integer ;
+             salsah-gui:guiOrder "8"^^xsd:integer ;
 
              salsah-gui:guiElement salsah-gui:Richtext ;
 
@@ -187,7 +239,7 @@
 
              knora-base:objectClassConstraint knora-base:IntValue ;
 
-             salsah-gui:guiOrder "7"^^xsd:integer ;
+             salsah-gui:guiOrder "9"^^xsd:integer ;
 
              salsah-gui:guiElement salsah-gui:Richtext ;
 
@@ -213,7 +265,7 @@
 
              knora-base:objectClassConstraint knora-base:TextValue ;
 
-             salsah-gui:guiOrder "8"^^xsd:integer ;
+             salsah-gui:guiOrder "10"^^xsd:integer ;
 
              salsah-gui:guiElement salsah-gui:Richtext ;
 
@@ -238,7 +290,7 @@
 
              knora-base:objectClassConstraint knora-base:TextValue ;
 
-             salsah-gui:guiOrder "9"^^xsd:integer ;
+             salsah-gui:guiOrder "11"^^xsd:integer ;
 
              salsah-gui:guiElement salsah-gui:Richtext ;
 
@@ -263,7 +315,7 @@
 
              knora-base:objectClassConstraint knora-base:IntValue ;
 
-             salsah-gui:guiOrder "10"^^xsd:integer ;
+             salsah-gui:guiOrder "12"^^xsd:integer ;
 
              salsah-gui:guiElement salsah-gui:Richtext ;
 
@@ -288,6 +340,108 @@
 
              knora-base:objectClassConstraint knora-base:IntValue ;
 
+             salsah-gui:guiOrder "13"^^xsd:integer ;
+
+             salsah-gui:guiElement salsah-gui:Richtext ;
+
+             knora-base:hasDefaultViewPermission knora-base:KnownUser ,
+                                                 knora-base:UnknownUser ;
+
+             knora-base:hasDefaultModifyPermission knora-base:ProjectMember ;
+
+             knora-base:hasDefaultDeletePermission knora-base:Owner .
+
+
+
+### ###########################################
+### webPTMproject:haswebPTMfShaderURL
+
+:haswebPTMfShaderURL rdf:type owl:ObjectProperty ;
+
+             rdfs:subPropertyOf knora-base:hasValue ;
+
+             rdfs:comment """f Shader URL"""@en ;
+
+             knora-base:subjectClassConstraint :webPTMdata ;
+
+             knora-base:objectClassConstraint knora-base:TextValue ;
+
+             salsah-gui:guiOrder "8"^^xsd:integer ;
+
+             salsah-gui:guiElement salsah-gui:Richtext ;
+
+             knora-base:hasDefaultViewPermission knora-base:KnownUser ,
+                                                 knora-base:UnknownUser ;
+
+             knora-base:hasDefaultModifyPermission knora-base:ProjectMember ;
+
+             knora-base:hasDefaultDeletePermission knora-base:Owner .
+
+
+### ###########################################
+### webPTMproject:haswebPTMvShaderURL
+
+:haswebPTMvShaderURL rdf:type owl:ObjectProperty ;
+
+             rdfs:subPropertyOf knora-base:hasValue ;
+
+             rdfs:comment """v Shader URL"""@en ;
+
+             knora-base:subjectClassConstraint :webPTMdata ;
+
+             knora-base:objectClassConstraint knora-base:TextValue ;
+
+             salsah-gui:guiOrder "9"^^xsd:integer ;
+
+             salsah-gui:guiElement salsah-gui:Richtext ;
+
+             knora-base:hasDefaultViewPermission knora-base:KnownUser ,
+                                                 knora-base:UnknownUser ;
+
+             knora-base:hasDefaultModifyPermission knora-base:ProjectMember ;
+
+             knora-base:hasDefaultDeletePermission knora-base:Owner .
+
+
+
+### ###########################################
+### webPTMproject:haswebPTMutilsShaderURL
+
+:haswebPTMutilsShaderURL rdf:type owl:ObjectProperty ;
+
+             rdfs:subPropertyOf knora-base:hasValue ;
+
+             rdfs:comment """utils Shader URL"""@en ;
+
+             knora-base:subjectClassConstraint :webPTMdata ;
+
+             knora-base:objectClassConstraint knora-base:TextValue ;
+
+             salsah-gui:guiOrder "10"^^xsd:integer ;
+
+             salsah-gui:guiElement salsah-gui:Richtext ;
+
+             knora-base:hasDefaultViewPermission knora-base:KnownUser ,
+                                                 knora-base:UnknownUser ;
+
+             knora-base:hasDefaultModifyPermission knora-base:ProjectMember ;
+
+             knora-base:hasDefaultDeletePermission knora-base:Owner .
+
+
+### ###########################################
+### webPTMproject:haswebPTMsupportedGeometries
+
+:haswebPTMsupportedGeometries rdf:type owl:ObjectProperty ;
+
+             rdfs:subPropertyOf knora-base:hasValue ;
+
+             rdfs:comment """Supported model geometries """@en ;
+
+             knora-base:subjectClassConstraint :webPTMdata ;
+
+             knora-base:objectClassConstraint knora-base:TextValue ;
+
              salsah-gui:guiOrder "11"^^xsd:integer ;
 
              salsah-gui:guiElement salsah-gui:Richtext ;
@@ -299,6 +453,30 @@
 
              knora-base:hasDefaultDeletePermission knora-base:Owner .
 
+
+### ###########################################
+### webPTMproject:haswebPTMmodelDescript
+
+:haswebPTMmodelDescript rdf:type owl:ObjectProperty ;
+
+             rdfs:subPropertyOf knora-base:hasValue ;
+
+             rdfs:comment """Model Description"""@en ;
+
+             knora-base:subjectClassConstraint :webPTMdata ;
+
+             knora-base:objectClassConstraint knora-base:TextValue ;
+
+             salsah-gui:guiOrder "12"^^xsd:integer ;
+
+             salsah-gui:guiElement salsah-gui:Richtext ;
+
+             knora-base:hasDefaultViewPermission knora-base:KnownUser ,
+                                                 knora-base:UnknownUser ;
+
+             knora-base:hasDefaultModifyPermission knora-base:ProjectMember ;
+
+             knora-base:hasDefaultDeletePermission knora-base:Owner .
 
 
 ### ###########################################
@@ -392,6 +570,14 @@
                              owl:cardinality "1"^^xsd:nonNegativeInteger                          ] ,
                           [
                              rdf:type owl:Restriction ;
+                             owl:onProperty :haswebPTMscale ;
+                             owl:cardinality "1"^^xsd:nonNegativeInteger                          ] ,
+                          [
+                             rdf:type owl:Restriction ;
+                             owl:onProperty :haswebPTMbias ;
+                             owl:cardinality "1"^^xsd:nonNegativeInteger                          ] ,
+                          [
+                             rdf:type owl:Restriction ;
                              owl:onProperty :haswebPTMorientation ;
                              owl:cardinality "1"^^xsd:nonNegativeInteger                          ] ,
                           [
@@ -422,6 +608,26 @@
                              rdf:type owl:Restriction ;
                              owl:onProperty :haswebPTM_h_tileSz ;
                              owl:cardinality "1"^^xsd:nonNegativeInteger                          ] ,
+                          [
+                             rdf:type owl:Restriction ;
+                             owl:onProperty :haswebPTMfShaderURL ;
+                             owl:cardinality "1"^^xsd:nonNegativeInteger                          ] ,
+                          [
+                             rdf:type owl:Restriction ;
+                             owl:onProperty :haswebPTMvShaderURL ;
+                             owl:cardinality "1"^^xsd:nonNegativeInteger                          ] ,
+                          [
+                             rdf:type owl:Restriction ;
+                             owl:onProperty :haswebPTMutilsShaderURL ;
+                             owl:cardinality "1"^^xsd:nonNegativeInteger                          ] ,
+                          [
+                             rdf:type owl:Restriction ;
+                             owl:onProperty :haswebPTMsupportedGeometries ;
+                             owl:cardinality "1"^^xsd:nonNegativeInteger                          ] ,
+                          [
+                             rdf:type owl:Restriction ;
+                             owl:onProperty :haswebPTMmodelDescript ;
+                             owl:cardinality "1"^^xsd:nonNegativeInteger                       ] ,
                           [
                              rdf:type owl:Restriction ;
                              owl:onProperty :haswebPTMdescript ;
