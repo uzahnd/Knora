@@ -28,7 +28,7 @@ try:
             "http://www.knora.org/ontology/webPTM#haswebPTMmultiresType": [{"richtext_value":{"textattr":"{}","resource_reference" :[],"utf8str":"IIIF"}}],
             "http://www.knora.org/ontology/webPTM#haswebPTM_w_tileSz": [{"int_value":256}],
             "http://www.knora.org/ontology/webPTM#haswebPTM_h_tileSz": [{"int_value":256}],
-            "http://www.knora.org/ontology/webPTM#haswebPTMdfShaderURL": [{"richtext_value":{"textattr":"{}","resource_reference" :[],"utf8str":"lib/shaders/LRGBG_PTM_FShader.glsl"}}],
+            "http://www.knora.org/ontology/webPTM#haswebPTMfShaderURL": [{"richtext_value":{"textattr":"{}","resource_reference" :[],"utf8str":"lib/shaders/LRGBG_PTM_FShader.glsl"}}],
             "http://www.knora.org/ontology/webPTM#haswebPTMvShaderURL": [ {"richtext_value":{"textattr":"{}","resource_reference" :[],"utf8str":"lib/shaders/LRGBG_PTM_VShader.glsl"}}],
             "http://www.knora.org/ontology/webPTM#haswebPTMutilsShaderURL": [{"richtext_value":{"textattr":"{}","resource_reference" :[],"utf8str":"lib/shaders/PTM_shaderUtils.glsl"}}],
             "http://www.knora.org/ontology/webPTM#haswebPTMsupportedGeometries": [ {"richtext_value":{"textattr":"{}","resource_reference" :[],"utf8str":"PLANE"}}],
