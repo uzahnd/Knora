@@ -29,10 +29,10 @@ try:
             "http://www.knora.org/ontology/webPTM#haswebPTM_w_tileSz": [{"int_value":256}],
             "http://www.knora.org/ontology/webPTM#haswebPTM_h_tileSz": [{"int_value":256}],
             "http://www.knora.org/ontology/webPTM#haswebPTMdfShaderURL": [{"richtext_value":{"textattr":"{}","resource_reference" :[],"utf8str":"lib/shaders/LRGBG_PTM_FShader.glsl"}}],
-            "http://www.knora.org/ontology/webPTM#haswebPTMvShaderURL": [ {"richtext_value":{"textattr":"{}","resource_reference" :[],"utf8str":"lib/shaders/LRGBG_PTM_VShader.glsl"}}]
+            "http://www.knora.org/ontology/webPTM#haswebPTMvShaderURL": [ {"richtext_value":{"textattr":"{}","resource_reference" :[],"utf8str":"lib/shaders/LRGBG_PTM_VShader.glsl"}}],
             "http://www.knora.org/ontology/webPTM#haswebPTMutilsShaderURL": [{"richtext_value":{"textattr":"{}","resource_reference" :[],"utf8str":"lib/shaders/PTM_shaderUtils.glsl"}}],
-            "http://www.knora.org/ontology/webPTM#haswebPTMsupportedGeometries": [ {"richtext_value":{"textattr":"{}","resource_reference" :[],"utf8str":"PLANE"}}]
-            "http://www.knora.org/ontology/webPTM#haswebPTMmodelDescript": [ {"richtext_value":{"textattr":"{}","resource_reference" :[],"utf8str":"rti phong (plane)"}}]
+            "http://www.knora.org/ontology/webPTM#haswebPTMsupportedGeometries": [ {"richtext_value":{"textattr":"{}","resource_reference" :[],"utf8str":"PLANE"}}],
+            "http://www.knora.org/ontology/webPTM#haswebPTMmodelDescript": [ {"richtext_value":{"textattr":"{}","resource_reference" :[],"utf8str":"rti phong (plane)"}}],
             "http://www.knora.org/ontology/webPTM#haswebPTMdescript": [{"richtext_value":{"textattr":"{}","resource_reference" :[],"utf8str":"webPTM data description"}}],
             "http://www.knora.org/ontology/webPTM#haswebPTMcomment": [ {"richtext_value":{"textattr":"{}","resource_reference" :[],"utf8str":"webPTM data comment"}}]
         }
