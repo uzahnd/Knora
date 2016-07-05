@@ -5,6 +5,7 @@ import requests, json
 #
 # This scripts tests the creation of a residence.
 #
+# dump: s-get http://localhost:3030/knora-test/data http://www.knora.org/data/ssrq > knora_ssrq_dump.ttl
 
 try:
     base_url = "http://localhost/v1/"

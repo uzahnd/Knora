@@ -1,0 +1,455 @@
+<http://data.knora.org/projects/ssrq>
+        a       <http://www.knora.org/ontology/knora-base#knoraProject> ;
+        <http://www.knora.org/ontology/knora-base#projectBasepath>
+                "/ssrq" ;
+        <http://www.knora.org/ontology/knora-base#projectDescription>
+                "SSRQ" ;
+        <http://www.knora.org/ontology/knora-base#projectLogo>
+                "ssrq_logo.png" ;
+        <http://www.knora.org/ontology/knora-base#projectLongname>
+                "SSRQ" ;
+        <http://www.knora.org/ontology/knora-base#projectShortname>
+                "ssrq" .
+
+<http://data.knora.org/ssrq/lists/orgType>
+        a       <http://www.knora.org/ontology/knora-base#ListNode> ;
+        <http://www.w3.org/2000/01/rdf-schema#comment>
+                "Type of organisation"@en ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "Organisation type"@de ;
+        <http://www.knora.org/ontology/knora-base#hasSubListNode>
+                <http://data.knora.org/ssrq/lists/Family> , <http://data.knora.org/ssrq/lists/Konvent> ;
+        <http://www.knora.org/ontology/knora-base#isRootNode>
+                true .
+
+<http://data.knora.org/ssrq/lists/Family>
+        a       <http://www.knora.org/ontology/knora-base#ListNode> ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "Familie"@de ;
+        <http://www.knora.org/ontology/knora-base#hasRootNode>
+                <http://data.knora.org/ssrq/lists/orgType> ;
+        <http://www.knora.org/ontology/knora-base#listNodeName>
+                "Familie" ;
+        <http://www.knora.org/ontology/knora-base#listNodePosition>
+                0 .
+
+<http://data.knora.org/ssrq/lists/Konvent>
+        a       <http://www.knora.org/ontology/knora-base#ListNode> ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "Konvent"@de ;
+        <http://www.knora.org/ontology/knora-base#hasRootNode>
+                <http://data.knora.org/ssrq/lists/orgType> ;
+        <http://www.knora.org/ontology/knora-base#listNodeName>
+                "Konvent" ;
+        <http://www.knora.org/ontology/knora-base#listNodePosition>
+                1 .
+
+<http://data.knora.org/ssrq/lists/refType>
+        a       <http://www.knora.org/ontology/knora-base#ListNode> ;
+        <http://www.w3.org/2000/01/rdf-schema#comment>
+                "Type of external reference"@en ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "External reference type"@de ;
+        <http://www.knora.org/ontology/knora-base#hasSubListNode>
+                <http://data.knora.org/ssrq/lists/HLS> , <http://data.knora.org/ssrq/lists/biblio> ;
+        <http://www.knora.org/ontology/knora-base#isRootNode>
+                true .
+
+<http://data.knora.org/ssrq/lists/HLS>
+        a       <http://www.knora.org/ontology/knora-base#ListNode> ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "HLS"@de ;
+        <http://www.knora.org/ontology/knora-base#hasRootNode>
+                <http://data.knora.org/ssrq/lists/refType> ;
+        <http://www.knora.org/ontology/knora-base#listNodeName>
+                "HLS" ;
+        <http://www.knora.org/ontology/knora-base#listNodePosition>
+                0 .
+
+<http://data.knora.org/ssrq/lists/biblio>
+        a       <http://www.knora.org/ontology/knora-base#ListNode> ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "Biblio"@de ;
+        <http://www.knora.org/ontology/knora-base#hasRootNode>
+                <http://data.knora.org/ssrq/lists/refType> ;
+        <http://www.knora.org/ontology/knora-base#listNodeName>
+                "Biblio" ;
+        <http://www.knora.org/ontology/knora-base#listNodePosition>
+                1 .
+
+<http://data.knora.org/ssrq/org000004>
+        a       <http://www.knora.org/ontology/ssrq#organization> ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "Familie Rapperswil" ;
+        <http://www.knora.org/ontology/knora-base#attachedToProject>
+                <http://data.knora.org/projects/ssrq> ;
+        <http://www.knora.org/ontology/knora-base#attachedToUser>
+                <http://data.knora.org/users/nata> ;
+        <http://www.knora.org/ontology/knora-base#creationDate>
+                "2016-03-02T15:05:58Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        <http://www.knora.org/ontology/knora-base#hasDeletePermission>
+                <http://www.knora.org/ontology/knora-base#ProjectMember> ;
+        <http://www.knora.org/ontology/knora-base#hasViewPermission>
+                <http://www.knora.org/ontology/knora-base#UnknownUser> ;
+        <http://www.knora.org/ontology/knora-base#isDeleted>
+                false ;
+        <http://www.knora.org/ontology/ssrq#hasEntityResidence>
+                <http://data.knora.org/ssrq/entityloc0> ;
+        <http://www.knora.org/ontology/ssrq#hasEntityResidenceValue>
+                <http://data.knora.org/ssrq/org000004/values/4> ;
+        <http://www.knora.org/ontology/ssrq#orgID>
+                <http://data.knora.org/ssrq/org000004/values/1> ;
+        <http://www.knora.org/ontology/ssrq#orgType>
+                <http://data.knora.org/ssrq/org000004/values/0> ;
+        <http://www.knora.org/ontology/ssrq#origName>
+                <http://data.knora.org/ssrq/org000004/values/3> ;
+        <http://www.knora.org/ontology/ssrq#stdName>
+                <http://data.knora.org/ssrq/org000004/values/2> .
+
+<http://data.knora.org/ssrq/org000004/values/0>
+        a       <http://www.knora.org/ontology/knora-base#ListValue> ;
+        <http://www.knora.org/ontology/knora-base#attachedToUser>
+                <http://data.knora.org/users/nata> ;
+        <http://www.knora.org/ontology/knora-base#hasDeletePermission>
+                <http://www.knora.org/ontology/knora-base#ProjectMember> ;
+        <http://www.knora.org/ontology/knora-base#hasViewPermission>
+                <http://www.knora.org/ontology/knora-base#UnknownUser> ;
+        <http://www.knora.org/ontology/knora-base#isDeleted>
+                false ;
+        <http://www.knora.org/ontology/knora-base#valueCreationDate>
+                "2016-03-02T15:05:58Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        <http://www.knora.org/ontology/knora-base#valueHasListNode>
+                <http://data.knora.org/ssrq/lists/Family> ;
+        <http://www.knora.org/ontology/knora-base#valueHasOrder>
+                0 ;
+        <http://www.knora.org/ontology/knora-base#valueHasString>
+                "Familie" .
+
+<http://data.knora.org/ssrq/org000004/values/1>
+        a       <http://www.knora.org/ontology/knora-base#TextValue> ;
+        <http://www.knora.org/ontology/knora-base#attachedToUser>
+                <http://data.knora.org/users/nata> ;
+        <http://www.knora.org/ontology/knora-base#hasDeletePermission>
+                <http://www.knora.org/ontology/knora-base#ProjectMember> ;
+        <http://www.knora.org/ontology/knora-base#hasViewPermission>
+                <http://www.knora.org/ontology/knora-base#UnknownUser> ;
+        <http://www.knora.org/ontology/knora-base#isDeleted>
+                false ;
+        <http://www.knora.org/ontology/knora-base#valueCreationDate>
+                "2016-03-02T15:05:58Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        <http://www.knora.org/ontology/knora-base#valueHasOrder>
+                1 ;
+        <http://www.knora.org/ontology/knora-base#valueHasString>
+                "org000004" .
+
+<http://data.knora.org/ssrq/org000004/values/2>
+        a       <http://www.knora.org/ontology/knora-base#TextValue> ;
+        <http://www.knora.org/ontology/knora-base#attachedToUser>
+                <http://data.knora.org/users/nata> ;
+        <http://www.knora.org/ontology/knora-base#hasDeletePermission>
+                <http://www.knora.org/ontology/knora-base#ProjectMember> ;
+        <http://www.knora.org/ontology/knora-base#hasViewPermission>
+                <http://www.knora.org/ontology/knora-base#UnknownUser> ;
+        <http://www.knora.org/ontology/knora-base#isDeleted>
+                false ;
+        <http://www.knora.org/ontology/knora-base#valueCreationDate>
+                "2016-03-02T15:05:58Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        <http://www.knora.org/ontology/knora-base#valueHasOrder>
+                2 ;
+        <http://www.knora.org/ontology/knora-base#valueHasString>
+                "Rapperswil" .
+
+<http://data.knora.org/ssrq/org000004/values/3>
+        a       <http://www.knora.org/ontology/knora-base#TextValue> ;
+        <http://www.knora.org/ontology/knora-base#attachedToUser>
+                <http://data.knora.org/users/nata> ;
+        <http://www.knora.org/ontology/knora-base#hasDeletePermission>
+                <http://www.knora.org/ontology/knora-base#ProjectMember> ;
+        <http://www.knora.org/ontology/knora-base#hasViewPermission>
+                <http://www.knora.org/ontology/knora-base#UnknownUser> ;
+        <http://www.knora.org/ontology/knora-base#isDeleted>
+                false ;
+        <http://www.knora.org/ontology/knora-base#valueCreationDate>
+                "2016-03-02T15:05:58Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        <http://www.knora.org/ontology/knora-base#valueHasOrder>
+                3 ;
+        <http://www.knora.org/ontology/knora-base#valueHasString>
+                "Rapperswill" .
+
+<http://data.knora.org/ssrq/entityloc0>
+        a       <http://www.knora.org/ontology/ssrq#entityResidence> ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "Herauskunftort Familie Rapperswil" ;
+        <http://www.knora.org/ontology/knora-base#attachedToProject>
+                <http://data.knora.org/projects/ssrq> ;
+        <http://www.knora.org/ontology/knora-base#attachedToUser>
+                <http://data.knora.org/users/nata> ;
+        <http://www.knora.org/ontology/knora-base#creationDate>
+                "2016-03-02T15:05:58Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        <http://www.knora.org/ontology/knora-base#hasDeletePermission>
+                <http://www.knora.org/ontology/knora-base#ProjectMember> ;
+        <http://www.knora.org/ontology/knora-base#hasViewPermission>
+                <http://www.knora.org/ontology/knora-base#UnknownUser> ;
+        <http://www.knora.org/ontology/knora-base#isDeleted>
+                false ;
+        <http://www.knora.org/ontology/ssrq#locatedAtResidence>
+                <http://data.knora.org/ssrq/loc000108> ;
+        <http://www.knora.org/ontology/ssrq#locatedAtResidenceValue>
+                <http://data.knora.org/ssrq/entityloc0/values/0> ;
+        <http://www.knora.org/ontology/ssrq#occurrence>
+                <http://data.knora.org/ssrq/entityloc0/values/1> .
+
+<http://data.knora.org/ssrq/org000004/values/4>
+        a       <http://www.knora.org/ontology/knora-base#LinkValue> ;
+        <http://www.w3.org/1999/02/22-rdf-syntax-ns#object>
+                <http://data.knora.org/ssrq/entityloc0> ;
+        <http://www.w3.org/1999/02/22-rdf-syntax-ns#predicate>
+                <http://www.knora.org/ontology/ssrq#hasEntityResidence> ;
+        <http://www.w3.org/1999/02/22-rdf-syntax-ns#subject>
+                <http://data.knora.org/ssrq/org000004> ;
+        <http://www.knora.org/ontology/knora-base#attachedToUser>
+                <http://data.knora.org/users/nata> ;
+        <http://www.knora.org/ontology/knora-base#hasDeletePermission>
+                <http://www.knora.org/ontology/knora-base#ProjectMember> ;
+        <http://www.knora.org/ontology/knora-base#hasViewPermission>
+                <http://www.knora.org/ontology/knora-base#UnknownUser> ;
+        <http://www.knora.org/ontology/knora-base#isDeleted>
+                false ;
+        <http://www.knora.org/ontology/knora-base#valueCreationDate>
+                "2016-03-02T15:05:58Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        <http://www.knora.org/ontology/knora-base#valueHasOrder>
+                4 ;
+        <http://www.knora.org/ontology/knora-base#valueHasRefCount>
+                1 .
+
+<http://data.knora.org/users/nata>
+        a       <http://www.knora.org/ontology/knora-base#User> ;
+        <http://www.knora.org/ontology/knora-base#email>
+                "user.user01@example.com" ;
+        <http://www.knora.org/ontology/knora-base#isInProject>
+                <http://data.knora.org/projects/ssrq> ;
+        <http://www.knora.org/ontology/knora-base#password>
+                "a94a8fe5ccb19ba61c4c0873d391e987982fbbd3" ;
+        <http://www.knora.org/ontology/knora-base#preferredLanguage>
+                "de" ;
+        <http://www.knora.org/ontology/knora-base#userid>
+                "root" ;
+        <http://xmlns.com/foaf/0.1/familyName>
+                "test" ;
+        <http://xmlns.com/foaf/0.1/givenName>
+                "test" .
+
+<http://data.knora.org/ssrq/loc000108>
+        a       <http://www.knora.org/ontology/ssrq#residence> ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "Herauskunftort Rapperswil" ;
+        <http://www.knora.org/ontology/knora-base#attachedToProject>
+                <http://data.knora.org/projects/ssrq> ;
+        <http://www.knora.org/ontology/knora-base#attachedToUser>
+                <http://data.knora.org/users/nata> ;
+        <http://www.knora.org/ontology/knora-base#creationDate>
+                "2016-03-02T15:05:58Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        <http://www.knora.org/ontology/knora-base#hasDeletePermission>
+                <http://www.knora.org/ontology/knora-base#ProjectMember> ;
+        <http://www.knora.org/ontology/knora-base#hasViewPermission>
+                <http://www.knora.org/ontology/knora-base#UnknownUser> ;
+        <http://www.knora.org/ontology/knora-base#isDeleted>
+                false ;
+        <http://www.knora.org/ontology/ssrq#residenceID>
+                <http://data.knora.org/ssrq/loc000108/values/0> ;
+        <http://www.knora.org/ontology/ssrq#stdName>
+                <http://data.knora.org/ssrq/loc000108/values/1> .
+
+<http://data.knora.org/ssrq/entityloc0/values/0>
+        a       <http://www.knora.org/ontology/knora-base#LinkValue> ;
+        <http://www.w3.org/1999/02/22-rdf-syntax-ns#object>
+                <http://data.knora.org/ssrq/loc000108> ;
+        <http://www.w3.org/1999/02/22-rdf-syntax-ns#predicate>
+                <http://www.knora.org/ontology/ssrq#locatedAtResidence> ;
+        <http://www.w3.org/1999/02/22-rdf-syntax-ns#subject>
+                <http://data.knora.org/ssrq/entityloc0> ;
+        <http://www.knora.org/ontology/knora-base#attachedToUser>
+                <http://data.knora.org/users/nata> ;
+        <http://www.knora.org/ontology/knora-base#hasDeletePermission>
+                <http://www.knora.org/ontology/knora-base#ProjectMember> ;
+        <http://www.knora.org/ontology/knora-base#hasViewPermission>
+                <http://www.knora.org/ontology/knora-base#UnknownUser> ;
+        <http://www.knora.org/ontology/knora-base#isDeleted>
+                false ;
+        <http://www.knora.org/ontology/knora-base#valueCreationDate>
+                "2016-03-02T15:05:58Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        <http://www.knora.org/ontology/knora-base#valueHasOrder>
+                0 ;
+        <http://www.knora.org/ontology/knora-base#valueHasRefCount>
+                1 .
+
+<http://data.knora.org/ssrq/entityloc0/values/1>
+        a       <http://www.knora.org/ontology/knora-base#TextValue> ;
+        <http://www.knora.org/ontology/knora-base#attachedToUser>
+                <http://data.knora.org/users/nata> ;
+        <http://www.knora.org/ontology/knora-base#hasDeletePermission>
+                <http://www.knora.org/ontology/knora-base#ProjectMember> ;
+        <http://www.knora.org/ontology/knora-base#hasViewPermission>
+                <http://www.knora.org/ontology/knora-base#UnknownUser> ;
+        <http://www.knora.org/ontology/knora-base#isDeleted>
+                false ;
+        <http://www.knora.org/ontology/knora-base#valueCreationDate>
+                "2016-03-02T15:05:58Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        <http://www.knora.org/ontology/knora-base#valueHasOrder>
+                1 ;
+        <http://www.knora.org/ontology/knora-base#valueHasString>
+                "SG III/2" .
+
+<http://data.knora.org/ssrq/loc000108/values/0>
+        a       <http://www.knora.org/ontology/knora-base#TextValue> ;
+        <http://www.knora.org/ontology/knora-base#attachedToUser>
+                <http://data.knora.org/users/nata> ;
+        <http://www.knora.org/ontology/knora-base#hasDeletePermission>
+                <http://www.knora.org/ontology/knora-base#ProjectMember> ;
+        <http://www.knora.org/ontology/knora-base#hasViewPermission>
+                <http://www.knora.org/ontology/knora-base#UnknownUser> ;
+        <http://www.knora.org/ontology/knora-base#isDeleted>
+                false ;
+        <http://www.knora.org/ontology/knora-base#valueCreationDate>
+                "2016-03-02T15:05:58Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        <http://www.knora.org/ontology/knora-base#valueHasOrder>
+                0 ;
+        <http://www.knora.org/ontology/knora-base#valueHasString>
+                "loc000108" .
+
+<http://data.knora.org/ssrq/loc000108/values/1>
+        a       <http://www.knora.org/ontology/knora-base#TextValue> ;
+        <http://www.knora.org/ontology/knora-base#attachedToUser>
+                <http://data.knora.org/users/nata> ;
+        <http://www.knora.org/ontology/knora-base#hasDeletePermission>
+                <http://www.knora.org/ontology/knora-base#ProjectMember> ;
+        <http://www.knora.org/ontology/knora-base#hasViewPermission>
+                <http://www.knora.org/ontology/knora-base#UnknownUser> ;
+        <http://www.knora.org/ontology/knora-base#isDeleted>
+                false ;
+        <http://www.knora.org/ontology/knora-base#valueCreationDate>
+                "2016-03-02T15:05:58Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        <http://www.knora.org/ontology/knora-base#valueHasOrder>
+                1 ;
+        <http://www.knora.org/ontology/knora-base#valueHasString>
+                "Rapperswil" .
+
+<http://data.knora.org/fjg1a1JfSm-FvzYrMvLi-w>
+        a       <http://www.knora.org/ontology/ssrq#residence> ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "test residence" ;
+        <http://www.knora.org/ontology/knora-base#attachedToProject>
+                <http://data.knora.org/projects/ssrq> ;
+        <http://www.knora.org/ontology/knora-base#attachedToUser>
+                <http://data.knora.org/users/nata> ;
+        <http://www.knora.org/ontology/knora-base#creationDate>
+                "2016-06-30T11:13:49.535+02:00"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        <http://www.knora.org/ontology/knora-base#hasModifyPermission>
+                <http://www.knora.org/ontology/knora-base#ProjectMember> ;
+        <http://www.knora.org/ontology/knora-base#hasViewPermission>
+                <http://www.knora.org/ontology/knora-base#UnknownUser> ;
+        <http://www.knora.org/ontology/knora-base#isDeleted>
+                false ;
+        <http://www.knora.org/ontology/ssrq#residenceID>
+                <http://data.knora.org/fjg1a1JfSm-FvzYrMvLi-w/values/_aufDHFxRVa_wXrWGIp3DA> ;
+        <http://www.knora.org/ontology/ssrq#stdName>
+                <http://data.knora.org/fjg1a1JfSm-FvzYrMvLi-w/values/zF-V2_rwQ4efJd5IesgGUA> .
+
+<http://data.knora.org/fjg1a1JfSm-FvzYrMvLi-w/values/_aufDHFxRVa_wXrWGIp3DA>
+        a       <http://www.knora.org/ontology/knora-base#TextValue> ;
+        <http://www.knora.org/ontology/knora-base#attachedToProject>
+                <http://data.knora.org/projects/ssrq> ;
+        <http://www.knora.org/ontology/knora-base#attachedToUser>
+                <http://data.knora.org/users/nata> ;
+        <http://www.knora.org/ontology/knora-base#hasModifyPermission>
+                <http://www.knora.org/ontology/knora-base#ProjectMember> ;
+        <http://www.knora.org/ontology/knora-base#hasViewPermission>
+                <http://www.knora.org/ontology/knora-base#UnknownUser> ;
+        <http://www.knora.org/ontology/knora-base#isDeleted>
+                false ;
+        <http://www.knora.org/ontology/knora-base#valueCreationDate>
+                "2016-06-30T11:13:49.535+02:00"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        <http://www.knora.org/ontology/knora-base#valueHasOrder>
+                0 ;
+        <http://www.knora.org/ontology/knora-base#valueHasString>
+                "loc000109" .
+
+<http://data.knora.org/fjg1a1JfSm-FvzYrMvLi-w/values/zF-V2_rwQ4efJd5IesgGUA>
+        a       <http://www.knora.org/ontology/knora-base#TextValue> ;
+        <http://www.knora.org/ontology/knora-base#attachedToProject>
+                <http://data.knora.org/projects/ssrq> ;
+        <http://www.knora.org/ontology/knora-base#attachedToUser>
+                <http://data.knora.org/users/nata> ;
+        <http://www.knora.org/ontology/knora-base#hasModifyPermission>
+                <http://www.knora.org/ontology/knora-base#ProjectMember> ;
+        <http://www.knora.org/ontology/knora-base#hasViewPermission>
+                <http://www.knora.org/ontology/knora-base#UnknownUser> ;
+        <http://www.knora.org/ontology/knora-base#isDeleted>
+                false ;
+        <http://www.knora.org/ontology/knora-base#valueCreationDate>
+                "2016-06-30T11:13:49.535+02:00"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        <http://www.knora.org/ontology/knora-base#valueHasOrder>
+                0 ;
+        <http://www.knora.org/ontology/knora-base#valueHasString>
+                "Zürich" .
+
+<http://data.knora.org/Aps-JodlTVmDhSTCD4cETg>
+        a       <http://www.knora.org/ontology/ssrq#externalRef> ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "ext_ref" ;
+        <http://www.knora.org/ontology/knora-base#attachedToProject>
+                <http://data.knora.org/projects/ssrq> ;
+        <http://www.knora.org/ontology/knora-base#attachedToUser>
+                <http://data.knora.org/users/nata> ;
+        <http://www.knora.org/ontology/knora-base#hasModifyPermission>
+                <http://www.knora.org/ontology/knora-base#ProjectMember> ;
+        <http://www.knora.org/ontology/knora-base#hasViewPermission>
+                <http://www.knora.org/ontology/knora-base#UnknownUser> ;
+        <http://www.knora.org/ontology/knora-base#creationDate>
+                "2016-06-30T16:26:06.953+02:00"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        <http://www.knora.org/ontology/knora-base#isDeleted>
+                false ;
+        <http://www.knora.org/ontology/ssrq#refID>
+                <http://data.knora.org/Aps-JodlTVmDhSTCD4cETg/values/dbv1WEsYQYaNVfmXJ60oow> ;
+        <http://www.knora.org/ontology/ssrq#refType>
+                <http://data.knora.org/Aps-JodlTVmDhSTCD4cETg/values/kHt1CEXfTjeCcFW1P8L4aw> .
+
+<http://data.knora.org/Aps-JodlTVmDhSTCD4cETg/values/kHt1CEXfTjeCcFW1P8L4aw>
+        a       <http://www.knora.org/ontology/knora-base#ListValue> ;
+        <http://www.knora.org/ontology/knora-base#attachedToProject>
+                <http://data.knora.org/projects/ssrq> ;
+        <http://www.knora.org/ontology/knora-base#attachedToUser>
+                <http://data.knora.org/users/nata> ;
+        <http://www.knora.org/ontology/knora-base#hasModifyPermission>
+                <http://www.knora.org/ontology/knora-base#ProjectMember> ;
+        <http://www.knora.org/ontology/knora-base#hasViewPermission>
+                <http://www.knora.org/ontology/knora-base#KnownUser> ;
+        <http://www.knora.org/ontology/knora-base#isDeleted>
+                false ;
+        <http://www.knora.org/ontology/knora-base#valueCreationDate>
+                "2016-06-30T16:26:06.953+02:00"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        <http://www.knora.org/ontology/knora-base#valueHasListNode>
+                <http://data.knora.org/ssrq/lists/HLS> ;
+        <http://www.knora.org/ontology/knora-base#valueHasOrder>
+                0 ;
+        <http://www.knora.org/ontology/knora-base#valueHasString>
+                "http://data.knora.org/ssrq/lists/HLS" .
+
+<http://data.knora.org/Aps-JodlTVmDhSTCD4cETg/values/dbv1WEsYQYaNVfmXJ60oow>
+        a       <http://www.knora.org/ontology/knora-base#TextValue> ;
+        <http://www.knora.org/ontology/knora-base#attachedToProject>
+                <http://data.knora.org/projects/ssrq> ;
+        <http://www.knora.org/ontology/knora-base#attachedToUser>
+                <http://data.knora.org/users/nata> ;
+        <http://www.knora.org/ontology/knora-base#hasModifyPermission>
+                <http://www.knora.org/ontology/knora-base#ProjectMember> ;
+        <http://www.knora.org/ontology/knora-base#hasViewPermission>
+                <http://www.knora.org/ontology/knora-base#KnownUser> ;
+        <http://www.knora.org/ontology/knora-base#isDeleted>
+                false ;
+        <http://www.knora.org/ontology/knora-base#valueCreationDate>
+                "2016-06-30T16:26:06.953+02:00"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        <http://www.knora.org/ontology/knora-base#valueHasOrder>
+                0 ;
+        <http://www.knora.org/ontology/knora-base#valueHasString>
+                "11111" .

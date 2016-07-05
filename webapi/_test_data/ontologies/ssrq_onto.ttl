@@ -200,7 +200,7 @@
 
   rdfs:subPropertyOf knora-base:hasLinkTo ;
 
-  knora-base:subjectClassConstraint :entityWityRefs ;
+  knora-base:subjectClassConstraint :entityWithRefs ;
 
   knora-base:objectClassConstraint :externalRef ;
 
@@ -213,7 +213,7 @@
 
   rdfs:subPropertyOf knora-base:hasLinkToValue ;
 
-  knora-base:subjectClassConstraint :entityWityRefs ;
+  knora-base:subjectClassConstraint :entityWithRefs ;
 
   knora-base:objectClassConstraint knora-base:LinkValue ;
 
@@ -416,6 +416,12 @@
     knora-base:hasDefaultModifyPermission knora-base:ProjectMember .
 
 
+#:OrgName rdf:type owl:Class ;
+
+ # rdfs:subClassOf :entityWithOccurrences ,
+
+#:PersName 
+
 :residence rdf:type owl:Class ;
 
   rdfs:subClassOf :entityWithNames ,
@@ -438,7 +444,7 @@
 
 :organization rdf:type owl:Class ;
 
-      rdfs:subClassOf :entityWithNames , :entityWithResidences , :entityWityRefs ,
+      rdfs:subClassOf :entityWithNames , :entityWithResidences , :entityWithRefs ,
                       [
                         rdf:type owl:Restriction ;
                         owl:onProperty :orgID ;
