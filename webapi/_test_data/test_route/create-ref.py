@@ -24,26 +24,20 @@ try:
 #        'project_id': 'http://data.knora.org/projects/ssrq'
 #    }
     params = {
-        'restype_id': 'http://www.knora.org/ontology/knora-base#LinkValue',
-        'properties': {
-            'http://www.w3.org/1999/02/22-rdf-syntax-ns#subject': [
-                {'link_value': 'http://data.knora.org/ssrq/org000004'}
-            ],
-            'http://www.w3.org/1999/02/22-rdf-syntax-ns#predicate': [
-                {'link_value': 'http://www.knora.org/ontology/ssrq#ref'}
-            ],
-            'http://www.w3.org/1999/02/22-rdf-syntax-ns#object': [
-                {'link_value': 'http://data.knora.org/Aps-JodlTVmDhSTCD4cETg'}
-            ]
-        },
-        'label': 'ext_ref_link', 
-        'project_id': 'http://data.knora.org/projects/ssrq'
+    
+        'project_id': 'http://data.knora.org/projects/ssrq', 
+        'prop': 'http://www.knora.org/ontology/ssrq#ref',
+        'res_id': 'http://data.knora.org/ssrq/org000004', 
+        
+        'link_value': 'http://data.knora.org/Aps-JodlTVmDhSTCD4cETg' ,
+        
+        
     }
 
     props = json.dumps(params)
-
-    r = requests.post(base_url + 'resources',
-                      data=props,
+#    r = requests.post(base_url + 'resources',
+    r = requests.post(base_url + 'values', 
+                 data=props,
                       headers={'content-type': 'application/json; charset=utf8'},
                       auth=('root', 'test'),
                       proxies={'http': 'http://localhost:3333'})
