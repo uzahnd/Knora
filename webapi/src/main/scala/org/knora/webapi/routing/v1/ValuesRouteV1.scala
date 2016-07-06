@@ -115,9 +115,9 @@ object ValuesRouteV1 extends Authenticator {
                 val geometryValue = InputValidation.toGeometryString(geomStr, () => throw BadRequestException(s"Invalid geometry value $geomStr"))
                 (GeomValueV1(geometryValue), comment)
 
-            case CreateValueApiRequestV1(_, _, _, _, _, _, _, _, _, _, _, Some(linkValue: IRI), _, _, _, _, comment) =>
-                val resourceIRI = InputValidation.toIri(linkValue, () => throw BadRequestException(s"Given IRI $linkValue is not a valid Knora IRI"))
-                (LinkUpdateV1(targetResourceIri = resourceIri), comment)
+            case CreateValueApiRequestV1(_, _, _, _, _, _, _, _, _, _, _, Some(targetResourceIri: IRI), _, _, _, _, comment) =>
+                val resourceIRI = InputValidation.toIri(targetResourceIri, () => throw BadRequestException(s"Given IRI $targetResourceIri is not a valid Knora IRI"))
+                (LinkUpdateV1(targetResourceIri = targetResourceIri), comment)
 
             case CreateValueApiRequestV1(_, _, _, _, _, _, _, _, _, _, _, _, Some(hlistValue), _, _, _, comment) =>
                 val listNodeIri = InputValidation.toIri(hlistValue, () => throw BadRequestException(s"Given IRI $hlistValue is not a valid Knora IRI"))
