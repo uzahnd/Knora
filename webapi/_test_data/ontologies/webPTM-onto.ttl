@@ -31,6 +31,8 @@
 
              rdfs:comment """The type of the PTM, can be "LRGBG_PTM" with 9 scale parameters, or "LRGB_PTM" with 6 scale parameters (coefficients) """@en ;
 
+             rdfs:label "type"@en ;
+
              knora-base:subjectClassConstraint :webPTMdata ;
 
              knora-base:objectClassConstraint knora-base:TextValue ;
@@ -56,6 +58,8 @@
 
              rdfs:comment """w dimension of actual content in the Image"""@en ;
 
+             rdfs:label "w"@en ;
+
              knora-base:subjectClassConstraint :webPTMdata ;
 
              knora-base:objectClassConstraint knora-base:IntValue ;
@@ -80,6 +84,8 @@
              rdfs:subPropertyOf knora-base:hasValue ;
 
              rdfs:comment """h dimension of actual content in the Image"""@en ;
+
+             rdfs:label "h"@en ;
 
              knora-base:subjectClassConstraint :webPTMdata ;
 
@@ -108,6 +114,8 @@
 
              rdfs:comment """Used in the PTM algorithm"""@en ;
 
+             rdfs:label "scale"@en ;
+
              knora-base:subjectClassConstraint :webPTMdata ;
 
              knora-base:objectClassConstraint knora-base:TextValue ;
@@ -132,6 +140,8 @@
              rdfs:subPropertyOf knora-base:hasValue ;
 
              rdfs:comment """Used in the PTM algorithm"""@en ;
+
+             rdfs:label "bias"@en ;
 
              knora-base:subjectClassConstraint :webPTMdata ;
 
@@ -159,6 +169,8 @@
 
              rdfs:comment """orientation of the content in the viewer"""@en ;
 
+             rdfs:label "orientation"@en ;
+
              knora-base:subjectClassConstraint :webPTMdata ;
 
              knora-base:objectClassConstraint knora-base:IntValue ;
@@ -183,6 +195,8 @@
              rdfs:subPropertyOf knora-base:hasValue ;
 
              rdfs:comment """The format in which the image is returned from SIPI"""@en ;
+
+             rdfs:label "imgFormat"@en ;
 
              knora-base:subjectClassConstraint :webPTMdata ;
 
@@ -210,6 +224,8 @@
 
              rdfs:comment """Image w resolution"""@en ;
 
+             rdfs:label "wmax"@en ;
+
              knora-base:subjectClassConstraint :webPTMdata ;
 
              knora-base:objectClassConstraint knora-base:IntValue ;
@@ -234,6 +250,8 @@
              rdfs:subPropertyOf knora-base:hasValue ;
 
              rdfs:comment """Image h resolution"""@en ;
+
+             rdfs:label "hmax"@en ;
 
              knora-base:subjectClassConstraint :webPTMdata ;
 
@@ -261,6 +279,8 @@
 
              rdfs:comment """Geometry type of the image. Can be i.e. "PLANE", "DOME", "ARC" etc """@en ;
 
+             rdfs:label "geometry"@en ;
+
              knora-base:subjectClassConstraint :webPTMdata ;
 
              knora-base:objectClassConstraint knora-base:TextValue ;
@@ -285,6 +305,8 @@
              rdfs:subPropertyOf knora-base:hasValue ;
 
              rdfs:comment """Strategy used for the multi-resolution creation, i.e. IIIF """@en ;
+
+             rdfs:label "multires"@en ;
 
              knora-base:subjectClassConstraint :webPTMdata ;
 
@@ -311,6 +333,8 @@
 
              rdfs:comment """w multiresolution tile size"""@en ;
 
+             rdfs:label "wTile"@en ;
+
              knora-base:subjectClassConstraint :webPTMdata ;
 
              knora-base:objectClassConstraint knora-base:IntValue ;
@@ -335,6 +359,8 @@
              rdfs:subPropertyOf knora-base:hasValue ;
 
              rdfs:comment """h multiresolution tile size"""@en ;
+
+             rdfs:label "hTile"@en ;
 
              knora-base:subjectClassConstraint :webPTMdata ;
 
@@ -362,6 +388,8 @@
 
              rdfs:comment """f Shader URL"""@en ;
 
+             rdfs:label "fShader"@en ;
+
              knora-base:subjectClassConstraint :webPTMdata ;
 
              knora-base:objectClassConstraint knora-base:TextValue ;
@@ -386,6 +414,8 @@
              rdfs:subPropertyOf knora-base:hasValue ;
 
              rdfs:comment """v Shader URL"""@en ;
+
+             rdfs:label "vShader"@en ;
 
              knora-base:subjectClassConstraint :webPTMdata ;
 
@@ -413,6 +443,8 @@
 
              rdfs:comment """utils Shader URL"""@en ;
 
+             rdfs:label "utilsShader"@en ;
+
              knora-base:subjectClassConstraint :webPTMdata ;
 
              knora-base:objectClassConstraint knora-base:TextValue ;
@@ -437,6 +469,8 @@
              rdfs:subPropertyOf knora-base:hasValue ;
 
              rdfs:comment """Supported model geometries """@en ;
+
+             rdfs:label "supGeometries"@en ;
 
              knora-base:subjectClassConstraint :webPTMdata ;
 
