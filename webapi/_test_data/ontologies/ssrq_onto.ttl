@@ -22,14 +22,13 @@
 
 
 
-
-:stdName rdf:type owl:ObjectProperty ;
+:nameString rdf:type owl:ObjectProperty ;
 
        rdfs:subPropertyOf knora-base:hasValue, foaf:name ;
 
        rdfs:label "Name"@de ;
 
-       knora-base:subjectClassConstraint :entityWithNames ;
+       knora-base:subjectClassConstraint :nameUnit ;
 
        knora-base:objectClassConstraint knora-base:TextValue ;
 
@@ -44,31 +43,74 @@
 
        knora-base:hasDefaultModifyPermission knora-base:ProjectMember .
 
+:nameID rdf:type owl:ObjectProperty ;
+
+  rdfs:subPropertyOf knora-base:hasValue ;
+
+  knora-base:subjectClassConstraint :nameUnit  ;
+
+  knora-base:objectClassConstraint knora-base:TextValue ;
+
+  knora-base:hasDefaultViewPermission knora-base:UnknownUser ;
+
+  knora-base:hasDefaultModifyPermission knora-base:ProjectMember .
+
+
+:stdName rdf:type owl:ObjectProperty ;
+
+    rdfs:subPropertyOf knora-base:hasLinkTo , foaf:name ;
+
+    rdfs:label "Name"@de ;
+
+    knora-base:subjectClassConstraint :entityWithNames ;
+
+    knora-base:objectClassConstraint :nameUnit ;
+
+    knora-base:hasDefaultViewPermission knora-base:KnownUser ;
+
+    knora-base:hasDefaultModifyPermission knora-base:ProjectMember .
+
+
+:stdNameValue rdf:type owl:ObjectProperty ;
+
+    rdfs:subPropertyOf knora-base:hasLinkToValue ;
+
+    knora-base:subjectClassConstraint :entityWithNames ;
+
+    knora-base:objectClassConstraint knora-base:LinkValue ;
+
+    knora-base:hasDefaultViewPermission knora-base:KnownUser ;
+
+    knora-base:hasDefaultModifyPermission knora-base:ProjectMember .
 
 
 :origName rdf:type owl:ObjectProperty ;
 
-           rdfs:subPropertyOf knora-base:hasValue, foaf:name ;
+     rdfs:subPropertyOf knora-base:hasValue, foaf:name ;
 
-           rdfs:label "Variantname"@de ;
+     rdfs:label "Variantname"@de ;
 
-           knora-base:subjectClassConstraint :entityWithNames ;
+     knora-base:subjectClassConstraint :entityWithNames ;
 
-           knora-base:objectClassConstraint knora-base:TextValue ;
+     knora-base:objectClassConstraint :nameUnit ;
 
-           salsah-gui:guiOrder "2"^^xsd:integer ;
+     knora-base:hasDefaultViewPermission knora-base:KnownUser ;
 
-           salsah-gui:guiElement salsah-gui:SimpleText ;
-
-           salsah-gui:guiAttribute "size=60" ,
-                                   "maxlength=255" ;
-
-           knora-base:hasDefaultViewPermission knora-base:KnownUser ;
-
-           knora-base:hasDefaultModifyPermission knora-base:ProjectMember .
+     knora-base:hasDefaultModifyPermission knora-base:ProjectMember .
 
 
+:origNameValue rdf:type owl:ObjectProperty ;
 
+    rdfs:subPropertyOf knora-base:hasLinkToValue ;
+
+    knora-base:subjectClassConstraint :entityWithNames ;
+
+    knora-base:objectClassConstraint knora-base:LinkValue ;
+
+    knora-base:hasDefaultViewPermission knora-base:KnownUser ;
+
+    knora-base:hasDefaultModifyPermission knora-base:ProjectMember .
+    
 
 :orgID rdf:type owl:ObjectProperty ;
 
@@ -137,8 +179,6 @@
   knora-base:hasDefaultModifyPermission knora-base:ProjectMember .
 
 
-
-
 :orgType rdf:type owl:ObjectProperty ;
 
     rdfs:subPropertyOf knora-base:hasValue ;
@@ -151,6 +191,95 @@
 
     knora-base:hasDefaultModifyPermission knora-base:ProjectMember .
 
+
+:nameType rdf:type owl:ObjectProperty ;
+
+    rdfs:subPropertyOf knora-base:hasValue ;
+
+    knora-base:subjectClassConstraint :nameUnit ;
+
+    knora-base:objectClassConstraint knora-base:ListValue ;
+
+    knora-base:hasDefaultViewPermission knora-base:KnownUser ;
+
+    knora-base:hasDefaultModifyPermission knora-base:ProjectMember .
+
+
+:nameLang rdf:type owl:ObjectProperty ;
+
+    rdfs:subPropertyOf knora-base:hasValue ;
+
+    knora-base:subjectClassConstraint :nameUnit ;
+
+    knora-base:objectClassConstraint knora-base:ListValue ;
+
+    knora-base:hasDefaultViewPermission knora-base:KnownUser ;
+
+    knora-base:hasDefaultModifyPermission knora-base:ProjectMember .
+
+
+:roleName rdf:type owl:ObjectProperty ;
+
+    rdfs:subPropertyOf knora-base:hasValue ;
+
+    knora-base:subjectClassConstraint :orgStdName ;
+
+    knora-base:objectClassConstraint knora-base:ListValue ;
+
+    knora-base:hasDefaultViewPermission knora-base:KnownUser ;
+
+    knora-base:hasDefaultModifyPermission knora-base:ProjectMember .
+
+
+:stdNameLink rdf:type owl:ObjectProperty ;
+
+    rdfs:subPropertyOf knora-base:hasValue ;
+
+    knora-base:subjectClassConstraint :orgStdName ;
+
+    knora-base:objectClassConstraint knora-base:ListValue ;
+
+    knora-base:hasDefaultViewPermission knora-base:KnownUser ;
+
+    knora-base:hasDefaultModifyPermission knora-base:ProjectMember .
+
+
+:origNameLink rdf:type owl:ObjectProperty ;
+
+  rdfs:subPropertyOf knora-base:hasValue ;
+
+  knora-base:subjectClassConstraint :orgOrigName;
+
+  knora-base:objectClassConstraint knora-base:TextValue ;
+
+  knora-base:hasDefaultViewPermission knora-base:KnownUser ;
+
+  knora-base:hasDefaultModifyPermission knora-base:ProjectMember .
+
+
+#define alias as boolean.
+
+:isAlias rdf:type owl:ObjectProperty ;
+
+       rdfs:subPropertyOf knora-base:hasValue ;
+
+       rdfs:label "Alias"@de ,
+                  "Alias"@en ;
+
+       knora-base:subjectClassConstraint :orgName ;
+
+       knora-base:objectClassConstraint knora-base:BooleanValue ;
+
+       salsah-gui:guiOrder "6"^^xsd:integer ;
+
+       salsah-gui:guiElement salsah-gui:SimpleText ;
+
+       salsah-gui:guiAttribute "size=80" ,
+                               "maxlength=255" ;
+
+       knora-base:hasDefaultViewPermission knora-base:KnownUser ;
+
+       knora-base:hasDefaultModifyPermission knora-base:ProjectMember .
 
 
 :hasEntityResidence rdf:type owl:ObjectProperty ;
@@ -166,8 +295,6 @@
     knora-base:hasDefaultModifyPermission knora-base:ProjectMember .
 
 
-
-
 :hasEntityResidenceValue rdf:type owl:ObjectProperty ;
 
     rdfs:subPropertyOf knora-base:hasLinkToValue ;
@@ -180,6 +307,44 @@
 
     knora-base:hasDefaultModifyPermission knora-base:ProjectMember .
 
+
+:hasAddname rdf:type owl:ObjectProperty ;
+
+    rdfs:subPropertyOf knora-base:hasLinkTo ;
+
+    knora-base:subjectClassConstraint :nameUnit ;
+
+    knora-base:objectClassConstraint :addname ;
+
+    knora-base:hasDefaultViewPermission knora-base:KnownUser ;
+
+    knora-base:hasDefaultModifyPermission knora-base:ProjectMember .
+
+
+:hasAddnameValue rdf:type owl:ObjectProperty ;
+
+    rdfs:subPropertyOf knora-base:hasLinkToValue ;
+
+    knora-base:subjectClassConstraint :nameUnit ;
+
+    knora-base:objectClassConstraint knora-base:LinkValue ;
+
+    knora-base:hasDefaultViewPermission knora-base:KnownUser ;
+
+    knora-base:hasDefaultModifyPermission knora-base:ProjectMember .
+
+
+:addnameString rdf:type owl:ObjectProperty ;
+
+  rdfs:subPropertyOf knora-base:hasValue ;
+
+  knora-base:subjectClassConstraint :addname  ;
+
+  knora-base:objectClassConstraint knora-base:TextValue ;
+
+  knora-base:hasDefaultViewPermission knora-base:UnknownUser ;
+
+  knora-base:hasDefaultModifyPermission knora-base:ProjectMember .
 
 
 :residenceDate rdf:type owl:ObjectProperty ;
@@ -321,10 +486,20 @@
                       ] ,
                       [
                          rdf:type owl:Restriction ;
+                         owl:onProperty :stdNameValue ;
+                         owl:minCardinality "1"^^xsd:nonNegativeInteger
+                      ] ,
+                      [
+                         rdf:type owl:Restriction ;
                          owl:onProperty :origName ;
                          owl:minCardinality "0"^^xsd:nonNegativeInteger
+                      ] ,
+                      [
+                         rdf:type owl:Restriction ;
+                         owl:onProperty :origNameValue ;
+                         owl:minCardinality "0"^^xsd:nonNegativeInteger
                       ] .
-
+                      
 :entityWithResidences rdf:type owl:Class ;
 
     rdfs:subClassOf knora-base:Resource ,
@@ -490,3 +665,126 @@
       knora-base:hasDefaultViewPermission knora-base:UnknownUser ;
 
       knora-base:hasDefaultModifyPermission knora-base:ProjectMember .
+
+:nameUnit rdf:type owl:Class ;
+
+      rdfs:subClassOf :entityWithOccurences ,
+                      [
+                        rdf:type owl:Restriction ;
+                        owl:onProperty :nameString ;
+                        owl:cardinality "1"^^xsd:nonNegativeInteger
+                      ] ,
+                      [
+                         rdf:type owl:Restriction ;
+                         owl:onProperty :nameType ;
+                         owl:cardinality "1"^^xsd:nonNegativeInteger
+                      ] ;
+                      [
+                         rdf:type owl:Restriction ;
+                         owl:onProperty :nameID ;
+                         owl:cardinality "1"^^xsd:nonNegativeInteger
+                      ] ;
+                      [
+                         rdf:type owl:Restriction ;
+                         owl:onProperty :nameLang ;
+                         owl:cardinality "1"^^xsd:nonNegativeInteger
+                      ] ;
+                      [
+                         rdf:type owl:Restriction ;
+                         owl:onProperty :hasAddname ;
+                         owl:minCardinality "0"^^xsd:nonNegativeInteger    
+                      ] ;
+                      [
+                         rdf:type owl:Restriction ;
+                         owl:onProperty :hasAddnameValue ;
+                         owl:minCardinality "0"^^xsd:nonNegativeInteger    
+                      ] ;
+      knora-base:resourceIcon "nameunit.gif" ;
+
+      rdfs:label "Name"@de ;
+
+      rdfs:comment """Diese Resource-Klasse beschreibt einen Namen"""@de ;
+
+      knora-base:hasDefaultViewPermission knora-base:UnknownUser ;
+
+      knora-base:hasDefaultModifyPermission knora-base:ProjectMember .
+
+
+:addname rdf:type owl:Class ;
+
+      rdfs:subClassOf :entityWithOccurences ,
+                      [
+                        rdf:type owl:Restriction ;
+                        owl:onProperty :addnameString ;
+                        owl:cardinality "1"^^xsd:nonNegativeInteger
+                      ] ;
+                 
+      knora-base:resourceIcon "addname.gif" ;
+
+      rdfs:label "Zuname"@de ;
+
+      rdfs:comment """Diese Resource-Klasse beschreibt einen Zunamen"""@de ;
+
+      knora-base:hasDefaultViewPermission knora-base:UnknownUser ;
+
+      knora-base:hasDefaultModifyPermission knora-base:ProjectMember .      
+
+:orgName rdf:type owl:Class ;
+
+      rdfs:subClassOf :nameUnit ,
+                      [
+                        rdf:type owl:Restriction ;
+                        owl:onProperty :isAlias ;
+                        owl:cardinality "1"^^xsd:nonNegativeInteger
+                      ] ;
+                 
+      knora-base:resourceIcon "orgname.gif" ;
+
+      rdfs:label "Organisationsname"@de ;
+
+      rdfs:comment """Diese Resource-Klasse beschreibt einen Organisationsnamen"""@de ;
+
+      knora-base:hasDefaultViewPermission knora-base:UnknownUser ;
+
+      knora-base:hasDefaultModifyPermission knora-base:ProjectMember .
+
+:orgStdName rdf:type owl:Class ;
+
+      rdfs:subClassOf :orgName ,
+                      [
+                        rdf:type owl:Restriction ;
+                        owl:onProperty :roleName ;
+                        owl:minCardinality "0"^^xsd:nonNegativeInteger    
+                      ] ;
+                      [
+                        rdf:type owl:Restriction ;
+                        owl:onProperty :stdNameLink ;
+                        owl:minCardinality "0"^^xsd:nonNegativeInteger    
+                      ] ;
+      knora-base:resourceIcon "orgstdname.gif" ;
+
+      rdfs:label "orgStdName"@de ;
+
+      rdfs:comment """Diese Resource-Klasse beschreibt einen Standardnamen einer Organisation"""@de ;
+
+      knora-base:hasDefaultViewPermission knora-base:UnknownUser ;
+
+      knora-base:hasDefaultModifyPermission knora-base:ProjectMember .      
+
+:orgOrigName rdf:type owl:Class ;
+
+      rdfs:subClassOf :orgName ,
+                      [
+                        rdf:type owl:Restriction ;
+                        owl:onProperty :origNameLink ;
+                        owl:minCardinality "0"^^xsd:nonNegativeInteger    
+                      ] ;
+      knora-base:resourceIcon "orgorigname.gif" ;
+
+      rdfs:label "orgOrigName"@de ;
+
+      rdfs:comment """Diese Resource-Klasse beschreibt einen Originalnamen einer Organisation"""@de ;
+
+      knora-base:hasDefaultViewPermission knora-base:UnknownUser ;
+
+      knora-base:hasDefaultModifyPermission knora-base:ProjectMember .        

@@ -30,7 +30,8 @@
 ########### Lists
 
 
-# Organisation type
+# Organisation type 
+# ADD the rest of the org types!!
 
 
 <http://data.knora.org/ssrq/lists/orgType> rdf:type knora-base:ListNode ;
@@ -39,7 +40,9 @@
 
                                        rdfs:comment """Type of organisation"""@en ;
 
-                                       rdfs:label "Organisation type"@de ;
+                                       rdfs:label "Organisation type"@en ,
+                                       "Organisationstyp"@de;
+
 
                                        knora-base:hasSubListNode <http://data.knora.org/ssrq/lists/Family> ,
                                                                  <http://data.knora.org/ssrq/lists/Konvent> .
@@ -68,6 +71,123 @@
                                          knora-base:listNodePosition "1"^^xsd:integer ;
 
                                          rdfs:label "Konvent"@de .
+
+# NameType
+
+<http://data.knora.org/ssrq/lists/nameType> rdf:type knora-base:ListNode ;
+
+                                       knora-base:isRootNode "true"^^xsd:boolean ;
+
+                                       rdfs:comment """Name type"""@en ;
+
+                                       rdfs:label "Nametype"@en ,
+                                       "Namentyp"@de;
+
+
+                                       knora-base:hasSubListNode <http://data.knora.org/ssrq/lists/std> ,
+                                                                 <http://data.knora.org/ssrq/lists/orig> .
+
+
+<http://data.knora.org/ssrq/lists/std> rdf:type knora-base:ListNode ;
+
+                                         knora-base:listNodeName "Standardname" ;
+
+                                         knora-base:hasRootNode <http://data.knora.org/ssrq/lists/nameType> ;
+
+                                         knora-base:listNodePosition "0"^^xsd:integer ;
+
+                                         rdfs:label "std"@de .
+
+
+<http://data.knora.org/ssrq/lists/orig> rdf:type knora-base:ListNode ;
+
+                                         knora-base:listNodeName "Originalname" ;
+
+                                         knora-base:hasRootNode <http://data.knora.org/ssrq/lists/nameType> ;
+
+                                         knora-base:listNodePosition "1"^^xsd:integer ;
+
+                                         rdfs:label "orig"@de .
+
+# NameLang
+
+<http://data.knora.org/ssrq/lists/nameLang> rdf:type knora-base:ListNode ;
+
+                                       knora-base:isRootNode "true"^^xsd:boolean ;
+
+                                       rdfs:comment """Language"""@en ;
+
+                                       rdfs:label "Language"@en ,
+                                       "Sprache"@de;
+
+
+                                       knora-base:hasSubListNode <http://data.knora.org/ssrq/lists/de> ,
+                                                                 <http://data.knora.org/ssrq/lists/fr> ,
+                                                                 <http://data.knora.org/ssrq/lists/la> ,
+                                                                 <http://data.knora.org/ssrq/lists/it> .
+
+
+<http://data.knora.org/ssrq/lists/de> rdf:type knora-base:ListNode ;
+
+                                         knora-base:listNodeName "German" ;
+
+                                         knora-base:hasRootNode <http://data.knora.org/ssrq/lists/nameLang> ;
+
+                                         knora-base:listNodePosition "0"^^xsd:integer ;
+
+                                         rdfs:label "de"@de .
+
+
+<http://data.knora.org/ssrq/lists/fr> rdf:type knora-base:ListNode ;
+
+                                         knora-base:listNodeName "French" ;
+
+                                         knora-base:hasRootNode <http://data.knora.org/ssrq/lists/nameLang> ;
+
+                                         knora-base:listNodePosition "1"^^xsd:integer ;
+
+                                         rdfs:label "fr"@de .
+
+
+#Namelink
+
+<http://data.knora.org/ssrq/lists/nameLink> rdf:type knora-base:ListNode ;
+
+                                       knora-base:isRootNode "true"^^xsd:boolean ;
+
+                                       rdfs:comment """Namelink for std Orgnames"""@en ;
+
+                                       rdfs:label "Namelink"@en ,
+                                       "Namenlink"@de;
+
+
+                                       knora-base:hasSubListNode <http://data.knora.org/ssrq/lists/von> ,
+                                                                 <http://data.knora.org/ssrq/lists/im> ,
+                                                                 <http://data.knora.org/ssrq/lists/zu> ,
+                                                                 <http://data.knora.org/ssrq/lists/ab> .
+
+
+<http://data.knora.org/ssrq/lists/von> rdf:type knora-base:ListNode ;
+
+                                         knora-base:listNodeName "von" ;
+
+                                         knora-base:hasRootNode <http://data.knora.org/ssrq/lists/nameLink> ;
+
+                                         knora-base:listNodePosition "0"^^xsd:integer ;
+
+                                         rdfs:label "von"@de .
+
+
+<http://data.knora.org/ssrq/lists/im> rdf:type knora-base:ListNode ;
+
+                                         knora-base:listNodeName "im" ;
+
+                                         knora-base:hasRootNode <http://data.knora.org/ssrq/lists/nameLink> ;
+
+                                         knora-base:listNodePosition "1"^^xsd:integer ;
+
+                                         rdfs:label "im"@de .
+
 
 
 # External reference type
@@ -125,12 +245,14 @@
     ssrq:orgID <http://data.knora.org/ssrq/org000004/values/1> ;
 
     ssrq:stdName <http://data.knora.org/ssrq/org000004/values/2> ;
+    ssrq:stdNameValue <http://data.knora.org/ssrq/org000004/values/2val> ;
 
-    ssrq:origName <http://data.knora.org/ssrq/org000004/values/3> ;
+   # ssrq:origName <http://data.knora.org/ssrq/org000004/values/3> ;
+  #  ssrq:origNameValue <http://data.knora.org/ssrq/org000004/values/3val> ;
 
-    ssrq:hasEntityResidence <http://data.knora.org/ssrq/entityloc0> ;
+    #ssrq:hasEntityResidence <http://data.knora.org/ssrq/entityloc0> ;
 
-    ssrq:hasEntityResidenceValue <http://data.knora.org/ssrq/org000004/values/4> ;
+    #ssrq:hasEntityResidenceValue <http://data.knora.org/ssrq/org000004/values/4> ;
 
     knora-base:attachedToProject <http://data.knora.org/projects/ssrq> ;
 
@@ -179,9 +301,54 @@
                                          knora-base:hasDeletePermission knora-base:ProjectMember ;
 
                                          knora-base:isDeleted "false"^^xsd:boolean .
+########
+#std orgname unit 
+########
+
+<http://data.knora.org/ssrq/org000004/values/2> rdf:type ssrq:orgStdName ;
+
+                                         ssrq:nameString  <http://data.knora.org/ssrq/org000004/values/2namestring> ;
+                                         ssrq:nameType  <http://data.knora.org/ssrq/org000004/values/2nametype> ;
+                                         ssrq:nameLang <http://data.knora.org/ssrq/org000004/values/2lang> ;
+                                         ssrq:nameID <http://data.knora.org/ssrq/org000004/values/2id> ;
+                                         ssrq:isAlias <http://data.knora.org/ssrq/org000004/values/2alias> ;
+                                         ssrq:occurrence <http://data.knora.org/ssrq/org000004/values/2occ> ;
+
+                                         knora-base:attachedToUser <http://data.knora.org/users/nata> ;
+
+                                         knora-base:valueCreationDate "2016-03-02T15:05:58Z"^^xsd:dateTimeStamp ;
+
+                                         knora-base:hasViewPermission knora-base:UnknownUser ;
+
+                                         knora-base:hasDeletePermission knora-base:ProjectMember ;
+
+                                         knora-base:isDeleted "false"^^xsd:boolean .
 
 
-<http://data.knora.org/ssrq/org000004/values/2> rdf:type knora-base:TextValue ;
+<http://data.knora.org/ssrq/org000004/values/2val> rdf:type knora-base:LinkValue ;
+
+    rdf:subject <http://data.knora.org/ssrq/org000004> ;
+
+    rdf:predicate ssrq:stdName ;
+
+    rdf:object <http://data.knora.org/ssrq/org000004/values/2> ;
+
+    knora-base:valueHasRefCount "1"^^xsd:integer ;
+
+    knora-base:attachedToUser <http://data.knora.org/users/nata> ;
+
+    knora-base:valueHasOrder "0"^^xsd:integer ;
+
+    knora-base:valueCreationDate "2016-03-02T15:05:58Z"^^xsd:dateTimeStamp ;
+
+    knora-base:hasViewPermission knora-base:UnknownUser ;
+
+    knora-base:hasDeletePermission knora-base:ProjectMember ;
+
+    knora-base:isDeleted "false"^^xsd:boolean .
+    
+
+<http://data.knora.org/ssrq/org000004/values/2namestring> rdf:type knora-base:TextValue ;
 
                                          knora-base:valueHasString "Rapperswil" ;
 
@@ -198,11 +365,13 @@
                                          knora-base:isDeleted "false"^^xsd:boolean .
 
 
-<http://data.knora.org/ssrq/org000004/values/3> rdf:type knora-base:TextValue ;
+<http://data.knora.org/ssrq/org000004/values/2nametype> rdf:type knora-base:ListValue ;
 
-                                         knora-base:valueHasString "Rapperswill" ;
+                                         knora-base:valueHasListNode <http://data.knora.org/ssrq/lists/std> ;
 
                                          knora-base:attachedToUser <http://data.knora.org/users/nata> ;
+
+                                         knora-base:valueHasString """std""" ;
 
                                          knora-base:valueHasOrder "3"^^xsd:integer ;
 
@@ -215,84 +384,66 @@
                                          knora-base:isDeleted "false"^^xsd:boolean .
 
 
-<http://data.knora.org/ssrq/org000004/values/4> rdf:type knora-base:LinkValue ;
+<http://data.knora.org/ssrq/org000004/values/2lang> rdf:type knora-base:ListValue ;
 
-    rdf:subject <http://data.knora.org/ssrq/org000004> ;
+                                         knora-base:valueHasListNode <http://data.knora.org/ssrq/lists/de> ;
 
-    rdf:predicate ssrq:hasEntityResidence ;
+                                         knora-base:attachedToUser <http://data.knora.org/users/nata> ;
 
-    rdf:object <http://data.knora.org/ssrq/entityloc0> ;
+                                         knora-base:valueHasString """de""" ;
 
-    knora-base:attachedToUser <http://data.knora.org/users/nata> ;
+                                         knora-base:valueHasOrder "4"^^xsd:integer ;
 
-    knora-base:valueHasOrder "4"^^xsd:integer ;
+                                         knora-base:valueCreationDate "2016-03-02T15:05:58Z"^^xsd:dateTimeStamp ;
 
-    knora-base:valueCreationDate "2016-03-02T15:05:58Z"^^xsd:dateTimeStamp ;
+                                         knora-base:hasViewPermission knora-base:UnknownUser ;
 
-    knora-base:valueHasRefCount "1"^^xsd:integer ;
+                                         knora-base:hasDeletePermission knora-base:ProjectMember ;
 
-    knora-base:hasViewPermission knora-base:UnknownUser ;
-
-    knora-base:hasDeletePermission knora-base:ProjectMember ;
-
-    knora-base:isDeleted "false"^^xsd:boolean .
+                                         knora-base:isDeleted "false"^^xsd:boolean .
 
 
-# An entityResidence saying that org000004 lived in loc000108
+<http://data.knora.org/ssrq/org000004/values/2id> rdf:type knora-base:TextValue ;
 
-<http://data.knora.org/ssrq/entityloc0> rdf:type ssrq:entityResidence ;
+                                         knora-base:valueHasString "org000004.01" ;
 
-    rdfs:label "Herauskunftort Familie Rapperswil" ;
+                                         knora-base:attachedToUser <http://data.knora.org/users/nata> ;
 
-    ssrq:locatedAtResidence <http://data.knora.org/ssrq/loc000108> ;
+                                         knora-base:valueHasOrder "5"^^xsd:integer ;
 
-    ssrq:locatedAtResidenceValue <http://data.knora.org/ssrq/entityloc0/values/0> ;
+                                         knora-base:valueCreationDate "2016-03-02T15:05:58Z"^^xsd:dateTimeStamp ;
 
-    ssrq:occurrence <http://data.knora.org/ssrq/entityloc0/values/1> ;
+                                         knora-base:hasViewPermission knora-base:UnknownUser ;
 
-    knora-base:attachedToProject <http://data.knora.org/projects/ssrq> ;
+                                         knora-base:hasDeletePermission knora-base:ProjectMember ;
 
-    knora-base:attachedToUser <http://data.knora.org/users/nata> ;
-
-    knora-base:hasViewPermission knora-base:UnknownUser ;
-
-    knora-base:hasDeletePermission knora-base:ProjectMember ;
-
-    knora-base:creationDate "2016-03-02T15:05:58Z"^^xsd:dateTimeStamp ;
-
-    knora-base:isDeleted "false"^^xsd:boolean .
+                                         knora-base:isDeleted "false"^^xsd:boolean .
 
 
-<http://data.knora.org/ssrq/entityloc0/values/0> rdf:type knora-base:LinkValue ;
+<http://data.knora.org/ssrq/org000004/values/2alias> rdf:type knora-base:BooleanValue;
 
-    rdf:subject <http://data.knora.org/ssrq/entityloc0> ;
+                                         knora-base:valueHasBoolean "false"^^xsd:boolean ;
 
-    rdf:predicate ssrq:locatedAtResidence ;
+                                         knora-base:attachedToUser <http://data.knora.org/users/nata> ;
 
-    rdf:object <http://data.knora.org/ssrq/loc000108> ;
+                                         knora-base:valueHasOrder "6"^^xsd:integer ;
 
-    knora-base:valueHasRefCount "1"^^xsd:integer ;
+                                         knora-base:valueCreationDate "2016-03-02T15:05:58Z"^^xsd:dateTimeStamp ;
 
-    knora-base:attachedToUser <http://data.knora.org/users/nata> ;
+                                         knora-base:hasViewPermission knora-base:UnknownUser ;
 
-    knora-base:valueHasOrder "0"^^xsd:integer ;
+                                         knora-base:hasDeletePermission knora-base:ProjectMember ;
 
-    knora-base:valueCreationDate "2016-03-02T15:05:58Z"^^xsd:dateTimeStamp ;
-
-    knora-base:hasViewPermission knora-base:UnknownUser ;
-
-    knora-base:hasDeletePermission knora-base:ProjectMember ;
-
-    knora-base:isDeleted "false"^^xsd:boolean .
+                                         knora-base:isDeleted "false"^^xsd:boolean .
 
 
-<http://data.knora.org/ssrq/entityloc0/values/1> rdf:type knora-base:TextValue ;
+<http://data.knora.org/ssrq/org000004/values/2occ> rdf:type knora-base:TextValue ;
 
                                          knora-base:valueHasString "SG III/2" ;
 
                                          knora-base:attachedToUser <http://data.knora.org/users/nata> ;
 
-                                         knora-base:valueHasOrder "1"^^xsd:integer ;
+                                         knora-base:valueHasOrder "7"^^xsd:integer ;
 
                                          knora-base:valueCreationDate "2016-03-02T15:05:58Z"^^xsd:dateTimeStamp ;
 
@@ -301,63 +452,168 @@
                                          knora-base:hasDeletePermission knora-base:ProjectMember ;
 
                                          knora-base:isDeleted "false"^^xsd:boolean .
+
+
+#<http://data.knora.org/ssrq/org000004/values/3> rdf:type knora-base:TextValue ;
+
+ #                                        knora-base:valueHasString "Rapperswill" ;
+
+  #                                       knora-base:attachedToUser <http://data.knora.org/users/nata> ;
+
+   #                                      knora-base:valueHasOrder "8"^^xsd:integer ;
+
+    #                                     knora-base:valueCreationDate "2016-03-02T15:05:58Z"^^xsd:dateTimeStamp ;
+
+#                                         knora-base:hasViewPermission knora-base:UnknownUser ;
+
+ #                                        knora-base:hasDeletePermission knora-base:ProjectMember ;
+
+  #                                       knora-base:isDeleted "false"^^xsd:boolean .
+
+
+#<http://data.knora.org/ssrq/org000004/values/4> rdf:type knora-base:LinkValue ;
+
+ #   rdf:subject <http://data.knora.org/ssrq/org000004> ;
+
+  #  rdf:predicate ssrq:hasEntityResidence ;
+
+   # rdf:object <http://data.knora.org/ssrq/entityloc0> ;
+
+    #knora-base:attachedToUser <http://data.knora.org/users/nata> ;
+
+    #knora-base:valueHasOrder "4"^^xsd:integer ;
+
+#    knora-base:valueCreationDate "2016-03-02T15:05:58Z"^^xsd:dateTimeStamp ;
+
+ #   knora-base:valueHasRefCount "1"^^xsd:integer ;
+
+  #  knora-base:hasViewPermission knora-base:UnknownUser ;
+
+   # knora-base:hasDeletePermission knora-base:ProjectMember ;
+
+    #knora-base:isDeleted "false"^^xsd:boolean .
+
+
+# An entityResidence saying that org000004 lived in loc000108
+
+#<http://data.knora.org/ssrq/entityloc0> rdf:type ssrq:entityResidence ;
+
+   # rdfs:label "Herauskunftort Familie Rapperswil" ;
+
+  #  ssrq:locatedAtResidence <http://data.knora.org/ssrq/loc000108> ;
+
+ #   ssrq:locatedAtResidenceValue <http://data.knora.org/ssrq/entityloc0/values/0> ;
+
+ #   ssrq:occurrence <http://data.knora.org/ssrq/entityloc0/values/1> ;
+
+ #   knora-base:attachedToProject <http://data.knora.org/projects/ssrq> ;
+
+ #   knora-base:attachedToUser <http://data.knora.org/users/nata> ;
+
+ #   knora-base:hasViewPermission knora-base:UnknownUser ;
+
+   # knora-base:hasDeletePermission knora-base:ProjectMember ;
+
+  #  knora-base:creationDate "2016-03-02T15:05:58Z"^^xsd:dateTimeStamp ;
+
+ #   knora-base:isDeleted "false"^^xsd:boolean .
+
+
+#<http://data.knora.org/ssrq/entityloc0/values/0> rdf:type knora-base:LinkValue ;
+
+    #rdf:subject <http://data.knora.org/ssrq/entityloc0> ;
+
+    #rdf:predicate ssrq:locatedAtResidence ;
+
+   # rdf:object <http://data.knora.org/ssrq/loc000108> ;
+
+  #  knora-base:valueHasRefCount "1"^^xsd:integer ;
+
+ #   knora-base:attachedToUser <http://data.knora.org/users/nata> ;
+
+#    knora-base:valueHasOrder "0"^^xsd:integer ;
+
+    #knora-base:valueCreationDate "2016-03-02T15:05:58Z"^^xsd:dateTimeStamp ;
+
+   # knora-base:hasViewPermission knora-base:UnknownUser ;
+
+  #  knora-base:hasDeletePermission knora-base:ProjectMember ;
+
+ #   knora-base:isDeleted "false"^^xsd:boolean .
+
+
+#<http://data.knora.org/ssrq/entityloc0/values/1> rdf:type knora-base:TextValue ;
+
+      #                                   knora-base:valueHasString "SG III/2" ;
+
+     #                                    knora-base:attachedToUser <http://data.knora.org/users/nata> ;
+
+    #                                     knora-base:valueHasOrder "1"^^xsd:integer ;
+
+   #                                      knora-base:valueCreationDate "2016-03-02T15:05:58Z"^^xsd:dateTimeStamp ;
+
+  #                                       knora-base:hasViewPermission knora-base:UnknownUser ;
+
+ #                                        knora-base:hasDeletePermission knora-base:ProjectMember ;
+
+#                                         knora-base:isDeleted "false"^^xsd:boolean .
 
 
 # A residence
 
-<http://data.knora.org/ssrq/loc000108> rdf:type ssrq:residence ;
+#<http://data.knora.org/ssrq/loc000108> rdf:type ssrq:residence ;
 
-    rdfs:label "Herauskunftort Rapperswil" ;
+    #rdfs:label "Herauskunftort Rapperswil" ;
 
-    ssrq:residenceID <http://data.knora.org/ssrq/loc000108/values/0> ;
+   # ssrq:residenceID <http://data.knora.org/ssrq/loc000108/values/0> ;
 
-    ssrq:stdName <http://data.knora.org/ssrq/loc000108/values/1> ;
+  #  ssrq:stdName <http://data.knora.org/ssrq/loc000108/values/1> ;
 
-    knora-base:attachedToProject <http://data.knora.org/projects/ssrq> ;
+ #   knora-base:attachedToProject <http://data.knora.org/projects/ssrq> ;
 
-    knora-base:attachedToUser <http://data.knora.org/users/nata> ;
+#    knora-base:attachedToUser <http://data.knora.org/users/nata> ;
 
-    knora-base:hasViewPermission knora-base:UnknownUser ;
+    #knora-base:hasViewPermission knora-base:UnknownUser ;
 
-    knora-base:hasDeletePermission knora-base:ProjectMember ;
+   # knora-base:hasDeletePermission knora-base:ProjectMember ;
 
-    knora-base:creationDate "2016-03-02T15:05:58Z"^^xsd:dateTimeStamp ;
+  #  knora-base:creationDate "2016-03-02T15:05:58Z"^^xsd:dateTimeStamp ;
 
-    knora-base:isDeleted "false"^^xsd:boolean .
-
-
-<http://data.knora.org/ssrq/loc000108/values/0> rdf:type knora-base:TextValue ;
-
-                                         knora-base:valueHasString "loc000108" ;
-
-                                         knora-base:attachedToUser <http://data.knora.org/users/nata> ;
-
-                                         knora-base:valueHasOrder "0"^^xsd:integer ;
-
-                                         knora-base:valueCreationDate "2016-03-02T15:05:58Z"^^xsd:dateTimeStamp ;
-
-                                         knora-base:hasViewPermission knora-base:UnknownUser ;
-
-                                         knora-base:hasDeletePermission knora-base:ProjectMember ;
-
-                                         knora-base:isDeleted "false"^^xsd:boolean .
+ #   knora-base:isDeleted "false"^^xsd:boolean .
 
 
-<http://data.knora.org/ssrq/loc000108/values/1> rdf:type knora-base:TextValue ;
+#<http://data.knora.org/ssrq/loc000108/values/0> rdf:type knora-base:TextValue ;
 
-                                         knora-base:valueHasString "Rapperswil" ;
+  #                                       knora-base:valueHasString "loc000108" ;
 
-                                         knora-base:attachedToUser <http://data.knora.org/users/nata> ;
+ #                                        knora-base:attachedToUser <http://data.knora.org/users/nata> ;
 
-                                         knora-base:valueHasOrder "1"^^xsd:integer ;
+#                                         knora-base:valueHasOrder "0"^^xsd:integer ;
 
-                                         knora-base:valueCreationDate "2016-03-02T15:05:58Z"^^xsd:dateTimeStamp ;
+    #                                     knora-base:valueCreationDate "2016-03-02T15:05:58Z"^^xsd:dateTimeStamp ;
 
-                                         knora-base:hasViewPermission knora-base:UnknownUser ;
+   #                                      knora-base:hasViewPermission knora-base:UnknownUser ;
 
-                                         knora-base:hasDeletePermission knora-base:ProjectMember ;
+  #                                       knora-base:hasDeletePermission knora-base:ProjectMember ;
 
-                                         knora-base:isDeleted "false"^^xsd:boolean .
+ #                                        knora-base:isDeleted "false"^^xsd:boolean .
+
+
+#<http://data.knora.org/ssrq/loc000108/values/1> rdf:type knora-base:TextValue ;
+
+      #                                   knora-base:valueHasString "Rapperswil" ;
+
+     #                                    knora-base:attachedToUser <http://data.knora.org/users/nata> ;
+
+    #                                     knora-base:valueHasOrder "1"^^xsd:integer ;
+
+   #                                      knora-base:valueCreationDate "2016-03-02T15:05:58Z"^^xsd:dateTimeStamp ;
+
+  #                                       knora-base:hasViewPermission knora-base:UnknownUser ;
+#
+ #                                        knora-base:hasDeletePermission knora-base:ProjectMember ;
+#
+ #                                        knora-base:isDeleted "false"^^xsd:boolean .
 
 
 ######## Users
