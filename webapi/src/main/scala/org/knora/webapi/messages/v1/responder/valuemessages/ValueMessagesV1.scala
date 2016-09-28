@@ -29,7 +29,7 @@ import org.knora.webapi.messages.v1.responder.sipimessages.SipiResponderConversi
 import org.knora.webapi.messages.v1.responder.usermessages.{UserDataV1, UserProfileV1}
 import org.knora.webapi.messages.v1.responder.{KnoraRequestV1, KnoraResponseV1}
 import org.knora.webapi.util.{DateUtilV1, ErrorHandlingMap, KnoraIdUtil}
-import spray.httpx.SprayJsonSupport
+import akka.http.scaladsl.marshallers.sprayjson.SprayJsonSupport
 import spray.json._
 
 
