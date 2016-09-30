@@ -23,6 +23,9 @@ package org.knora.webapi.e2e.v1
 import java.net.URLEncoder
 
 import akka.actor.{ActorSystem, Props}
+import akka.http.scaladsl.model._
+import akka.http.scaladsl.model.headers.BasicHttpCredentials
+import akka.http.scaladsl.testkit.RouteTestTimeout
 import akka.pattern._
 import akka.util.Timeout
 import org.knora.webapi._
@@ -37,8 +40,6 @@ import org.knora.webapi.responders.v1.ResponderManagerV1
 import org.knora.webapi.routing.v1.{ResourcesRouteV1, ValuesRouteV1}
 import org.knora.webapi.store._
 import org.knora.webapi.util.{MutableTestIri, ScalaPrettyPrinter}
-import spray.http.MediaTypes._
-import spray.http.{HttpEntity, _}
 import spray.json._
 
 import scala.concurrent.Await
@@ -122,7 +123,7 @@ class ResourcesV1E2ESpec extends E2ESpec {
       */
     private def getResIriFromJsonResponse(response: HttpResponse) = {
 
-        JsonParser(response.entity.asString).asJsObject.fields.get("res_id") match {
+        JsonParser(response.entity.toString).asJsObject.fields.get("res_id") match {
             case Some(JsString(resourceId)) => resourceId
             case None => throw InvalidApiJsonException(s"The response does not contain a field called 'res_id'")
             case other => throw InvalidApiJsonException(s"The response does not contain a res_id of type JsString, but ${other}")
@@ -138,7 +139,7 @@ class ResourcesV1E2ESpec extends E2ESpec {
       */
     private def getNewValueIriFromJsonResponse(response: HttpResponse) = {
 
-        JsonParser(response.entity.asString).asJsObject.fields.get("id") match {
+        JsonParser(response.entity.toString).asJsObject.fields.get("id") match {
             case Some(JsString(resourceId)) => resourceId
             case None => throw InvalidApiJsonException(s"The response does not contain a field called 'res_id'")
             case other => throw InvalidApiJsonException(s"The response does not contain a res_id of type JsString, but ${other}")
@@ -155,7 +156,7 @@ class ResourcesV1E2ESpec extends E2ESpec {
       */
     private def getValuesForProp(response: HttpResponse, prop: IRI): JsValue = {
 
-        JsonParser(response.entity.asString).asJsObject.fields("props").asJsObject.fields(prop).asJsObject.fields("values")
+        JsonParser(response.entity.toString).asJsObject.fields("props").asJsObject.fields(prop).asJsObject.fields("values")
 
     }
 
@@ -283,7 +284,7 @@ class ResourcesV1E2ESpec extends E2ESpec {
                   |}
                 """.stripMargin
 
-            Post("/v1/resources", HttpEntity(`application/json`, params)) ~> addCredentials(BasicHttpCredentials(incunabulaUsername, password)) ~> resourcesPath ~> check {
+            Post("/v1/resources", HttpEntity(ContentTypes.`application/json`, params)) ~> addCredentials(BasicHttpCredentials(incunabulaUsername, password)) ~> resourcesPath ~> check {
                 assert(status == StatusCodes.OK, response.toString)
             }
 
@@ -325,7 +326,7 @@ class ResourcesV1E2ESpec extends E2ESpec {
             //  "http://www.knora.org/ontology/anything#hasBoolean": [{"boolean_value":true}],
             // "http://www.knora.org/ontology/anything#hasGeometry": [{"geom_value":"{\"status\":\"active\",\"lineColor\":\"#ff3333\",\"lineWidth\":2,\"points\":[{\"x\":0.5516074450084602,\"y\":0.4444444444444444},{\"x\":0.2791878172588832,\"y\":0.5}],\"type\":\"rectangle\",\"original_index\":0}"}],
 
-            Post("/v1/resources", HttpEntity(`application/json`, params)) ~> addCredentials(BasicHttpCredentials(anythingUsername, password)) ~> resourcesPath ~> check {
+            Post("/v1/resources", HttpEntity(ContentTypes.`application/json`, params)) ~> addCredentials(BasicHttpCredentials(anythingUsername, password)) ~> resourcesPath ~> check {
                 assert(status == StatusCodes.OK, response.toString)
 
                 val resId = getResIriFromJsonResponse(response)
@@ -384,7 +385,7 @@ class ResourcesV1E2ESpec extends E2ESpec {
                 }
                 """
 
-            Post("/v1/values", HttpEntity(`application/json`, newValueParams)) ~> addCredentials(BasicHttpCredentials(anythingUsername, password)) ~> valuesPath ~> check {
+            Post("/v1/values", HttpEntity(ContentTypes.`application/json`, newValueParams)) ~> addCredentials(BasicHttpCredentials(anythingUsername, password)) ~> valuesPath ~> check {
 
                 assert(status == StatusCodes.OK, response.toString)
 
@@ -427,7 +428,7 @@ class ResourcesV1E2ESpec extends E2ESpec {
                 }
                 """
 
-            Put("/v1/values/" + URLEncoder.encode(firstTextValueIRI.get, "UTF-8"), HttpEntity(`application/json`, newValueParams)) ~> addCredentials(BasicHttpCredentials(anythingUsername, password)) ~> valuesPath ~> check {
+            Put("/v1/values/" + URLEncoder.encode(firstTextValueIRI.get, "UTF-8"), HttpEntity(ContentTypes.`application/json`, newValueParams)) ~> addCredentials(BasicHttpCredentials(anythingUsername, password)) ~> valuesPath ~> check {
 
                 assert(status == StatusCodes.OK, response.toString)
 
@@ -516,7 +517,7 @@ class ResourcesV1E2ESpec extends E2ESpec {
               }
                 """
 
-            Post("/v1/resources", HttpEntity(`application/json`, params)) ~> addCredentials(BasicHttpCredentials(incunabulaUsername, password)) ~> resourcesPath ~> check {
+            Post("/v1/resources", HttpEntity(ContentTypes.`application/json`, params)) ~> addCredentials(BasicHttpCredentials(incunabulaUsername, password)) ~> resourcesPath ~> check {
 
                 assert(status == StatusCodes.OK, response.toString)
 
@@ -554,7 +555,7 @@ class ResourcesV1E2ESpec extends E2ESpec {
                 assert(status == StatusCodes.OK, response.toString)
 
                 // check if this resource is referred to by the second thing resource
-                val incoming = JsonParser(response.entity.asString).asJsObject.fields.get("incoming") match {
+                val incoming = JsonParser(response.entity.toString).asJsObject.fields.get("incoming") match {
                     case Some(incomingRefs: JsArray) => incomingRefs
                     case None => throw InvalidApiJsonException(s"The response does not contain a field called 'incoming'")
                     case other => throw InvalidApiJsonException(s"The response does not contain a res_id of type JsObject, but $other")
@@ -627,7 +628,7 @@ class ResourcesV1E2ESpec extends E2ESpec {
               }
                 """
 
-            Post("/v1/resources", HttpEntity(`application/json`, params)) ~> addCredentials(BasicHttpCredentials(incunabulaUsername, password)) ~> resourcesPath ~> check {
+            Post("/v1/resources", HttpEntity(ContentTypes.`application/json`, params)) ~> addCredentials(BasicHttpCredentials(incunabulaUsername, password)) ~> resourcesPath ~> check {
 
                 // the route should reject the request because `old` is not a valid standoff tag name
                 assert(status == StatusCodes.BadRequest, response.toString)
@@ -691,7 +692,7 @@ class ResourcesV1E2ESpec extends E2ESpec {
               }
                 """
 
-            Post("/v1/resources", HttpEntity(`application/json`, params)) ~> addCredentials(BasicHttpCredentials(incunabulaUsername, password)) ~> resourcesPath ~> check {
+            Post("/v1/resources", HttpEntity(ContentTypes.`application/json`, params)) ~> addCredentials(BasicHttpCredentials(incunabulaUsername, password)) ~> resourcesPath ~> check {
 
                 assert(status == StatusCodes.OK, response.toString)
 
@@ -755,7 +756,7 @@ class ResourcesV1E2ESpec extends E2ESpec {
               }
                 """
 
-            Post("/v1/resources", HttpEntity(`application/json`, params)) ~> addCredentials(BasicHttpCredentials(incunabulaUsername, password)) ~> resourcesPath ~> check {
+            Post("/v1/resources", HttpEntity(ContentTypes.`application/json`, params)) ~> addCredentials(BasicHttpCredentials(incunabulaUsername, password)) ~> resourcesPath ~> check {
 
                 // the route should reject the request because an IRI is missing in resource_reference
                 assert(status == StatusCodes.BadRequest, response.toString)
@@ -819,7 +820,7 @@ class ResourcesV1E2ESpec extends E2ESpec {
               }
                 """
 
-            Post("/v1/resources", HttpEntity(`application/json`, params)) ~> addCredentials(BasicHttpCredentials(incunabulaUsername, password)) ~> resourcesPath ~> check {
+            Post("/v1/resources", HttpEntity(ContentTypes.`application/json`, params)) ~> addCredentials(BasicHttpCredentials(incunabulaUsername, password)) ~> resourcesPath ~> check {
 
                 // the route should reject the request because an IRI is missing in standoff link tags
                 assert(status == StatusCodes.BadRequest, response.toString)
@@ -920,7 +921,7 @@ class ResourcesV1E2ESpec extends E2ESpec {
               }
                 """
 
-            Post("/v1/resources", HttpEntity(`application/json`, params)) ~> addCredentials(BasicHttpCredentials(anythingUsername, password)) ~> resourcesPath ~> check {
+            Post("/v1/resources", HttpEntity(ContentTypes.`application/json`, params)) ~> addCredentials(BasicHttpCredentials(anythingUsername, password)) ~> resourcesPath ~> check {
 
                 assert(status == StatusCodes.OK, response.toString)
 
@@ -1029,7 +1030,7 @@ class ResourcesV1E2ESpec extends E2ESpec {
               }
                 """
 
-            Post("/v1/resources", HttpEntity(`application/json`, params)) ~> addCredentials(BasicHttpCredentials(incunabulaUsername, password)) ~> resourcesPath ~> check {
+            Post("/v1/resources", HttpEntity(ContentTypes.`application/json`, params)) ~> addCredentials(BasicHttpCredentials(incunabulaUsername, password)) ~> resourcesPath ~> check {
 
                 assert(status == StatusCodes.OK, response.toString)
 
@@ -1108,7 +1109,7 @@ class ResourcesV1E2ESpec extends E2ESpec {
               }
                 """
 
-            Post("/v1/resources", HttpEntity(`application/json`, params)) ~> addCredentials(BasicHttpCredentials(incunabulaUsername, password)) ~> resourcesPath ~> check {
+            Post("/v1/resources", HttpEntity(ContentTypes.`application/json`, params)) ~> addCredentials(BasicHttpCredentials(incunabulaUsername, password)) ~> resourcesPath ~> check {
 
                 assert(status == StatusCodes.OK, response.toString)
 
@@ -1259,7 +1260,7 @@ class ResourcesV1E2ESpec extends E2ESpec {
               }
                 """
 
-            Post("/v1/resources", HttpEntity(`application/json`, params)) ~> addCredentials(BasicHttpCredentials(incunabulaUsername, password)) ~> resourcesPath ~> check {
+            Post("/v1/resources", HttpEntity(ContentTypes.`application/json`, params)) ~> addCredentials(BasicHttpCredentials(incunabulaUsername, password)) ~> resourcesPath ~> check {
 
                 assert(status == StatusCodes.OK, response.toString)
 
