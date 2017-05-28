@@ -118,7 +118,8 @@ trait KnoraService {
             UsersRouteV1.knoraApiPath(system, settings, log) ~
             ProjectsRouteV1.knoraApiPath(system, settings, log) ~
             GroupsRouteV1.knoraApiPath(system, settings, log) ~
-			PermissionsRouteV1.knoraApiPath(system, settings, log),
+			PermissionsRouteV1.knoraApiPath(system, settings, log) ~
+            LDPRoute.knoraApiPath(system,settings,log),
         settings,
         log
     )

@@ -4,7 +4,8 @@ import spray.revolver.RevolverPlugin._
 import NativePackagerHelper._
 
 connectInput in run := true
-
+resolvers += "bblfish-snapshots" at "http://bblfish.net/work/repo/snapshots"
+resolvers += Resolver.file("Local repo", file(System.getProperty("user.home") + "/.ivy2/local"))(Resolver.ivyStylePatterns)
 // Bring the sbt-aspectj settings into this build
 //aspectjSettings
 
@@ -131,6 +132,10 @@ lazy val webApiLibs = Seq(
     // jena
     "org.apache.jena" % "apache-jena-libs" % "3.0.0" exclude("org.slf4j", "slf4j-log4j12"),
     "org.apache.jena" % "jena-text" % "3.0.0" exclude("org.slf4j", "slf4j-log4j12"),
+    // RDF framework (added by afa for LDP tests)
+    //"org.w3" % "banana_2.12" % "0.8.4-SNAPSHOT",
+    "org.w3" % "banana-rdf_2.12" % "0.8.4-SNAPSHOT" ,
+    "org.w3" % "banana-jena_2.12" % "0.8.4-SNAPSHOT",
     // http client
     // "net.databinder.dispatch" %% "dispatch-core" % "0.11.2",
     // logging
