@@ -8,20 +8,32 @@ package org.knora.webapi.routing.v1
 
 import akka.actor.ActorSystem
 import akka.event.LoggingAdapter
-import akka.http.scaladsl.model.{MediaRange, MediaTypes}
+import akka.http.scaladsl.model._
+import akka.http.scaladsl.model.MediaType.{WithFixedCharset, WithOpenCharset}
 import akka.http.scaladsl.server.Directives._
 import akka.http.scaladsl.server.{MediaTypeNegotiator, Route}
 import org.knora.webapi._
 import org.knora.webapi.routing.Authenticator
 import org.knora.webapi.services.JenaJsonMarshaller
-import org.knora.webapi.services.SPARQLJenaService._
 import org.knora.webapi.util.InputValidation
+import akka.http.scaladsl.settings.ParserSettings
+import akka.http.scaladsl.settings.ServerSettings
+import org.knora.webapi.services.SPARQLJenaService._
+
+
 
 /**
   * Akka HTTP Route for a Linked Data Platform Interface
   */
 
 object LDPRoute extends JenaJsonMarshaller with Authenticator {
+
+    // custom TURTLE media type:
+    val utf8 = HttpCharsets.`UTF-8`
+    val `application/turtle`: WithFixedCharset =
+        MediaType.customWithFixedCharset("application", "turtle", utf8)
+
+
 
     def knoraApiPath(_system: ActorSystem, settings: SettingsImpl, log: LoggingAdapter): Route = {
 
@@ -30,11 +42,15 @@ object LDPRoute extends JenaJsonMarshaller with Authenticator {
     implicit val executionContext = system.dispatcher
         implicit val timeout = settings.defaultTimeout
         val responderManager = system.actorSelection ("/user/responderManager")
-        val ldpEncodings = Seq(MediaRange(MediaTypes.`application/xml`),MediaRange(MediaTypes.`application/json`),MediaNewTypes.`text/turtle`)
+        val ldpEncodings = Seq(MediaRange(MediaTypes.`application/xml`),
+            MediaRange(MediaTypes.`application/json`),
+            MediaRange(`application/turtle`))
+        val parserSettings = ParserSettings(system).withCustomMediaTypes(`application/turtle`)
+        val serverSettings = ServerSettings(system).withParserSettings(parserSettings)
 
     path ("ldp" / Segment) {
         value =>
-            get { //name =>
+            get {
                 (get & extract(_.request.headers)){ requestHeaders =>
                     val mediaTypeNegotiator = new MediaTypeNegotiator(requestHeaders)
                     val encoding = mediaTypeNegotiator
@@ -49,15 +65,15 @@ object LDPRoute extends JenaJsonMarshaller with Authenticator {
                       WHERE {
                         ?subject ?predicate ?object
                       }
-                      LIMIT 20"""
+                      LIMIT 2000"""
                     complete(
                         encoding.toString match {
-                            case "application/xml" => "xml"
-                            case "application/json" => "json"
-                            case "text/turtle" => "turtle"
-                            case _ => encoding.toString
-                        })
-                    //cons(q))
+                            case "application/turtle" => turt(q) //HttpResponse(StatusCodes.OK, entity = "turtle")
+                            case "application/xml" => HttpResponse(StatusCodes.OK, entity = "xml")
+                            case "application/json" => cons(q) //HttpResponse(StatusCodes.OK, entity = "json")
+                            case _ => HttpResponse(StatusCodes.OK, entity = encoding.toString)
+                        }
+                    )
                 }
             }
     }
