@@ -8,7 +8,7 @@
 @prefix cidoc: <http://www.cidoc-crm.org/cidoc-crm/>.
 @prefix frbroo: <http://iflastandards.info/ns/fr/frbr/frbroo/>.
 #@prefix event: <http://www.nie-ine.ch/ontology/event#>.
-#@prefix human: <http://www.nie-ine.ch/ontology/human#>.
+@prefix human-k: <http://www.knora.org/ontology/human-k#>.
 #@prefix manif: <http://www.nie-ine.ch/ontology/manifestation#>.
 #@prefix image: <http://www.nie-ine.ch/ontology/image#>.
 @prefix knora-base: <http://www.knora.org/ontology/knora-base#>.
@@ -193,7 +193,7 @@
 	rdfs:label "printed text"@en, "Textdruck"@de;
 	rdfs:comment """Text printed with any method, e.g. manually, with an analogue or digital machine."""@en;
 #	rdfs:isDefinedBy <http://www.nie-ine.ch/ontology/text-k#>;
-	rdfs:subClassOf :Expression. #, frbroo:F24_Publication_Expression.
+	rdfs:subClassOf :Expression, frbroo:F24_Publication_Expression.
 
 :Author # DB PL: RCS_REL_AID_XID - FUNCTION
 	a owl:Class;
@@ -201,21 +201,21 @@
 	rdfs:comment """Role of a person being responsibility for a text."""@en;
 #	skos:note """Often an author is also a creator of a text."""@en;
 #	rdfs:isDefinedBy <http://www.nie-ine.ch/ontology/text-k#>;
-	rdfs:subClassOf knora-base:Resource. # SCO human:Role
+	rdfs:subClassOf human-k:Role. # SCO knora-base:Resource
 
 :Revisor # DB PL: RCS_REL_AID_XID - FUNCTION
 	a owl:Class;
 	rdfs:label "revisor"@en, "Revisor"@de;
 	rdfs:comment """Role of a person checking on certain aspects of a text."""@en;
 #	rdfs:isDefinedBy <http://www.nie-ine.ch/ontology/text-k#>;
-	rdfs:subClassOf knora-base:Resource. # SCO human:Role 
+	rdfs:subClassOf human-k:Role. # SCO knora-base:Resource 
 
 :Editor # DB PL: RCS_REL_AID_XID - FUNCTION
 	a owl:Class;
 	rdfs:label "editor"@en, "Editor"@de;
 	rdfs:comment """Role of a person changing a text."""@en;
 #	rdfs:isDefinedBy <http://www.nie-ine.ch/ontology/text-k#>;
-	rdfs:subClassOf knora-base:Resource. # SCO human:Role
+	rdfs:subClassOf human-k:Role. # SCO knora-base:Resource
 
 #
 # PROPERTIES
@@ -316,7 +316,7 @@
 	rdfs:label "author of"@en;
 	rdfs:comment """Relating a person with author role to a text the person authored."""@en;
 #	rdfs:isDefinedBy <http://www.nie-ine.ch/ontology/text-k#>;
-	knora-base:subjectClassConstraint :Person; # [rdfs:subClassOf human:Person, [a owl:Restriction; owl:onProperty event:hasRole; owl:someValuesFrom :Author]];
+	knora-base:subjectClassConstraint human-k:Person; # [rdfs:subClassOf human:Person, [a owl:Restriction; owl:onProperty event:hasRole; owl:someValuesFrom :Author]];
 	knora-base:objectClassConstraint :Expression.
 
 :hasManifestation
