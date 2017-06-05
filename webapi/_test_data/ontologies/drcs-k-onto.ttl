@@ -30,7 +30,7 @@
 	rdfs:label "person"@en, "Person"@de, "personne"@fr, "persona"@it;
 	rdfs:comment """Person as in scientific study of Petrus Lombardus."""@en;
 	rdfs:subClassOf human-k:Person, [
-		a owl:Restriction; owl:onProperty :hasStegmuellerPersonDescriptionValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+		a owl:Restriction; owl:onProperty :hasStegmuellerPersonDescriptionObject; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 :Commentary # DB PL: RCS_XPRESSIONS - TYPE
 	a owl:Class;
@@ -40,7 +40,7 @@
 		a owl:Restriction; owl:onProperty :hasStegmuellerExpressionDescriptionObject; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty :hasStegmuellerCodeObject; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
-:StegmuellerPersonDescriptionValue # DB PL: RCS_AUTHORS - STGM
+:StegmuellerPersonDescriptionObject # DB PL: RCS_AUTHORS - STGM
 	a owl:Class;
 	rdfs:label "Stegmüller's person description object"@en;
 	rdfs:comment """Stegmüller's person description as object."""@en;
@@ -65,18 +65,18 @@
 # PROPERTIES
 #
 
-:hasStegmuellerPersonDescriptionValue
+:hasStegmuellerPersonDescriptionObject
  	a owl:ObjectProperty;
  	rdfs:label "has Stegmüller's person description object"@en;
- 	rdfs:comment """Relating a person to a Stegmüller's description object."""@en;
+ 	rdfs:comment """Relating a person to a Stegmüller's description as object."""@en;
  	rdfs:subPropertyOf knora-base:hasValue; # SPO text:hasDescriptionObject SPO text:hasTextObject SPO knora-base:hasValue
  	knora-base:subjectClassConstraint :Person;
- 	knora-base:objectClassConstraint :StegmuellerPersonDescriptionValue.
+ 	knora-base:objectClassConstraint :StegmuellerPersonDescriptionObject.
 
 :hasStegmuellerExpressionDescriptionObject
 	a owl:ObjectProperty;
 	rdfs:label "has Stegmüller's expression description object"@en;
-	rdfs:comment """Relating an expression to a Stegmüller's description object."""@en;
+	rdfs:comment """Relating an expression to a Stegmüller's description as object."""@en;
 	rdfs:subPropertyOf text-k:hasDescriptionObject; # SPO text:hasTextObject SPO knora-base:hasValue
 	knora-base:subjectClassConstraint :Commentary;
 	knora-base:objectClassConstraint :StegmuellerExpressionDescriptionObject.
