@@ -334,6 +334,7 @@
 	rdfs:label "has floruit"@en;
 	rdfs:comment """Relating a person to her/his floruit."""@en;
 #	rdfs:isDefinedBy <http://www.knora.org/ontology/human-k#>;
+	rdfs:subPropertyOf :actsIn;
 	knora-base:subjectClassConstraint :Person;
 	knora-base:objectClassConstraint :Floruit.
 
@@ -342,6 +343,7 @@
 	rdfs:label "has floruit, as statement"@en;
 	rdfs:comment """Relating a person to a reification statement of the relation between the person and her/his floruit."""@en;
 #	rdfs:isDefinedBy <http://www.knora.org/ontology/human-k#>;
+	rdfs:subPropertyOf :actsInValue;
 	knora-base:subjectClassConstraint :Person;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
