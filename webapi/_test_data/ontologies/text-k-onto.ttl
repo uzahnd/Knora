@@ -24,7 +24,7 @@
 #	dct:conformsTo "OWL Full"@en;
 #	skos:note """Representation of an otherwise literal data element as object ('objectivation') enables relating it to metadata"""@en. 
 
-# glossary:
+# temporary glossary:
 	# DB: mapping to mysql elements
 		# KR: Kuno Raeber
 		# PL: Petrus Lombardus
