@@ -12,6 +12,7 @@ import akka.http.scaladsl.model._
 import akka.http.scaladsl.model.headers._
 import akka.http.scaladsl.model.HttpMethods._
 import akka.http.scaladsl.model.MediaType.{WithFixedCharset, WithOpenCharset}
+import akka.http.scaladsl.server.Directives._
 import akka.http.scaladsl.server.{MediaTypeNegotiator, Route}
 import org.knora.webapi._
 import org.knora.webapi.routing.Authenticator
@@ -27,8 +28,6 @@ import org.knora.webapi.services.SPARQLJenaService._
   */
 
 object LDPRoute extends JenaJsonMarshaller with Authenticator {
-
-    import org.knora.webapi.http.CORSSupport._
 
     // custom TURTLE media type:
     val utf8 = HttpCharsets.`UTF-8`
