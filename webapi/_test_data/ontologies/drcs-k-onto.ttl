@@ -11,9 +11,7 @@
 @prefix : <http://www.knora.org/ontology/drcs-k#>.
 
 <http://www.knora.org/ontology/drcs-k>
-	a owl:Ontology;
-	rdfs:label "An ontology for the Digital Repertory of Commentaries on Peter Lombard’s Sentences"@en;
-	rdfs:comment """Formal description of elements in the scientific study of Petrus Lombardus as in the Digital Repertory of Commentaries on Peter Lombard’s Sentences (DRCS)."""@en.
+	a owl:Ontology.
 #	dct:title "An ontology for the Digital Repertory of Commentaries on Peter Lombard’s Sentences"@en;
 #	dct:description """Formal description of elements in the scientific study of Petrus Lombardus as in the Digital Repertory of Commentaries on Peter Lombard’s Sentences (DRCS)."""@en;
 #	dct:creator "Hans Cools, software developer, NIE, Basel University, Switzerland"@en;
@@ -65,15 +63,15 @@
 # PROPERTIES
 #
 
-:hasStegmuellerPersonDescriptionObject
+:hasStegmuellerPersonDescriptionObject # DB PL: RCS_AUTHORS - STGM
  	a owl:ObjectProperty;
  	rdfs:label "has Stegmüller's person description object"@en;
  	rdfs:comment """Relating a person to a Stegmüller's description as object."""@en;
- 	rdfs:subPropertyOf knora-base:hasValue; # SPO text:hasDescriptionObject SPO text:hasTextObject SPO knora-base:hasValue
+ 	rdfs:subPropertyOf text-k:hasDescriptionObject; # SPO text:hasTextObject SPO knora-base:hasValue
  	knora-base:subjectClassConstraint :Person;
  	knora-base:objectClassConstraint :StegmuellerPersonDescriptionObject.
 
-:hasStegmuellerExpressionDescriptionObject
+:hasStegmuellerExpressionDescriptionObject # DB PL: RCS_XPRESSIONS - STGM I/STGM II
 	a owl:ObjectProperty;
 	rdfs:label "has Stegmüller's expression description object"@en;
 	rdfs:comment """Relating an expression to a Stegmüller's description as object."""@en;
@@ -81,10 +79,10 @@
 	knora-base:subjectClassConstraint :Commentary;
 	knora-base:objectClassConstraint :StegmuellerExpressionDescriptionObject.
 
-:hasStegmuellerCodeObject
+:hasStegmuellerCodeObject # DB PL: RCS_XPRESSIONS - RSCODES
 	a owl:ObjectProperty;
 	rdfs:label "has Stegmüller's code object"@en;
-	rdfs:comment """Relating an expression to a Stegmüller's code object."""@en;
+	rdfs:comment """Relating an expression to a Stegmüller's code as object."""@en;
 	rdfs:subPropertyOf text-k:hasTextObject; # SPO knora-base:hasValue
 	knora-base:subjectClassConstraint :Commentary;
 	knora-base:objectClassConstraint :StegmuellerCodeObject.

@@ -4,8 +4,8 @@
 #@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 #@prefix dct: <http://purl.org/dc/terms/>.
 #@prefix geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>.
-#@prefix foaf: <http://xmlns.com/foaf/0.1/>.
-#@prefix unicore: <http://purl.uniprot.org/core/>.
+@prefix foaf: <http://xmlns.com/foaf/0.1/>.
+@prefix unicore: <http://purl.uniprot.org/core/>.
 @prefix frbroo: <http://iflastandards.info/ns/fr/frbr/frbroo/>.
 #@prefix event: <http://www.knora.org/ontology/event#>.
 @prefix text-k: <http://www.knora.org/ontology/text-k#>.
@@ -31,9 +31,9 @@
 	rdfs:comment """Member of the subspecies Homo sapiens sapiens."""@en;
 #	rdfs:isDefinedBy <http://www.knora.org/ontology/human-k#>;
 #	skos:note """A human lives but is not necessarily born; one can speak about a human embryo or foetus.""";
-#	unicore:scientificName """Homo sapiens sapiens"""@en;
-#	unicore:rank unicore:Subspecies;
-	rdfs:subClassOf knora-base:Resource, <http://purl.uniprot.org/taxonomy/9606>. # SCO foaf:Agent; species Homo sapiens; agent:Agent
+	unicore:scientificName """Homo sapiens sapiens"""@en;
+	unicore:rank unicore:Subspecies;
+	rdfs:subClassOf foaf:Agent, knora-base:Resource, <http://purl.uniprot.org/taxonomy/9606>. # SCO foaf:Agent; species Homo sapiens; agent:Agent
 
 :Person # DB PL: RCS_AUTHORS
 	a owl:Class;
@@ -41,21 +41,21 @@
 	rdfs:comment """A real born living human."""@en;
 #	rdfs:isDefinedBy <http://www.knora.org/ontology/human-k#>;
 #	skos:note """A foaf:Person class member is born, but can be alive or dead, real or imaginary. In this more restricted meaning a person can do things during life and can be talked about after dead, having done things during life. An imaginary person is a thing that can have every conceivable property, very unlike a real person."""@en;
-	rdfs:subClassOf :Human, frbroo:F10_Person, knora-base:Resource, [ # foaf:Person
+	rdfs:subClassOf :Human, foaf:Person, frbroo:F10_Person, knora-base:Resource, [
 #		a owl:Restriction; owl:onProperty :hasBiologicalGender; owl:someValuesFrom :BiologicalGender], [
-		a owl:Restriction; owl:onProperty :hasBiologicalGender; owl:cardinality "1"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty :hasBiologicalGenderValue; owl:cardinality "1"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty :hasBiologicalGender; owl:maxCardinality "1"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty :hasBiologicalGenderValue; owl:maxCardinality "1"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty :hasNameObject; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty :hasFamilyNameObject; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty :hasGivenNameObject; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty :hasBirthDateObject; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty :hasDeathDateObject; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty :hasFamilyNameObject; owl:minCardinality "0"^^xsd:nonNegativeInteger], [ # person can have name legally changed; extra restriction with rule: strict 1 name simultaneously
+		a owl:Restriction; owl:onProperty :hasGivenNameObject; owl:minCardinality "0"^^xsd:nonNegativeInteger], [ # person can have name legally changed; extra restriction with rule: strict 1 name simultaneously
+		a owl:Restriction; owl:onProperty :hasBirthDateObject; owl:minCardinality "0"^^xsd:nonNegativeInteger], [ # there can be more than 1 time indicator; an overall certainty period can be calculated
+		a owl:Restriction; owl:onProperty :hasDeathDateObject; owl:minCardinality "0"^^xsd:nonNegativeInteger], [ # there can be more than 1 time indicator; an overall certainty period can be calculated
 		a owl:Restriction; owl:onProperty :hasDescriptionObject; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 #		a owl:Restriction; owl:onProperty :hasRole; owl:someValuesFrom :Role], [
-		a owl:Restriction; owl:onProperty :hasRole; owl:cardinality "1"^^xsd:nonNegativeInteger], [ # but should be "0"
-		a owl:Restriction; owl:onProperty :hasRoleValue; owl:cardinality "1"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty :hasFloruit; owl:cardinality "1"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty :hasFloruitValue; owl:cardinality "1"^^xsd:nonNegativeInteger].
+		a owl:Restriction; owl:onProperty :hasRole; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty :hasRoleValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty :hasFloruit; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty :hasFloruitValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 :PersonLike # can also be :Fantasy
 	a owl:Class;
@@ -68,11 +68,11 @@
 
 :NameObject # part of DB PL: RCS_AUTHORS - NAME
 	a owl:Class;
-	rdfs:label "person name object";
+	rdfs:label "name object";
 	rdfs:comment "Name of a person, as an object.";
 #	rdfs:isDefinedBy <http://www.knora.org/ontology/human-k#>;
 #	skos:note """Enabling speaking about a name as object, not as literal."""@en;
-#	skos:note """Further restriction given along specific law; e.g. can be changed."""@en;
+#	skos:note """Further restriction given along specific law; e.g. a person can have name legally changed, thus can have only 1 simultaneously."""@en;
 	rdfs:subClassOf text-k:NameObject. # SCO text-k:TextObject SCO knora-base:TextValue
 
 :FamilyNameObject
@@ -81,21 +81,21 @@
 	rdfs:comment "Name of a person, as an object, from one or both parents.";
 #	rdfs:isDefinedBy <http://www.knora.org/ontology/human-k#>;
 #	skos:note """Enabling speaking about a family name as object, not as literal."""@en;
-#	skos:note """Further restriction given along specific law; e.g. can be changed."""@en;
+#	skos:note """Further restriction given along specific law; e.g. a person can have name legally changed, thus can have only 1 simultaneously."""@en;
 	rdfs:subClassOf :NameObject. # SCO text-k:TextObject SCO knora-base:TextValue
 
-:GivenNameObject # enables speaking about a given name as object, not as literal
+:GivenNameObject
 	a owl:Class;
 	rdfs:label "given name object";
 	rdfs:comment "Name, as an object, given to a person, usually by one or both parents.";
 #	rdfs:isDefinedBy <http://www.knora.org/ontology/human-k#>;
 #	skos:note """Enabling speaking about a given name as object, not as literal."""@en;
-#	skos:note """Further restriction given along specific law; e.g. can be changed."""@en;
+#	skos:note """Further restriction given along specific law; e.g. a person can have name legally changed, thus can have only 1 simultaneously."""@en;
 	rdfs:subClassOf :NameObject. # SCO text-k:TextObject SCO knora-base:TextValue
 
 :DescriptionObject # part of DB PL: RCS_AUTHORS - NOTES 
 	a owl:Class;
-	rdfs:label "person description object";
+	rdfs:label "description object";
 	rdfs:comment "Description of a person, as an object.";
 #	rdfs:isDefinedBy <http://www.knora.org/ontology/human-k#>;
 #	skos:note """Enabling speaking about a person description as object, not as literal."""@en;	
@@ -109,9 +109,7 @@
 #	rdfs:isDefinedBy <http://www.knora.org/ontology/human-k#>;
 	rdfs:comment """Considered as an action wherein a person is an agent."""@en;
 #	skos:note """No satisfying biological description of onset of a human life."""@en;
-	rdfs:subClassOf knora-base:Resource, [ # event:Action, event:Existence,
-#			a owl:Restriction; owl:onProperty :hasAgent; owl:someValuesFrom :Person], [ # to change to agent:hasAgent
-			a owl:Restriction; owl:onProperty :hasAgent; owl:cardinality "1"^^xsd:nonNegativeInteger]. 
+	rdfs:subClassOf knora-base:Resource. # event:Action, event:Existence
 
 :BiologicalGender
 	a owl:Class;
@@ -145,7 +143,7 @@
 
 :Role
 	a owl:Class;
-	rdfs:label "person role"@en;
+	rdfs:label "role"@en;
 	rdfs:comment """A role a person has as a social entity."""@en;
 #	rdfs:isDefinedBy <http://www.knora.org/ontology/human-k#>;
 	rdfs:subClassOf knora-base:Resource. # , [ 
@@ -253,7 +251,7 @@
 
 :hasNameObject # DB PL: RCS_AUTHORS - NAME
 	a owl:ObjectProperty;
-	rdfs:label "has person name object";
+	rdfs:label "has name object";
 	rdfs:comment """Relating a person to a name as object."""@en;
 #	rdfs:isDefinedBy <http://www.knora.org/ontology/human-k#>;
 	rdfs:subPropertyOf text-k:hasNameObject;
@@ -270,10 +268,10 @@
 #	rdfs:isDefinedBy <http://www.knora.org/ontology/human-k#>;
 	rdfs:subPropertyOf :hasNameObject;
 	knora-base:subjectClassConstraint :Person; 
-	knora-base:objectClassConstraint :FamilyNameObject. 
-#	salsah-gui:guiOrder "1"^^xsd:integer;
-#	salsah-gui:guiElement salsah-gui:SimpleText;
-#	salsah-gui:guiAttribute "size=32", "maxlength=32".
+	knora-base:objectClassConstraint :FamilyNameObject; 
+	salsah-gui:guiOrder "1"^^xsd:integer;
+	salsah-gui:guiElement salsah-gui:SimpleText;
+	salsah-gui:guiAttribute "size=32", "maxlength=32".
 
 :hasGivenNameObject
 	a owl:ObjectProperty;
@@ -282,12 +280,15 @@
 #	rdfs:isDefinedBy <http://www.knora.org/ontology/human-k#>;
 	rdfs:subPropertyOf :hasNameObject;
 	knora-base:subjectClassConstraint :Person;
-	knora-base:objectClassConstraint :GivenNameObject.
+	knora-base:objectClassConstraint :GivenNameObject;
+	salsah-gui:guiOrder "1"^^xsd:integer;
+	salsah-gui:guiElement salsah-gui:SimpleText;
+	salsah-gui:guiAttribute "size=32", "maxlength=32".
 
 :hasDescriptionObject
 	a owl:ObjectProperty;
 	rdfs:label "has person description object"@en;
-	rdfs:comment """Relating a resource to a person description as object."""@en;
+	rdfs:comment """Relating a person to a description as object."""@en;
 #	rdfs:isDefinedBy <http://www.knora.org/ontology/human-k#>;
 	rdfs:subPropertyOf text-k:hasDescriptionObject;
 	knora-base:subjectClassConstraint :Person;
@@ -295,7 +296,7 @@
 
 :hasRole
 	a owl:ObjectProperty;
-	rdfs:label "person has role"@en, "Person hat Rolle"@de;
+	rdfs:label "has role"@en, "hat Rolle"@de;
 	rdfs:comment """Relating a person to a role."""@en;
 #	rdfs:isDefinedBy <http://www.knora.org/ontology/human-k#>;
 	rdfs:subPropertyOf knora-base:hasLinkTo;
@@ -304,7 +305,7 @@
 
 :hasRoleValue
 	a owl:ObjectProperty;
-	rdfs:label "person has role, as statement"@en, "Person hat Rolle, als Aussage"@de;
+	rdfs:label "has role, as statement"@en, "Person hat Rolle, als Aussage"@de;
 	rdfs:comment """Relating a person to a reification statement of the relation between the person and a role."""@en;
 #	rdfs:isDefinedBy <http://www.knora.org/ontology/human-k#>;
 	rdfs:subPropertyOf knora-base:hasLinkToValue;
@@ -322,7 +323,7 @@
 
 :hasOccupationalRoleValue
 	a owl:ObjectProperty;
-	rdfs:label "person has occupational role, as statement"@en;
+	rdfs:label "has occupational role, as statement"@en;
 	rdfs:comment """Relating a person to a reification statement of the relation between the person and an occupational role."""@en;
 #	rdfs:isDefinedBy <http://www.knora.org/ontology/human-k#>;
 	rdfs:subPropertyOf :hasRoleStatement;
@@ -346,4 +347,3 @@
 	rdfs:subPropertyOf :actsInValue;
 	knora-base:subjectClassConstraint :Person;
 	knora-base:objectClassConstraint knora-base:LinkValue.
-
