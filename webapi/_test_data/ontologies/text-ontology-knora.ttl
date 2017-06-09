@@ -8,8 +8,8 @@
 @prefix cidoc: <http://www.cidoc-crm.org/cidoc-crm/>.
 @prefix frbroo: <http://iflastandards.info/ns/fr/frbr/frbroo/>.
 #@prefix event: <http://www.knora.org/ontology/event#>.
-@prefix human-k: <http://www.knora.org/ontology/human-k#>.
-@prefix work-k: <http://www.knora.org/ontology/work-k#>.
+@prefix human: <http://www.knora.org/ontology/human#>.
+@prefix work: <http://www.knora.org/ontology/work#>.
 #@prefix manif: <http://www.knora.org/ontology/manifestation#>.
 @prefix image: <http://www.knora.org/ontology/image#>.
 @prefix knora-base: <http://www.knora.org/ontology/knora-base#>.
@@ -87,7 +87,7 @@
 	a owl:Class;
 	rdfs:label "text expression"@en;
 	rdfs:comment """Text as a human luinguistic expression."""@en;
-	rdfs:subClassOf work-k:Expression, cidoc:E33_Linguistic_Object, knora-base:Resource, [
+	rdfs:subClassOf work:Expression, cidoc:E33_Linguistic_Object, knora-base:Resource, [
 		a owl:Restriction; owl:onProperty :hasTitleObject; owl:minCardinality "0"^^xsd:nonNegativeInteger], [ 
 		a owl:Restriction; owl:onProperty :hasDescriptionObject; owl:minCardinality "0"^^xsd:nonNegativeInteger], [ 
 		a owl:Restriction; owl:onProperty :hasIncipitObject; owl:minCardinality "0"^^xsd:nonNegativeInteger], [ 
@@ -176,19 +176,19 @@
 	rdfs:label "author"@en, "Autor"@de;
 	rdfs:comment """Role of a person being responsibility for a text."""@en;
 #	skos:note """Often an author is also a creator of a text."""@en;
-	rdfs:subClassOf human-k:Role. # SCO knora-base:Resource
+	rdfs:subClassOf human:Role. # SCO knora-base:Resource
 
 :Revisor # DB PL: RCS_REL_AID_XID - FUNCTION
 	a owl:Class;
 	rdfs:label "revisor"@en, "Revisor"@de;
 	rdfs:comment """Role of a person checking on certain aspects of a text."""@en;
-	rdfs:subClassOf human-k:Role. # SCO knora-base:Resource 
+	rdfs:subClassOf human:Role. # SCO knora-base:Resource 
 
 :Editor # DB PL: RCS_REL_AID_XID - FUNCTION
 	a owl:Class;
 	rdfs:label "editor"@en, "Editor"@de;
 	rdfs:comment """Role of a person changing a text."""@en;
-	rdfs:subClassOf human-k:Role. # SCO knora-base:Resource
+	rdfs:subClassOf human:Role. # SCO knora-base:Resource
 
 #
 # PROPERTIES
@@ -294,7 +294,7 @@
 	a owl:ObjectProperty;
 	rdfs:label "author of"@en;
 	rdfs:comment """Relating a person with author role to a text the person authored."""@en;
-	knora-base:subjectClassConstraint human-k:Person; # [rdfs:subClassOf human:Person, [a owl:Restriction; owl:onProperty event:hasRole; owl:someValuesFrom :Author]];
+	knora-base:subjectClassConstraint human:Person; # [rdfs:subClassOf human:Person, [a owl:Restriction; owl:onProperty event:hasRole; owl:someValuesFrom :Author]];
 	knora-base:objectClassConstraint :Expression.
 
 :hasManifestation
