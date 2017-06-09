@@ -448,8 +448,8 @@ Die Internetpublikation macht das digitalisierte Korpus dieser Frühdrucke  durc
 	knora-base:projectShortname "drcs"^^xsd:string;
 	knora-base:projectLongname "Digital Repertory of Commentaries on Peter Lombard’s Sentences"^^xsd:string;
 	knora-base:projectDescription "Digital Repertory of Commentaries on Peter Lombard’s Sentences"^^xsd:string;
-	knora-base:projectOntologyGraph "http://www.knora.org/ontology/drcs-k"^^xsd:string;
-	knora-base:projectDataGraph "http://www.knora.org/data/drcs-k"^^xsd:string;
+	knora-base:projectOntologyGraph "http://www.knora.org/ontology/drcs"^^xsd:string;
+	knora-base:projectDataGraph "http://www.knora.org/data/drcs"^^xsd:string;
 	knora-base:status "true"^^xsd:boolean;
 	knora-base:hasSelfJoinEnabled "false"^^xsd:boolean.
 
@@ -472,8 +472,8 @@ Die Internetpublikation macht das digitalisierte Korpus dieser Frühdrucke  durc
 	knora-base:projectShortname "text"^^xsd:string;
 	knora-base:projectLongname "text"^^xsd:string;
 	knora-base:projectDescription "text"^^xsd:string;
-	knora-base:projectOntologyGraph "http://www.knora.org/ontology/text-k"^^xsd:string;
-	knora-base:projectDataGraph "http://www.knora.org/data/text-k"^^xsd:string;
+	knora-base:projectOntologyGraph "http://www.knora.org/ontology/text"^^xsd:string;
+	knora-base:projectDataGraph "http://www.knora.org/data/text"^^xsd:string;
 	knora-base:status "true"^^xsd:boolean;
 	knora-base:hasSelfJoinEnabled "false"^^xsd:boolean.
 
@@ -496,8 +496,8 @@ Die Internetpublikation macht das digitalisierte Korpus dieser Frühdrucke  durc
 	knora-base:projectShortname "human"^^xsd:string;
 	knora-base:projectLongname "human"^^xsd:string;
 	knora-base:projectDescription "human"^^xsd:string;
-	knora-base:projectOntologyGraph "http://www.knora.org/ontology/human-k"^^xsd:string;
-	knora-base:projectDataGraph "http://www.knora.org/data/human-k"^^xsd:string;
+	knora-base:projectOntologyGraph "http://www.knora.org/ontology/human"^^xsd:string;
+	knora-base:projectDataGraph "http://www.knora.org/data/human"^^xsd:string;
 	knora-base:status "true"^^xsd:boolean;
 	knora-base:hasSelfJoinEnabled "false"^^xsd:boolean.
 
