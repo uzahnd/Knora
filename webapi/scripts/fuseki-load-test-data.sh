@@ -20,6 +20,7 @@ curl -F filedata=@../_test_data/all_data/incunabula-data.ttl http://localhost:30
 #curl -F filedata=@../_test_data/ontologies/biblio-onto.ttl http://localhost:3030/knora-test/data?graph=http://www.knora.org/ontology/biblio > /dev/null
 #curl -F filedata=@../_test_data/all_data/biblio-data.ttl http://localhost:3030/knora-test/data?graph=http://www.knora.org/data/biblio > /dev/null
 
-curl -F filedata=@../_test_data/ontologies/drcs-k-onto.ttl http://localhost:3030/knora-test/data?graph=http://www.knora.org/ontology/drcs-k > /dev/null
-curl -F filedata=@../_test_data/ontologies/text-k-onto.ttl http://localhost:3030/knora-test/data?graph=http://www.knora.org/ontology/text-k > /dev/null
-curl -F filedata=@../_test_data/ontologies/human-k-onto.ttl http://localhost:3030/knora-test/data?graph=http://www.knora.org/ontology/human-k > /dev/null
+curl -F filedata=@../_test_data/ontologies/drcs-ontology-knora.ttl http://localhost:3030/knora-test/data?graph=http://www.knora.org/ontology/drcs > /dev/null
+curl -F filedata=@../_test_data/ontologies/text-ontology-knora.ttl http://localhost:3030/knora-test/data?graph=http://www.knora.org/ontology/text > /dev/null
+curl -F filedata=@../_test_data/ontologies/human-ontology-knora.ttl http://localhost:3030/knora-test/data?graph=http://www.knora.org/ontology/human > /dev/null
+curl -F filedata=@../_test_data/ontologies/image-ontology-knora.ttl http://localhost:3030/knora-test/data?graph=http://www.knora.org/ontology/image > /dev/null
