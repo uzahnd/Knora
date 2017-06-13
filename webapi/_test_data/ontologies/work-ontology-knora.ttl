@@ -1,0 +1,105 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+@prefix xml: <http://www.w3.org/XML/1998/namespace>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+#@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+#@prefix dct: <http://purl.org/dc/terms/>.
+@prefix foaf: <http://xmlns.com/foaf/0.1/>.
+@prefix cidoc: <http://www.cidoc-crm.org/cidoc-crm/>.
+@prefix frbroo: <http://iflastandards.info/ns/fr/frbr/frbroo/>.
+@prefix text: <http://www.knora.org/ontology/text#>.
+@prefix image: <http://www.knora.org/ontology/image#>.
+@prefix knora-base: <http://www.knora.org/ontology/knora-base#>.
+@prefix : <http://www.knora.org/ontology/work#>.
+
+<http://www.knora.org/ontology/work>
+	a owl:Ontology.
+#	dct:title "An ontology about work as intellectual product"@en;
+#	dct:description """Formal description of work as intellectual product, its general subclasses, related classes and properties, as described in the Functional Requirements for Bibliographic Records, object oriented."""@en;
+#	owl:versionInfo "Version x - yyyy-mm-dd"@en; # OR other format, datatype
+#	dct:creator "Hans Cools, software developer, NIE, Basel University, Switzerland"@en.
+
+#
+# CLASSES
+#
+
+:Work
+	a owl:Class;
+	rdfs:label "work"@en, "Werk"@de;
+	rdfs:comment """See http://iflastandards.info/ns/fr/frbr/frbroo/F1_Work."""@en; 
+	rdfs:subClassOf frbroo:F1_Work, knora-base:Resource, [
+		a owl:Restriction; owl:onProperty text:hasTitleObject; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty :expressedIn; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty :expressedInValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+
+:MonoWork # DB KR: jsmwh_k2_tags/id + jsmwh_k2_tagsname as 'Synopse' + jsmwh_k2_tags_xref/tagID
+	a owl:Class;
+	rdfs:label "individual work"@en, "individuelles Werk"@de;
+	rdfs:comment """See http://iflastandards.info/ns/fr/frbr/frbroo/F14_Individual_Work."""@en;
+	rdfs:subClassOf :Work, frbroo:F14_Individual_Work.
+
+:Expression
+	a owl:Class;
+	rdfs:label "expression"@en, "Expression"@de;
+	rdfs:comment """See http://iflastandards.info/ns/fr/frbr/frbroo/F22_Self-Contained_Expression and http://iflastandards.info/ns/fr/frbr/frbroo/F2_Expression."""@en;
+	rdfs:subClassOf frbroo:F22_Self-Contained_Expression, knora-base:Resource, [
+		a owl:Restriction; owl:onProperty text:hasTitleObject; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty text:hasAliasObject; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty text:hasDescriptionObject; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty :materializedIn; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty :materializedInValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+
+:Manifestation # DB PL: RCS_MANIFESTAT.
+ 	a owl:Class;
+ 	rdfs:label "manifestation"@en,"Manifestation"@de;
+ 	rdfs:comment """Carrier of an expression."""@en;
+#	skos:note """Includes both the F4_Manifestation_Singleton and F5_Item as declared in FRBROO."""@en;
+	rdfs:subClassOf cidoc:E84_Information_Carrier, knora-base:Resource, [
+		a owl:Restriction; owl:onProperty text:hasTitleObject; owl:minCardinality "1"^^xsd:nonNegativeInteger], [ # DB KR: jsmwh_k2_categories - name
+		a owl:Restriction; owl:onProperty text:hasDescriptionObject; owl:minCardinality "1"^^xsd:nonNegativeInteger], [ # DB KR: jsmwh_k2_categories - description
+		a owl:Restriction; owl:onProperty image:hasPhotoRepresentation; owl:minCardinality "0"^^xsd:nonNegativeInteger], [ # DB KR: jsmwh_k2_categories - image
+		a owl:Restriction; owl:onProperty image:hasPhotoRepresentationValue; owl:minCardinality "1"^^xsd:nonNegativeInteger]. # triple reification
+
+# :IntellectualProduct
+#	a rdfs:Class;
+#	rdfs:subClassOf kb:Resource.
+#	rdfs:subClassOf knora-base:TextRepresentation. # OR knora-base:DocumentRepresentation?
+#	knora-base:hasTextFileValue krd:IntrotextFileValue: needed? ~ cardinality
+
+#
+# PROPERTIES
+#
+
+:expressedIn
+	a owl:ObjectProperty;
+	rdfs:label "expressed in"@en;
+	rdfs:comment "Relating an individual work to an expression tehreof."@en;
+	rdfs:subPropertyOf frbroo:R9_is_realised_in, knora-base:hasLinkTo;
+	knora-base:subjectClassConstraint :MonoWork;
+	knora-base:objectClassConstraint :Expression.
+
+:expressedInValue
+	a owl:ObjectProperty;
+	rdfs:label "expressed in value"@en;
+	rdfs:comment "Relating an individual work to a reification statement of the relation between the individual work and an expression tehreof."@en;
+	rdfs:subPropertyOf knora-base:hasLinkToValue;
+	knora-base:subjectClassConstraint :MonoWork;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
+# frbroo:R3_is_realised_in
+
+:materializedIn
+	a owl:ObjectProperty;
+	rdfs:label "materialized in"@en;
+	rdfs:comment "Relating an expression to a manifestation tehreof."@en;
+	knora-base:subjectClassConstraint :Expression;
+	knora-base:objectClassConstraint :Manifestation.
+
+:materializedInValue
+	a owl:ObjectProperty;
+	rdfs:label "materialized in value"@en;
+	rdfs:comment "Relating an expression to a reification statement of the relation between the expression and a manifestation tehreof."@en;
+	rdfs:subPropertyOf knora-base:hasLinkToValue;
+	knora-base:subjectClassConstraint :Expression;
+	knora-base:objectClassConstraint knora-base:LinkValue.

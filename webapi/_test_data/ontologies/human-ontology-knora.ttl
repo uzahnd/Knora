@@ -17,9 +17,7 @@
 	a owl:Ontology.
 #	dct:title "An ontology about human"@en;
 #	dct:description """Formal description of a human, general subclasses, related classes and properties."""@en;
-
-#	dct:creator "Hans Cools, software developer, NIE, Basel University, Switzerland"@en;
-#	dct:conformsTo "OWL Full"@en.
+#	dct:creator "Hans Cools, software developer, NIE, Basel University, Switzerland"@en.
 
 #
 # CLASSES
@@ -98,6 +96,12 @@
 	rdfs:subClassOf text:DescriptionObject. # SCO text:TextObject SCO knora-base:TextValue
 #	add person as described object
 
+:Action
+	a owl:Class;
+	rdfs:label "action"@en;
+	rdfs:comment """Action with at least one human as agent."""@en;
+	rdfs:subClassOf knora-base:Resource. #  subClassOf event:Action
+
 :Life
 	a owl:Class;
 	rdfs:label "person's life"@en;
@@ -159,12 +163,6 @@
 	rdfs:label "floruit"@en;
 	rdfs:comment """Period during which a person lived or a school or movement was most active or flourishing."""@en;
 	rdfs:subClassOf knora-base:Resource. # SCO event:Action.
-
-:Action
-	a owl:Class;
-	rdfs:label "action"@en;
-	rdfs:comment """Action with at least one human as agent."""@en;
-	rdfs:subClassOf knora-base:Resource. # change to event:Action
 
 #
 # PROPERTIES
