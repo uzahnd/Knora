@@ -16,7 +16,7 @@
 <http://www.knora.org/ontology/work>
 	a owl:Ontology.
 #	dct:title "An ontology about work as intellectual product"@en;
-#	dct:description """Formal description of work as intellectual product, its general subclasses, related classes and properties, as described in the Functional Requirements for Bibliographic Records, object oriented."""@en;
+#	dct:description """Formal description of work as intellectual product, its general subclasses, related classes and properties, as described in the ontology Functional Requirements for Bibliographic Records, object oriented."""@en;
 #	owl:versionInfo "Version x - yyyy-mm-dd"@en; # OR other format, datatype
 #	dct:creator "Hans Cools, software developer, NIE, Basel University, Switzerland"@en.
 
@@ -93,6 +93,7 @@
 	a owl:ObjectProperty;
 	rdfs:label "materialized in"@en;
 	rdfs:comment "Relating an expression to a manifestation tehreof."@en;
+	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint :Expression;
 	knora-base:objectClassConstraint :Manifestation.
 

@@ -14,7 +14,7 @@
 <http://www.knora.org/ontology/image>
 	a owl:Ontology.
 #	dct:title "An ontology about image"@en;
-#	dct:description """Formal description of image as a visual resource in the broadest sense, general subclasses, related classes, and properties."""@en;
+#	dct:description """Formal description of image as a visual resource in the broadest sense, its general subclasses, related classes, and properties."""@en;
 #	dct:creator "Hans Cools, software developer, NIE, Basel University, Switzerland"@en;
 
 #

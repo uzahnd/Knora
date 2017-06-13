@@ -10,7 +10,6 @@
 #@prefix event: <http://www.knora.org/ontology/event#>.
 @prefix human: <http://www.knora.org/ontology/human#>.
 @prefix work: <http://www.knora.org/ontology/work#>.
-#@prefix manif: <http://www.knora.org/ontology/manifestation#>.
 @prefix image: <http://www.knora.org/ontology/image#>.
 @prefix knora-base: <http://www.knora.org/ontology/knora-base#>.
 @prefix : <http://www.knora.org/ontology/text#>.
