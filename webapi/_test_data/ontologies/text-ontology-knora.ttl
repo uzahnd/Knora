@@ -19,11 +19,13 @@
 #	dct:title "An ontology about text"@en;
 #	dct:description """Formal description of text in broadest sense, general subclasses, related classes, and properties."""@en;
 #	dct:creator "Hans Cools, software developer, NIE, Basel University, Switzerland"@en;
-#	skos:note """Representation of an otherwise literal data element as object ('objectivation') enables relating it to metadata"""@en.
+#	skos:note """Representation of an otherwise literal data element as object ('objectivation') enabling relating it to metadata"""@en.
 
 #
 # CLASSES
 #
+
+## Textual elements as objects (Knora values) enabling relating to metadata
 
 :TextObject
 	a owl:Class;
@@ -37,31 +39,31 @@
 	rdfs:comment """Textual identifier of something, as an object."""@en;
 	rdfs:subClassOf :TextObject. 
 
-:PreferredNameObject # DB PL: RCS_AUTHORS - NAME
+:PreferredNameObject
 	a owl:Class;
 	rdfs:label "preferred name object"@en;
 	rdfs:comment """Name of preference, as an object."""@en;
 	rdfs:subClassOf :NameObject.
 
-:AliasObject # DB PL: RCS_AUTHORS - AKA
+:AliasObject
 	a owl:Class;
 	rdfs:label "alias object"@en;
 	rdfs:comment """Alternative name of something, as an object."""@en;
 	rdfs:subClassOf :NameObject.
 
-:TitleObject # DB PL: RCS_XPRESSIONS/TITLE
+:TitleObject
  	a owl:Class;
  	rdfs:label "title object"@en, "Titel-Objekt"@de, "titre objet"@fr, "titolo oggetto"@it;
  	rdfs:comment """Textual identifier of an expression, as an object."""@en;
  	rdfs:subClassOf :TextObject. #,cidoc:E35_Title.
 
-:CommentObject # DB PL: RCS_XPRESSIONS - NOTES (are comments)
+:CommentObject
 	a owl:Class;
 	rdfs:label "comment object"@en;
 	rdfs:comment """Textual statement about an expression, as an object."""@en;
 	rdfs:subClassOf :TextObject. # OR SCO knora-base:Annotation ?
 
-:DescriptionObject # DB PL: RCS_XPRESSIONS - DESCRIPTION
+:DescriptionObject
 	a owl:Class;
 	rdfs:label "description object"@en;
 	rdfs:comment """Textual statement about the features of something."""@en;
@@ -79,7 +81,10 @@
 	rdfs:comment """Textual statement for future processing of any kind."""@en;
 	rdfs:subClassOf :TextObject. # OR SCO knora-base:Annotation ?
 
-:Expression # DB PL: RCS_XPRESSIONS
+
+## Textual elements as (Knora) resources
+
+:Expression
 	a owl:Class;
 	rdfs:label "text expression"@en,  "Text-Expression"@de;
 	rdfs:comment """Text as a human luinguistic expression."""@en;
@@ -93,13 +98,13 @@
 		a owl:Restriction; owl:onProperty :hasDiplomaticTranscriptionRepresentation; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty :hasDiplomaticTranscriptionRepresentationValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
-:IncipitObject # DB PL: RCS_XPRESSIONS - INCIPIT
+:IncipitObject
 	a owl:Class;
 	rdfs:label "incipit text object"@en;
 	rdfs:comment """Begin part of a text, as an object, especially when used in place of a title to identify an untitled text."""@en;
 	rdfs:subClassOf :TextObject.
 
-:ExplicitObject # DB PL: RCS_XPRESSIONS - EXPLICIT
+:ExplicitObject
 	a owl:Class;
 	rdfs:label "explicit text object"@en;
 	rdfs:comment """End part of a text, as an object, especially when used in place of a title or an incipit to identify an untitled text."""@en;
@@ -149,7 +154,7 @@
 
 :Transcript
 	a owl:Class;
-	rdfs:label "transcript"@en, "Transkript"@de; # OR "Umschrift"@de;
+	rdfs:label "transcript"@en, "Umschrift"@de;
 	rdfs:comment """Reproduced text."""@en;
 #	skos:note """Can be done by any method, e.g. handwriting, typewriting, machine copying, printing, digitizing."""@en;
 	rdfs:subClassOf :Expression, [
@@ -215,7 +220,7 @@
 	rdfs:comment """Textual expression in the form of a series of comments as analysis, interpretation or explanation of something, especially another textual expression."""@en;
 	rdfs:subClassOf :Expression.
 
-:Manifestation # DB KR: jsmwh_k2_categories - parent # DB PL: RCS_MANIFESTAT.
+:Manifestation
  	a owl:Class;
  	rdfs:label "text manifestation"@en,"Text-Manifestation"@de;
  	rdfs:comment """Carrier of a text expression."""@en;
@@ -224,7 +229,7 @@
 :Convolute
 	a owl:Class;
 	rdfs:label "convolute"@en, "Konvolut"@de;
-	rdfs:comment """Text expressions, e.g. notes, manuscripts, typoscripts or prints, physically gathered as one."""@en;
+	rdfs:comment """Text manifestations, e.g. notes, manuscripts, typoscripts or prints, gathered as one."""@en;
 	rdfs:subClassOf :Manifestation, frbroo:F4_Manifestation_Singleton, knora-base:Resource.
 
 # :Book
@@ -232,33 +237,23 @@
 # 	rdfs:subClassOf knora-base:Resource, [ # fabio:Book
 # 		a owl:Restriction; owl:onProperty krd:createdBy; owl:minCardinality "1"^^xsd:nonNegativeInteger].
 
-:Notebook # DB KR: jsmwh_k2_categories - parent
-	a rdfs:Class;
+:Notebook
+	a owl:Class;
 	rdfs:label "notebook"@en,"Notizbuch"@de;
 	rdfs:comment """Book wherein notes are written, e.g. a first registration of thoughts."""@en;
-	rdfs:subClassOf :Manifestation, frbroo:F4_Manifestation_Singleton, knora-base:Resource. # requirement
+	rdfs:subClassOf :Manifestation, frbroo:F4_Manifestation_Singleton, knora-base:Resource.
 
-# check fabio:Notebook
-
-:Manuscript # DB KR: jsmwh_k2_categories - parent # DB PL: RCS_MANIFESTATIONS - TYPE
-	a rdfs:Class;
+:Manuscript
+	a owl:Class;
 	rdfs:label "manuscript"@en, "Manuskript"@de;
 	rdfs:comment """Handwritten manifestation."""@en;
-	rdfs:subClassOf :Manifestation, frbroo:F4_Manifestation_Singleton, knora-base:Resource.
+	rdfs:subClassOf :Manifestation, frbroo:F4_Manifestation_Singleton.
 
-# check bibo:Manuscript
-
-:Typescript # DB KR: jsmwh_k2_categories - parent
-	a rdfs:Class;
+:Typescript
+	a owl:Class;
 	rdfs:label "typescript"@en, "Typoskript"@de;
 	rdfs:comment """Typewritten manifestation."""@en;
-	rdfs:subClassOf :Manifestation, frbroo:F4_Manifestation_Singleton, knora-base:Resource.
-
-:Print # DB KR: jsmwh_k2_categories - parent
-	a rdfs:Class;
-	rdfs:label "print"@en, "Druck"@de;
-	rdfs:comment """Information carrier with printed text."""@en;
-	rdfs:subClassOf :Manifestation, frbroo:F5_Item, knora-base:Resource.
+	rdfs:subClassOf :Manifestation, frbroo:F4_Manifestation_Singleton.
 
 
 # cardinality: cf. http://wiki.knora.org/doku.php?id=kuno_raebers_lyrisches_werk_-_historisch-kritische_online-edition#vorbereitung_fuer_das_scrum-planungs-meeting_am_26_april_2017
@@ -280,7 +275,7 @@
 	a owl:ObjectProperty;
 	rdfs:label "has text object"@en;
 	rdfs:comment """Relating a resource to a text object."""@en;
-	rdfs:subPropertyOf knora-base:hasValue;
+	rdfs:subPropertyOf knora-base:hasComment;
 	knora-base:subjectClassConstraint knora-base:Resource;
 	knora-base:objectClassConstraint :TextObject.
 
@@ -292,7 +287,7 @@
 	knora-base:subjectClassConstraint knora-base:Resource;
 	knora-base:objectClassConstraint :NameObject.
 
-:hasPreferredNameObject # DB PL: RCS_AUTHORS - NAME
+:hasPreferredNameObject
 	a owl:ObjectProperty;
 	rdfs:label "has preferred name object"@en;
 	rdfs:comment """Relating a resource to a preferred name object."""@en;
@@ -300,7 +295,7 @@
 	knora-base:subjectClassConstraint knora-base:Resource; # ? when used for a subclass a property constraint has to be set on a subproperty with the subclass as subjectClassConstraint
 	knora-base:objectClassConstraint :PreferredNameObject.
 
-:hasAliasObject # DB PL: RCS_AUTHORS - AKA
+:hasAliasObject
 	a owl:ObjectProperty;
 	rdfs:label "has alias object"@en;
 	rdfs:comment """Relating a resource to an alias object."""@en;
@@ -308,7 +303,7 @@
 	knora-base:subjectClassConstraint knora-base:Resource;
 	knora-base:objectClassConstraint :AliasObject.
 
-:hasTitleObject # DB PL: RCS_XPRESSIONS/TITLE # DB KR: jsmwh_k2_tags/name as 'Synopse'
+:hasTitleObject
 	a owl:ObjectProperty;
 	rdfs:label "has title object"@en;
 	rdfs:comment """Relating a resource to a title object."""@en;
@@ -324,7 +319,7 @@
 	knora-base:subjectClassConstraint knora-base:Resource;
 	knora-base:objectClassConstraint :CommentObject.
 
-:hasDescriptionObject # DB PL: RCS_XPRESSIONS - DESCRIPTION 
+:hasDescriptionObject
 	a owl:ObjectProperty;
 	rdfs:label "has description object"@en;
 	rdfs:comment """Relating a resource to a description object."""@en;
@@ -340,7 +335,7 @@
 	knora-base:subjectClassConstraint knora-base:Resource;
 	knora-base:objectClassConstraint :DefinitionObject.
 
-:hasIncipitObject # DB PL: RCS_XPRESSIONS - INCIPIT
+:hasIncipitObject
 	a owl:ObjectProperty;
 	rdfs:label "has incipit object"@en;
 	rdfs:comment """Relating a text expression to a beginning part thereof, as an object."""@en;
@@ -348,7 +343,7 @@
 	knora-base:subjectClassConstraint :Expression;
 	knora-base:objectClassConstraint :IncipitObject.
 
-:hasExplicitObject # DB PL: RCS_XPRESSIONS - EXPLICIT
+:hasExplicitObject
 	a owl:ObjectProperty;
 	rdfs:label "has explicit object"@en;
 	rdfs:comment """Relating a text expression to an ending part thereof, as an object."""@en;
