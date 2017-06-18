@@ -142,31 +142,27 @@
 	a owl:Class;
 	rdfs:label "note"@en;
 	rdfs:comment """Text... ."""@en;
-	rdfs:subClassOf :Expression, [
-		a owl:Restriction; owl:onProperty :hasNameObject; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+	rdfs:subClassOf :Expression.
 
 :Manuscript
 	a owl:Class;
 	rdfs:label "manuscript"@en, "Manuskript"@de;
 	rdfs:comment """Handwritten text."""@en;
-	rdfs:subClassOf :Expression, [
-		a owl:Restriction; owl:onProperty :hasNameObject; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+	rdfs:subClassOf :Expression.
 
 :Transcript
 	a owl:Class;
 	rdfs:label "transcript"@en, "Umschrift"@de;
 	rdfs:comment """Reproduced text."""@en;
 #	skos:note """Can be done by any method, e.g. handwriting, typewriting, machine copying, printing, digitizing."""@en;
-	rdfs:subClassOf :Expression, [
-		a owl:Restriction; owl:onProperty :hasNameObject; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+	rdfs:subClassOf :Expression.
 
 :ManualTranscript
  	a owl:Class;
  	rdfs:label "manual transcript"@en, "manuelle Abschrift"@de;
  	rdfs:comment """Handwritten transcript."""@en;
 # 	rdfs:isDefinedBy <http://www.nie-ine.ch/ontology/text#>;
- 	rdfs:subClassOf :Transcript, [
- 		a owl:Restriction; owl:onProperty :hasNameObject; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+ 	rdfs:subClassOf :Transcript.
 
 :Typescript
 	a owl:Class;
@@ -243,9 +239,9 @@
 	rdfs:comment """Book wherein notes are written, e.g. a first registration of thoughts."""@en;
 	rdfs:subClassOf :Manifestation, frbroo:F4_Manifestation_Singleton, knora-base:Resource.
 
-:Manuscript
+:ManuscriptCarrier
 	a owl:Class;
-	rdfs:label "manuscript"@en, "Manuskript"@de;
+	rdfs:label "manuscript carrier"@en, "Manuskriptträger"@de;
 	rdfs:comment """Handwritten manifestation."""@en;
 	rdfs:subClassOf :Manifestation, frbroo:F4_Manifestation_Singleton.
 
@@ -315,7 +311,7 @@
 	a owl:ObjectProperty;
 	rdfs:label "has comment object"@en;
 	rdfs:comment """Relating a resource to a comment object."""@en;
-	rdfs:subPropertyOf :hasTextObject, knora-base:hasComment;
+	rdfs:subPropertyOf :hasTextObject;
 	knora-base:subjectClassConstraint knora-base:Resource;
 	knora-base:objectClassConstraint :CommentObject.
 
@@ -375,6 +371,8 @@
 	knora-base:subjectClassConstraint :Expression;
 	knora-base:objectClassConstraint knora-base:EditedTextRepresentation.
 
+:hasEditedText
+
 :hasEditedTextRepresentationValue
 	a owl:ObjectProperty;
 	rdfs:label "has edited text representation value"@en;
@@ -389,7 +387,7 @@
 	rdfs:comment """Relating a text expression to a diplomatic transcription representation thereof."""@en;
 	rdfs:subPropertyOf :hasTextRepresentation;
 	knora-base:subjectClassConstraint :Expression;
-	knora-base:objectClassConstraint knora-base:TextRepresentation.
+	knora-base:objectClassConstraint knora-base:DiplomaticTranscriptionRepresentation.
 
 :hasDiplomaticTranscriptionRepresentationValue
 	a owl:ObjectProperty;
