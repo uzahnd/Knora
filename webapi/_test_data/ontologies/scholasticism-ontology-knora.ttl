@@ -4,12 +4,12 @@
 # @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 # @prefix dct: <http://purl.org/dc/terms/>.
 @prefix cidoc: <http://www.cidoc-crm.org/cidoc-crm/>.
-@prefix human: <http://www.nie-ine.ch/ontology/human#>.
-@prefix text: <http://www.nie-ine.ch/ontology/text#>.
+@prefix human: <http://www.knora.org/ontology/human#>.
+@prefix text: <http://www.knora.org/ontology/text#>.
 @prefix knora-base: <http://www.knora.org/ontology/knora-base#>.
-@prefix : <http://www.nie-ine.ch/ontology/scholasticism#>.
+@prefix : <http://www.knora.org/ontology/scholasticism#>.
 
-<http://www.nie-ine.ch/ontology/scholasticism>
+<http://www.knora.org/ontology/scholasticism>
 	a owl:Ontology.
 #	dct:title "An ontology about Scholasticism"@en;
 #	dct:description """Formal description of elements in Scholasticism as the method of critical thought dominating * teaching by academics or scholastics (schoolmen) of universities in Europe from about 1100 to 1700."""@en;
