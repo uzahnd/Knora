@@ -177,15 +177,15 @@
 
 :hasRole
 	a owl:ObjectProperty;
-	rdfs:label "scholastic has role"@en,  "ScholastikerIn hat Rolle"@de;
-	rdfs:comment """Relating a scholastic to a role."""@en;
+	rdfs:label "has role"@en,  "hat Rolle"@de;
+	rdfs:comment """Relating a scholastic to a role s/he has."""@en;
 	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint :Scholastic;
 	knora-base:objectClassConstraint :Role.
 
 :hasRoleValue
 	a owl:ObjectProperty;
-	rdfs:label "scholastic has role statement"@en, "ScholastikerIn hat Rolle-Aussage"@de;
+	rdfs:label "has role statement"@en, "hat Rolle-Aussage"@de;
 	rdfs:comment """Relating a scholastic to a statement as reification of the relation between the scholastic and a role."""@en;
 	rdfs:subPropertyOf knora-base:hasLinkToValue;
 	knora-base:subjectClassConstraint :Scholastic;
@@ -193,7 +193,7 @@
 
 :hasMethod
 	a owl:ObjectProperty;
-	rdfs:label "scholastic commentary has method"@en;
+	rdfs:label "commentary has method"@en;
 	rdfs:comment """Relating a scholastic commentary to a method it adheres to."""@en;
 	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint :Commentary;
@@ -201,7 +201,7 @@
 
 :hasMethodValue
 	a owl:ObjectProperty;
-	rdfs:label "scholastic commentary has method statement"@en;
+	rdfs:label "commentary has method statement"@en;
 	rdfs:comment """Relating a scholastic commentary to a statement as reification of the relation between the scholastic commentary and a method it adheres to."""@en;
 	rdfs:subPropertyOf knora-base:hasLinkToValue;
 	knora-base:subjectClassConstraint :Commentary;

@@ -26,7 +26,7 @@
 	rdfs:label "image"@en,"Bild"@de;
 	rdfs:comment """2-dimensional representation of a resource."""@en;
 	rdfs:subClassOf cidoc:E38_Image, knora-base:Resource, [ # subClassOf cidoc:E36_Visual_Item subClassOf cidoc:E73_Information_Object
-		a owl:Restriction; owl:onProperty text:hasNameObject; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+		a owl:Restriction; owl:onProperty text:hasTitle; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 :Photograph
 	a owl:Class;

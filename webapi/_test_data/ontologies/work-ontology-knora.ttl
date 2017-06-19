@@ -30,7 +30,7 @@
 	rdfs:comment """Intellectual product as an abstract conceptual thing"""@en;
 	rdfs:comment """See http://iflastandards.info/ns/fr/frbr/frbroo/F1_Work."""@en; 
 	rdfs:subClassOf frbroo:F1_Work, knora-base:Resource, [
-		a owl:Restriction; owl:onProperty text:hasTitleObject; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty text:hasTitle; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty :expressedIn; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty :expressedInValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
@@ -45,9 +45,9 @@
 	rdfs:label "expression"@en, "Expression"@de;
 	rdfs:comment """See http://iflastandards.info/ns/fr/frbr/frbroo/F22_Self-Contained_Expression and http://iflastandards.info/ns/fr/frbr/frbroo/F2_Expression."""@en;
 	rdfs:subClassOf frbroo:F22_Self-Contained_Expression, knora-base:Resource, [
-		a owl:Restriction; owl:onProperty text:hasTitleObject; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty text:hasAliasObject; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty text:hasDescriptionObject; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty text:hasTitle; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty text:hasAlias; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty text:hasDescription; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty :materializedIn; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty :materializedInValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
@@ -57,10 +57,10 @@
  	rdfs:comment """Carrier of an expression."""@en;
 #	skos:note """Includes both the F4_Manifestation_Singleton and F5_Item as declared in FRBROO."""@en;
 	rdfs:subClassOf cidoc:E84_Information_Carrier, knora-base:Resource, [
-		a owl:Restriction; owl:onProperty text:hasTitleObject; owl:minCardinality "1"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty text:hasDescriptionObject; owl:minCardinality "1"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty text:hasTitle; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty text:hasDescription; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty image:hasPhotoRepresentation; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty image:hasPhotoRepresentationValue; owl:minCardinality "1"^^xsd:nonNegativeInteger].
+		a owl:Restriction; owl:onProperty image:hasPhotoRepresentationValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 :Print
 	a owl:Class;

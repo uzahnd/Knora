@@ -41,14 +41,14 @@
 #		a owl:Restriction; owl:onProperty :hasBiologicalGender; owl:someValuesFrom :BiologicalGender], [
 		a owl:Restriction; owl:onProperty :hasBiologicalGender; owl:maxCardinality "1"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty :hasBiologicalGenderValue; owl:maxCardinality "1"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty :hasNameObject; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty :hasFamilyNameObject; owl:minCardinality "0"^^xsd:nonNegativeInteger], [ # person can have name legally changed; extra restriction with rule: strict 1 name simultaneously
-		a owl:Restriction; owl:onProperty :hasGivenNameObject; owl:minCardinality "0"^^xsd:nonNegativeInteger], [ # person can have name legally changed; extra restriction with rule: strict 1 name simultaneously
-		a owl:Restriction; owl:onProperty :hasPreferredNameObject; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty :hasAliasObject; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty :hasBirthDateObject; owl:minCardinality "0"^^xsd:nonNegativeInteger], [ # there can be more than 1 time indicator; an overall certainty period can be calculated
-		a owl:Restriction; owl:onProperty :hasDeathDateObject; owl:minCardinality "0"^^xsd:nonNegativeInteger], [ # there can be more than 1 time indicator; an overall certainty period can be calculated
-		a owl:Restriction; owl:onProperty :hasDescriptionObject; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty :hasName; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty :hasFamilyName; owl:minCardinality "0"^^xsd:nonNegativeInteger], [ # person can have name legally changed; extra restriction with rule: strict 1 name simultaneously
+		a owl:Restriction; owl:onProperty :hasGivenName; owl:minCardinality "0"^^xsd:nonNegativeInteger], [ # person can have name legally changed; extra restriction with rule: strict 1 name simultaneously
+		a owl:Restriction; owl:onProperty :hasPreferredName; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty :hasAlias; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty :hasBirthDate; owl:minCardinality "0"^^xsd:nonNegativeInteger], [ # there can be more than 1 time indicator; an overall certainty period can be calculated
+		a owl:Restriction; owl:onProperty :hasDeathDate; owl:minCardinality "0"^^xsd:nonNegativeInteger], [ # there can be more than 1 time indicator; an overall certainty period can be calculated
+		a owl:Restriction; owl:onProperty :hasDescription; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 #		a owl:Restriction; owl:onProperty :hasRole; owl:someValuesFrom :Role], [
 		a owl:Restriction; owl:onProperty :hasRole; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty :hasRoleValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
@@ -70,7 +70,7 @@
 	rdfs:comment "Name of a person, as an object.";
 #	skos:note """Enabling speaking about a name as object, not as literal."""@en;
 #	skos:note """Further restriction given along specific law; e.g. a person can have name legally changed, thus can have only 1 simultaneously."""@en;
-	rdfs:subClassOf text:NameObject. # SCO text:TextObject SCO knora-base:TextValue
+	rdfs:subClassOf text:Name. # SCO text:TextObject SCO knora-base:TextValue
 
 :FamilyNameObject
 	a owl:Class;
@@ -78,22 +78,22 @@
 	rdfs:comment "Name of a person, as an object, from one or both parents.";
 #	skos:note """Enabling speaking about a family name as object, not as literal."""@en;
 #	skos:note """Further restriction given along specific law; e.g. a person can have name legally changed, thus can have only 1 simultaneously."""@en;
-	rdfs:subClassOf :NameObject. # SCO text:TextObject SCO knora-base:TextValue
+	rdfs:subClassOf :Name. # SCO text:TextObject SCO knora-base:TextValue
 
-:GivenNameObject
+:GivenName
 	a owl:Class;
 	rdfs:label "given name object";
 	rdfs:comment "Name, as an object, given to a person, usually by one or both parents.";
 #	skos:note """Enabling speaking about a given name as object, not as literal."""@en;
 #	skos:note """Further restriction given along specific law; e.g. a person can have name legally changed, thus can have only 1 simultaneously."""@en;
-	rdfs:subClassOf :NameObject. # SCO text:TextObject SCO knora-base:TextValue
+	rdfs:subClassOf :Name. # SCO text:TextObject SCO knora-base:TextValue
 
-:DescriptionObject # part of DB PL: RCS_AUTHORS - NOTES 
+:Description # part of DB PL: RCS_AUTHORS - NOTES 
 	a owl:Class;
 	rdfs:label "description object";
 	rdfs:comment "Description of a person, as an object.";
 #	skos:note """Enabling speaking about a person description as object, not as literal."""@en;	
-	rdfs:subClassOf text:DescriptionObject. # SCO text:TextObject SCO knora-base:TextValue
+	rdfs:subClassOf text:Description. # SCO text:TextObject SCO knora-base:TextValue
 #	add person as described object
 
 :Action
@@ -216,84 +216,71 @@
 	knora-base:subjectClassConstraint :Person; 
 	knora-base:objectClassConstraint knora-base:LinkValue. 
 
-:hasBirthDateObject
+:hasBirthDate
 	a owl:ObjectProperty;
-	rdfs:label "has birth date object"@en;
+	rdfs:label "has birth date"@en;
 	rdfs:comment """Relating a person to her/his date of birth as object. It is possible to find different birth dates in different historical sources."""@en;
 	rdfs:subPropertyOf knora-base:hasValue;
 	knora-base:subjectClassConstraint :Person;
-	knora-base:objectClassConstraint knora-base:DateValue.
+	knora-base:objectClassConstraint knora-base:DateValue;
 
-:hasDeathDateObject
+
+
+:hasDeathDate
 	a owl:ObjectProperty;
-	rdfs:label "has death date object"@en;
+	rdfs:label "has death date"@en;
 	rdfs:comment """Relating a person to her/his date of death as object. It is possible to find different birth dates in different historical sources."""@en;
 	rdfs:subPropertyOf knora-base:hasValue;
 	knora-base:subjectClassConstraint :Person;
 	knora-base:objectClassConstraint knora-base:DateValue.
 
-:hasNameObject # DB PL: RCS_AUTHORS - NAME
+:hasName # DB PL: RCS_AUTHORS - NAME
 	a owl:ObjectProperty;
-	rdfs:label "has name object";
-	rdfs:comment """Relating a person to a name as object."""@en;
-	rdfs:subPropertyOf text:hasNameObject;
+	rdfs:label "has name";
+	rdfs:comment """Relating a person to her/his name as object."""@en;
+	rdfs:subPropertyOf text:hasName;
 	knora-base:subjectClassConstraint :Person; 
-	knora-base:objectClassConstraint :NameObject.
-#	salsah-gui:guiOrder "1"^^xsd:integer;
-#	salsah-gui:guiElement salsah-gui:SimpleText;
-#	salsah-gui:guiAttribute "size=32", "maxlength=32".
+	knora-base:objectClassConstraint :Name.
 
-:hasFamilyNameObject
+:hasFamilyName
 	a owl:ObjectProperty;
-	rdfs:label "has family name object";
-	rdfs:comment """Relating a person to a family name as object."""@en;
-	rdfs:subPropertyOf :hasNameObject;
+	rdfs:label "has family name";
+	rdfs:comment """Relating a person to her/his family name as object."""@en;
+	rdfs:subPropertyOf :hasName;
 	knora-base:subjectClassConstraint :Person; 
-	knora-base:objectClassConstraint :FamilyNameObject.
-#	salsah-gui:guiOrder "1"^^xsd:integer;
-#	salsah-gui:guiElement salsah-gui:SimpleText;
-#	salsah-gui:guiAttribute "size=32", "maxlength=32".
+	knora-base:objectClassConstraint :FamilyName.
 
-:hasGivenNameObject
+:hasGivenName
 	a owl:ObjectProperty;
-	rdfs:label "has given name object";
-	rdfs:comment """Relating a person to a given name as object."""@en;
-	rdfs:subPropertyOf :hasNameObject;
+	rdfs:label "has given name";
+	rdfs:comment """Relating a person to her/his given name as object."""@en;
+	rdfs:subPropertyOf :hasName;
 	knora-base:subjectClassConstraint :Person;
-	knora-base:objectClassConstraint :GivenNameObject.
-#	salsah-gui:guiOrder "1"^^xsd:integer;
-#	salsah-gui:guiElement salsah-gui:SimpleText;
-#	salsah-gui:guiAttribute "size=32", "maxlength=32".
+	knora-base:objectClassConstraint :GivenName.
 
-:hasPreferredNameObject # besides text:hasPreferredNameObject for searching
+:hasPreferredName # besides text:hasPreferredNameObject for searching
 	a owl:ObjectProperty;
-	rdfs:label "has preferred name object";
-	rdfs:comment """Relating a person to a preferred name as object."""@en;
-	rdfs:subPropertyOf text:hasPreferredNameObject;
+	rdfs:label "has preferred name";
+	rdfs:comment """Relating a person to her/his preferred name as object."""@en;
+	rdfs:subPropertyOf text:hasPreferredName;
 	knora-base:subjectClassConstraint :Person;
-	knora-base:objectClassConstraint text:PreferredNameObject.
-#	salsah-gui:guiOrder "1"^^xsd:integer;
-#	salsah-gui:guiElement salsah-gui:SimpleText;
-#	salsah-gui:guiAttribute "size=32", "maxlength=32".
+	knora-base:objectClassConstraint text:PreferredName.
 
-:hasAliasObject
+:hasAlias
 	a owl:ObjectProperty;
-	rdfs:label "has alias object";
+	rdfs:label "has alias";
 	rdfs:comment """Relating a person to an alias as object."""@en;
-	rdfs:subPropertyOf text:hasAliasObject;
+	rdfs:subPropertyOf text:hasAlias;
 	knora-base:subjectClassConstraint :Person;
-	knora-base:objectClassConstraint text:AliasObject.
-#	salsah-gui:guiOrder "1"^^xsd:integer;
-#	salsah-gui:guiElement salsah-gui:SimpleText;
-#	salsah-gui:guiAttribute "size=32", "maxlength=32".
+	knora-base:objectClassConstraint text:Alias.
 
-:hasDescriptionObject
+:hasDescription
 	a owl:ObjectProperty;
-	rdfs:label "has description object"@en;
+	rdfs:label "has description"@en;
 	rdfs:comment """Relating a person to a description as object."""@en;
-	rdfs:subPropertyOf text:hasDescriptionObject;
+	rdfs:subPropertyOf text:hasDescription;
 	knora-base:subjectClassConstraint :Person;
-	knora-base:objectClassConstraint :DescriptionObject.
+	knora-base:objectClassConstraint :Description.
 
 :hasRole
 	a owl:ObjectProperty;
