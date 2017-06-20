@@ -88,11 +88,11 @@
 #	skos:note """Further restriction given along specific law; e.g. a person can have name legally changed, thus can have only 1 simultaneously."""@en;
 	rdfs:subClassOf :Name. # SCO text:TextObject SCO knora-base:TextValue
 
-:Description # part of DB PL: RCS_AUTHORS - NOTES 
+:Description # part of DB PL: RCS_AUTHORS - NOTES
 	a owl:Class;
 	rdfs:label "description object";
 	rdfs:comment "Description of a person, as an object.";
-#	skos:note """Enabling speaking about a person description as object, not as literal."""@en;	
+#	skos:note """Enabling speaking about a person description as object, not as literal."""@en;
 	rdfs:subClassOf text:Description. # SCO text:TextObject SCO knora-base:TextValue
 #	add person as described object
 
@@ -143,7 +143,7 @@
 	a owl:Class;
 	rdfs:label "role"@en;
 	rdfs:comment """A role a person has as a social entity."""@en;
-	rdfs:subClassOf knora-base:Resource. # , [ 
+	rdfs:subClassOf knora-base:Resource. # , [
 #		a owl:Restriction; owl:onProperty agent:roleOf; owl:allValuesFrom :Person].
 
 :Occupation
@@ -198,7 +198,7 @@
 	rdfs:comment """Relating a person to a reification statement of the relation between the person and her/his life."""@en;
 	rdfs:subPropertyOf :actsInStatement;
 	knora-base:subjectClassConstraint :Person;
-	knora-base:objectClassConstraint knora-base:LinkValue. 
+	knora-base:objectClassConstraint knora-base:LinkValue.
 
 :hasBiologicalGender
 	a owl:ObjectProperty;
@@ -213,8 +213,8 @@
 	rdfs:label "person has biological gender, as statement"@en;
 	rdfs:comment """Relating a person to a reification statement of the relation between the person and her/his biological gender."""@en;
 	rdfs:subPropertyOf knora-base:hasLinkToValue;
-	knora-base:subjectClassConstraint :Person; 
-	knora-base:objectClassConstraint knora-base:LinkValue. 
+	knora-base:subjectClassConstraint :Person;
+	knora-base:objectClassConstraint knora-base:LinkValue.
 
 :hasBirthDate
 	a owl:ObjectProperty;
@@ -222,7 +222,7 @@
 	rdfs:comment """Relating a person to her/his date of birth as object. It is possible to find different birth dates in different historical sources."""@en;
 	rdfs:subPropertyOf knora-base:hasValue;
 	knora-base:subjectClassConstraint :Person;
-	knora-base:objectClassConstraint knora-base:DateValue;
+	knora-base:objectClassConstraint knora-base:DateValue.
 
 
 
@@ -239,7 +239,7 @@
 	rdfs:label "has name";
 	rdfs:comment """Relating a person to her/his name as object."""@en;
 	rdfs:subPropertyOf text:hasName;
-	knora-base:subjectClassConstraint :Person; 
+	knora-base:subjectClassConstraint :Person;
 	knora-base:objectClassConstraint :Name.
 
 :hasFamilyName
@@ -247,7 +247,7 @@
 	rdfs:label "has family name";
 	rdfs:comment """Relating a person to her/his family name as object."""@en;
 	rdfs:subPropertyOf :hasName;
-	knora-base:subjectClassConstraint :Person; 
+	knora-base:subjectClassConstraint :Person;
 	knora-base:objectClassConstraint :FamilyName.
 
 :hasGivenName
@@ -295,7 +295,7 @@
 	rdfs:label "has role, as statement"@en, "Person hat Rolle, als Aussage"@de;
 	rdfs:comment """Relating a person to a reification statement of the relation between the person and a role."""@en;
 	rdfs:subPropertyOf knora-base:hasLinkToValue;
-	knora-base:subjectClassConstraint :Person; 
+	knora-base:subjectClassConstraint :Person;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
 :hasOccupationalRole
