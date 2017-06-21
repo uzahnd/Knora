@@ -38,7 +38,7 @@
 	a owl:Class;
 	rdfs:label "name"@en;
 	rdfs:comment """Textual identifier of something, as an object."""@en;
-	rdfs:subClassOf :Text. 
+	rdfs:subClassOf :Text.
 
 :PreferredName
 	a owl:Class;
@@ -139,7 +139,7 @@
 	rdfs:comment """Representation of a diplomatic transcription of a text expression."""@en;
 	rdfs:subClassOf knora-base:TextRepresentation.
 
-:Note
+:Note_a
 	a owl:Class;
 	rdfs:label "note"@en;
 	rdfs:comment """Text... ."""@en;
@@ -188,7 +188,7 @@
 	a owl:Class;
 	rdfs:label "revisor"@en, "Revisor"@de;
 	rdfs:comment """Role of a person checking on certain aspects of a text."""@en;
-	rdfs:subClassOf human:Role. # SCO knora-base:Resource 
+	rdfs:subClassOf human:Role. # SCO knora-base:Resource
 
 :Editor # DB PL: RCS_REL_AID_XID - FUNCTION
 	a owl:Class;
@@ -257,7 +257,7 @@
 #							    Notizbuch 	Manuskript 	Typoskript 	Druck
 # Bild							ja 			ja 			ja 			nein
 # konstituierter Text			ja 			ja 			ja 			ja
-# Diplomatische Umschrift 		ja 			ja 			nein 		nein 
+# Diplomatische Umschrift 		ja 			ja 			nein 		nein
 
 
 # :Sender
@@ -274,7 +274,7 @@
 	rdfs:comment """Relating a resource to a text object."""@en;
 	rdfs:subPropertyOf knora-base:hasComment;
 	knora-base:subjectClassConstraint knora-base:Resource;
-	knora-base:objectClassConstraint :Text;
+	knora-base:objectClassConstraint knora-base:TextValue;
 	salsah-gui:guiElement salsah-gui:Richtext.
 
 :hasName
@@ -283,7 +283,7 @@
 	rdfs:comment """Relating a resource to a name object."""@en;
 	rdfs:subPropertyOf :hasText;
 	knora-base:subjectClassConstraint knora-base:Resource;
-	knora-base:objectClassConstraint :Name;
+	knora-base:objectClassConstraint knora-base:TextValue;
 	salsah-gui:guiElement salsah-gui:Richtext.
 
 :hasPreferredName
@@ -292,7 +292,7 @@
 	rdfs:comment """Relating a resource to a preferred name object."""@en;
 	rdfs:subPropertyOf :hasName;
 	knora-base:subjectClassConstraint knora-base:Resource; # ? when used for a subclass a property constraint has to be set on a subproperty with the subclass as subjectClassConstraint
-	knora-base:objectClassConstraint :PreferredName;
+	knora-base:objectClassConstraint knora-base:TextValue;
 	salsah-gui:guiElement salsah-gui:Richtext.
 
 :hasAlias
@@ -301,7 +301,7 @@
 	rdfs:comment """Relating a resource to an alias object."""@en;
 	rdfs:subPropertyOf :hasName;
 	knora-base:subjectClassConstraint knora-base:Resource;
-	knora-base:objectClassConstraint :Alias;
+	knora-base:objectClassConstraint knora-base:TextValue;
 	salsah-gui:guiElement salsah-gui:Richtext.
 
 :hasTitle
@@ -310,16 +310,16 @@
 	rdfs:comment """Relating a resource to a title object."""@en;
 	rdfs:subPropertyOf :hasText;
 	knora-base:subjectClassConstraint knora-base:Resource;
-	knora-base:objectClassConstraint :Title;
+	knora-base:objectClassConstraint knora-base:TextValue;
 	salsah-gui:guiElement salsah-gui:Richtext.
 
-:hasComment 
+:hasComment
 	a owl:ObjectProperty;
 	rdfs:label "has comment"@en;
 	rdfs:comment """Relating a resource to a comment object."""@en;
 	rdfs:subPropertyOf :hasText;
 	knora-base:subjectClassConstraint knora-base:Resource;
-	knora-base:objectClassConstraint :Comment;
+	knora-base:objectClassConstraint knora-base:TextValue;
 	salsah-gui:guiElement salsah-gui:Richtext.
 
 :hasDescription
@@ -328,7 +328,7 @@
 	rdfs:comment """Relating a resource to a description object."""@en;
 	rdfs:subPropertyOf :hasText;
 	knora-base:subjectClassConstraint knora-base:Resource;
-	knora-base:objectClassConstraint :Description;
+	knora-base:objectClassConstraint knora-base:TextValue;
 	salsah-gui:guiElement salsah-gui:Richtext.
 
 :hasDefinition
@@ -337,7 +337,7 @@
 	rdfs:comment """Relating a resource to a definition object."""@en;
 	rdfs:subPropertyOf :hasDescription;
 	knora-base:subjectClassConstraint knora-base:Resource;
-	knora-base:objectClassConstraint :Definition;
+	knora-base:objectClassConstraint knora-base:TextValue;
 	salsah-gui:guiElement salsah-gui:Richtext.
 
 :hasIncipit
@@ -346,7 +346,7 @@
 	rdfs:comment """Relating a text expression to a beginning part thereof, as an object."""@en;
 	rdfs:subPropertyOf :hasText;
 	knora-base:subjectClassConstraint :Expression;
-	knora-base:objectClassConstraint :Incipit;
+	knora-base:objectClassConstraint knora-base:TextValue;
 	salsah-gui:guiElement salsah-gui:Richtext.
 
 :hasExplicit
@@ -355,7 +355,7 @@
 	rdfs:comment """Relating a text expression to an ending part thereof, as an object."""@en;
 	rdfs:subPropertyOf :hasText;
 	knora-base:subjectClassConstraint :Expression;
-	knora-base:objectClassConstraint :Explicit;
+	knora-base:objectClassConstraint knora-base:TextValue;
 	salsah-gui:guiElement salsah-gui:Richtext.
 
 :hasTextRepresentation
