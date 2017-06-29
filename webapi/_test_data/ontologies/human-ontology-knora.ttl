@@ -6,6 +6,7 @@
 #@prefix geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>.
 @prefix foaf: <http://xmlns.com/foaf/0.1/>.
 @prefix unicore: <http://purl.uniprot.org/core/>.
+@prefix cidoc: <http://www.cidoc-crm.org/cidoc-crm/>.
 @prefix frbroo: <http://iflastandards.info/ns/fr/frbr/frbroo/>.
 #@prefix event: <http://www.knora.org/ontology/event#>.
 @prefix text: <http://www.knora.org/ontology/text#>.
@@ -158,11 +159,17 @@
 	rdfs:comment """Role of a person in an occupation."""@en;
 	rdfs:subClassOf :Role.
 
-:Floruit # move to agent:
+:Floruit # to do: move to agent
 	a owl:Class;
 	rdfs:label "floruit"@en;
 	rdfs:comment """Period during which a person lived or a school or movement was most active or flourishing."""@en;
 	rdfs:subClassOf knora-base:Resource. # SCO event:Action.
+
+:Creation # to do: add person
+	a owl:Class;
+	rdfs:label "creation"@en;
+	rdfs:comment """Something created by a person."""@en;
+	rdfs:subClassOf cidoc:E71_Man-Made_Thing, knora-base:Resource.
 
 #
 # PROPERTIES
@@ -222,9 +229,7 @@
 	rdfs:comment """Relating a person to her/his date of birth as object. It is possible to find different birth dates in different historical sources."""@en;
 	rdfs:subPropertyOf knora-base:hasValue;
 	knora-base:subjectClassConstraint :Person;
-	knora-base:objectClassConstraint knora-base:DateValue;
-
-
+	knora-base:objectClassConstraint knora-base:DateValue.
 
 :hasDeathDate
 	a owl:ObjectProperty;
@@ -329,3 +334,11 @@
 	rdfs:subPropertyOf :actsInValue;
 	knora-base:subjectClassConstraint :Person;
 	knora-base:objectClassConstraint knora-base:LinkValue.
+
+:hasCreationDate
+	a owl:ObjectProperty;
+	rdfs:label "has creation date"@en;
+	rdfs:comment "Relating a creation by a person to the date it was created on."@en;
+	rdfs:subPropertyOf knora-base:hasValue;
+	knora-base:subjectClassConstraint :Creation;
+	knora-base:objectClassConstraint knora-base:DateValue.

@@ -26,7 +26,7 @@
 # CLASSES
 #
 
-## Textual elements as objects (Knora values) enabling relating to metadata
+## Textual elements as objects (Knora values) enabling relating to metadata, e.g. about version and permission
 
 :Text
 	a owl:Class;
@@ -56,31 +56,31 @@
  	a owl:Class;
  	rdfs:label "title"@en, "Titel"@de, "titre"@fr, "titolo"@it;
  	rdfs:comment """Textual identifier of an expression, as an object."""@en;
- 	rdfs:subClassOf :Text. #,cidoc:E35_Title.
+ 	rdfs:subClassOf :Name, cidoc:E35_Title.
 
 :Comment
 	a owl:Class;
 	rdfs:label "comment"@en;
 	rdfs:comment """Textual statement about an expression, as an object."""@en;
-	rdfs:subClassOf :Text. # OR SCO knora-base:Annotation ?
+	rdfs:subClassOf :Text.
 
 :Description
 	a owl:Class;
 	rdfs:label "description"@en;
 	rdfs:comment """Textual statement about the features of something, as an object."""@en;
-	rdfs:subClassOf :Text. # OR SCO knora-base:Annotation ?
+	rdfs:subClassOf :Text.
 
 :Definition
 	a owl:Class;
 	rdfs:label "definition"@en;
 	rdfs:comment """Textual statement about the essential features of something, as an object."""@en;
-	rdfs:subClassOf :Description. # OR SCO knora-base:Annotation ?
+	rdfs:subClassOf :Description.
 
 :Note
 	a owl:Class;
-	rdfs:label "note"@en;
-	rdfs:comment """Textual statement for future processing of any kind, as an object."""@en;
-	rdfs:subClassOf :Text. # OR SCO knora-base:Annotation ?
+	rdfs:label "note"@en, "Notiz"@de;
+	rdfs:comment """Textual statement for explaining or future processing, as an object."""@en;
+	rdfs:subClassOf :Text.
 
 
 ## Textual elements as (Knora) resources
@@ -102,13 +102,13 @@
 :Incipit
 	a owl:Class;
 	rdfs:label "incipit text"@en;
-	rdfs:comment """Begin part of a text, as an object, especially when used in place of a title to identify an untitled text."""@en;
+	rdfs:comment """Begin part of a text, as an object, especially when used in place of a title, to identify an untitled text."""@en;
 	rdfs:subClassOf :Text.
 
 :Explicit
 	a owl:Class;
 	rdfs:label "explicit text"@en;
-	rdfs:comment """End part of a text, as an object, especially when used in place of a title or an incipit to identify an untitled text."""@en;
+	rdfs:comment """End part of a text, as an object, especially when used in place of a title or an incipit, to identify an untitled text."""@en;
 	rdfs:subClassOf :Text.
 
 # :EditedText
@@ -139,31 +139,17 @@
 	rdfs:comment """Representation of a diplomatic transcription of a text expression."""@en;
 	rdfs:subClassOf knora-base:TextRepresentation.
 
-:Note
+:NoteExpression
 	a owl:Class;
-	rdfs:label "note"@en;
-	rdfs:comment """Text... ."""@en;
-	rdfs:subClassOf :Expression.
+	rdfs:label "note expression"@en, "Notiz Expression"@de;
+	rdfs:comment """Text for future processing."""@en;
+	rdfs:subClassOf :Draft.
 
 :Manuscript
 	a owl:Class;
 	rdfs:label "manuscript"@en, "Manuskript"@de;
 	rdfs:comment """Handwritten text."""@en;
 	rdfs:subClassOf :Expression.
-
-:Transcript
-	a owl:Class;
-	rdfs:label "transcript"@en, "Umschrift"@de;
-	rdfs:comment """Reproduced text."""@en;
-#	skos:note """Can be done by any method, e.g. handwriting, typewriting, machine copying, printing, digitizing."""@en;
-	rdfs:subClassOf :Expression.
-
-:ManualTranscript
- 	a owl:Class;
- 	rdfs:label "manual transcript"@en, "manuelle Abschrift"@de;
- 	rdfs:comment """Handwritten transcript."""@en;
-# 	rdfs:isDefinedBy <http://www.nie-ine.ch/ontology/text#>;
- 	rdfs:subClassOf :Transcript.
 
 :Typescript
 	a owl:Class;
@@ -176,6 +162,19 @@
 	rdfs:label "printed text"@en, "Textdruck"@de;
 	rdfs:comment """Text printed with any method, e.g. manually, with an analogue or digital machine."""@en;
 	rdfs:subClassOf :Expression, frbroo:F24_Publication_Expression.
+
+:Transcript
+	a owl:Class;
+	rdfs:label "transcript"@en, "Abschrift"@de;
+	rdfs:comment """Reproduced text."""@en;
+#	skos:note """Can be done by any method, e.g. handwriting, typewriting, machine copying, printing, digitizing."""@en;
+	rdfs:subClassOf :Expression.
+
+:ManualTranscript
+ 	a owl:Class;
+ 	rdfs:label "manual transcript"@en, "manuelle Abschrift"@de;
+ 	rdfs:comment """Handwritten transcript."""@en;
+ 	rdfs:subClassOf :Transcript.
 
 :Author # DB PL: RCS_REL_AID_XID - FUNCTION
 	a owl:Class;
@@ -219,7 +218,7 @@
 
 :Manifestation
  	a owl:Class;
- 	rdfs:label "text manifestation"@en,"Text-Manifestation"@de;
+ 	rdfs:label "text carrier"@en,"Textträger"@de;
  	rdfs:comment """Carrier of a text expression."""@en;
 	rdfs:subClassOf work:Manifestation.
 
@@ -227,37 +226,36 @@
 	a owl:Class;
 	rdfs:label "convolute"@en, "Konvolut"@de;
 	rdfs:comment """Text manifestations, e.g. notes, manuscripts, typoscripts or prints, gathered as one."""@en;
-	rdfs:subClassOf :Manifestation, frbroo:F4_Manifestation_Singleton, knora-base:Resource.
+	rdfs:subClassOf cidoc:E78_Collection, knora-base:Resource.
 
 # :Book
 # 	a owl:Class;
 # 	rdfs:subClassOf knora-base:Resource, [ # fabio:Book
-# 		a owl:Restriction; owl:onProperty krd:createdBy; owl:minCardinality "1"^^xsd:nonNegativeInteger].
+# 		a owl:Restriction; owl:onProperty :createdBy; owl:minCardinality "1"^^xsd:nonNegativeInteger].
+
+:NoteCarrier
+	a owl:Class;
+	rdfs:label "note carrier"@en,"Notizträger"@de;
+	rdfs:comment """Carrier wherein notes are written, e.g. a first registration of thoughts."""@en;
+	rdfs:subClassOf :Manifestation, frbroo:F4_Manifestation_Singleton.
 
 :Notebook
 	a owl:Class;
 	rdfs:label "notebook"@en,"Notizbuch"@de;
 	rdfs:comment """Book wherein notes are written, e.g. a first registration of thoughts."""@en;
-	rdfs:subClassOf :Manifestation, frbroo:F4_Manifestation_Singleton, knora-base:Resource.
+	rdfs:subClassOf :NoteCarrier.
 
 :ManuscriptCarrier
 	a owl:Class;
 	rdfs:label "manuscript carrier"@en, "Manuskriptträger"@de;
-	rdfs:comment """Handwritten manifestation."""@en;
+	rdfs:comment """Carrier of a handwritten text expression."""@en;
 	rdfs:subClassOf :Manifestation, frbroo:F4_Manifestation_Singleton.
 
-:Typescript
+:TypescriptCarrier
 	a owl:Class;
-	rdfs:label "typescript"@en, "Typoskript"@de;
-	rdfs:comment """Typewritten manifestation."""@en;
+	rdfs:label "typescript carrier"@en, "Typoskriptträger"@de;
+	rdfs:comment """Carrier of a typewritten text expression."""@en;
 	rdfs:subClassOf :Manifestation, frbroo:F4_Manifestation_Singleton.
-
-
-# cardinality: cf. http://wiki.knora.org/doku.php?id=kuno_raebers_lyrisches_werk_-_historisch-kritische_online-edition#vorbereitung_fuer_das_scrum-planungs-meeting_am_26_april_2017
-#							    Notizbuch 	Manuskript 	Typoskript 	Druck
-# Bild							ja 			ja 			ja 			nein
-# konstituierter Text			ja 			ja 			ja 			ja
-# Diplomatische Umschrift 		ja 			ja 			nein 		nein 
 
 
 # :Sender
@@ -414,13 +412,6 @@
 	rdfs:comment """Relating a person with author role to a text the person authored."""@en;
 	knora-base:subjectClassConstraint human:Person; # [rdfs:subClassOf human:Person, [a owl:Restriction; owl:onProperty event:hasRole; owl:someValuesFrom :Author]];
 	knora-base:objectClassConstraint :Expression.
-
-# :hasPage
-#	a owl:ObjectProperty;
-#	rdfs:label "has page"@en;
-#	rdfs:comment """Relating a text expression to a page it is on."""@en;
-#	knora-base:subjectClassConstraint :Expression;
-#	knora-base:objectClassConstraint :Page.
 
 # published -> creation, made public in DB online
 
