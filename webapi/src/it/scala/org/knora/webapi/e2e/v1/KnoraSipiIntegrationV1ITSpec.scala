@@ -18,21 +18,19 @@ package org.knora.webapi.e2e.v1
 
 import java.io.File
 import java.net.URLEncoder
-import java.nio.file.{Files, Paths}
 
 import akka.http.scaladsl.model.headers._
 import akka.http.scaladsl.model.{HttpEntity, _}
 import com.typesafe.config.{Config, ConfigFactory}
 import org.knora.webapi.messages.v1.store.triplestoremessages.{RdfDataObject, TriplestoreJsonProtocol}
-import org.knora.webapi.util.MutableTestIri
-import org.knora.webapi.{FileWriteException, ITSpec, InvalidApiJsonException}
+import org.knora.webapi.util.{MutableTestIri, TestingUtilities}
+import org.knora.webapi.{ITKnoraLiveSpec, InvalidApiJsonException}
 import spray.json._
 
 import scala.concurrent.duration._
-import scala.concurrent.{Await, Future}
 
 
-object SipiV1ITSpec {
+object KnoraSipiIntegrationV1ITSpec {
     val config: Config = ConfigFactory.parseString(
         """
           |akka.loglevel = "DEBUG"
@@ -44,7 +42,7 @@ object SipiV1ITSpec {
   * End-to-End (E2E) test specification for testing Knora-Sipi integration. Sipi must be running with the config file
   * `sipi.knora-config.lua`.
   */
-class SipiV1ITSpec extends ITSpec(SipiV1ITSpec.config) with TriplestoreJsonProtocol {
+class KnoraSipiIntegrationV1ITSpec extends ITKnoraLiveSpec(KnoraSipiIntegrationV1ITSpec.config) with TriplestoreJsonProtocol with TestingUtilities {
 
     private val rdfDataObjects = List(
         RdfDataObject(path = "_test_data/all_data/incunabula-data.ttl", name = "http://www.knora.org/data/incunabula"),
@@ -57,6 +55,9 @@ class SipiV1ITSpec extends ITSpec(SipiV1ITSpec.config) with TriplestoreJsonProto
     private val pathToMarbles = "_test_data/test_route/images/marbles.tif"
     private val firstPageIri = new MutableTestIri
     private val secondPageIri = new MutableTestIri
+
+    // creates tmp directory if not found
+    createTmpFileDir()
 
     "Check if Sipi is running" in {
         // This requires that (1) fileserver.docroot is set in Sipi's config file and (2) it contains a file test.html.
@@ -73,7 +74,6 @@ class SipiV1ITSpec extends ITSpec(SipiV1ITSpec.config) with TriplestoreJsonProto
     "Knora and Sipi" should {
 
         "create an 'incunabula:page' with binary data" in {
-            createTmpFileDir()
 
             // JSON describing the resource to be created.
             val paramsPageWithBinaries =
@@ -391,20 +391,6 @@ class SipiV1ITSpec extends ITSpec(SipiV1ITSpec.config) with TriplestoreJsonProto
             // Request the file from Sipi.
             val sipiGetRequest = Get(imageUrl) ~> addCredentials(BasicHttpCredentials(username, password))
             checkResponseOK(sipiGetRequest)
-        }
-    }
-
-    /**
-      * Creates the Knora API server's temporary upload directory if it doesn't exist.
-      */
-    private def createTmpFileDir(): Unit = {
-        if (!Files.exists(Paths.get(settings.tmpDataDir))) {
-            try {
-                val tmpDir = new File(settings.tmpDataDir)
-                tmpDir.mkdir()
-            } catch {
-                case e: Throwable => throw FileWriteException(s"Tmp data directory ${settings.tmpDataDir} could not be created: ${e.getMessage}")
-            }
         }
     }
 }
