@@ -500,3 +500,34 @@
 	knora-base:forProject <http://data.knora.org/projects/scholasticism>;
 	knora-base:forGroup knora-base:ProjectMember;
 	knora-base:hasPermissions "CR knora-base:Creator|M knora-base:ProjectMember|V knora-base:KnownUser,knora-base:UnknownUser"^^xsd:string.
+
+
+#
+# Kuno Raeber Lyric
+#
+
+## Administrative permissions on project member
+
+<http://data.knora.org/permissions/014-a1>
+	rdf:type knora-base:AdministrativePermission;
+	knora-base:forProject <http://data.knora.org/projects/kuno-raeber>;
+	knora-base:forGroup knora-base:ProjectMember;
+	knora-base:hasPermissions "ProjectResourceCreateAllPermission"^^xsd:string.
+
+
+## Administrative permissions on project admin
+
+<http://data.knora.org/permissions/014-a2>
+	rdf:type knora-base:AdministrativePermission;
+	knora-base:forProject <http://data.knora.org/projects/kuno-raeber>;
+	knora-base:forGroup knora-base:ProjectAdmin;
+	knora-base:hasPermissions "ProjectResourceCreateAllPermission|ProjectAdminAllPermission"^^xsd:string.
+
+
+## Default object access permissions on project member group
+
+<http://data.knora.org/permissions/014-d1>
+	rdf:type knora-base:DefaultObjectAccessPermission;
+	knora-base:forProject <http://data.knora.org/projects/kuno-raeber>;
+	knora-base:forGroup knora-base:ProjectMember;
+	knora-base:hasPermissions "CR knora-base:Creator|M knora-base:ProjectMember|V knora-base:KnownUser,knora-base:UnknownUser"^^xsd:string.
