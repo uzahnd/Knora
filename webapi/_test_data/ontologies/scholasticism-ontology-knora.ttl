@@ -85,7 +85,7 @@
 	a owl:Class;
 	rdfs:label "scholastic commentary method"@en, "scholastische Erläuterungsmethode"@de;
 	rdfs:comment """Scholastic method to comment."""@en;
-	rdfs:subClassOf cidoc:E29_Design_or_Procedure, knora-base:Resource. # to do: subClassOf more general method
+	rdfs:subClassOf knora-base:Resource. # cidoc:E29_Design_or_Procedure # to do: subClassOf more general method
 
 :Lectura # DB PL: RCS_XPRESSIONS - TYPE
 	a owl:Class;
