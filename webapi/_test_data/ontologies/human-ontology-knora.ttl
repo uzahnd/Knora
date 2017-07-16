@@ -105,7 +105,7 @@
 	a owl:Class;
 	rdfs:label "role"@en;
 	rdfs:comment """A role a person has as a social entity."""@en;
-	rdfs:subClassOf knora-base:Resource. # , [ 
+	rdfs:subClassOf knora-base:Resource. # , [
 #		a owl:Restriction; owl:onProperty agent:roleOf; owl:allValuesFrom :Person].
 
 :Occupation
@@ -167,7 +167,7 @@
 	rdfs:comment """Relating a person to a reification statement of the relation between the person and her/his life."""@en;
 	rdfs:subPropertyOf :actsInStatement;
 	knora-base:subjectClassConstraint :Person;
-	knora-base:objectClassConstraint knora-base:LinkValue. 
+	knora-base:objectClassConstraint knora-base:LinkValue.
 
 :hasBiologicalGender
 	a owl:ObjectProperty;
@@ -182,8 +182,8 @@
 	rdfs:label "person has biological gender, as statement"@en;
 	rdfs:comment """Relating a person to a reification statement of the relation between the person and her/his biological gender."""@en;
 	rdfs:subPropertyOf knora-base:hasLinkToValue;
-	knora-base:subjectClassConstraint :Person; 
-	knora-base:objectClassConstraint knora-base:LinkValue. 
+	knora-base:subjectClassConstraint :Person;
+	knora-base:objectClassConstraint knora-base:LinkValue.
 
 :hasBirthDate
 	a owl:ObjectProperty;
@@ -266,7 +266,7 @@
 	rdfs:label "has role, as statement"@en, "Person hat Rolle, als Aussage"@de;
 	rdfs:comment """Relating a person to a reification statement of the relation between the person and a role."""@en;
 	rdfs:subPropertyOf knora-base:hasLinkToValue;
-	knora-base:subjectClassConstraint :Person; 
+	knora-base:subjectClassConstraint :Person;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
 :hasOccupationalRole
