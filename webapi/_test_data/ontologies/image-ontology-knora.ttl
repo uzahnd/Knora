@@ -32,7 +32,7 @@
 	a owl:Class;
 	rdfs:label "photograph"@en,"Foto"@de;
 	rdfs:comment """Image made by exposing a photosensitive surface to light."""@en;
-	rdfs:subClassOf :Image, knora-base:StillImageRepresentation.
+	rdfs:subClassOf :Image. #, knora-base:StillImageRepresentation.
 
 #
 # PROPERTIES
@@ -43,29 +43,29 @@
 	rdfs:label "has image";
 	rdfs:comment """Relating a resource to an image thereof."""@en;
 	rdfs:subPropertyOf knora-base:hasLinkTo;
-	rdfs:subjectClassConstraint knora-base:Resource;
-	rdfs:objectClassConstraint :Image.
+	knora-base:subjectClassConstraint knora-base:Resource;
+	knora-base:objectClassConstraint :Image.
 
 :hasImageValue
 	a owl:ObjectProperty;
 	rdfs:label "has image value";
 	rdfs:comment """Relating a resource to a reification statement of the relation between the resource and an image thereof."""@en;
 	rdfs:subPropertyOf knora-base:hasLinkToValue;
-	rdfs:subjectClassConstraint knora-base:Resource;
-	rdfs:objectClassConstraint knora-base:LinkValue.
-
-:hasPhotoRepresentation
-	a owl:ObjectProperty;
-	rdfs:label "has photograph representation"@en, "hat Foto-Repräsentation"@de;
-	rdfs:comment """Relating a resource to a photograph thereof."""@en;
-	rdfs:subPropertyOf knora-base:hasRepresentation; # cidoc:P138i_has_representation
-	knora-base:subjectClassConstraint knora-base:Resource;
-	knora-base:objectClassConstraint :Photograph.
-
-:hasPhotoRepresentationValue
-	a owl:ObjectProperty;
-	rdfs:label "has photograph representation value"@en;
-	rdfs:comment """Relating a resource to a reification statement of the relation between the resource and a photograph thereof."""@en;
-	rdfs:subPropertyOf knora-base:hasRepresentationValue;
 	knora-base:subjectClassConstraint knora-base:Resource;
 	knora-base:objectClassConstraint knora-base:LinkValue.
+
+#:hasPhotoRepresentation
+#	a owl:ObjectProperty;
+#	rdfs:label "has photograph representation"@en, "hat Foto-Repräsentation"@de;
+#	rdfs:comment """Relating a resource to a photograph thereof."""@en;
+#	rdfs:subPropertyOf knora-base:hasRepresentation; # cidoc:P138i_has_representation
+#	knora-base:subjectClassConstraint knora-base:Resource;
+#	knora-base:objectClassConstraint :Photograph.
+
+#:hasPhotoRepresentationValue
+#	a owl:ObjectProperty;
+#	rdfs:label "has photograph representation value"@en;
+#	rdfs:comment """Relating a resource to a reification statement of the relation between the resource and a photograph thereof."""@en;
+#	rdfs:subPropertyOf knora-base:hasRepresentationValue;
+#	knora-base:subjectClassConstraint knora-base:Resource;
+#	knora-base:objectClassConstraint knora-base:LinkValue.

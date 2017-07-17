@@ -6,12 +6,13 @@
 # @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 # @prefix dct: <http://purl.org/dc/terms/>.
 @prefix foaf: <http://xmlns.com/foaf/0.1/>.
-# @prefix cidoc: <http://www.cidoc-crm.org/cidoc-crm/>.
+@prefix cidoc: <http://www.cidoc-crm.org/cidoc-crm/>.
 # @prefix frbroo: <http://iflastandards.info/ns/fr/frbr/frbroo/>.
 @prefix human: <http://www.knora.org/ontology/human#>.
 @prefix text: <http://www.knora.org/ontology/text#>.
 @prefix image: <http://www.knora.org/ontology/image#>.
 @prefix knora-base: <http://www.knora.org/ontology/knora-base#>.
+@prefix salsah-gui: <http://www.knora.org/ontology/salsah-gui#>.
 @prefix : <http://www.knora.org/ontology/work#>.
 
 <http://www.knora.org/ontology/work>
@@ -57,11 +58,13 @@
  	rdfs:label "manifestation"@en,"Manifestation"@de;
  	rdfs:comment """Carrier of an expression."""@en;
 #	skos:note """Includes both F4_Manifestation_Singleton and F5_Item as declared in FRBROO."""@en;
-	rdfs:subClassOf human:Creation, [ # cidoc:E84_Information_Carrier, [
+	rdfs:subClassOf human:Creation, cidoc:E84_Information_Carrier, knora-base:StillImageRepresentation, [
 		a owl:Restriction; owl:onProperty text:hasTitle; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty text:hasDescription; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty image:hasPhotoRepresentation; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty image:hasPhotoRepresentationValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+		a owl:Restriction; owl:onProperty text:hasDescription; owl:minCardinality "0"^^xsd:nonNegativeInteger]
+#		, [
+#		a owl:Restriction; owl:onProperty image:hasPhotoRepresentation; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+#		a owl:Restriction; owl:onProperty image:hasPhotoRepresentationValue; owl:minCardinality "0"^^xsd:nonNegativeInteger]
+		.
 
 :Draft
 	a owl:Class;
@@ -95,7 +98,8 @@
 	a owl:Class;
 	rdfs:label "publication"@en, "Publikation"@de;
 	rdfs:comment """An expression published on a carrier."""@en;
-	rdfs:subClassOf :Manifestation. # frbroo:F5_Item.
+	rdfs:subClassOf :Manifestation, [ # frbroo:F5_Item.
+		a owl:Restriction; owl:onProperty :hasPublicationDate; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 :PrintedPublication
 	a owl:Class;
@@ -178,6 +182,17 @@
 	rdfs:subPropertyOf :isMaterializedInValue;
 	knora-base:subjectClassConstraint :PublicationExpression;
 	knora-base:objectClassConstraint knora-base:LinkValue.
+
+:hasPublicationDate
+	a owl:ObjectProperty;
+	rdfs:label "has publication date"@en;
+	rdfs:comment "Relating a publication to the date it was published on."@en;
+	rdfs:subPropertyOf knora-base:hasValue;
+	knora-base:subjectClassConstraint :Publication;
+	knora-base:objectClassConstraint knora-base:DateValue;
+#	salsah-gui:guiOrder "5"^^xsd:integer;
+	salsah-gui:guiElement salsah-gui:Date;
+	salsah-gui:guiAttribute "size=16", "maxlength=32".
 
 :hasPage
 	a owl:ObjectProperty;

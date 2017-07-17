@@ -5,7 +5,7 @@
 # @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 # @prefix dct: <http://purl.org/dc/terms/>.
 @prefix foaf: <http://xmlns.com/foaf/0.1/>.
-# @prefix cidoc: <http://www.cidoc-crm.org/cidoc-crm/>.
+@prefix cidoc: <http://www.cidoc-crm.org/cidoc-crm/>.
 # @prefix frbroo: <http://iflastandards.info/ns/fr/frbr/frbroo/>.
 # @prefix event: <http://www.knora.org/ontology/event#>.
 @prefix human: <http://www.knora.org/ontology/human#>.
@@ -138,7 +138,7 @@
 	a owl:Class;
 	rdfs:label "convolute"@en, "Konvolut"@de;
 	rdfs:comment """Text carriers, e.g. drafts, manuscripts, typoscripts or prints, gathered as one."""@en;
-	rdfs:subClassOf human:Creation, knora-base:Resource, [ # cidoc:E78_Collection
+	rdfs:subClassOf human:Creation, cidoc:E78_Collection, knora-base:Resource, [
 		a owl:Restriction; owl:onProperty :hasTitle; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty :hasAlias; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty :hasDescription; owl:minCardinality "0"^^xsd:nonNegativeInteger].
@@ -301,7 +301,7 @@
 
 :isOnCarrier
 	a owl:ObjectProperty;
-	rdfs:label "is carried by"@en;
+	rdfs:label "is on carrier"@en;
 	rdfs:comment "Relating a text to a carrier it is on."@en;
 	rdfs:subPropertyOf work:isMaterializedIn;
 	knora-base:subjectClassConstraint :Expression;
@@ -309,7 +309,7 @@
 
 :isOnCarrierValue
 	a owl:ObjectProperty;
-	rdfs:label "is carried by value"@en;
+	rdfs:label "is on carrier value"@en;
 	rdfs:comment "Relating a text to a reification statement of the relation between the text and a carrier it is on."@en;
 	rdfs:subPropertyOf work:isMaterializedInValue;
 	knora-base:subjectClassConstraint :Expression;

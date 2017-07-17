@@ -193,7 +193,7 @@
 
 :hasMethod
 	a owl:ObjectProperty;
-	rdfs:label "commentary has method"@en;
+	rdfs:label "has method"@en;
 	rdfs:comment """Relating a scholastic commentary to a method it adheres to."""@en;
 	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint :Commentary;
