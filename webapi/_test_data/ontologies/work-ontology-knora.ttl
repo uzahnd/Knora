@@ -209,4 +209,4 @@
 	rdfs:comment """Relating an expression to a reification statement of the relation between the expression and the carrier page it is on."""@en;
 	rdfs:subPropertyOf knora-base:hasLinkToValue;
 	knora-base:subjectClassConstraint :Expression;
-	knora-base:objectClassConstraint :knora-base:LinkValue.
+	knora-base:objectClassConstraint knora-base:LinkValue.
