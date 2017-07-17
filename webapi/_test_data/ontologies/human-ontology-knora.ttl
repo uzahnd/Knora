@@ -8,7 +8,7 @@
 @prefix unicore: <http://purl.uniprot.org/core/>.
 # @prefix cidoc: <http://www.cidoc-crm.org/cidoc-crm/>.
 # @prefix frbroo: <http://iflastandards.info/ns/fr/frbr/frbroo/>.
-#@prefix event: <http://www.knora.org/ontology/event#>.
+# @prefix event: <http://www.knora.org/ontology/event#>.
 @prefix text: <http://www.knora.org/ontology/text#>.
 @prefix knora-base: <http://www.knora.org/ontology/knora-base#>.
 # @prefix salsah-gui: <http://www.knora.org/ontology/salsah-gui#>.
@@ -61,8 +61,6 @@
 	rdfs:label "person-like resource"@en;
 	rdfs:comment """Person like resource having additional non-human features."""@en;
 #	skos:note """E.g. Jesus is for a believer a person having also non-human features, i.e. he is in the intersection of :Person and :PersonLike."""@en;
-#	OR has this kind of stuff be left out of modeling altogether?
-#	rdfs:isDefinedBy <http://www.knora.org/ontology/human#>.
 	rdfs:subClassOf :Person.
 
 :Action
@@ -75,7 +73,7 @@
 	a owl:Class;
 	rdfs:label "person's life"@en;
 	rdfs:comment """Life of a human from birth until death."""@en;
-	rdfs:comment """Considered as an action wherein a person is an agent."""@en;
+#	skos:note """Considered as an action wherein a person is an agent."""@en;
 #	skos:note """No satisfying biological description of onset of a human life."""@en;
 	rdfs:subClassOf knora-base:Resource. # event:Action, event:Existence
 
@@ -139,7 +137,7 @@
 
 :actsIn
 	a owl:ObjectProperty;
-	rdfs:label "person acts in"@en;
+	rdfs:label "acts in"@en;
 	rdfs:comment """Relating a person to an action s/he is in."""@en;
 	rdfs:subPropertyOf knora-base:hasLinkTo; # SPO agent:actsIn
 	knora-base:subjectClassConstraint :Person;
@@ -147,7 +145,7 @@
 
 :actsInValue
 	a owl:ObjectProperty;
-	rdfs:label "person acts in, as statement"@en;
+	rdfs:label "acts in value"@en;
 	rdfs:comment """Relating a person to a reification statement of the relation between the person and an action s/he is in."""@en;
 	rdfs:subPropertyOf knora-base:hasLinkToValue;
 	knora-base:subjectClassConstraint :Person;
@@ -155,7 +153,7 @@
 
 :hasLife
 	a owl:ObjectProperty;
-	rdfs:label "person has life"@en;
+	rdfs:label "has life"@en;
 	rdfs:comment """Relating a person to her/his life."""@en;
 	rdfs:subPropertyOf :actsIn;
 	knora-base:subjectClassConstraint :Person;
@@ -163,9 +161,9 @@
 
 :hasLifeValue
 	a owl:ObjectProperty;
-	rdfs:label "person has life, as statement"@en;
+	rdfs:label "has life value"@en;
 	rdfs:comment """Relating a person to a reification statement of the relation between the person and her/his life."""@en;
-	rdfs:subPropertyOf :actsInStatement;
+	rdfs:subPropertyOf :actsInValue;
 	knora-base:subjectClassConstraint :Person;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
@@ -179,10 +177,10 @@
 
 :hasBiologicalGenderValue
 	a owl:ObjectProperty;
-	rdfs:label "person has biological gender, as statement"@en;
+	rdfs:label "has biological gender value"@en;
 	rdfs:comment """Relating a person to a reification statement of the relation between the person and her/his biological gender."""@en;
 	rdfs:subPropertyOf knora-base:hasLinkToValue;
-	knora-base:subjectClassConstraint :Person;
+	knora-base:subjectClassConstraint :Human;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
 :hasBirthDate
@@ -256,15 +254,15 @@
 :hasRole
 	a owl:ObjectProperty;
 	rdfs:label "has role"@en, "hat Rolle"@de;
-	rdfs:comment """Relating a person to a role."""@en;
+	rdfs:comment """Relating a person to a role s/he has."""@en;
 	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint :Person;
 	knora-base:objectClassConstraint :Role.
 
 :hasRoleValue
 	a owl:ObjectProperty;
-	rdfs:label "has role, as statement"@en, "Person hat Rolle, als Aussage"@de;
-	rdfs:comment """Relating a person to a reification statement of the relation between the person and a role."""@en;
+	rdfs:label "has role value"@en;
+	rdfs:comment """Relating a person to a reification statement of the relation between the person and a role s/he has."""@en;
 	rdfs:subPropertyOf knora-base:hasLinkToValue;
 	knora-base:subjectClassConstraint :Person;
 	knora-base:objectClassConstraint knora-base:LinkValue.
@@ -272,16 +270,16 @@
 :hasOccupationalRole
 	a owl:ObjectProperty;
 	rdfs:label "has occupational role"@en;
-	rdfs:comment """Relating a person to an actual occupational role."""@en;
+	rdfs:comment """Relating a person to a current occupational role s/he has."""@en;
 	rdfs:subPropertyOf :hasRole;
 	knora-base:subjectClassConstraint :Person;
 	knora-base:objectClassConstraint :OccupationalRole.
 
 :hasOccupationalRoleValue
 	a owl:ObjectProperty;
-	rdfs:label "has occupational role, as statement"@en;
-	rdfs:comment """Relating a person to a reification statement of the relation between the person and an occupational role."""@en;
-	rdfs:subPropertyOf :hasRoleStatement;
+	rdfs:label "has occupational role value"@en;
+	rdfs:comment """Relating a person to a reification statement of the relation between the person and a current occupational role s/he has."""@en;
+	rdfs:subPropertyOf :hasRoleValue;
 	knora-base:subjectClassConstraint :Person;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
@@ -295,7 +293,7 @@
 
 :hasFloruitValue
 	a owl:ObjectProperty;
-	rdfs:label "has floruit, as statement"@en;
+	rdfs:label "has floruit value"@en;
 	rdfs:comment """Relating a person to a reification statement of the relation between the person and her/his floruit."""@en;
 	rdfs:subPropertyOf :actsInValue;
 	knora-base:subjectClassConstraint :Person;
