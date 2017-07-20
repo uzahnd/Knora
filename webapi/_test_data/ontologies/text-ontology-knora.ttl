@@ -6,7 +6,7 @@
 # @prefix dct: <http://purl.org/dc/terms/>.
 @prefix foaf: <http://xmlns.com/foaf/0.1/>.
 @prefix cidoc: <http://www.cidoc-crm.org/cidoc-crm/>.
-# @prefix frbroo: <http://iflastandards.info/ns/fr/frbr/frbroo/>.
+@prefix frbroo: <http://iflastandards.info/ns/fr/frbr/frbroo/>.
 # @prefix event: <http://www.knora.org/ontology/event#>.
 @prefix human: <http://www.knora.org/ontology/human#>.
 @prefix work: <http://www.knora.org/ontology/work#>.
@@ -30,7 +30,7 @@
 	a owl:Class;
 	rdfs:label "text expression"@en, "Text-Expression"@de;
 	rdfs:comment """Text as a human luinguistic expression."""@en;
-	rdfs:subClassOf work:Expression, [ # cidoc:E33_Linguistic_Object, [
+	rdfs:subClassOf work:Expression, cidoc:E33_Linguistic_Object, [
 		a owl:Restriction; owl:onProperty :hasAuthor; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty :hasAuthorValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty :hasIncipit; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
@@ -110,7 +110,7 @@
 	a owl:Class;
 	rdfs:label "manuscript"@en, "Manuskript"@de;
 	rdfs:comment """Carrier of a handwritten text expression."""@en;
-	rdfs:subClassOf :Carrier. # frbroo:F4_Manifestation_Singleton.
+	rdfs:subClassOf :Carrier, frbroo:F4_Manifestation_Singleton.
 
 :Typescript
 	a owl:Class;
@@ -138,10 +138,9 @@
 	a owl:Class;
 	rdfs:label "convolute"@en, "Konvolut"@de;
 	rdfs:comment """Text carriers, e.g. drafts, manuscripts, typoscripts or prints, gathered as one."""@en;
-	rdfs:subClassOf human:Creation, cidoc:E78_Collection, knora-base:Resource, [
+	rdfs:subClassOf human:Creation, cidoc:E78_Collection, [
 		a owl:Restriction; owl:onProperty :hasTitle; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty :hasAlias; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty :hasDescription; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+		a owl:Restriction; owl:onProperty :hasAlias; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 :Poem
 	a owl:Class;
@@ -219,6 +218,15 @@
 	rdfs:comment """Relating a resource to a description object as a textual statement about features of the resource."""@en;
 	rdfs:subPropertyOf :hasText;
 	knora-base:subjectClassConstraint knora-base:Resource;
+	knora-base:objectClassConstraint knora-base:TextValue;
+	salsah-gui:guiElement salsah-gui:Richtext.
+
+:hasCarrierDescription
+	a owl:ObjectProperty;
+	rdfs:label "has carrier description"@en;
+	rdfs:comment """Relating a carrier to a description object of its features."""@en;
+	rdfs:subPropertyOf :hasDescription;
+	knora-base:subjectClassConstraint :Carrier;
 	knora-base:objectClassConstraint knora-base:TextValue;
 	salsah-gui:guiElement salsah-gui:Richtext.
 

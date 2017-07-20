@@ -8,7 +8,7 @@
 @prefix unicore: <http://purl.uniprot.org/core/>.
 @prefix cidoc: <http://www.cidoc-crm.org/cidoc-crm/>.
 # @prefix frbroo: <http://iflastandards.info/ns/fr/frbr/frbroo/>.
-# @prefix event: <http://www.knora.org/ontology/event#>.
+@prefix event: <http://www.knora.org/ontology/event#>.
 @prefix text: <http://www.knora.org/ontology/text#>.
 @prefix knora-base: <http://www.knora.org/ontology/knora-base#>.
 @prefix salsah-gui: <http://www.knora.org/ontology/salsah-gui#>.
@@ -67,7 +67,7 @@
 	a owl:Class;
 	rdfs:label "action"@en;
 	rdfs:comment """Action with at least one human as agent."""@en;
-	rdfs:subClassOf knora-base:Resource. #  subClassOf event:Action
+	rdfs:subClassOf event:Action.
 
 :Life
 	a owl:Class;
@@ -75,7 +75,7 @@
 	rdfs:comment """Life of a human from birth until death."""@en;
 #	skos:note """Considered as an action wherein a person is an agent."""@en;
 #	skos:note """No satisfying biological description of onset of a human life."""@en;
-	rdfs:subClassOf knora-base:Resource. # event:Action, event:Existence
+	rdfs:subClassOf event:Action, event:Existence, knora-base:Resource.
 
 :BiologicalGender
 	a owl:Class;
@@ -110,7 +110,7 @@
 	a owl:Class;
 	rdfs:label "occupation"@en;
 	rdfs:comment """Action serving as a person's regular source of livelihood."""@en;
-	rdfs:subClassOf knora-base:Resource. # SCO event:Action.
+	rdfs:subClassOf event:Action, knora-base:Resource.
 
 :OccupationalRole
 	a owl:Class;
@@ -122,14 +122,25 @@
 	a owl:Class;
 	rdfs:label "floruit"@en;
 	rdfs:comment """Period during which a person lived or a school or movement was most active or flourishing."""@en;
-	rdfs:subClassOf knora-base:Resource. # SCO event:Action.
+	rdfs:subClassOf event:Action, knora-base:Resource.
 
-:Creation # to do: add person
+:Creating
+	a owl:Class;
+	rdfs:label "creating"@en;
+	rdfs:comment """Action by a person of bringing something into existence."""@en;
+	rdfs:subClassOf :Action, event:Creating
+#		, [
+#		a owl:Restriction; owl:onProperty agent:hasAgent; owl:someValuesFrom agent:Creator]
+		.
+
+:Creation
 	a owl:Class;
 	rdfs:label "creation"@en;
 	rdfs:comment """Something created by a person."""@en;
-	rdfs:subClassOf cidoc:E71_Man-Made_Thing, knora-base:Resource, [
-		a owl:Restriction; owl:onProperty :hasCreationDate; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+	rdfs:subClassOf event:Output, cidoc:E71_Man-Made_Thing, knora-base:Resource, [
+		a owl:Restriction; owl:onProperty :hasCreationDate; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty :hasCreationPeriod; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty :hasCreationPeriodValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 #
 # PROPERTIES
@@ -299,13 +310,27 @@
 	knora-base:subjectClassConstraint :Person;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
-#:hasCreationDate
-#	a owl:ObjectProperty;
-#	rdfs:label "has creation date"@en;
-#	rdfs:comment "Relating a creation by a person to the date it was created on."@en;
-#	rdfs:subPropertyOf knora-base:hasValue;
-#	knora-base:subjectClassConstraint :Creation;
-#	knora-base:objectClassConstraint knora-base:DateValue;
-#	salsah-gui:guiOrder "5"^^xsd:integer;
-#	salsah-gui:guiElement salsah-gui:Date;
-#	salsah-gui:guiAttribute "size=16", "maxlength=32".
+:hasCreationDate
+	a owl:ObjectProperty;
+	rdfs:label "has creation date"@en;
+	rdfs:comment "Relating a creation by a person to a date it was created on."@en;
+	rdfs:subPropertyOf knora-base:hasValue;
+	knora-base:subjectClassConstraint :Creation;
+	knora-base:objectClassConstraint knora-base:DateValue;
+	salsah-gui:guiElement salsah-gui:Date.
+
+:hasCreationPeriod
+	a owl:ObjectProperty;
+	rdfs:label "has creation period"@en;
+	rdfs:comment "Relating a creation by a person to the creating thereof."@en;
+	rdfs:subPropertyOf event:isOutputOf;
+	knora-base:subjectClassConstraint :Creation;
+	knora-base:objectClassConstraint :Creating.
+
+:hasCreationPeriodValue
+	a owl:ObjectProperty;
+	rdfs:label "has creation period value"@en;
+	rdfs:comment "Relating a creation by a person to a reification statement of the relation between the creation and the creating thereof."@en;
+	rdfs:subPropertyOf event:isOutputOfValue;
+	knora-base:subjectClassConstraint :Creation;
+	knora-base:objectClassConstraint knora-base:LinkValue.

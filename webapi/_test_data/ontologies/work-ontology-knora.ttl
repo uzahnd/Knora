@@ -19,7 +19,6 @@
 	a owl:Ontology.
 #	dct:title "An ontology about work as intellectual product"@en;
 #	dct:description """Formal description of work as intellectual product, its general subclasses, related classes and properties, as described in the ontology Functional Requirements for Bibliographic Records, object oriented."""@en;
-#	owl:versionInfo "Version x - yyyy-mm-dd"@en; # OR other format, datatype
 #	dct:creator "Hans Cools, software developer, NIE, Basel University, Switzerland"@en.
 
 #
@@ -58,7 +57,7 @@
  	rdfs:label "manifestation"@en,"Manifestation"@de;
  	rdfs:comment """Carrier of an expression."""@en;
 #	skos:note """Includes both F4_Manifestation_Singleton and F5_Item as declared in FRBROO."""@en;
-	rdfs:subClassOf human:Creation, cidoc:E84_Information_Carrier, knora-base:StillImageRepresentation, [
+	rdfs:subClassOf human:Creation, cidoc:E84_Information_Carrier, knora-base:StillImageRepresentation, [ # cardinality on image impossible
 		a owl:Restriction; owl:onProperty text:hasTitle; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text:hasDescription; owl:minCardinality "0"^^xsd:nonNegativeInteger]
 #		, [
@@ -190,9 +189,7 @@
 	rdfs:subPropertyOf knora-base:hasValue;
 	knora-base:subjectClassConstraint :Publication;
 	knora-base:objectClassConstraint knora-base:DateValue;
-#	salsah-gui:guiOrder "5"^^xsd:integer;
-	salsah-gui:guiElement salsah-gui:Date;
-	salsah-gui:guiAttribute "size=16", "maxlength=32".
+	salsah-gui:guiElement salsah-gui:Date.
 
 :hasPage
 	a owl:ObjectProperty;
