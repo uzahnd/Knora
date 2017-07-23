@@ -137,7 +137,7 @@
 	a owl:Class;
 	rdfs:label "creation"@en;
 	rdfs:comment """Something created by a person."""@en;
-	rdfs:subClassOf event:Output, cidoc:E71_Man-Made_Thing, knora-base:Resource, [
+	rdfs:subClassOf event:Output, cidoc:E71_Man-Made_Thing, [
 		a owl:Restriction; owl:onProperty :hasCreationDate; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty :hasCreationPeriod; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty :hasCreationPeriodValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
@@ -197,7 +197,7 @@
 :hasBirthDate
 	a owl:ObjectProperty;
 	rdfs:label "has birth date"@en;
-	rdfs:comment """Relating a person to her/his date of birth as object."""@en;
+	rdfs:comment """Relating a person to her/his date of birth (as object)."""@en;
 #	skos:note """It is possible to find different birth dates in different historical sources; an overall certainty period can be calculated."""@en;
 	rdfs:subPropertyOf knora-base:hasValue;
 	knora-base:subjectClassConstraint :Person;
@@ -206,7 +206,7 @@
 :hasDeathDate
 	a owl:ObjectProperty;
 	rdfs:label "has death date"@en;
-	rdfs:comment """Relating a person to her/his date of death as object."""@en;
+	rdfs:comment """Relating a person to her/his date of death (as object)."""@en;
 #	skos:note """It is possible to find different death dates in different historical sources; an overall certainty period can be calculated."""@en;
 	rdfs:subPropertyOf knora-base:hasValue;
 	knora-base:subjectClassConstraint :Person;
@@ -215,7 +215,7 @@
 :hasName
 	a owl:ObjectProperty;
 	rdfs:label "has name";
-	rdfs:comment """Relating a person to her/his name as object."""@en;
+	rdfs:comment """Relating a person to her/his name (as object)."""@en;
 	rdfs:subPropertyOf text:hasName;
 	knora-base:subjectClassConstraint :Person;
 	knora-base:objectClassConstraint knora-base:TextValue.
@@ -223,7 +223,7 @@
 :hasFamilyName
 	a owl:ObjectProperty;
 	rdfs:label "has family name";
-	rdfs:comment """Relating a person to her/his family name as object."""@en;
+	rdfs:comment """Relating a person to her/his family name (as object)."""@en;
 #	skos:note """Further restriction given along specific law; e.g. a person can have her/his family name legally changed."""@en;
 	rdfs:subPropertyOf :hasName;
 	knora-base:subjectClassConstraint :Person; 
@@ -232,7 +232,7 @@
 :hasGivenName
 	a owl:ObjectProperty;
 	rdfs:label "has given name";
-	rdfs:comment """Relating a person to her/his given name as object."""@en;
+	rdfs:comment """Relating a person to her/his given name (as object)."""@en;
 #	skos:note """Further restriction given along specific law; e.g. a person can have her/his given name legally changed."""@en;
 	rdfs:subPropertyOf :hasName;
 	knora-base:subjectClassConstraint :Person;
@@ -241,15 +241,15 @@
 :hasPreferredName
 	a owl:ObjectProperty;
 	rdfs:label "has preferred name";
-	rdfs:comment """Relating a person to her/his preferred name as object."""@en;
-	rdfs:subPropertyOf text:hasPreferredName;
+	rdfs:comment """Relating a person to her/his preferred name (as object)."""@en;
+	rdfs:subPropertyOf :hasName, text:hasPreferredName;
 	knora-base:subjectClassConstraint :Person;
 	knora-base:objectClassConstraint knora-base:TextValue.
 
 :hasAlias
 	a owl:ObjectProperty;
 	rdfs:label "has alias";
-	rdfs:comment """Relating a person to an alias as object."""@en;
+	rdfs:comment """Relating a person to an alias (as object) of that person."""@en;
 	rdfs:subPropertyOf text:hasAlias;
 	knora-base:subjectClassConstraint :Person;
 	knora-base:objectClassConstraint knora-base:TextValue.
@@ -257,7 +257,7 @@
 :hasDescription
 	a owl:ObjectProperty;
 	rdfs:label "has description"@en;
-	rdfs:comment """Relating a person to a description as object."""@en;
+	rdfs:comment """Relating a person to a description (as object) of that person."""@en;
 	rdfs:subPropertyOf text:hasDescription;
 	knora-base:subjectClassConstraint :Person;
 	knora-base:objectClassConstraint knora-base:TextValue.
@@ -315,7 +315,7 @@
 	rdfs:label "has creation date"@en;
 	rdfs:comment "Relating a creation by a person to a date it was created on."@en;
 	rdfs:subPropertyOf knora-base:hasValue;
-	knora-base:subjectClassConstraint :Creation;
+	knora-base:subjectClassConstraint :Creation; # owl:propertyChainAxiom (:isOutputOf :hasEndDate)
 	knora-base:objectClassConstraint knora-base:DateValue;
 	salsah-gui:guiElement salsah-gui:Date.
 

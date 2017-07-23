@@ -58,8 +58,16 @@
 :Action
 	a owl:Class;
 	rdfs:label "action"@en;
-	rdfs:comment """Process involving one or more agents in a certain role."""@en;
+	rdfs:comment """Process involving one or more agents causing change."""@en;
 	rdfs:subClassOf :Process.
+
+:Agent
+	a owl:Class;
+	rdfs:label "agent"@en;
+	rdfs:comment """Something acting in a certain role."""@en;
+	rdfs:subClassOf knora-base:Resource, [ # foaf:Agent
+		a owl:Restriction; owl:onProperty :actsIn; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty :actsInValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 :Procedure
 	a owl:Class;
@@ -70,7 +78,8 @@
 :State
 	a owl:Class;
 	rdfs:label "state"@en;
-	rdfs:comment """Mode of being."""@en.
+	rdfs:comment """Mode of being."""@en;
+	rdfs:subClassOf knora-base:Resource.
 
 :Staging
 	a owl:Class;
@@ -81,12 +90,14 @@
 :Stage
 	a owl:Class;
 	rdfs:label "stage"@en;
-	rdfs:comment """Level of a process."""@en.
+	rdfs:comment """Level of a process."""@en;
+	rdfs:subClassOf knora-base:Resource.
 
 :Cause		# to do: relate to agent
 	a owl:Class;
 	rdfs:label "cause"@en;
-	rdfs:comment """Source of entailment."""@en.
+	rdfs:comment """Source of entailment."""@en;
+	rdfs:subClassOf :Input.
 
 :Effect
 	a owl:Class;
@@ -97,7 +108,8 @@
 :Intent
 	a owl:Class;
 	rdfs:label "intent"@en;
-	rdfs:comment """Purpose of an action."""@en.
+	rdfs:comment """Purpose of an action."""@en;
+	rdfs:subClassOf knora-base:Resource.
 
 :Creating
 	a owl:Class;
@@ -142,9 +154,9 @@
 	a owl:ObjectProperty;
 	rdfs:label "has event value"@en;
 	rdfs:comment """Relating a resource to a reification statement of the relation between the resource and an event."""@en;
-	rdfs:subPropertyOf knora-base:hasLinkTo;
+	rdfs:subPropertyOf knora-base:hasLinkToValue;
 	knora-base:subjectClassConstraint knora-base:Resource;
-	knora-base:objectClassConstraint :Event.
+	knora-base:objectClassConstraint knora-base:LinkValue.
 
 :isInputOf
 	a owl:ObjectProperty;
@@ -165,7 +177,7 @@
 :isOutputOf
 	a owl:ObjectProperty;
 	rdfs:label "is output of"@en;
-	rdfs:comment """Relating something as output to a process."""@en;
+	rdfs:comment """Relating an output to a process."""@en;
 	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint :Output;
 	knora-base:objectClassConstraint :Process.
@@ -176,4 +188,36 @@
 	rdfs:comment """Relating an output to a reification statement of the relation between the output and a process."""@en;
 	rdfs:subPropertyOf knora-base:hasLinkToValue;
 	knora-base:subjectClassConstraint :Output;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
+:hasStage
+	a owl:ObjectProperty;
+	rdfs:label "has stage"@en;
+	rdfs:comment """Relating a process to a stage thereof."""@en;
+	rdfs:subPropertyOf knora-base:hasLinkTo;
+	knora-base:subjectClassConstraint :Process;
+	knora-base:objectClassConstraint :Stage.
+
+:hasStageValue
+	a owl:ObjectProperty;
+	rdfs:label "has stage value"@en;
+	rdfs:comment """Relating a process to a reification statement of the relation between the process and a stage thereof."""@en;
+	rdfs:subPropertyOf knora-base:hasLinkToValue;
+	knora-base:subjectClassConstraint :Process;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
+:actsIn
+	a owl:ObjectProperty;
+	rdfs:label "acts in"@en;
+	rdfs:comment """Relating an agent to an action it is in."""@en;
+	rdfs:subPropertyOf knora-base:hasLinkTo;
+	knora-base:subjectClassConstraint :Agent;
+	knora-base:objectClassConstraint :Action.
+
+:actsInValue
+	a owl:ObjectProperty;
+	rdfs:label "acts in value"@en;
+	rdfs:comment """Relating an agent to a reification statement of the relation between the agent and an action it is in."""@en;
+	rdfs:subPropertyOf knora-base:hasLinkToValue;
+	knora-base:subjectClassConstraint :Agent;
 	knora-base:objectClassConstraint knora-base:LinkValue.

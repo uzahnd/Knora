@@ -7,7 +7,7 @@
 @prefix foaf: <http://xmlns.com/foaf/0.1/>.
 @prefix cidoc: <http://www.cidoc-crm.org/cidoc-crm/>.
 @prefix frbroo: <http://iflastandards.info/ns/fr/frbr/frbroo/>.
-# @prefix event: <http://www.knora.org/ontology/event#>.
+@prefix event: <http://www.knora.org/ontology/event#>.
 @prefix human: <http://www.knora.org/ontology/human#>.
 @prefix work: <http://www.knora.org/ontology/work#>.
 @prefix image: <http://www.knora.org/ontology/image#>.
@@ -92,7 +92,8 @@
  	a owl:Class;
  	rdfs:label "text carrier"@en,"Textträger"@de;
  	rdfs:comment """Carrier of a text expression."""@en;
-	rdfs:subClassOf work:Manifestation.
+	rdfs:subClassOf work:Manifestation, [
+		a owl:Restriction; owl:onProperty :hasCarrierDescription; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 :NoteCarrier
 	a owl:Class;
@@ -137,10 +138,11 @@
 :Convolute
 	a owl:Class;
 	rdfs:label "convolute"@en, "Konvolut"@de;
-	rdfs:comment """Text carriers, e.g. drafts, manuscripts, typoscripts or prints, gathered as one."""@en;
+	rdfs:comment """Text carriers, e.g. of drafts, manuscripts, typoscripts or prints, gathered as one."""@en;
 	rdfs:subClassOf human:Creation, cidoc:E78_Collection, [
 		a owl:Restriction; owl:onProperty :hasTitle; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty :hasAlias; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+		a owl:Restriction; owl:onProperty :hasAlias; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty :hasDescription; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 :Poem
 	a owl:Class;
@@ -154,6 +156,14 @@
 	rdfs:comment """Author of a poem."""@en;
 	rdfs:subClassOf :Author.
 
+:TextEvolution
+	a owl:Class;
+	rdfs:label "text evolution"@en;
+	rdfs:comment """Action wherein a person(s) creates text resulting in different manifestation, e.g. from notebook to manuscript to typescript to published print."""@en;
+	rdfs:subClassOf human:Creating, [
+		a owl:Restriction; owl:onProperty event:hasStage; owl:minCardinality "1"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty event:hasStageValue; owl:minCardinality "1"^^xsd:nonNegativeInteger].
+
 #
 # PROPERTIES
 #
@@ -161,7 +171,7 @@
 :hasText
 	a owl:ObjectProperty;
 	rdfs:label "has text"@en;
-	rdfs:comment """Relating a resource to a text object as a writable coherent set of signs representing semantics in a language."""@en;
+	rdfs:comment """Relating a resource to a text (as object) as a writable coherent set of signs representing semantics in a language."""@en;
 	rdfs:subPropertyOf knora-base:hasValue;
 	knora-base:subjectClassConstraint knora-base:Resource;
 	knora-base:objectClassConstraint knora-base:TextValue;
@@ -170,7 +180,7 @@
 :hasName
 	a owl:ObjectProperty;
 	rdfs:label "has name"@en;
-	rdfs:comment """Relating a resource to a name object as a textual identifier of something."""@en;
+	rdfs:comment """Relating a resource to a name (as object) as a (non-unique) textual identifier of the resource."""@en;
 	rdfs:subPropertyOf :hasText;
 	knora-base:subjectClassConstraint knora-base:Resource;
 	knora-base:objectClassConstraint knora-base:TextValue;
@@ -179,7 +189,7 @@
 :hasPreferredName
 	a owl:ObjectProperty;
 	rdfs:label "has preferred name"@en;
-	rdfs:comment """Relating a resource to a preferred name object."""@en;
+	rdfs:comment """Relating a resource to a preferred name (as object)."""@en;
 	rdfs:subPropertyOf :hasName;
 	knora-base:subjectClassConstraint knora-base:Resource;
 	knora-base:objectClassConstraint knora-base:TextValue;
@@ -188,8 +198,17 @@
 :hasAlias
 	a owl:ObjectProperty;
 	rdfs:label "has alias"@en;
-	rdfs:comment """Relating a resource to an alias object as an alternative name of the resource."""@en;
+	rdfs:comment """Relating a resource to an alias (as object) as an alternative name of the resource."""@en;
 	rdfs:subPropertyOf :hasName;
+	knora-base:subjectClassConstraint knora-base:Resource;
+	knora-base:objectClassConstraint knora-base:TextValue;
+	salsah-gui:guiElement salsah-gui:Richtext.
+
+:hasIdentifier
+	a owl:ObjectProperty;
+	rdfs:label "has identifier"@en;
+	rdfs:comment """Relating a resource to an identifier (as object) as a unique textual reference to the resource within a given context, and conforming to a formal identification system."""@en;
+	rdfs:subPropertyOf :hasText; # cidoc:E42_Identifier, cf. dcterms:identifier
 	knora-base:subjectClassConstraint knora-base:Resource;
 	knora-base:objectClassConstraint knora-base:TextValue;
 	salsah-gui:guiElement salsah-gui:Richtext.
@@ -197,7 +216,7 @@
 :hasTitle
 	a owl:ObjectProperty;
 	rdfs:label "has title"@en;
-	rdfs:comment """Relating a resource to a title object as a textual identifier of the resource."""@en;
+	rdfs:comment """Relating a resource to a title (as object) as a textual identifier of the resource."""@en;
 	rdfs:subPropertyOf :hasText;
 	knora-base:subjectClassConstraint knora-base:Resource;
 	knora-base:objectClassConstraint knora-base:TextValue;
@@ -206,7 +225,7 @@
 :hasComment
 	a owl:ObjectProperty;
 	rdfs:label "has comment"@en;
-	rdfs:comment """Relating a resource to a comment object as a textual statement about the resource."""@en;
+	rdfs:comment """Relating a resource to a comment (as object) as a textual statement about the resource."""@en;
 	rdfs:subPropertyOf :hasText;
 	knora-base:subjectClassConstraint knora-base:Resource;
 	knora-base:objectClassConstraint knora-base:TextValue;
@@ -215,7 +234,7 @@
 :hasDescription
 	a owl:ObjectProperty;
 	rdfs:label "has description"@en;
-	rdfs:comment """Relating a resource to a description object as a textual statement about features of the resource."""@en;
+	rdfs:comment """Relating a resource to a description (as object) as a textual statement about features of the resource."""@en;
 	rdfs:subPropertyOf :hasText;
 	knora-base:subjectClassConstraint knora-base:Resource;
 	knora-base:objectClassConstraint knora-base:TextValue;
@@ -223,8 +242,8 @@
 
 :hasCarrierDescription
 	a owl:ObjectProperty;
-	rdfs:label "has carrier description"@en;
-	rdfs:comment """Relating a carrier to a description object of its features."""@en;
+	rdfs:label "has text carrier description"@en;
+	rdfs:comment """Relating a text carrier to a description (as object) thereof."""@en;
 	rdfs:subPropertyOf :hasDescription;
 	knora-base:subjectClassConstraint :Carrier;
 	knora-base:objectClassConstraint knora-base:TextValue;
@@ -233,7 +252,7 @@
 :hasDefinition
 	a owl:ObjectProperty;
 	rdfs:label "has definition"@en;
-	rdfs:comment """Relating a resource to a definition object as a textual statement about the essential features of the resource."""@en;
+	rdfs:comment """Relating a resource to a definition (as object) as a textual statement about the essential features of the resource."""@en;
 	rdfs:subPropertyOf :hasDescription;
 	knora-base:subjectClassConstraint knora-base:Resource;
 	knora-base:objectClassConstraint knora-base:TextValue;
@@ -242,7 +261,7 @@
 :hasIncipit
 	a owl:ObjectProperty;
 	rdfs:label "has incipit"@en;
-	rdfs:comment """Relating an untitled text expression to a beginning part thereof, as an object, to identify the text."""@en;
+	rdfs:comment """Relating an untitled text expression to a beginning part thereof (as object) to identify the text."""@en;
 	rdfs:subPropertyOf :hasText;
 	knora-base:subjectClassConstraint :Expression;
 	knora-base:objectClassConstraint knora-base:TextValue;
@@ -251,7 +270,7 @@
 :hasExplicit
 	a owl:ObjectProperty;
 	rdfs:label "has explicit"@en;
-	rdfs:comment """Relating an untitled text expression to an end part thereof, as an object, to identify the text."""@en;
+	rdfs:comment """Relating an untitled text expression to an end part thereof (as object) to identify the text."""@en;
 	rdfs:subPropertyOf :hasText;
 	knora-base:subjectClassConstraint :Expression;
 	knora-base:objectClassConstraint knora-base:TextValue;
@@ -260,7 +279,7 @@
 :hasContent
 	a owl:ObjectProperty;
 	rdfs:label "has content"@en;
-	rdfs:comment """Relating a text expression to its content."""@en;
+	rdfs:comment """Relating a text expression to its content (as object)."""@en;
 	rdfs:subPropertyOf :hasText;
 	knora-base:subjectClassConstraint :Expression;
 	knora-base:objectClassConstraint knora-base:TextValue;
@@ -269,7 +288,7 @@
 :hasEditedContent
 	a owl:ObjectProperty;
 	rdfs:label "has edited content"@en;
-	rdfs:comment """Relating a text expression to its edited content."""@en;
+	rdfs:comment """Relating a text expression to an edited content (as object) thereof."""@en;
 	rdfs:subPropertyOf :hasContent;
 	knora-base:subjectClassConstraint :Expression;
 	knora-base:objectClassConstraint knora-base:TextValue;
@@ -278,7 +297,7 @@
 :hasDiplomaticTranscription
 	a owl:ObjectProperty;
 	rdfs:label "has diplomatic transcription"@en;
-	rdfs:comment """Relating a text expression to a diplomatic transcription thereof."""@en;
+	rdfs:comment """Relating a text expression to a diplomatic transcription thereof (as object)."""@en;
 	rdfs:subPropertyOf :hasContent;
 	knora-base:subjectClassConstraint :Expression;
 	knora-base:objectClassConstraint knora-base:TextValue;
@@ -385,4 +404,36 @@
 	rdfs:comment """Relating a letter to a reification statement of the relation between the letter and one or more persons who receive it."""@en;
 	rdfs:subPropertyOf knora-base:hasLinkToValue;
 	knora-base:subjectClassConstraint :Letter;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
+:containsEarlierStagesOf
+	a owl:ObjectProperty;
+	rdfs:label "contains early stages of"@en;
+	rdfs:comment """Relating a convolute to another one whose text carriers are later stages of the text carriers of the former."""@en;
+	rdfs:subPropertyOf knora-base:hasLinkTo;
+	knora-base:subjectClassConstraint :Convolute;
+	knora-base:objectClassConstraint :Convolute.
+
+:containsEarlierStagesOfValue
+	a owl:ObjectProperty;
+	rdfs:label "contains early stages of value"@en;
+	rdfs:comment """Relating a convolute to a reification statement of the relation between the convolute and another one whose text carriers are later stages of the text carriers of the former."""@en;
+	rdfs:subPropertyOf knora-base:hasLinkToValue;
+	knora-base:subjectClassConstraint :Convolute;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
+:containsLaterStagesOf
+	a owl:ObjectProperty;
+	rdfs:label "contains later stages of"@en;
+	rdfs:comment """Relating a convolute to another one whose text carriers are earlier stages of the text carriers of the former."""@en;
+	rdfs:subPropertyOf knora-base:hasLinkTo;
+	knora-base:subjectClassConstraint :Convolute;
+	knora-base:objectClassConstraint :Convolute.
+
+:containsLaterStagesOfValue
+	a owl:ObjectProperty;
+	rdfs:label "contains later stages of value"@en;
+	rdfs:comment """Relating a convolute to a reification statement of the relation between the convolute and another one whose text carriers are earlier stages of the text carriers of the former."""@en;
+	rdfs:subPropertyOf knora-base:hasLinkToValue;
+	knora-base:subjectClassConstraint :Convolute;
 	knora-base:objectClassConstraint knora-base:LinkValue.

@@ -8,6 +8,7 @@
 @prefix foaf: <http://xmlns.com/foaf/0.1/>.
 @prefix cidoc: <http://www.cidoc-crm.org/cidoc-crm/>.
 # @prefix frbroo: <http://iflastandards.info/ns/fr/frbr/frbroo/>.
+@prefix event: <http://www.knora.org/ontology/event#>.
 @prefix human: <http://www.knora.org/ontology/human#>.
 @prefix text: <http://www.knora.org/ontology/text#>.
 @prefix image: <http://www.knora.org/ontology/image#>.
@@ -57,7 +58,7 @@
  	rdfs:label "manifestation"@en,"Manifestation"@de;
  	rdfs:comment """Carrier of an expression."""@en;
 #	skos:note """Includes both F4_Manifestation_Singleton and F5_Item as declared in FRBROO."""@en;
-	rdfs:subClassOf human:Creation, cidoc:E84_Information_Carrier, knora-base:StillImageRepresentation, [ # cardinality on image impossible
+	rdfs:subClassOf human:Creation, cidoc:E84_Information_Carrier, knora-base:StillImageRepresentation, knora-base:DocumentRepresentation,  [ # cardinality on StillImage and Document impossible
 		a owl:Restriction; owl:onProperty text:hasTitle; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text:hasDescription; owl:minCardinality "0"^^xsd:nonNegativeInteger]
 #		, [
@@ -82,10 +83,21 @@
 :Book
 	a owl:Class;
 	rdfs:label "book"@en, "Buch"@de;
-	rdfs:comment """Set of pages fastened along one side and encased between a front and back cover."""@en;
+	rdfs:comment """Set of leafs, e.g. sheets of paper or parchment, fastened together along one side and mostly encased between a front and back cover."""@en;
+	rdfs:subClassOf :Manifestation
+#		, [
+#		a owl:Restriction; owl:onProperty :hasPage; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+#		a owl:Restriction; owl:onProperty :hasPageValue; owl:minCardinality "0"^^xsd:nonNegativeInteger]
+		.
+
+:Page # the concept of leaf is cut short and can be interposed later
+	a owl:Class;
+	rdfs:label "page"@en, "Seite"@de;
+	rdfs:comment """One of the 2 surfaces of a leaf, e.g. a sheet of paper or parchment, e.g. a manuscript, or of a leaf of a book."""@en;
 	rdfs:subClassOf :Manifestation, [
-		a owl:Restriction; owl:onProperty :hasPage; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty :hasPageValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+		a owl:Restriction; owl:onProperty :isPageOf; owl:cardinality "1"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty :isPageOfValue; owl:cardinality "1"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty :hasNumber; owl:cardinality "1"^^xsd:nonNegativeInteger].
 
 :Print
 	a owl:Class;
@@ -93,12 +105,20 @@
 	rdfs:comment """An expression printed on a carrier."""@en;
 	rdfs:subClassOf :Manifestation.
 
+:Publisher
+	a owl:Class;
+	rdfs:label "publisher"@en;
+	rdfs:comment """Role of an agent as publisher."""@en;
+	rdfs:subClassOf human:OccupationalRole.
+
 :Publication
 	a owl:Class;
 	rdfs:label "publication"@en, "Publikation"@de;
 	rdfs:comment """An expression published on a carrier."""@en;
 	rdfs:subClassOf :Manifestation, [ # frbroo:F5_Item.
-		a owl:Restriction; owl:onProperty :hasPublicationDate; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+		a owl:Restriction; owl:onProperty :hasPublicationTitle; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty :hasPublicationDate; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty :hasPublisherName; owl:cardinality "1"^^xsd:nonNegativeInteger].
 
 :PrintedPublication
 	a owl:Class;
@@ -111,6 +131,21 @@
 	rdfs:label "electronic publication"@en, "elektronische Publikation"@de;
 	rdfs:comment """Publication on an electronic carrier."""@en;
 	rdfs:subClassOf :Publication.
+
+:Archive
+	a owl:Class;
+	rdfs:label "archive"@en, "Archiv"@de;
+	rdfs:comment """Collection of files ordered along a method."""@en;
+	rdfs:subClassOf human:Creation, cidoc:E78_Collection.
+
+:ArchiveElement
+	a owl:Class;
+	rdfs:label "archive element"@en, "Archiv-Element"@de;
+	rdfs:comment """Element of an archive, which can be a single file or a file group."""@en;
+	rdfs:subClassOf :Manifestation, [
+		a owl:Restriction; owl:onProperty :isPartOf; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty :isPartOfValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty :hasArchiveSignature; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 #
 # PROPERTIES
@@ -191,27 +226,94 @@
 	knora-base:objectClassConstraint knora-base:DateValue;
 	salsah-gui:guiElement salsah-gui:Date.
 
-:hasPage
+:hasPublicationTitle
 	a owl:ObjectProperty;
-	rdfs:label "has page"@en;
-	rdfs:comment """Relating a book to a page thereof."""@en;
-	rdfs:subPropertyOf knora-base:hasLinkTo;
-	knora-base:subjectClassConstraint :Book;
-	knora-base:objectClassConstraint :Page.
+	rdfs:label "has publication title"@en;
+	rdfs:comment "Relating a publication to its title (as object)."@en;
+	rdfs:subPropertyOf text:hasTitle;
+	knora-base:subjectClassConstraint :Publication;
+	knora-base:objectClassConstraint knora-base:TextValue;
+	salsah-gui:guiElement salsah-gui:Richtext.
 
-:hasPageValue
+:hasPublisher
 	a owl:ObjectProperty;
-	rdfs:label "has page value"@en;
-	rdfs:comment """Relating a book to a reification statement of the relation between the book and a page thereof."""@en;
+	rdfs:label "has publisher"@en;
+	rdfs:comment "Relating a publication to its publisher."@en;
+	rdfs:subPropertyOf knora-base:hasLinkTo;
+	knora-base:subjectClassConstraint :Publication;
+	knora-base:objectClassConstraint event:Agent. # [rdfs:subClassOf foafAgent, [a owl:Restriction; owl:onProperty agent:hasRole; owl:someValuesFrom :Publisher]].
+
+:hasPublisherValue
+	a owl:ObjectProperty;
+	rdfs:label "has publisher value"@en;
+	rdfs:comment "Relating a publication to a reification statement of the relation between the publication and its publisher."@en;
 	rdfs:subPropertyOf knora-base:hasLinkToValue;
-	knora-base:subjectClassConstraint :Book;
+	knora-base:subjectClassConstraint :Publication;
 	knora-base:objectClassConstraint knora-base:LinkValue.
+
+:hasPublisherDescription
+	a owl:ObjectProperty;
+	rdfs:label "has publisher description"@en;
+	rdfs:comment "Relating a publication to its publisher's description (as object)."@en;
+	rdfs:subPropertyOf text:hasName;
+	knora-base:subjectClassConstraint :Publication;
+	knora-base:objectClassConstraint knora-base:TextValue;
+	salsah-gui:guiElement salsah-gui:Richtext.
+
+:hasPrinterDescription
+	a owl:ObjectProperty;
+	rdfs:label "has printer description"@en;
+	rdfs:comment "Relating a publication to its printer's description (as object)."@en;
+	rdfs:subPropertyOf text:hasName;
+	knora-base:subjectClassConstraint :Publication;
+	knora-base:objectClassConstraint knora-base:TextValue;
+	salsah-gui:guiElement salsah-gui:Richtext.
+
+#:hasPage
+#	a owl:ObjectProperty;
+#	rdfs:label "has page"@en;
+#	rdfs:comment """Relating a book to a page thereof."""@en;
+#	rdfs:subPropertyOf knora-base:hasLinkTo;
+#	knora-base:subjectClassConstraint :Book; # owl:propertyChainAxiom (:hasLeaf :hasSide)
+#	knora-base:objectClassConstraint :Page.
+
+#:hasPageValue
+#	a owl:ObjectProperty;
+#	rdfs:label "has page value"@en;
+#	rdfs:comment """Relating a book to a reification statement of the relation between the book and a page thereof."""@en;
+#	rdfs:subPropertyOf knora-base:hasLinkToValue;
+#	knora-base:subjectClassConstraint :Book;
+#	knora-base:objectClassConstraint knora-base:LinkValue.
+
+:isPageOf
+	a owl:ObjectProperty;
+	rdfs:label "is page of"@en;
+	rdfs:comment """Relating a page to its leaf, single or in a book."""@en;
+	rdfs:subPropertyOf :isPartOf;
+	knora-base:subjectClassConstraint :Page;
+	knora-base:objectClassConstraint knora-base:Resource. # to change to leaf
+
+:isPageOfValue
+	a owl:ObjectProperty;
+	rdfs:label "is page of value"@en;
+	rdfs:comment """Relating a page to a reification statement of the relation between the page and its leaf, single or in a book."""@en;
+	rdfs:subPropertyOf :isPartOfValue;
+	knora-base:subjectClassConstraint :Page;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
+:hasNumber
+	a owl:ObjectProperty;
+	rdfs:label "has number"@en;
+	rdfs:comment """Relating a page to the number (as object) it has."""@en;
+	rdfs:subPropertyOf knora-base:hasValue;
+	knora-base:subjectClassConstraint :Page;
+	knora-base:objectClassConstraint knora-base:IntValue.
 
 :isOnPage
 	a owl:ObjectProperty;
 	rdfs:label "is on page"@en;
 	rdfs:comment """Relating an expression to a carrier page it is on."""@en;
-	rdfs:subPropertyOf knora-base:hasLinkTo;
+	rdfs:subPropertyOf :isMaterializedIn; # knora-base:hasLinkTo
 	knora-base:subjectClassConstraint :Expression; # owl:propertyChainAxiom (:isMaterializedIn :hasPage)
 	knora-base:objectClassConstraint :Page.
 
@@ -219,6 +321,22 @@
 	a owl:ObjectProperty;
 	rdfs:label "is on page value"@en;
 	rdfs:comment """Relating an expression to a reification statement of the relation between the expression and the carrier page it is on."""@en;
-	rdfs:subPropertyOf knora-base:hasLinkToValue;
+	rdfs:subPropertyOf :isMaterializedInValue; # knora-base:hasLinkToValue
 	knora-base:subjectClassConstraint :Expression;
 	knora-base:objectClassConstraint knora-base:LinkValue.
+
+:hasPageNumber
+	a owl:ObjectProperty;
+	rdfs:label "has page number"@en;
+	rdfs:comment """Relating an expression to the number (as object) of a page it is on."""@en;
+	rdfs:subPropertyOf knora-base:hasValue;
+	knora-base:subjectClassConstraint :Expression; # owl:propertyChainAxiom (:isOnPage :hasNumber)
+	knora-base:objectClassConstraint knora-base:IntValue.
+
+:hasArchiveSignature
+	a owl:ObjectProperty;
+	rdfs:label "has archive signature";
+	rdfs:comment """Relating en element of an archive to its signature (as object) as identifier."""@en;
+	rdfs:subPropertyOf text:hasIdentifier;
+	knora-base:subjectClassConstraint :ArchiveElement;
+	knora-base:objectClassConstraint knora-base:TextValue.
