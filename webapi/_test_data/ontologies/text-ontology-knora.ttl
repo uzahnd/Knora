@@ -36,7 +36,8 @@
 		a owl:Restriction; owl:onProperty :hasIncipit; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty :hasExplicit; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty :hasContent; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty :hasEditedContent; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty :hasEdition; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty :hasEditionValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty :hasDiplomaticTranscription; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty :isOnCarrier; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty :isOnCarrierValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
@@ -78,7 +79,7 @@
 
 :Editor
 	a owl:Class;
-	rdfs:label "editor"@en, "Editor"@de;
+	rdfs:label "text editor"@en, "Text-Redakteur"@de;
 	rdfs:comment """Role of a person changing a text."""@en;
 	rdfs:subClassOf human:Role.
 
@@ -87,6 +88,13 @@
 	rdfs:label "commento"@la, "commentary"@en, "Erläuterung"@de;
 	rdfs:comment """Textual expression in the form of a series of comments as analysis, interpretation or explanation of something, especially another textual expression."""@en;
 	rdfs:subClassOf :Expression.
+
+:Edition
+	a owl:Class;
+	rdfs:label "edited text"@en, "editierte Text"@de;
+	rdfs:comment """Changed form of a text expression as the result of editing."""@en;
+	rdfs:subClassOf :Expression, [
+		a owl:Restriction; owl:onProperty :hasEditedContent; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 :Carrier
  	a owl:Class;
@@ -285,12 +293,28 @@
 	knora-base:objectClassConstraint knora-base:TextValue;
 	salsah-gui:guiElement salsah-gui:Richtext.
 
+:hasEdition
+	a owl:ObjectProperty;
+	rdfs:label "has edition"@en;
+	rdfs:comment "Relating a text to an edition thereof."@en;
+	rdfs:subPropertyOf knora-base:hasLinkTo;
+	knora-base:subjectClassConstraint :Expression;
+	knora-base:objectClassConstraint :Edition.
+
+:hasEditionValue
+	a owl:ObjectProperty;
+	rdfs:label "has edition value"@en;
+	rdfs:comment "Relating a text to a reification statement of the relation between the text and an edition thereof."@en;
+	rdfs:subPropertyOf knora-base:hasLinkToValue;
+	knora-base:subjectClassConstraint :Expression;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
 :hasEditedContent
 	a owl:ObjectProperty;
 	rdfs:label "has edited content"@en;
-	rdfs:comment """Relating a text expression to an edited content (as object) thereof."""@en;
+	rdfs:comment """Relating an edition to its content (as object)."""@en;
 	rdfs:subPropertyOf :hasContent;
-	knora-base:subjectClassConstraint :Expression;
+	knora-base:subjectClassConstraint :Edition;
 	knora-base:objectClassConstraint knora-base:TextValue;
 	salsah-gui:guiElement salsah-gui:Richtext.
 
@@ -303,10 +327,29 @@
 	knora-base:objectClassConstraint knora-base:TextValue;
 	salsah-gui:guiElement salsah-gui:Richtext.
 
+:hasPageIndicator
+	a owl:ObjectProperty;
+	rdfs:label "has page indicator"@en;
+	rdfs:comment """Relating a text expression to a textual element (as object) that indicates where a new page starts."""@en;
+	rdfs:subPropertyOf :hasContent;
+	knora-base:subjectClassConstraint :Expression;
+	knora-base:objectClassConstraint knora-base:TextValue;
+	salsah-gui:guiElement salsah-gui:Richtext.
+
+:hasLineNumber
+	a owl:ObjectProperty;
+	rdfs:label "has line number"@en;
+	rdfs:comment """Relating a text expression to the number (as object) of a line thereof."""@en;
+	rdfs:subPropertyOf :hasContent;
+	knora-base:subjectClassConstraint :Expression;
+	knora-base:objectClassConstraint knora-base:TextValue;
+	salsah-gui:guiElement salsah-gui:Richtext.
+
 :hasAuthor
 	a owl:ObjectProperty;
 	rdfs:label "has author"@en;
-	rdfs:comment """Relating a text to one or more persons who authored it."""@en; # or an organization that authored it -> foaf:Agent
+	rdfs:comment """Relating a text to a person who authored it."""@en; # or an organization that authored it -> foaf:Agent
+#	skos:note """A text can have more than one author."""@en;
 	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint :Expression;
 	knora-base:objectClassConstraint human:Person. # [rdfs:subClassOf human:Person, [a owl:Restriction; owl:onProperty event:hasRole; owl:someValuesFrom :Author]]
