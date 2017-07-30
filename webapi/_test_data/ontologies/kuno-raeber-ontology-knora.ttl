@@ -33,33 +33,41 @@
 		a owl:Restriction; owl:onProperty :hasEdition; owl:cardinality "1"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty :hasEditionValue; owl:cardinality "1"^^xsd:nonNegativeInteger].
 
-:EditedPoem
+:Edition
 	a owl:Class;
-	rdfs:label "edited poem"@en, "editiertes Gedicht"@de;
-	rdfs:comment """Edited poem authored by Kuno Raeber."""@en, """Editiertes Gedicht von Kuno Raeber."""@de;
+	rdfs:label "edited poem"@en, "ediertes Gedicht"@de;
+	rdfs:comment """Edited poem authored by Kuno Raeber."""@en, """Ediertes Gedicht von Kuno Raeber."""@de;
 	rdfs:subClassOf text:Edition, [
-		a owl:Restriction; owl:onProperty text:hasEditedContent; owl:cardinality "1"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty text:hasContent; owl:cardinality "1"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text:hasPageIndicator; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text:hasLineNumber; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
-:PoemNote
+:DiplomaticTranscription
 	a owl:Class;
-	rdfs:label "poem note"@en, "Gedichtnotiz"@de;
-	rdfs:comment """Poem note authored by Kuno Raeber."""@en, """Gedichtnotiz von Kuno Raeber."""@de;
-	rdfs:subClassOf :Poem, text:HandwrittenText, work:Draft, [
-		a owl:Restriction; owl:onProperty :isInNotebook; owl:minCardinality "1"^^xsd:nonNegativeInteger], [ # isOnPageOfNotebook
-		a owl:Restriction; owl:onProperty :isInNotebookValue; owl:minCardinality "1"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty text:hasDiplomaticTranscription; owl:minCardinality "1"^^xsd:nonNegativeInteger]
-#		a owl:Restriction; owl:onProperty work:hasPageIndicator; owl:cardinality "1"^^xsd:nonNegativeInteger], [
-#		a owl:Restriction; owl:onProperty work:hasLineNumber; owl:cardinality "1"^^xsd:nonNegativeInteger]
-		.
+	rdfs:label "diplomatic transcription"@en, "diplomatische Umschrift"@de;
+	rdfs:comment """Diplomatic transcription of a poem authored by Kuno Raeber."""@en, """Diplomatische Umschrift von einem Gedicht von Kuno Raeber."""@de;
+	rdfs:subClassOf text:DiplomaticTranscription, [
+		a owl:Restriction; owl:onProperty text:hasContent; owl:cardinality "1"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty text:hasLineNumber; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty text:hasVersionIndicator; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 :HandwrittenPoem
 	a owl:Class;
 	rdfs:label "handwritten poem"@en, "handgeschriebenes Gedicht"@de;
 	rdfs:comment """Handwritten poem authored by Kuno Raeber."""@en, """Handgeschriebenes Gedicht von Kuno Raeber."""@de;
 	rdfs:subClassOf :Poem, text:HandwrittenText, [
-		a owl:Restriction; owl:onProperty text:hasDiplomaticTranscription; owl:minCardinality "1"^^xsd:nonNegativeInteger].
+		a owl:Restriction; owl:onProperty :hasDiplomaticTranscription; owl:cardinality "1"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty :hasDiplomaticTranscriptionValue; owl:cardinality "1"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty :isOnPage; owl:minCardinality "1"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty :isOnPageValue; owl:minCardinality "1"^^xsd:nonNegativeInteger].
+
+:PoemNote
+	a owl:Class;
+	rdfs:label "poem note"@en, "Gedichtnotiz"@de;
+	rdfs:comment """Poem note authored by Kuno Raeber."""@en, """Gedichtnotiz von Kuno Raeber."""@de;
+	rdfs:subClassOf :HandwrittenPoem, work:Draft, [
+		a owl:Restriction; owl:onProperty :isInNotebook; owl:cardinality "1"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty :isInNotebookValue; owl:cardinality "1"^^xsd:nonNegativeInteger].
 
 :TypewrittenPoem
 	a owl:Class;
@@ -75,6 +83,12 @@
 		a owl:Restriction; owl:onProperty work:isPublishedIn; owl:minCardinality "1"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty work:isPublishedInValue; owl:minCardinality "1"^^xsd:nonNegativeInteger].
 
+:Page # to remove when knora-base:hasRepresentation will be implemented in Knora2
+	a owl:Class;
+	rdfs:label "page carrying a handwritten poem by Kuno Raeber"@en, "Seite ein handgeschriebenes Gedicht von Kuno Raeber tragend"@de;
+	rdfs:comment """Page carrying a handwritten poem by Kuno Raeber."""@en, """Seite ein handgeschriebenes Gedicht von Kuno Raeber tragend."""@de;
+	rdfs:subClassOf work:Page, knora-base:StillImageRepresentation.
+
 :Convolute
 	a owl:Class;
 	rdfs:label "convolute"@en, "Konvolut"@de;
@@ -85,11 +99,11 @@
 		a owl:Restriction; owl:onProperty text:hasDescription; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text:hasComment; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
-:PoemNotebook
+:PoemNotebook # to remove rdfs:subClassOf knora-base:StillImageRepresentation when knora-base:hasRepresentation will be implemented in Knora2
 	a owl:Class;
 	rdfs:label "poem notebook"@en, "Gedichten-Notizbuch"@de;
 	rdfs:comment """Notebook with poem notes authored by Kuno Raeber."""@en;
-	rdfs:subClassOf text:Notebook, :Convolute, [
+	rdfs:subClassOf text:Manuscript, text:Notebook, :Convolute, knora-base:StillImageRepresentation, knora-base:DocumentRepresentation, [
 		a owl:Restriction; owl:onProperty human:hasCreationPeriod; owl:cardinality "1"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty human:hasCreationPeriodValue; owl:cardinality "1"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text:hasCarrierDescription; owl:minCardinality "1"^^xsd:nonNegativeInteger], [
@@ -125,7 +139,7 @@
 		a owl:Restriction; owl:onProperty text:containsLaterStagesOfValue; owl:minCardinality "1"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text:containsEarlierStagesOf; owl:minCardinality "1"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text:containsEarlierStagesOfValue; owl:minCardinality "1"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty text:hasOriginDescription; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+		a owl:Restriction; owl:onProperty :hasOriginDescription; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 :PoemTypescript
 	a owl:Class;
@@ -133,7 +147,8 @@
 	rdfs:comment """Poem typescript by Kuno Raeber."""@en;
 	rdfs:subClassOf text:Typescript, [
 		a owl:Restriction; owl:onProperty :isPartOfTypescriptConvolute; owl:cardinality "1"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty :isPartOfTypescriptConvoluteValue; owl:cardinality "1"^^xsd:nonNegativeInteger]
+		a owl:Restriction; owl:onProperty :isPartOfTypescriptConvoluteValue; owl:cardinality "1"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty work:hasArchiveSignature; owl:cardinality "1"^^xsd:nonNegativeInteger]
 #		, [
 #		a owl:Restriction; owl:onProperty image:hasPhotoRepresentation; owl:minCardinality "1"^^xsd:nonNegativeInteger], [
 #		a owl:Restriction; owl:onProperty image:hasPhotoRepresentationValue; owl:minCardinality "1"^^xsd:nonNegativeInteger]
@@ -149,13 +164,13 @@
 		a owl:Restriction; owl:onProperty work:hasArchiveSignature; owl:cardinality "1"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text:containsLaterStagesOf; owl:minCardinality "1"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text:containsLaterStagesOfValue; owl:minCardinality "1"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty text:hasOriginDescription; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+		a owl:Restriction; owl:onProperty :hasOriginDescription; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
-:PrintedPoemPublication
+:PrintedPoemPublication # to remove rdfs:subClassOf knora-base:StillImageRepresentation when knora-base:hasRepresentation will be implemented in Knora2
 	a owl:Class;
 	rdfs:label "printed poem publication"@en, "gedruckte Gedicht-Publikation"@de;
 	rdfs:comment """Printed publication of a poem book by Kuno Raeber."""@en;
-	rdfs:subClassOf work:Book, text:Carrier, work:PrintedPublication, :Convolute, [
+	rdfs:subClassOf work:Book, text:Carrier, work:PrintedPublication, :Convolute, knora-base:StillImageRepresentation, [
 		a owl:Restriction; owl:onProperty work:hasPublicationTitle; owl:cardinality "1"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty work:hasPublicationDate; owl:cardinality "1"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text:containsLaterStagesOf; owl:minCardinality "1"^^xsd:nonNegativeInteger], [
@@ -165,11 +180,59 @@
 # PROPERTIES
 #
 
+:hasEdition
+	a owl:ObjectProperty;
+	rdfs:label "has edition"@en;
+	rdfs:comment """Relating a poem by Kuno Raeber to an edition thereof."""@en;
+	rdfs:subPropertyOf text:hasEdition;
+	knora-base:subjectClassConstraint :Poem;
+	knora-base:objectClassConstraint :Edition.
+
+:hasEditionValue
+	a owl:ObjectProperty;
+	rdfs:label "is part of typescript convolute value"@en;
+	rdfs:comment """Relating a poem by Kuno Raeber to a reification statement of the relation between the poem and an edition thereof."""@en;
+	rdfs:subPropertyOf text:hasEditionValue;
+	knora-base:subjectClassConstraint :Poem;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
+:hasDiplomaticTranscription
+	a owl:ObjectProperty;
+	rdfs:label "has diplomatic transcription"@en;
+	rdfs:comment "Relating a handwritten poem by Kuno Raeber to a diplomatic transcription thereof."@en;
+	rdfs:subPropertyOf text:hasDiplomaticTranscription;
+	knora-base:subjectClassConstraint :HandwrittenPoem;
+	knora-base:objectClassConstraint :DiplomaticTranscription.
+
+:hasDiplomaticTranscriptionValue
+	a owl:ObjectProperty;
+	rdfs:label "has diplomatic transcription value"@en;
+	rdfs:comment "Relating a poem by Kuno Raeber to a reification statement of the relation between the poem and a diplomatic transcription thereof."@en;
+	rdfs:subPropertyOf text:hasDiplomaticTranscriptionValue;
+	knora-base:subjectClassConstraint :HandwrittenPoem;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
+:isOnPage # to remove when knora-base:hasRepresentation will be implemented in Knora2
+	a owl:ObjectProperty;
+	rdfs:label "is on page"@en;
+	rdfs:comment """Relating a handwritten poem by Kuno Raeber to a carrier page it is on."""@en;
+	rdfs:subPropertyOf work:isOnPage;
+	knora-base:subjectClassConstraint :HandwrittenPoem;
+	knora-base:objectClassConstraint :Page.
+
+:isOnPageValue # to remove when knora-base:hasRepresentation will be implemented in Knora2
+	a owl:ObjectProperty;
+	rdfs:label "is on page value"@en;
+	rdfs:comment """Relating a handwritten poem by Kuno Raeber to a reification statement of the relation between the poem and a carrier page it is on."""@en;
+	rdfs:subPropertyOf work:isOnPageValue;
+	knora-base:subjectClassConstraint :HandwrittenPoem;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
 :isInNotebook
 	a owl:ObjectProperty;
 	rdfs:label "is in notebook"@en;
 	rdfs:comment """Relating a poem note by Kuno Raeber to a notebook it is in."""@en;
-	rdfs:subPropertyOf work:isMaterializedIn;
+	rdfs:subPropertyOf text:isInManuscript;
 	knora-base:subjectClassConstraint :PoemNote;
 	knora-base:objectClassConstraint :PoemNotebook.
 
@@ -177,7 +240,7 @@
 	a owl:ObjectProperty;
 	rdfs:label "is in notebook value"@en;
 	rdfs:comment """Relating a poem note by Kuno Raeber to a reification statement of the relation between the poem note and a notebook it is in."""@en;
-	rdfs:subPropertyOf work:isMaterializedInValue;
+	rdfs:subPropertyOf text:isInManuscriptValue;
 	knora-base:subjectClassConstraint :PoemNote;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
@@ -221,19 +284,3 @@
 	knora-base:subjectClassConstraint :Convolute;
 	knora-base:objectClassConstraint knora-base:TextValue;
 	salsah-gui:guiElement salsah-gui:Richtext.
-
-:hasEdition
-	a owl:ObjectProperty;
-	rdfs:label "has edition"@en;
-	rdfs:comment """Relating a poem by Kuno Raeber to an edition thereof."""@en;
-	rdfs:subPropertyOf text:hasEdition;
-	knora-base:subjectClassConstraint :Poem;
-	knora-base:objectClassConstraint :EditedPoem.
-
-:hasEditionValue
-	a owl:ObjectProperty;
-	rdfs:label "is part of typescript convolute value"@en;
-	rdfs:comment """Relating a poem by Kuno Raeber to a reification statement of the relation between the poem and an edition thereof."""@en;
-	rdfs:subPropertyOf text:hasEditionValue;
-	knora-base:subjectClassConstraint :Poem;
-	knora-base:objectClassConstraint knora-base:LinkValue.

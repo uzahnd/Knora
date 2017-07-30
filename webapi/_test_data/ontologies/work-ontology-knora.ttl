@@ -58,7 +58,7 @@
  	rdfs:label "manifestation"@en,"Manifestation"@de;
  	rdfs:comment """Carrier of an expression."""@en;
 #	skos:note """Includes both F4_Manifestation_Singleton and F5_Item as declared in FRBROO."""@en;
-	rdfs:subClassOf human:Creation, cidoc:E84_Information_Carrier, knora-base:StillImageRepresentation, knora-base:DocumentRepresentation,  [ # cardinality on StillImage and Document impossible
+	rdfs:subClassOf human:Creation, cidoc:E84_Information_Carrier, [ # cardinality on StillImage and Document impossible AND ALSO impossible to make it :subClassOf knora-b:ase:StillImageRepresentation (and knora-base:DocumentRepresentation), otherwise all :Manifestation must have a knora-b:ase:StillImageRepresentation
 		a owl:Restriction; owl:onProperty text:hasTitle; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text:hasDescription; owl:minCardinality "0"^^xsd:nonNegativeInteger]
 #		, [
@@ -143,8 +143,8 @@
 	rdfs:label "archive element"@en, "Archiv-Element"@de;
 	rdfs:comment """Element of an archive, which can be a single file or a file group."""@en;
 	rdfs:subClassOf :Manifestation, [
-		a owl:Restriction; owl:onProperty :isPartOf; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty :isPartOfValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty :isPartOfArchive; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty :isPartOfArchiveValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty :hasArchiveSignature; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 #
@@ -313,7 +313,7 @@
 	a owl:ObjectProperty;
 	rdfs:label "is on page"@en;
 	rdfs:comment """Relating an expression to a carrier page it is on."""@en;
-	rdfs:subPropertyOf :isMaterializedIn; # knora-base:hasLinkTo
+	rdfs:subPropertyOf :isMaterializedIn;
 	knora-base:subjectClassConstraint :Expression; # owl:propertyChainAxiom (:isMaterializedIn :hasPage)
 	knora-base:objectClassConstraint :Page.
 
@@ -321,7 +321,7 @@
 	a owl:ObjectProperty;
 	rdfs:label "is on page value"@en;
 	rdfs:comment """Relating an expression to a reification statement of the relation between the expression and the carrier page it is on."""@en;
-	rdfs:subPropertyOf :isMaterializedInValue; # knora-base:hasLinkToValue
+	rdfs:subPropertyOf :isMaterializedInValue;
 	knora-base:subjectClassConstraint :Expression;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
@@ -332,6 +332,22 @@
 	rdfs:subPropertyOf knora-base:hasValue;
 	knora-base:subjectClassConstraint :Expression; # owl:propertyChainAxiom (:isOnPage :hasNumber)
 	knora-base:objectClassConstraint knora-base:IntValue.
+
+:isPartOfArchive
+	a owl:ObjectProperty;
+	rdfs:label "is part of archive"@en;
+	rdfs:comment """Relating an element to an archive it is in."""@en;
+	rdfs:subPropertyOf :isPartOf;
+	knora-base:subjectClassConstraint :ArchiveElement;
+	knora-base:objectClassConstraint :Archive.
+
+:isPartOfArchiveValue
+	a owl:ObjectProperty;
+	rdfs:label "is part of archive value"@en;
+	rdfs:comment """Relating an element to a reification statement of the relation between the element and an archive it is in."""@en;
+	rdfs:subPropertyOf :isPartOfValue;
+	knora-base:subjectClassConstraint :ArchiveElement;
+	knora-base:objectClassConstraint knora-base:LinkValue.
 
 :hasArchiveSignature
 	a owl:ObjectProperty;
