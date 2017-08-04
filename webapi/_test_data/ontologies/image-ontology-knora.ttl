@@ -25,8 +25,7 @@
 	a owl:Class;
 	rdfs:label "image"@en,"Bild"@de;
 	rdfs:comment """2-dimensional representation of a resource."""@en;
-	rdfs:subClassOf human:Creation, [ # rdfs:subClassOf cidoc:E38_Image rdfs:subClassOf cidoc:E36_Visual_Item rdfs:subClassOf cidoc:E73_Information_Object
-		a owl:Restriction; owl:onProperty text:hasTitle; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+	rdfs:subClassOf human:Creation. # rdfs:subClassOf cidoc:E38_Image rdfs:subClassOf cidoc:E36_Visual_Item rdfs:subClassOf cidoc:E73_Information_Object
 
 :Photograph
 	a owl:Class;

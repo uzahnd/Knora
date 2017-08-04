@@ -42,12 +42,15 @@
 		a owl:Restriction; owl:onProperty :hasDiplomaticTranscription; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty :hasDiplomaticTranscriptionValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty :isOnCarrier; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty :isOnCarrierValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+		a owl:Restriction; owl:onProperty :isOnCarrierValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty :hasPageIndicator; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty :hasLineNumber; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty :hasVersionIndicator; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 :WrittenText
 	a owl:Class;
 	rdfs:label "written text"@en, "geschriebener Text"@de;
-	rdfs:comment """Text written by any method, e.g. manually, with an analogue or digital typewriter."""@en;
+	rdfs:comment """Text written by any method, e.g. manually, with an analogue or digital typewriter, or on a computer."""@en;
 	rdfs:subClassOf :Expression, [
 		a owl:Restriction; owl:onProperty :isOnCarrier; owl:cardinality "1"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty :isOnCarrierValue; owl:cardinality "1"^^xsd:nonNegativeInteger].
@@ -91,8 +94,7 @@
 	a owl:Class;
 	rdfs:label "edited text"@en, "edierter Text"@de; # Lesetext
 	rdfs:comment """Changed form of a text expression as the result of editing."""@en;
-	rdfs:subClassOf :Expression, [
-		a owl:Restriction; owl:onProperty :hasEditedContent; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+	rdfs:subClassOf :Expression.
 
 :Editor
 	a owl:Class;
@@ -143,11 +145,26 @@
 	rdfs:comment """Carrier of a reproduced text by any method, e.g. handwriting, typewriting, machine copying, printing, digitizing."""@en;
 	rdfs:subClassOf :Carrier. # frbroo:F4_Manifestation_Singleton.
 
+:Diary
+	a owl:Class;
+	rdfs:label "diary"@en,"Tagebuch"@de;
+	rdfs:comment """Book wherein periodically, usually daily personal experiences and observations are described."""@en;
+	rdfs:subClassOf work:Book, :Carrier.
+
+:DiaryEntry
+	a owl:Class;
+	rdfs:label "diary entry"@en, "Tagebucheintrag"@de;
+	rdfs:comment """Periodical, usually daily description of a personal experience or observation written in a diary."""@en;
+	rdfs:subClassOf :Expression, [
+		a owl:Restriction; owl:onProperty :isInDiary; owl:cardinality "1"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty :isInDiaryValue; owl:cardinality "1"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty :hasEnteringDate; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+
 :Letter
 	a owl:Class;
 	rdfs:label "letter"@en, "Brief"@de;
 	rdfs:comment """Written text intended to be send to one or more persons or an organization."""@en;
-	rdfs:subClassOf :Carrier, [ # frbroo:F4_Manifestation_Singleton
+	rdfs:subClassOf :Carrier, frbroo:F4_Manifestation_Singleton, [
 		a owl:Restriction; owl:onProperty :hasSender; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty :hasSenderValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty :hasReceiver; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
@@ -158,13 +175,11 @@
 	rdfs:label "convolute"@en, "Konvolut"@de;
 	rdfs:comment """Text carriers, e.g. of drafts, manuscripts, typoscripts or prints, gathered as one."""@en;
 	rdfs:subClassOf human:Creation, cidoc:E78_Collection, [
-		a owl:Restriction; owl:onProperty :hasTitle; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty :hasAlias; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty :hasDescription; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty :containsEarlierStagesOf; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty :containsEarlierStagesOfValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty :containsLaterStagesOf; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty :containsLaterStagesOfValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+		a owl:Restriction; owl:onProperty :containsLaterStagesOfValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty :hasSizeDescription; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 :Poem
 	a owl:Class;
@@ -178,13 +193,13 @@
 	rdfs:comment """Author of a poem."""@en;
 	rdfs:subClassOf :Author.
 
-:TextEvolution
+:TextDevelopment
 	a owl:Class;
-	rdfs:label "text evolution"@en;
+	rdfs:label "text development"@en, "Text-Entwicklung"@de;
 	rdfs:comment """Action wherein a person(s) creates text resulting in different manifestation, e.g. from notebook to manuscript to typescript to published print."""@en;
 	rdfs:subClassOf human:Creating, [
-		a owl:Restriction; owl:onProperty event:hasStage; owl:minCardinality "1"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty event:hasStageValue; owl:minCardinality "1"^^xsd:nonNegativeInteger].
+		a owl:Restriction; owl:onProperty event:hasStage; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty event:hasStageValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 #
 # PROPERTIES
@@ -447,6 +462,31 @@
 	knora-base:subjectClassConstraint :TypewrittenText;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
+:isInDiary
+	a owl:ObjectProperty;
+	rdfs:label "is in diary"@en;
+	rdfs:comment """Relating a diary entry to a diary it is in."""@en;
+	rdfs:subPropertyOf :isOnCarrier;
+	knora-base:subjectClassConstraint :DiaryEntry;
+	knora-base:objectClassConstraint :Diary.
+
+:isInDiaryValue
+	a owl:ObjectProperty;
+	rdfs:label "is in diary value"@en;
+	rdfs:comment """Relating a diary entry to a reification statement of the relation between the diary entry and a diary it is in."""@en;
+	rdfs:subPropertyOf :isOnCarrierValue;
+	knora-base:subjectClassConstraint :DiaryEntry;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+																										   
+:hasEnteringDate
+	a owl:ObjectProperty;
+	rdfs:label "has entering date"@en;
+	rdfs:comment """Relating a diary entry to its date of entering in a diary."""@en;
+	rdfs:subPropertyOf human:hasCreationDate;
+	knora-base:subjectClassConstraint :DiaryEntry;
+	knora-base:objectClassConstraint knora-base:DateValue;
+	salsah-gui:guiElement salsah-gui:Date.
+
 :hasSender
 	a owl:ObjectProperty;
 	rdfs:label "has sender"@en;
@@ -510,3 +550,12 @@
 	rdfs:subPropertyOf knora-base:hasLinkToValue;
 	knora-base:subjectClassConstraint :Convolute;
 	knora-base:objectClassConstraint knora-base:LinkValue.
+
+:hasSizeDescription
+	a owl:ObjectProperty;
+	rdfs:label "has size description"@en;
+	rdfs:comment """Relating a convolute to a description (as object) of its size."""@en;
+	rdfs:subPropertyOf :hasDescription;
+	knora-base:subjectClassConstraint :Convolute;
+	knora-base:objectClassConstraint knora-base:TextValue;
+	salsah-gui:guiElement salsah-gui:Richtext.

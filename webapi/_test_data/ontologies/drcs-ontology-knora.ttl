@@ -44,7 +44,7 @@
 :hasStegmuellerPersonDescription # DB PL: RCS_AUTHORS - STGM
  	a owl:ObjectProperty;
  	rdfs:label "has Stegmüller's person description object"@en;
- 	rdfs:comment """Relating a person to a Stegmüller's description object thereof."""@en;
+ 	rdfs:comment """Relating a person to a Stegmüller's description (as object) thereof."""@en;
  	rdfs:subPropertyOf text:hasDescription; # subPropertyOf text:hasText subPropertyOf knora-base:hasValue
  	knora-base:subjectClassConstraint :Person;
  	knora-base:objectClassConstraint knora-base:TextValue.
@@ -52,7 +52,7 @@
 :hasStegmuellerExpressionDescription # DB PL: RCS_XPRESSIONS - STGM I/STGM II
 	a owl:ObjectProperty;
 	rdfs:label "has Stegmüller's expression description object"@en;
-	rdfs:comment """Relating an expression to a Stegmüller's description object thereof."""@en;
+	rdfs:comment """Relating an expression to a Stegmüller's description (as object) thereof."""@en;
 	rdfs:subPropertyOf text:hasDescription; # subPropertyOf text:hasText subPropertyOf knora-base:hasValue
 	knora-base:subjectClassConstraint :Commentary;
 	knora-base:objectClassConstraint knora-base:TextValue.
@@ -60,7 +60,7 @@
 :hasStegmuellerCode # DB PL: RCS_XPRESSIONS - RSCODES
 	a owl:ObjectProperty;
 	rdfs:label "has Stegmüller's code object"@en;
-	rdfs:comment """Relating an expression to a Stegmüller's code object thereof."""@en;
-	rdfs:subPropertyOf text:hasTextObject; # subPropertyOf knora-base:hasValue
+	rdfs:comment """Relating an expression to a Stegmüller's code (as object) thereof."""@en;
+	rdfs:subPropertyOf text:hasText; # subPropertyOf knora-base:hasValue
 	knora-base:subjectClassConstraint :Commentary;
 	knora-base:objectClassConstraint knora-base:TextValue.

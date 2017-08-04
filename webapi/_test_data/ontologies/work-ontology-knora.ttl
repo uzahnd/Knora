@@ -7,7 +7,7 @@
 # @prefix dct: <http://purl.org/dc/terms/>.
 @prefix foaf: <http://xmlns.com/foaf/0.1/>.
 @prefix cidoc: <http://www.cidoc-crm.org/cidoc-crm/>.
-# @prefix frbroo: <http://iflastandards.info/ns/fr/frbr/frbroo/>.
+@prefix frbroo: <http://iflastandards.info/ns/fr/frbr/frbroo/>.
 @prefix event: <http://www.knora.org/ontology/event#>.
 @prefix human: <http://www.knora.org/ontology/human#>.
 @prefix text: <http://www.knora.org/ontology/text#>.
@@ -32,24 +32,22 @@
 	rdfs:comment """Intellectual product as an abstract conceptual thing."""@en;
 	rdfs:comment """See http://iflastandards.info/ns/fr/frbr/frbroo/F1_Work."""@en; 
 	rdfs:subClassOf human:Creation, [ # frbroo:F1_Work, [
-		a owl:Restriction; owl:onProperty text:hasTitle; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty :isExpressedIn; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty :isExpressedInValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
-:MonoWork
+:IndividualWork
 	a owl:Class;
 	rdfs:label "individual work"@en, "individuelles Werk"@de;
+	rdfs:comment """Work as a complete whole realised in one self-contained expression."""@en;
 	rdfs:comment """See http://iflastandards.info/ns/fr/frbr/frbroo/F14_Individual_Work."""@en;
-	rdfs:subClassOf :Work. # frbroo:F14_Individual_Work.
+	rdfs:subClassOf :Work, frbroo:F14_Individual_Work.
 
 :Expression
 	a owl:Class;
 	rdfs:label "expression"@en, "Expression"@de;
-	rdfs:comment """See http://iflastandards.info/ns/fr/frbr/frbroo/F22_Self-Contained_Expression and http://iflastandards.info/ns/fr/frbr/frbroo/F2_Expression."""@en;
-	rdfs:subClassOf human:Creation, [ # frbroo:F22_Self-Contained_Expression, [
-		a owl:Restriction; owl:onProperty text:hasTitle; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty text:hasAlias; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty text:hasDescription; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+	rdfs:comment """Realisation of an individual work in the form of an identifiable immaterial object, such as a text, poem, joke, musical or choreographic notation, movement pattern, sound pattern, image, multimedia object, or any combination of such forms that have objectively recognisable structures."""@en;
+	rdfs:comment """See http://iflastandards.info/ns/fr/frbr/frbroo/F2_Expression and http://iflastandards.info/ns/fr/frbr/frbroo/F22_Self-Contained_Expression."""@en;
+	rdfs:subClassOf human:Creation, frbroo:F22_Self-Contained_Expression, [
 		a owl:Restriction; owl:onProperty :isMaterializedIn; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty :isMaterializedInValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
@@ -58,13 +56,10 @@
  	rdfs:label "manifestation"@en,"Manifestation"@de;
  	rdfs:comment """Carrier of an expression."""@en;
 #	skos:note """Includes both F4_Manifestation_Singleton and F5_Item as declared in FRBROO."""@en;
-	rdfs:subClassOf human:Creation, cidoc:E84_Information_Carrier, [ # cardinality on StillImage and Document impossible AND ALSO impossible to make it :subClassOf knora-b:ase:StillImageRepresentation (and knora-base:DocumentRepresentation), otherwise all :Manifestation must have a knora-b:ase:StillImageRepresentation
-		a owl:Restriction; owl:onProperty text:hasTitle; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty text:hasDescription; owl:minCardinality "0"^^xsd:nonNegativeInteger]
+	rdfs:subClassOf human:Creation, cidoc:E84_Information_Carrier. # cardinality on StillImage and Document impossible AND ALSO impossible to make it :subClassOf knora-b:ase:StillImageRepresentation (and knora-base:DocumentRepresentation), otherwise all :Manifestation must have a knora-b:ase:StillImageRepresentation
 #		, [
 #		a owl:Restriction; owl:onProperty image:hasPhotoRepresentation; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-#		a owl:Restriction; owl:onProperty image:hasPhotoRepresentationValue; owl:minCardinality "0"^^xsd:nonNegativeInteger]
-		.
+#		a owl:Restriction; owl:onProperty image:hasPhotoRepresentationValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 :Draft
 	a owl:Class;
@@ -76,7 +71,7 @@
 	a owl:Class;
 	rdfs:label "publication expression"@en, "Publikation-Expression"@de;
 	rdfs:comment """See http://iflastandards.info/ns/fr/frbr/frbroo/F24_Publication_Expression."""@en;
-	rdfs:subClassOf :Expression, [ # frbroo:F24_Publication_Expression.
+	rdfs:subClassOf :Expression, frbroo:F24_Publication_Expression, [
 		a owl:Restriction; owl:onProperty :isPublishedIn; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty :isPublishedInValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
@@ -84,11 +79,7 @@
 	a owl:Class;
 	rdfs:label "book"@en, "Buch"@de;
 	rdfs:comment """Set of leafs, e.g. sheets of paper or parchment, fastened together along one side and mostly encased between a front and back cover."""@en;
-	rdfs:subClassOf :Manifestation
-#		, [
-#		a owl:Restriction; owl:onProperty :hasPage; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-#		a owl:Restriction; owl:onProperty :hasPageValue; owl:minCardinality "0"^^xsd:nonNegativeInteger]
-		.
+	rdfs:subClassOf :Manifestation.
 
 :Page # the concept of leaf is cut short and can be interposed later
 	a owl:Class;
@@ -107,7 +98,7 @@
 
 :Publisher
 	a owl:Class;
-	rdfs:label "publisher"@en;
+	rdfs:label "publisher"@en, "Herausgeber"@de;
 	rdfs:comment """Role of an agent as publisher."""@en;
 	rdfs:subClassOf human:OccupationalRole.
 
@@ -118,7 +109,7 @@
 	rdfs:subClassOf :Manifestation, [ # frbroo:F5_Item.
 		a owl:Restriction; owl:onProperty :hasPublicationTitle; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty :hasPublicationDate; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty :hasPublisherName; owl:cardinality "1"^^xsd:nonNegativeInteger].
+		a owl:Restriction; owl:onProperty :hasPublisherName; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 :PrintedPublication
 	a owl:Class;
@@ -255,7 +246,7 @@
 	a owl:ObjectProperty;
 	rdfs:label "has publisher description"@en;
 	rdfs:comment "Relating a publication to its publisher's description (as object)."@en;
-	rdfs:subPropertyOf text:hasName;
+	rdfs:subPropertyOf text:hasDescription;
 	knora-base:subjectClassConstraint :Publication;
 	knora-base:objectClassConstraint knora-base:TextValue;
 	salsah-gui:guiElement salsah-gui:Richtext.
@@ -264,7 +255,7 @@
 	a owl:ObjectProperty;
 	rdfs:label "has printer description"@en;
 	rdfs:comment "Relating a publication to its printer's description (as object)."@en;
-	rdfs:subPropertyOf text:hasName;
+	rdfs:subPropertyOf text:hasDescription;
 	knora-base:subjectClassConstraint :Publication;
 	knora-base:objectClassConstraint knora-base:TextValue;
 	salsah-gui:guiElement salsah-gui:Richtext.

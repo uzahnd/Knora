@@ -138,6 +138,9 @@
 	rdfs:label "creation"@en;
 	rdfs:comment """Something created by a person."""@en;
 	rdfs:subClassOf event:Output, cidoc:E71_Man-Made_Thing, [
+		a owl:Restriction; owl:onProperty text:hasTitle; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty text:hasAlias; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty text:hasDescription; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty :hasCreationDate; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty :hasCreationPeriod; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty :hasCreationPeriodValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].

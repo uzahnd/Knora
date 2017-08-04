@@ -20,6 +20,15 @@
 # CLASSES
 #
 
+:Work
+	a owl:Class;
+	rdfs:label "work"@en, "Werk"@de;
+	rdfs:comment """Work by Kuno Raeber."""@en, """Werk von Kuno Raeber."""@de;
+	rdfs:subClassOf work:IndividualWork, [
+		a owl:Restriction; owl:onProperty text:hasTitle; owl:cardinality "1"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty work:isExpressedIn; owl:minCardinality "1"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty work:isExpressedInValue; owl:minCardinality "1"^^xsd:nonNegativeInteger].
+
 :Poem
 	a owl:Class;
 	rdfs:label "poem"@en, "Gedicht"@de;
@@ -28,8 +37,8 @@
 		a owl:Restriction; owl:onProperty text:hasAuthor; owl:cardinality "1"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text:hasAuthorValue; owl:cardinality "1"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text:hasTitle; owl:cardinality "1"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty work:isOnPage; owl:minCardinality "1"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty work:isOnPageValue; owl:minCardinality "1"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty work:isOnPage; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty work:isOnPageValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty :hasEdition; owl:cardinality "1"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty :hasEditionValue; owl:cardinality "1"^^xsd:nonNegativeInteger].
 
@@ -83,11 +92,12 @@
 		a owl:Restriction; owl:onProperty work:isPublishedIn; owl:minCardinality "1"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty work:isPublishedInValue; owl:minCardinality "1"^^xsd:nonNegativeInteger].
 
-:Page # to remove when knora-base:hasRepresentation will be implemented in Knora2
+:Page # to be removed when knora-base:hasRepresentation will be implemented in Knora2
 	a owl:Class;
-	rdfs:label "page carrying a handwritten poem by Kuno Raeber"@en, "Seite ein handgeschriebenes Gedicht von Kuno Raeber tragend"@de;
+	rdfs:label "page"@en, "Seite"@de;
 	rdfs:comment """Page carrying a handwritten poem by Kuno Raeber."""@en, """Seite ein handgeschriebenes Gedicht von Kuno Raeber tragend."""@de;
-	rdfs:subClassOf work:Page, knora-base:StillImageRepresentation.
+	rdfs:subClassOf work:Page, knora-base:StillImageRepresentation, [
+		a owl:Restriction; owl:onProperty knora-base:hasStillImageFileValue; owl:minCardinality "1"^^xsd:nonNegativeInteger].
 
 :Convolute
 	a owl:Class;
@@ -96,18 +106,19 @@
 	rdfs:subClassOf text:Convolute, [
 		a owl:Restriction; owl:onProperty text:hasTitle; owl:minCardinality "1"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text:hasAlias; owl:minCardinality "1"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty text:hasDescription; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text:hasComment; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
-:PoemNotebook # to remove rdfs:subClassOf knora-base:StillImageRepresentation when knora-base:hasRepresentation will be implemented in Knora2
+:PoemNotebook # to be removed rdfs:subClassOf knora-base:StillImageRepresentation when knora-base:hasRepresentation will be implemented in Knora2
 	a owl:Class;
 	rdfs:label "poem notebook"@en, "Gedichten-Notizbuch"@de;
-	rdfs:comment """Notebook with poem notes authored by Kuno Raeber."""@en;
+	rdfs:comment """Notebook with poem drafts authored by Kuno Raeber."""@en;
 	rdfs:subClassOf text:Manuscript, text:Notebook, :Convolute, knora-base:StillImageRepresentation, knora-base:DocumentRepresentation, [
 		a owl:Restriction; owl:onProperty human:hasCreationPeriod; owl:cardinality "1"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty human:hasCreationPeriodValue; owl:cardinality "1"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text:hasCarrierDescription; owl:minCardinality "1"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty work:hasArchiveSignature; owl:cardinality "1"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty knora-base:hasStillImageFileValue; owl:minCardinality "1"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty knora-base:hasDocumentFileValue; owl:minCardinality "1"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text:containsEarlierStagesOf; owl:minCardinality "1"^^xsd:nonNegativeInteger], [ # owl:someValuesFrom
 		a owl:Restriction; owl:onProperty text:containsEarlierStagesOfValue; owl:minCardinality "1"^^xsd:nonNegativeInteger]
 #		a owl:Restriction; owl:onProperty image:hasPhotoRepresentation; owl:minCardinality "1"^^xsd:nonNegativeInteger], [
@@ -127,10 +138,10 @@
 #		a owl:Restriction; owl:onProperty image:hasPhotoRepresentationValue; owl:minCardinality "1"^^xsd:nonNegativeInteger]
 		.
 
-:PoemManuscriptConvolute
+:PoemManuscriptConvolute # hasSizeDescription cardinality "1" ?
 	a owl:Class;
 	rdfs:label "poem manuscript convolute"@en, "Gedicht-Manuskriptenkonvolut"@de;
-	rdfs:comment """Poem manuscript convolute of which the poems are authored by Kuno Raeber."""@en;
+	rdfs:comment """Poem manuscript convolute with poems authored by Kuno Raeber."""@en;
 	rdfs:subClassOf :Convolute, [
 		a owl:Restriction; owl:onProperty human:hasCreationPeriod; owl:cardinality "1"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty human:hasCreationPeriodValue; owl:cardinality "1"^^xsd:nonNegativeInteger], [
@@ -148,16 +159,12 @@
 	rdfs:subClassOf text:Typescript, [
 		a owl:Restriction; owl:onProperty :isPartOfTypescriptConvolute; owl:cardinality "1"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty :isPartOfTypescriptConvoluteValue; owl:cardinality "1"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty work:hasArchiveSignature; owl:cardinality "1"^^xsd:nonNegativeInteger]
-#		, [
-#		a owl:Restriction; owl:onProperty image:hasPhotoRepresentation; owl:minCardinality "1"^^xsd:nonNegativeInteger], [
-#		a owl:Restriction; owl:onProperty image:hasPhotoRepresentationValue; owl:minCardinality "1"^^xsd:nonNegativeInteger]
-		.
+		a owl:Restriction; owl:onProperty work:hasArchiveSignature; owl:cardinality "1"^^xsd:nonNegativeInteger].
 
-:PoemTypescriptConvolute
+:PoemTypescriptConvolute # hasSizeDescription cardinality "1" ?
 	a owl:Class;
 	rdfs:label "poem typescript convolute"@en, "Gedicht-Typoskriptenonvolut"@de;
-	rdfs:comment """Poem typescript convolute of which the poems are authored by Kuno Raeber."""@en;
+	rdfs:comment """Poem typescript convolute with poems authored by Kuno Raeber."""@en;
 	rdfs:subClassOf :Convolute, [
 		a owl:Restriction; owl:onProperty human:hasCreationPeriod; owl:cardinality "1"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty human:hasCreationPeriodValue; owl:cardinality "1"^^xsd:nonNegativeInteger], [
@@ -166,15 +173,42 @@
 		a owl:Restriction; owl:onProperty text:containsLaterStagesOfValue; owl:minCardinality "1"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty :hasOriginDescription; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
-:PrintedPoemPublication # to remove rdfs:subClassOf knora-base:StillImageRepresentation when knora-base:hasRepresentation will be implemented in Knora2
+# PrintedPoemPublicationBook
+:PrintedPoemPublication # to be removed rdfs:subClassOf knora-base:StillImageRepresentation when knora-base:hasRepresentation will be implemented in Knora2
 	a owl:Class;
 	rdfs:label "printed poem publication"@en, "gedruckte Gedicht-Publikation"@de;
-	rdfs:comment """Printed publication of a poem book by Kuno Raeber."""@en;
+	rdfs:comment """Printed publication of a book with poems authored by Kuno Raeber."""@en;
 	rdfs:subClassOf work:Book, text:Carrier, work:PrintedPublication, :Convolute, knora-base:StillImageRepresentation, [
 		a owl:Restriction; owl:onProperty work:hasPublicationTitle; owl:cardinality "1"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty work:hasPublicationDate; owl:cardinality "1"^^xsd:nonNegativeInteger], [
+#		text:hasCarrierDescription at text:Carrier
+		a owl:Restriction; owl:onProperty work:hasPublisherDescription; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty work:hasPrinterDescription; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty knora-base:hasStillImageFileValue; owl:minCardinality "1"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text:containsLaterStagesOf; owl:minCardinality "1"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text:containsLaterStagesOfValue; owl:minCardinality "1"^^xsd:nonNegativeInteger].
+
+# PrintedPoemPublication
+#	rdfs:subClassOf text:Carrier, work:PrintedPublication, :Convolute, [
+# magazine, 
+
+:Diary
+	a owl:Class;
+	rdfs:label "diary"@en,"Tagebuch"@de;
+	rdfs:comment """Diary with entries authored by Kuno Raeber."""@en;
+	rdfs:subClassOf text:Manuscript, text:Diary, :Convolute.
+
+:DiaryEntry
+	a owl:Class;
+	rdfs:label "diary entry"@en, "Tagebucheintrag"@de;
+	rdfs:comment """Diary entry authored by Kuno Raeber."""@en;
+	rdfs:subClassOf text:DiaryEntry, [
+		a owl:Restriction; owl:onProperty text:hasTitle; owl:cardinality "1"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty text:hasAlias; owl:cardinality "1"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty text:hasContent; owl:cardinality "1"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty :isInDiary; owl:cardinality "1"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty :isInDiaryValue; owl:cardinality "1"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty text:hasEnteringDate; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 #
 # PROPERTIES
@@ -284,3 +318,19 @@
 	knora-base:subjectClassConstraint :Convolute;
 	knora-base:objectClassConstraint knora-base:TextValue;
 	salsah-gui:guiElement salsah-gui:Richtext.
+
+:isInDiary
+	a owl:ObjectProperty;
+	rdfs:label "is in diary"@en;
+	rdfs:comment """Relating a diary entry by Kuno Raeber to the diary it is in."""@en;
+	rdfs:subPropertyOf text:isInManuscript;
+	knora-base:subjectClassConstraint :DiaryEntry;
+	knora-base:objectClassConstraint :Diary.
+
+:isInDiaryValue
+	a owl:ObjectProperty;
+	rdfs:label "is in diary value"@en;
+	rdfs:comment """Relating a diary entry by Kuno Raeber to a reification statement of the relation between the diary entry and the diary it is in."""@en;
+	rdfs:subPropertyOf text:isInManuscriptValue;
+	knora-base:subjectClassConstraint :PoemNote;
+	knora-base:objectClassConstraint knora-base:LinkValue.
