@@ -34,6 +34,7 @@
 	rdfs:subClassOf work:Expression, cidoc:E33_Linguistic_Object, [
 		a owl:Restriction; owl:onProperty :hasAuthor; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty :hasAuthorValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty :hasStructureDescription; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty :hasIncipit; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty :hasExplicit; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty :hasContent; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
@@ -163,7 +164,17 @@
 :Letter
 	a owl:Class;
 	rdfs:label "letter"@en, "Brief"@de;
-	rdfs:comment """Written text intended to be send to one or more persons or an organization."""@en;
+	rdfs:comment """Written text intended to be sent from (a) person(s) or (an) organization(s) to another one, e.g. through a postal system."""@en;
+	rdfs:subClassOf :Carrier, frbroo:F4_Manifestation_Singleton, [
+		a owl:Restriction; owl:onProperty :hasSender; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty :hasSenderValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty :hasReceiver; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty :hasReceiverValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+
+:Postcard
+	a owl:Class;
+	rdfs:label "postcard"@en, "Postkarte"@de;
+	rdfs:comment """Card with one side, usually with a printed structure, used for writing a message, an address and applying a postage stamp, to be sent through a postal system."""@en;
 	rdfs:subClassOf :Carrier, frbroo:F4_Manifestation_Singleton, [
 		a owl:Restriction; owl:onProperty :hasSender; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty :hasSenderValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
@@ -177,9 +188,25 @@
 	rdfs:subClassOf human:Creation, cidoc:E78_Collection, [
 		a owl:Restriction; owl:onProperty :containsEarlierStagesOf; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty :containsEarlierStagesOfValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty :containsEarlierStagesOfPublication; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty :containsEarlierStagesOfPublicationValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty :containsLaterStagesOf; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty :containsLaterStagesOfValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty :hasSizeDescription; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+
+:TextDevelopment
+	a owl:Class;
+	rdfs:label "text development"@en, "Text-Entwicklung"@de;
+	rdfs:comment """Action wherein a person(s) creates text resulting in different manifestation, e.g. from notebook to manuscript to typescript to published print."""@en;
+	rdfs:subClassOf human:Creating, [
+		a owl:Restriction; owl:onProperty event:hasStage; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty event:hasStageValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+
+# :Structure
+
+# :Prose: purely grammatical text without metrical structure
+
+# :Poetry: text with metrical structure
 
 :Poem
 	a owl:Class;
@@ -192,14 +219,6 @@
 	rdfs:label "poet"@en, "Dichter"@de;
 	rdfs:comment """Author of a poem."""@en;
 	rdfs:subClassOf :Author.
-
-:TextDevelopment
-	a owl:Class;
-	rdfs:label "text development"@en, "Text-Entwicklung"@de;
-	rdfs:comment """Action wherein a person(s) creates text resulting in different manifestation, e.g. from notebook to manuscript to typescript to published print."""@en;
-	rdfs:subClassOf human:Creating, [
-		a owl:Restriction; owl:onProperty event:hasStage; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty event:hasStageValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 #
 # PROPERTIES
@@ -521,7 +540,7 @@
 
 :containsEarlierStagesOf
 	a owl:ObjectProperty;
-	rdfs:label "contains early stages of"@en;
+	rdfs:label "contains earlier stages of"@en;
 	rdfs:comment """Relating a convolute to another one whose text carriers are later stages of the text carriers of the former."""@en;
 	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint :Convolute;
@@ -529,9 +548,25 @@
 
 :containsEarlierStagesOfValue
 	a owl:ObjectProperty;
-	rdfs:label "contains early stages of value"@en;
+	rdfs:label "contains earlier stages of value"@en;
 	rdfs:comment """Relating a convolute to a reification statement of the relation between the convolute and another one whose text carriers are later stages of the text carriers of the former."""@en;
 	rdfs:subPropertyOf knora-base:hasLinkToValue;
+	knora-base:subjectClassConstraint :Convolute;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
+:containsEarlierStagesOfPublication
+	a owl:ObjectProperty;
+	rdfs:label "contains earlier stages of publication"@en;
+	rdfs:comment """Relating a convolute to another one whose text carriers are later publication stages of the text carriers of the former."""@en;
+	rdfs:subPropertyOf :containsEarlierStagesOf;
+	knora-base:subjectClassConstraint :Convolute;
+	knora-base:objectClassConstraint :Convolute.
+
+:containsEarlierStagesOfPublicationValue
+	a owl:ObjectProperty;
+	rdfs:label "contains earlier stages of publication value"@en;
+	rdfs:comment """Relating a convolute to a reification statement of the relation between the convolute and another one whose text carriers are later publication stages of the text carriers of the former."""@en;
+	rdfs:subPropertyOf :containsEarlierStagesOfValue;
 	knora-base:subjectClassConstraint :Convolute;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
@@ -557,5 +592,14 @@
 	rdfs:comment """Relating a convolute to a description (as object) of its size."""@en;
 	rdfs:subPropertyOf :hasDescription;
 	knora-base:subjectClassConstraint :Convolute;
+	knora-base:objectClassConstraint knora-base:TextValue;
+	salsah-gui:guiElement salsah-gui:Richtext.
+
+:hasStructureDescription
+	a owl:ObjectProperty;
+	rdfs:label "has structure description"@en;
+	rdfs:comment """Relating a text expression to a description (as object) of its structure."""@en;
+	rdfs:subPropertyOf :hasDescription;
+	knora-base:subjectClassConstraint :Expression;
 	knora-base:objectClassConstraint knora-base:TextValue;
 	salsah-gui:guiElement salsah-gui:Richtext.

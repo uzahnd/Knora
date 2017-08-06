@@ -56,7 +56,7 @@
  	rdfs:label "manifestation"@en,"Manifestation"@de;
  	rdfs:comment """Carrier of an expression."""@en;
 #	skos:note """Includes both F4_Manifestation_Singleton and F5_Item as declared in FRBROO."""@en;
-	rdfs:subClassOf human:Creation, cidoc:E84_Information_Carrier. # cardinality on StillImage and Document impossible AND ALSO impossible to make it :subClassOf knora-b:ase:StillImageRepresentation (and knora-base:DocumentRepresentation), otherwise all :Manifestation must have a knora-b:ase:StillImageRepresentation
+	rdfs:subClassOf human:Creation, cidoc:E84_Information_Carrier. # cardinality on StillImage and Document impossible because knora-base:hasRepresentation not usable in Knora1 AND ALSO impossible to make :Manifestation :subClassOf knora-base:StillImageRepresentation (and knora-base:DocumentRepresentation), otherwise all :subClassOf :Manifestation must have at least 1 knora-base:hasStillImageFileValue.
 #		, [
 #		a owl:Restriction; owl:onProperty image:hasPhotoRepresentation; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 #		a owl:Restriction; owl:onProperty image:hasPhotoRepresentationValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
