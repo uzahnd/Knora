@@ -96,6 +96,13 @@
 	rdfs:comment """An expression printed on a carrier."""@en;
 	rdfs:subClassOf :Manifestation.
 
+#:PublicationState
+#	a owl:Class;
+#	rdfs:label "Publication state"@en, "Publikationszustand"@de;
+#	rdfs:comment """State of an expression bein g published or not."""@en;
+#	rdfs:subClassOf event:State;
+#	owl:oneOf (published unpublished).
+
 :Publisher
 	a owl:Class;
 	rdfs:label "publisher"@en, "Herausgeber"@de;
@@ -191,6 +198,16 @@
 	rdfs:subPropertyOf knora-base:hasLinkToValue;
 	knora-base:subjectClassConstraint :Expression;
 	knora-base:objectClassConstraint knora-base:LinkValue.
+
+:hasPublicationState
+	a owl:ObjectProperty;
+	rdfs:label "has publication state"@en;
+	rdfs:comment "Relating an expression to its publication state (as text object)."@en; # to be changed to instances of :PublicationState
+	rdfs:subPropertyOf text:hasDescription;
+	knora-base:subjectClassConstraint :Expression;
+	knora-base:objectClassConstraint knora-base:TextValue;
+	salsah-gui:guiElement salsah-gui:Richtext.
+#	knora-base:objectClassConstraint :PublicationState
 
 :isPublishedIn
 	a owl:ObjectProperty;

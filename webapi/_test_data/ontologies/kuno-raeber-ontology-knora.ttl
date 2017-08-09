@@ -37,10 +37,16 @@
 		a owl:Restriction; owl:onProperty text:hasAuthor; owl:cardinality "1"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text:hasAuthorValue; owl:cardinality "1"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text:hasTitle; owl:cardinality "1"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty text:hasAlias; owl:cardinality "1"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty human:hasCreationDate; owl:cardinality "1"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty knora-base:seqnum; owl:maxCardinality "1"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty work:isOnPage; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty work:isOnPageValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty :hasEdition; owl:cardinality "1"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty :hasEditionValue; owl:cardinality "1"^^xsd:nonNegativeInteger].
+		a owl:Restriction; owl:onProperty :hasEditionValue; owl:cardinality "1"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty text:hasDetailDescription; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty text:hasSpecialDescription; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty work:hasPublicationState; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 :Edition
 	a owl:Class;
@@ -106,6 +112,7 @@
 	rdfs:subClassOf text:Convolute, [
 		a owl:Restriction; owl:onProperty text:hasTitle; owl:minCardinality "1"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text:hasAlias; owl:minCardinality "1"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty text:hasDescription; owl:minCardinality "1"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text:hasComment; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 :PoemNotebook # to be removed rdfs:subClassOf knora-base:StillImageRepresentation when knora-base:hasRepresentation will be implemented in Knora2
@@ -123,7 +130,7 @@
 		a owl:Restriction; owl:onProperty text:containsEarlierStagesOfValue; owl:minCardinality "1"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text:containsEarlierStagesOfPublication; owl:minCardinality "1"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text:containsEarlierStagesOfPublicationValue; owl:minCardinality "1"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty text:hasSizeDescription; owl:minCardinality "1"^^xsd:nonNegativeInteger]
+		a owl:Restriction; owl:onProperty text:hasConvoluteSizeDescription; owl:minCardinality "1"^^xsd:nonNegativeInteger]
 #		a owl:Restriction; owl:onProperty image:hasPhotoRepresentation; owl:minCardinality "1"^^xsd:nonNegativeInteger], [
 #		a owl:Restriction; owl:onProperty image:hasPhotoRepresentationValue; owl:minCardinality "1"^^xsd:nonNegativeInteger]
 		.
@@ -155,7 +162,7 @@
 		a owl:Restriction; owl:onProperty text:containsEarlierStagesOfValue; owl:minCardinality "1"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text:containsEarlierStagesOfPublication; owl:minCardinality "1"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text:containsEarlierStagesOfPublicationValue; owl:minCardinality "1"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty text:hasSizeDescription; owl:minCardinality "1"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty text:hasConvoluteSizeDescription; owl:minCardinality "1"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty :hasOriginDescription; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 :PoemPostcard
@@ -174,7 +181,7 @@
 		a owl:Restriction; owl:onProperty knora-base:hasStillImageFileValue; owl:minCardinality "1"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty human:hasCreationPeriod; owl:cardinality "1"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty human:hasCreationPeriodValue; owl:cardinality "1"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty text:hasSizeDescription; owl:minCardinality "1"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty text:hasConvoluteSizeDescription; owl:minCardinality "1"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text:containsEarlierStagesOfPublication; owl:minCardinality "1"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text:containsEarlierStagesOfPublicationValue; owl:minCardinality "1"^^xsd:nonNegativeInteger].
 
@@ -199,7 +206,7 @@
 		a owl:Restriction; owl:onProperty text:containsLaterStagesOfValue; owl:minCardinality "1"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text:containsEarlierStagesOfPublication; owl:minCardinality "1"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text:containsEarlierStagesOfPublicationValue; owl:minCardinality "1"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty text:hasSizeDescription; owl:minCardinality "1"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty text:hasConvoluteSizeDescription; owl:minCardinality "1"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty :hasOriginDescription; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 # PrintedPoemPublicationBook

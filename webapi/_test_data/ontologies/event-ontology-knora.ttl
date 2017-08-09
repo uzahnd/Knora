@@ -71,13 +71,13 @@
 
 :Procedure
 	a owl:Class;
-	rdfs:label "procedure"@en;
+	rdfs:label "procedure"@en, "Verfahren"@de;
 	rdfs:comment """Action executed in one or more steps, in a certain manner to obtain a certain output under certain circumstances."""@en;
 	rdfs:subClassOf :Action.
 
 :State
 	a owl:Class;
-	rdfs:label "state"@en;
+	rdfs:label "state"@en, "Zustand"@de;
 	rdfs:comment """Mode of being."""@en;
 	rdfs:subClassOf knora-base:Resource.
 
@@ -95,13 +95,13 @@
 
 :Cause		# to do: relate to agent
 	a owl:Class;
-	rdfs:label "cause"@en;
+	rdfs:label "cause"@en, "Ursache"@de;
 	rdfs:comment """Source of entailment."""@en;
 	rdfs:subClassOf :Input.
 
 :Effect
 	a owl:Class;
-	rdfs:label "effect"@en;
+	rdfs:label "effect"@en, "Effekt"@de;
 	rdfs:comment """Output related to a cause."""@en;
 	rdfs:subClassOf :Output.
 

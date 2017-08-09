@@ -53,7 +53,7 @@
 	knora-base:subjectClassConstraint knora-base:Resource;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
-#:hasPhotoRepresentation
+#:hasPhotoRepresentation # can be activated in Knora2
 #	a owl:ObjectProperty;
 #	rdfs:label "has photograph representation"@en, "hat Foto-Repräsentation"@de;
 #	rdfs:comment """Relating a resource to a photograph thereof."""@en;
@@ -61,7 +61,7 @@
 #	knora-base:subjectClassConstraint knora-base:Resource;
 #	knora-base:objectClassConstraint :Photograph.
 
-#:hasPhotoRepresentationValue
+#:hasPhotoRepresentationValue # can be activated in Knora2
 #	a owl:ObjectProperty;
 #	rdfs:label "has photograph representation value"@en;
 #	rdfs:comment """Relating a resource to a reification statement of the relation between the resource and a photograph thereof."""@en;

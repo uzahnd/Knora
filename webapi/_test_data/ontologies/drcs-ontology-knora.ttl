@@ -45,7 +45,7 @@
  	a owl:ObjectProperty;
  	rdfs:label "has Stegmüller's person description object"@en;
  	rdfs:comment """Relating a person to a Stegmüller's description (as object) thereof."""@en;
- 	rdfs:subPropertyOf text:hasDescription; # subPropertyOf text:hasText subPropertyOf knora-base:hasValue
+ 	rdfs:subPropertyOf human:hasDescription; # subPropertyOf text:hasText subPropertyOf knora-base:hasValue
  	knora-base:subjectClassConstraint :Person;
  	knora-base:objectClassConstraint knora-base:TextValue.
 

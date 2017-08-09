@@ -192,7 +192,7 @@
 		a owl:Restriction; owl:onProperty :containsEarlierStagesOfPublicationValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty :containsLaterStagesOf; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty :containsLaterStagesOfValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty :hasSizeDescription; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+		a owl:Restriction; owl:onProperty :hasConvoluteSizeDescription; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 :TextDevelopment
 	a owl:Class;
@@ -296,21 +296,39 @@
 	knora-base:objectClassConstraint knora-base:TextValue;
 	salsah-gui:guiElement salsah-gui:Richtext.
 
-:hasCarrierDescription
-	a owl:ObjectProperty;
-	rdfs:label "has text carrier description"@en;
-	rdfs:comment """Relating a text carrier to a description (as object) thereof."""@en;
-	rdfs:subPropertyOf :hasDescription;
-	knora-base:subjectClassConstraint :Carrier;
-	knora-base:objectClassConstraint knora-base:TextValue;
-	salsah-gui:guiElement salsah-gui:Richtext.
-
 :hasDefinition
 	a owl:ObjectProperty;
 	rdfs:label "has definition"@en;
 	rdfs:comment """Relating a resource to a definition (as object) as a textual statement about the essential features of the resource."""@en;
 	rdfs:subPropertyOf :hasDescription;
 	knora-base:subjectClassConstraint knora-base:Resource;
+	knora-base:objectClassConstraint knora-base:TextValue;
+	salsah-gui:guiElement salsah-gui:Richtext.
+
+:hasDetailDescription
+	a owl:ObjectProperty;
+	rdfs:label "has detail description"@en;
+	rdfs:comment """Relating a resource to a description (as object) of its detail(s)."""@en;
+	rdfs:subPropertyOf :hasDescription;
+	knora-base:subjectClassConstraint knora-base:Resource;
+	knora-base:objectClassConstraint knora-base:TextValue;
+	salsah-gui:guiElement salsah-gui:Richtext.
+
+:hasSpecialDescription
+	a owl:ObjectProperty;
+	rdfs:label "has special description"@en;
+	rdfs:comment """Relating a resource to a description (as object) of (a) certain feature(s)."""@en;
+	rdfs:subPropertyOf :hasDescription;
+	knora-base:subjectClassConstraint knora-base:Resource;
+	knora-base:objectClassConstraint knora-base:TextValue;
+	salsah-gui:guiElement salsah-gui:Richtext.
+
+:hasStructureDescription
+	a owl:ObjectProperty;
+	rdfs:label "has structure description"@en;
+	rdfs:comment """Relating a text expression to a description (as object) of its structure."""@en;
+	rdfs:subPropertyOf :hasDescription;
+	knora-base:subjectClassConstraint :Expression;
 	knora-base:objectClassConstraint knora-base:TextValue;
 	salsah-gui:guiElement salsah-gui:Richtext.
 
@@ -506,6 +524,15 @@
 	knora-base:objectClassConstraint knora-base:DateValue;
 	salsah-gui:guiElement salsah-gui:Date.
 
+:hasCarrierDescription
+	a owl:ObjectProperty;
+	rdfs:label "has text carrier description"@en;
+	rdfs:comment """Relating a text carrier to a description (as object) thereof."""@en;
+	rdfs:subPropertyOf :hasDescription;
+	knora-base:subjectClassConstraint :Carrier;
+	knora-base:objectClassConstraint knora-base:TextValue;
+	salsah-gui:guiElement salsah-gui:Richtext.
+
 :hasSender
 	a owl:ObjectProperty;
 	rdfs:label "has sender"@en;
@@ -537,6 +564,15 @@
 	rdfs:subPropertyOf knora-base:hasLinkToValue;
 	knora-base:subjectClassConstraint :Letter;
 	knora-base:objectClassConstraint knora-base:LinkValue.
+
+:hasConvoluteSizeDescription
+	a owl:ObjectProperty;
+	rdfs:label "has convolute size description"@en;
+	rdfs:comment """Relating a convolute to a description (as object) of its size."""@en;
+	rdfs:subPropertyOf :hasDescription;
+	knora-base:subjectClassConstraint :Convolute;
+	knora-base:objectClassConstraint knora-base:TextValue;
+	salsah-gui:guiElement salsah-gui:Richtext.
 
 :containsEarlierStagesOf
 	a owl:ObjectProperty;
@@ -585,21 +621,3 @@
 	rdfs:subPropertyOf knora-base:hasLinkToValue;
 	knora-base:subjectClassConstraint :Convolute;
 	knora-base:objectClassConstraint knora-base:LinkValue.
-
-:hasSizeDescription
-	a owl:ObjectProperty;
-	rdfs:label "has size description"@en;
-	rdfs:comment """Relating a convolute to a description (as object) of its size."""@en;
-	rdfs:subPropertyOf :hasDescription;
-	knora-base:subjectClassConstraint :Convolute;
-	knora-base:objectClassConstraint knora-base:TextValue;
-	salsah-gui:guiElement salsah-gui:Richtext.
-
-:hasStructureDescription
-	a owl:ObjectProperty;
-	rdfs:label "has structure description"@en;
-	rdfs:comment """Relating a text expression to a description (as object) of its structure."""@en;
-	rdfs:subPropertyOf :hasDescription;
-	knora-base:subjectClassConstraint :Expression;
-	knora-base:objectClassConstraint knora-base:TextValue;
-	salsah-gui:guiElement salsah-gui:Richtext.
