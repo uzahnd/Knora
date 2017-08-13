@@ -617,7 +617,7 @@ Die Internetpublikation macht das digitalisierte Korpus dieser Frühdrucke  durc
 <http://data.knora.org/projects/kuno-raeber> a knora-base:knoraProject;
 	knora-base:projectShortname "kuno-raeber"^^xsd:string;
 	knora-base:projectLongname "An ontology about the lyric of Kuno Raeber"^^xsd:string;
-	knora-base:projectDescription "Formal description of elements in the online publication of the lyric work of the Swiss poet Kuno Raeber"^^xsd:string;
+	knora-base:projectDescription "Formal description of elements in the historical-critical online publication of the lyric work of the Swiss author Kuno Raeber"^^xsd:string;
 	knora-base:projectOntologyGraph "http://www.knora.org/ontology/kuno-raeber"^^xsd:string;
 	knora-base:projectDataGraph "http://www.knora.org/data/kuno-raeber"^^xsd:string;
 	knora-base:status "true"^^xsd:boolean;
