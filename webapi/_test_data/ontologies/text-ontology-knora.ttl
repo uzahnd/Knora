@@ -19,7 +19,7 @@
 	a owl:Ontology.
 #	dct:title "An ontology about text"@en;
 #	dct:description """Formal description of text in broadest sense, general subclasses, related classes, and properties."""@en;
-#	dct:creator "Hans Cools, software developer, NIE, Basel University, Switzerland"@en;
+#	dct:creator "Hans Cools, software developer, NIE-INE, Basel University, Switzerland"@en;
 #	dct:contributor:
 #	skos:note """Representation of an otherwise literal data element as object ('objectivation') enabling relating it to metadata"""@en.
 
@@ -45,6 +45,8 @@
 		a owl:Restriction; owl:onProperty :isOnCarrier; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty :isOnCarrierValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty :hasPageIndicator; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty :hasPageNumberIndicator; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty :hasColumnIndicator; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty :hasLineNumber; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty :hasVersionIndicator; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
@@ -82,7 +84,7 @@
 :Commentary
 	a owl:Class;
 	rdfs:label "commento"@la, "commentary"@en, "Erläuterung"@de;
-	rdfs:comment """Textual expression in the form of a series of comments as analysis, interpretation or explanation of something, especially another textual expression."""@en;
+	rdfs:comment """Text expression in the form of a series of comments as analysis, interpretation or explanation of something, especially another textual expression."""@en;
 	rdfs:subClassOf :Expression.
 
 :Revisor
@@ -91,11 +93,17 @@
 	rdfs:comment """Role of a person checking on certain aspects of a text."""@en;
 	rdfs:subClassOf human:Role. 
 
+:Derivative
+	a owl:Class;
+	rdfs:label "text derivative"@en, "abgeleitete Text"@de;
+	rdfs:comment """Text expression derived from another text expression."""@en;
+	rdfs:subClassOf :Expression.
+
 :Edition
 	a owl:Class;
-	rdfs:label "edited text"@en, "edierter Text"@de; # Lesetext
+	rdfs:label "text edition"@en, "Text Edition"@de; # Lesetext subClassOf
 	rdfs:comment """Changed form of a text expression as the result of editing."""@en;
-	rdfs:subClassOf :Expression.
+	rdfs:subClassOf :Derivative.
 
 :Editor
 	a owl:Class;
@@ -106,8 +114,8 @@
 :DiplomaticTranscription
 	a owl:Class;
 	rdfs:label "diplomatic transcription"@en, "diplomatische Umschrift"@de;
-	rdfs:comment """Transcription of a text with diacritical symbols indicating all visual textual properties to describe a textual state."""@en;
-	rdfs:subClassOf :Expression.
+	rdfs:comment """Transcription of a text with diacritical signs indicating visual textual properties to describe the textual state."""@en;
+	rdfs:subClassOf :Derivative.
 
 :Carrier
  	a owl:Class;
@@ -192,7 +200,10 @@
 		a owl:Restriction; owl:onProperty :containsEarlierStagesOfPublicationValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty :containsLaterStagesOf; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty :containsLaterStagesOfValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty :hasConvoluteSizeDescription; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+		a owl:Restriction; owl:onProperty :hasConvoluteDescription; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty :hasConvoluteSizeDescription; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty :hasConvoluteOriginDescription; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty :hasConvoluteContentRepresentation; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 :TextDevelopment
 	a owl:Class;
@@ -308,7 +319,7 @@
 :hasDetailDescription
 	a owl:ObjectProperty;
 	rdfs:label "has detail description"@en;
-	rdfs:comment """Relating a resource to a description (as object) of its detail(s)."""@en;
+	rdfs:comment """Relating a resource to a description (as object) of its detail(s). E.g. in the case of a text a detail can be a passage variant or an emendation"""@en;
 	rdfs:subPropertyOf :hasDescription;
 	knora-base:subjectClassConstraint knora-base:Resource;
 	knora-base:objectClassConstraint knora-base:TextValue;
@@ -400,12 +411,39 @@
 	knora-base:subjectClassConstraint :Expression;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
+:hasDiacriticalSign
+	a owl:ObjectProperty;
+	rdfs:label "has diacritical sign"@en;
+	rdfs:comment """Relating a derived text expression to a sign (as object) indicating a textual aspect of the original text."""@en;
+	rdfs:subPropertyOf :hasContent;
+	knora-base:subjectClassConstraint :Derivative;
+	knora-base:objectClassConstraint knora-base:TextValue;
+	salsah-gui:guiElement salsah-gui:Richtext.
+
 :hasPageIndicator
 	a owl:ObjectProperty;
 	rdfs:label "has page indicator"@en;
-	rdfs:comment """Relating a text expression to a textual element (as object) that indicates where a new page starts."""@en;
-	rdfs:subPropertyOf :hasContent;
-	knora-base:subjectClassConstraint :Expression;
+	rdfs:comment """Relating a text expression to a diacritical sign (as object) that indicates where a new page starts."""@en;
+	rdfs:subPropertyOf :hasDiacriticalSign;
+	knora-base:subjectClassConstraint :Derivative;
+	knora-base:objectClassConstraint knora-base:TextValue;
+	salsah-gui:guiElement salsah-gui:Richtext.
+
+:hasPageNumberIndicator
+	a owl:ObjectProperty;
+	rdfs:label "has page number indicator"@en;
+	rdfs:comment """Relating a text expression to a diacritical sign (as object) that indicates the number of a new page."""@en;
+	rdfs:subPropertyOf :hasDiacriticalSign;
+	knora-base:subjectClassConstraint :Derivative;
+	knora-base:objectClassConstraint knora-base:TextValue;
+	salsah-gui:guiElement salsah-gui:Richtext.
+
+:hasColumnIndicator
+	a owl:ObjectProperty;
+	rdfs:label "has column indicator"@en;
+	rdfs:comment """Relating a text expression to a diacritical sign (as object) that indicates where on a page a new column starts."""@en;
+	rdfs:subPropertyOf :hasDiacriticalSign;
+	knora-base:subjectClassConstraint :Derivative;
 	knora-base:objectClassConstraint knora-base:TextValue;
 	salsah-gui:guiElement salsah-gui:Richtext.
 
@@ -565,11 +603,38 @@
 	knora-base:subjectClassConstraint :Letter;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
+:hasConvoluteDescription
+	a owl:ObjectProperty;
+	rdfs:label "has convolute description"@en;
+	rdfs:comment """Relating a convolute to a description (as object) thereof."""@en;
+	rdfs:subPropertyOf :hasDescription;
+	knora-base:subjectClassConstraint :Convolute;
+	knora-base:objectClassConstraint knora-base:TextValue;
+	salsah-gui:guiElement salsah-gui:Richtext.
+
 :hasConvoluteSizeDescription
 	a owl:ObjectProperty;
 	rdfs:label "has convolute size description"@en;
 	rdfs:comment """Relating a convolute to a description (as object) of its size."""@en;
-	rdfs:subPropertyOf :hasDescription;
+	rdfs:subPropertyOf :hasConvoluteDescription;
+	knora-base:subjectClassConstraint :Convolute;
+	knora-base:objectClassConstraint knora-base:TextValue;
+	salsah-gui:guiElement salsah-gui:Richtext.
+
+:hasConvoluteOriginDescription
+	a owl:ObjectProperty;
+	rdfs:label "has convolute origin description"@en;
+	rdfs:comment """Relating a text convolute to a description (as object) of its origin."""@en;
+	rdfs:subPropertyOf :hasConvoluteDescription;
+	knora-base:subjectClassConstraint :Convolute;
+	knora-base:objectClassConstraint knora-base:TextValue;
+	salsah-gui:guiElement salsah-gui:Richtext.
+
+:hasConvoluteContentRepresentation
+	a owl:ObjectProperty;
+	rdfs:label "has convolute content representation"@en;
+	rdfs:comment """Relating a convolute to a description (as object) of its content representation."""@en;
+	rdfs:subPropertyOf :hasConvoluteDescription;
 	knora-base:subjectClassConstraint :Convolute;
 	knora-base:objectClassConstraint knora-base:TextValue;
 	salsah-gui:guiElement salsah-gui:Richtext.

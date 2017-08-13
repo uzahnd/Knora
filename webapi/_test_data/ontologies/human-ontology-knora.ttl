@@ -18,7 +18,7 @@
 	a owl:Ontology.
 #	dct:title "An ontology about human"@en;
 #	dct:description """Formal description of a human, general subclasses, related classes and properties."""@en;
-#	dct:creator "Hans Cools, software developer, NIE, Basel University, Switzerland"@en.
+#	dct:creator "Hans Cools, software developer, NIE-INE, Basel University, Switzerland"@en.
 
 #
 # CLASSES
@@ -38,7 +38,7 @@
 	rdfs:label "person"@en, "Person"@de, "personne"@fr, "persona"@it;
 	rdfs:comment """A real born living human."""@en;
 #	skos:note """A foaf:Person class member is born, but can be alive or dead, real or imaginary. In this more restricted meaning a person can do things during life and can be talked about after dead, having done things during life. An imaginary person is a thing that can have every conceivable property, very unlike a real person."""@en;
-	rdfs:subClassOf :Human, knora-base:Resource, [ # rdfs:subClassOf frbroo:F10_Person, foaf:Person
+	rdfs:subClassOf :Human, [ # rdfs:subClassOf frbroo:F10_Person, foaf:Person
 #		a owl:Restriction; owl:onProperty :hasBiologicalGender; owl:someValuesFrom :BiologicalGender], [
 		a owl:Restriction; owl:onProperty :hasBiologicalGender; owl:maxCardinality "1"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty :hasBiologicalGenderValue; owl:maxCardinality "1"^^xsd:nonNegativeInteger], [
@@ -137,7 +137,7 @@
 	a owl:Class;
 	rdfs:label "creation"@en;
 	rdfs:comment """Something created by a person."""@en;
-	rdfs:subClassOf event:Output, cidoc:E71_Man-Made_Thing, [
+	rdfs:subClassOf event:Output, [ # cidoc:E71_Man-Made_Thing, [
 		a owl:Restriction; owl:onProperty text:hasTitle; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text:hasAlias; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text:hasDescription; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
@@ -154,7 +154,7 @@
 	rdfs:label "acts in"@en;
 	rdfs:comment """Relating a person to an action s/he is in."""@en;
 	rdfs:subPropertyOf knora-base:hasLinkTo; # SPO agent:actsIn
-	knora-base:subjectClassConstraint :Person;
+#	knora-base:subjectClassConstraint :Person;
 	knora-base:objectClassConstraint :Action.
 
 :actsInValue
@@ -162,7 +162,7 @@
 	rdfs:label "acts in value"@en;
 	rdfs:comment """Relating a person to a reification statement of the relation between the person and an action s/he is in."""@en;
 	rdfs:subPropertyOf knora-base:hasLinkToValue;
-	knora-base:subjectClassConstraint :Person;
+#	knora-base:subjectClassConstraint :Person;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
 :hasLife

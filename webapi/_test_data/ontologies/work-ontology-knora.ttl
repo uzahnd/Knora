@@ -20,7 +20,7 @@
 	a owl:Ontology.
 #	dct:title "An ontology about work as intellectual product"@en;
 #	dct:description """Formal description of work as intellectual product, its general subclasses, related classes and properties, as described in the ontology Functional Requirements for Bibliographic Records, object oriented."""@en;
-#	dct:creator "Hans Cools, software developer, NIE, Basel University, Switzerland"@en.
+#	dct:creator "Hans Cools, software developer, NIE-INE, Basel University, Switzerland"@en.
 
 #
 # CLASSES
@@ -78,7 +78,7 @@
 :Book
 	a owl:Class;
 	rdfs:label "book"@en, "Buch"@de;
-	rdfs:comment """Set of leafs, e.g. sheets of paper or parchment, fastened together along one side and mostly encased between a front and back cover."""@en;
+	rdfs:comment """Set of leafs, e.g. sheets of paper or parchment, fastened together along one side and encased between a front and back cover."""@en;
 	rdfs:subClassOf :Manifestation.
 
 :Page # the concept of leaf is cut short and can be interposed later
