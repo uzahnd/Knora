@@ -14,7 +14,7 @@
 @prefix image: <http://www.knora.org/ontology/image#>.
 @prefix knora-base: <http://www.knora.org/ontology/knora-base#>.
 @prefix salsah-gui: <http://www.knora.org/ontology/salsah-gui#>.
-@prefix : <http://www.knora.org/ontology/work#>.
+@prefix work: <http://www.knora.org/ontology/work#>.
 
 <http://www.knora.org/ontology/work>
 	a owl:Ontology.
@@ -26,32 +26,41 @@
 # CLASSES
 #
 
-:Work
+work:Work
 	a owl:Class;
 	rdfs:label "work"@en, "Werk"@de;
 	rdfs:comment """Intellectual product as an abstract conceptual thing."""@en;
 	rdfs:comment """See http://iflastandards.info/ns/fr/frbr/frbroo/F1_Work."""@en; 
 	rdfs:subClassOf human:Creation, [ # frbroo:F1_Work, [
-		a owl:Restriction; owl:onProperty :isExpressedIn; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty :isExpressedInValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+		a owl:Restriction; owl:onProperty work:isExpressedIn; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty work:isExpressedInValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
-:IndividualWork
+work:IndividualWork
 	a owl:Class;
 	rdfs:label "individual work"@en, "individuelles Werk"@de;
 	rdfs:comment """Work as a complete whole realised in one self-contained expression."""@en;
 	rdfs:comment """See http://iflastandards.info/ns/fr/frbr/frbroo/F14_Individual_Work."""@en;
-	rdfs:subClassOf :Work, frbroo:F14_Individual_Work.
+	rdfs:subClassOf work:Work, frbroo:F14_Individual_Work.
 
-:Expression
+work:Expression
 	a owl:Class;
 	rdfs:label "expression"@en, "Expression"@de;
 	rdfs:comment """Realisation of an individual work in the form of an identifiable immaterial object, such as a text, poem, joke, musical or choreographic notation, movement pattern, sound pattern, image, multimedia object, or any combination of such forms that have objectively recognisable structures."""@en;
 	rdfs:comment """See http://iflastandards.info/ns/fr/frbr/frbroo/F2_Expression and http://iflastandards.info/ns/fr/frbr/frbroo/F22_Self-Contained_Expression."""@en;
 	rdfs:subClassOf human:Creation, frbroo:F22_Self-Contained_Expression, [
-		a owl:Restriction; owl:onProperty :isMaterializedIn; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty :isMaterializedInValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+		a owl:Restriction; owl:onProperty work:isMaterializedIn; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty work:isMaterializedInValue; owl:minCardinality "0"^^xsd:nonNegativeInteger] #, [
+#		a owl:Restriction; owl:onProperty work:hasPublishingState; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+#		a owl:Restriction; owl:onProperty work:hasPublishingStateValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+#		a owl:Restriction; owl:onProperty work:hasPublication; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+#		a owl:Restriction; owl:onProperty work:hasPublicationValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+#		a owl:Restriction; owl:onProperty work:hasMonoAuthorPublication; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+#		a owl:Restriction; owl:onProperty work:hasMonoAuthorPublicationValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+#		a owl:Restriction; owl:onProperty work:hasPolyAuthorPublication; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+#		a owl:Restriction; owl:onProperty work:hasPolyAuthorPublicationValue; owl:minCardinality "0"^^xsd:nonNegativeInteger]
+		.
 
-:Manifestation
+work:Manifestation
  	a owl:Class;
  	rdfs:label "manifestation"@en,"Manifestation"@de;
  	rdfs:comment """Carrier of an expression."""@en;
@@ -61,306 +70,393 @@
 #		a owl:Restriction; owl:onProperty image:hasPhotoRepresentation; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 #		a owl:Restriction; owl:onProperty image:hasPhotoRepresentationValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
-:Draft
+work:Draft
 	a owl:Class;
 	rdfs:label "draft"@en, "Entwurf"@de;
 	rdfs:comment """Developmental expression of something, e.g. a text, picture or plan."""@en;
-	rdfs:subClassOf :Expression.
+	rdfs:subClassOf work:Expression.
 
-:PublicationExpression
+work:PublishingState
+	a owl:Class;
+	rdfs:label "publishing state"@en, "Publikationszustand"@de;
+	rdfs:comment """State of an expression having been published or not."""@en;
+	rdfs:subClassOf event:State.
+
+work:Unpublished
+	a owl:Class;
+	rdfs:label "unpublished"@en, "unpubliziert"@de;
+	rdfs:comment """State of an expression not having been published."""@en;
+	rdfs:subClassOf work:PublishingState.
+
+work:Published
+	a owl:Class;
+	rdfs:label "published"@en, "publiziert"@de;
+	rdfs:comment """State of an expression having been published."""@en;
+	rdfs:subClassOf work:PublishingState.
+
+work:PublicationExpression
 	a owl:Class;
 	rdfs:label "publication expression"@en, "Publikation-Expression"@de;
 	rdfs:comment """See http://iflastandards.info/ns/fr/frbr/frbroo/F24_Publication_Expression."""@en;
-	rdfs:subClassOf :Expression, frbroo:F24_Publication_Expression, [
-		a owl:Restriction; owl:onProperty :isPublishedIn; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty :isPublishedInValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+	rdfs:subClassOf work:Expression, frbroo:F24_Publication_Expression, [
+		a owl:Restriction; owl:onProperty work:isPublishedIn; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty work:isPublishedInValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
-:Book
+work:Book
 	a owl:Class;
 	rdfs:label "book"@en, "Buch"@de;
-	rdfs:comment """Set of leafs, e.g. sheets of paper or parchment, fastened together along one side and encased between a front and back cover."""@en;
-	rdfs:subClassOf :Manifestation.
+	rdfs:comment """Set of leafs, e.g. sheets of paper or parchment, fastened together along one side, with a front and back cover."""@en;
+	rdfs:subClassOf work:Manifestation.
 
-:Page # the concept of leaf is cut short and can be interposed later
+work:Page # the concept of leaf is cut short and can be interposed later
 	a owl:Class;
 	rdfs:label "page"@en, "Seite"@de;
 	rdfs:comment """One of the 2 surfaces of a leaf, e.g. a sheet of paper or parchment, e.g. a manuscript, or of a leaf of a book."""@en;
-	rdfs:subClassOf :Manifestation, [
-		a owl:Restriction; owl:onProperty :isPageOf; owl:cardinality "1"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty :isPageOfValue; owl:cardinality "1"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty :hasNumber; owl:cardinality "1"^^xsd:nonNegativeInteger].
+	rdfs:subClassOf work:Manifestation, [
+		a owl:Restriction; owl:onProperty work:isPageOf; owl:cardinality "1"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty work:isPageOfValue; owl:cardinality "1"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty work:hasPageNumber; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
-:Print
+work:Print
 	a owl:Class;
 	rdfs:label "print"@en, "Druck"@de;
 	rdfs:comment """An expression printed on a carrier."""@en;
-	rdfs:subClassOf :Manifestation.
+	rdfs:subClassOf work:Manifestation.
 
-#:PublicationState
-#	a owl:Class;
-#	rdfs:label "Publication state"@en, "Publikationszustand"@de;
-#	rdfs:comment """State of an expression bein g published or not."""@en;
-#	rdfs:subClassOf event:State;
-#	owl:oneOf (published unpublished).
-
-:Publisher
+work:Publisher
 	a owl:Class;
 	rdfs:label "publisher"@en, "Herausgeber"@de;
 	rdfs:comment """Role of an agent as publisher."""@en;
 	rdfs:subClassOf human:OccupationalRole.
 
-:Publication
+work:Publication
 	a owl:Class;
 	rdfs:label "publication"@en, "Publikation"@de;
 	rdfs:comment """An expression published on a carrier."""@en;
-	rdfs:subClassOf :Manifestation, [ # frbroo:F5_Item.
-		a owl:Restriction; owl:onProperty :hasPublicationTitle; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty :hasPublicationDate; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty :hasPublisherName; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+	rdfs:subClassOf work:Manifestation, [ # frbroo:F5_Item.
+		a owl:Restriction; owl:onProperty work:hasPublicationTitle; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty work:hasPublicationDate; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty work:hasPublisherName; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
-:PrintedPublication
+work:PrintedPublication
 	a owl:Class;
 	rdfs:label "printed publication"@en, "gedruckte Publikation"@de;
 	rdfs:comment """Publication as print."""@en;
-	rdfs:subClassOf :Print, :Publication.
+	rdfs:subClassOf work:Print, work:Publication.
 
-:ElectronicPublication
+work:ElectronicPublication # e.g. by Walter M.
 	a owl:Class;
 	rdfs:label "electronic publication"@en, "elektronische Publikation"@de;
 	rdfs:comment """Publication on an electronic carrier."""@en;
-	rdfs:subClassOf :Publication.
+	rdfs:subClassOf work:Publication.
 
-:Archive
+work:Magazine
+	a owl:Class;
+	rdfs:label "magazine"@en, "Zeitschrift"@de;
+	rdfs:comment """Periodically published book."""@en;
+	rdfs:subClassOf work:Publication.
+
+work:Archive
 	a owl:Class;
 	rdfs:label "archive"@en, "Archiv"@de;
 	rdfs:comment """Collection of files ordered along a method."""@en;
 	rdfs:subClassOf human:Creation, cidoc:E78_Collection.
 
-:ArchiveElement
+work:ArchiveElement
 	a owl:Class;
 	rdfs:label "archive element"@en, "Archiv-Element"@de;
 	rdfs:comment """Element of an archive, which can be a single file or a file group."""@en;
-	rdfs:subClassOf :Manifestation, [
-		a owl:Restriction; owl:onProperty :isPartOfArchive; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty :isPartOfArchiveValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty :hasArchiveSignature; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+	rdfs:subClassOf work:Manifestation, [
+		a owl:Restriction; owl:onProperty work:isPartOfArchive; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty work:isPartOfArchiveValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty work:hasArchiveSignature; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 #
 # PROPERTIES
 #
 
-:isPartOf
+work:isPartOf
 	a owl:ObjectProperty;
-	rdfs:label "is part of"@en;
+	rdfs:label "is part of"@en, "ist Teil von"@de;
 	rdfs:comment "Relating something to something else it is part of."@en;
 	rdfs:subPropertyOf knora-base:isPartOf; # cidoc:P46i_forms_part_of
 	knora-base:subjectClassConstraint knora-base:Resource;
 	knora-base:objectClassConstraint knora-base:Resource.
 
-:isPartOfValue
+work:isPartOfValue
 	a owl:ObjectProperty;
-	rdfs:label "is part of value"@en;
+	rdfs:label "is part of - value"@en, "ist Teil von - Wert"@de;
 	rdfs:comment "Relating something to a reification statement of the relation between that something and something else it is part of."@en;
 	rdfs:subPropertyOf knora-base:isPartOfValue;
 	knora-base:subjectClassConstraint knora-base:Resource;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
-:isExpressedIn
+work:isExpressedIn
 	a owl:ObjectProperty;
-	rdfs:label "is expressed in"@en;
-	rdfs:comment "Relating a work to an expression tehreof."@en;
+	rdfs:label "is expressed in"@en, "ist ausgedruckt in"@de;
+	rdfs:comment "Relating a work to an expression thereof."@en;
 	rdfs:subPropertyOf knora-base:hasLinkTo; # frbroo:R9_is_realised_in
 	knora-base:subjectClassConstraint :Work;
 	knora-base:objectClassConstraint :Expression.
 
-:isExpressedInValue
+work:isExpressedInValue
 	a owl:ObjectProperty;
-	rdfs:label "is expressed in value"@en;
-	rdfs:comment "Relating a work to a reification statement of the relation between the work and an expression tehreof."@en;
+	rdfs:label "is expressed in - value"@en, "ist ausgedruckt in - Wert"@de;
+	rdfs:comment "Relating a work to a reification statement of the relation between the work and an expression thereof."@en;
 	rdfs:subPropertyOf knora-base:hasLinkToValue;
-	knora-base:subjectClassConstraint :Work;
+	knora-base:subjectClassConstraint work:Work;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
 # frbroo:R3_is_realised_in: more general: frbroo:F1_Work - frbroo:F22_Self-Contained_Expression
 
-:isMaterializedIn
+work:isMaterializedIn
 	a owl:ObjectProperty;
-	rdfs:label "is materialized in"@en;
-	rdfs:comment "Relating an expression to a manifestation tehreof."@en;
+	rdfs:label "is materialized in"@en, "ist materialisiert in"@de;
+	rdfs:comment "Relating an expression to a manifestation thereof."@en;
 	rdfs:subPropertyOf knora-base:hasLinkTo;
-	knora-base:subjectClassConstraint :Expression;
-	knora-base:objectClassConstraint :Manifestation.
+	knora-base:subjectClassConstraint work:Expression;
+	knora-base:objectClassConstraint work:Manifestation.
 
-:isMaterializedInValue
+work:isMaterializedInValue
 	a owl:ObjectProperty;
-	rdfs:label "is materialized in value"@en;
-	rdfs:comment "Relating an expression to a reification statement of the relation between the expression and a manifestation tehreof."@en;
+	rdfs:label "is materialized in - value"@en, "ist materialisiert in - Wert"@de;
+	rdfs:comment "Relating an expression to a reification statement of the relation between the expression and a manifestation thereof."@en;
 	rdfs:subPropertyOf knora-base:hasLinkToValue;
-	knora-base:subjectClassConstraint :Expression;
+	knora-base:subjectClassConstraint work:Expression;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
-:hasPublicationState
+work:hasPublishingState
 	a owl:ObjectProperty;
-	rdfs:label "has publication state"@en;
-	rdfs:comment "Relating an expression to its publication state (as text object)."@en; # to be changed to instances of :PublicationState
-	rdfs:subPropertyOf text:hasDescription;
-	knora-base:subjectClassConstraint :Expression;
-	knora-base:objectClassConstraint knora-base:TextValue;
-	salsah-gui:guiElement salsah-gui:Richtext.
-#	knora-base:objectClassConstraint :PublicationState
+	rdfs:label "has publishing state"@en, "hat Publikationszustand"@de;
+	rdfs:comment "Relating an expression to a publishing state thereof."@en;
+	rdfs:subPropertyOf event:hasState;
+	knora-base:subjectClassConstraint work:Expression;
+	knora-base:objectClassConstraint work:PublishingState.
 
-:isPublishedIn
+work:hasPublishingStateValue
 	a owl:ObjectProperty;
-	rdfs:label "is published in"@en;
-	rdfs:comment "Relating a publication expression to a publication tehreof."@en;
-	rdfs:subPropertyOf :isMaterializedIn;
-	knora-base:subjectClassConstraint :PublicationExpression;
-	knora-base:objectClassConstraint :Publication.
-
-:isPublishedInValue
-	a owl:ObjectProperty;
-	rdfs:label "is published in value"@en;
-	rdfs:comment "Relating a publication expression to a reification statement of the relation between the publication expression and a publication tehreof."@en;
-	rdfs:subPropertyOf :isMaterializedInValue;
-	knora-base:subjectClassConstraint :PublicationExpression;
+	rdfs:label "has publishing state - value"@en, "hat Publikationszustand - Wert"@de;
+	rdfs:comment "Relating an expression to a reification statement of the relation between the expression and a publishing state thereof."@en;
+	rdfs:subPropertyOf event:hasStateValue;
+	knora-base:subjectClassConstraint work:Expression;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
-:hasPublicationDate
+work:hasPublication
 	a owl:ObjectProperty;
-	rdfs:label "has publication date"@en;
+	rdfs:label "has publication"@en, "hat Publikation"@de;
+	rdfs:comment "Relating an expression to a publication thereof."@en;
+	rdfs:subPropertyOf work:isMaterializedIn;
+	knora-base:subjectClassConstraint work:Expression;
+	knora-base:objectClassConstraint work:Publication.
+
+work:hasPublicationValue
+	a owl:ObjectProperty;
+	rdfs:label "has publication - value"@en, "hat Publikation - Wert"@de;
+	rdfs:comment "Relating an expression to a reification statement of the relation between the expression and a publication thereof."@en;
+	rdfs:subPropertyOf work:isMaterializedInValue;
+	knora-base:subjectClassConstraint work:Expression;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
+work:hasMonoAuthorPublication
+	a owl:ObjectProperty;
+	rdfs:label "has mono-author publication"@en, "hat Publikation eines einzelnen Autors"@de;
+	rdfs:comment "Relating an expression to a publication thereof of one author."@en;
+	rdfs:subPropertyOf work:hasPublication;
+	knora-base:subjectClassConstraint work:Expression;
+	knora-base:objectClassConstraint work:Publication.
+
+work:hasMonoAuthorPublicationValue
+	a owl:ObjectProperty;
+	rdfs:label "has mono-author publication - value"@en, "hat Publikation eines einzelnen Autors - Wert"@de;
+	rdfs:comment "Relating an expression to a reification statement of the relation between the expression and a publication thereof of one author."@en;
+	rdfs:subPropertyOf work:hasPublicationValue;
+	knora-base:subjectClassConstraint work:Expression;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
+work:hasPolyAuthorPublication
+	a owl:ObjectProperty;
+	rdfs:label "has poly-author publication"@en, "hat Publikation mehrerer Autoren"@de;
+	rdfs:comment "Relating an expression to a publication thereof containing also expressions of other authors."@en;
+	rdfs:subPropertyOf work:hasPublication;
+	knora-base:subjectClassConstraint work:Expression;
+	knora-base:objectClassConstraint work:Publication.
+
+work:hasPolyAuthorPublicationValue
+	a owl:ObjectProperty;
+	rdfs:label "has poly-author publication - value"@en, "hat Publikation mehrerer Autoren - Wert"@de;
+	rdfs:comment "Relating an expression to a reification statement of the relation between the expression and a publication thereof containing also expressions of other authors."@en;
+	rdfs:subPropertyOf work:hasPublicationValue;
+	knora-base:subjectClassConstraint work:Expression;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
+#work:hasCarrierUnpublished
+#	a owl:ObjectProperty;
+#	rdfs:label "has carrier unpublished"@en, "hat Träger unpubliziert"@de;
+#	rdfs:comment "Relating an expression that has not been published in collaboration with the author, to a carrier."@en;
+#	rdfs:subPropertyOf work:isMaterializedIn;
+#	knora-base:subjectClassConstraint work:Expression;
+#	knora-base:objectClassConstraint work:Cararier.
+
+#work:hasCarrierUnpublishedValue
+#	a owl:ObjectProperty;
+#	rdfs:label "has carrier unpublished - value"@en, "hat Träger unpubliziert - Wert"@de;
+#	rdfs:comment "Relating an expression that has not been published in collaboration with the author, to a reification statement of the relation between the expression and a #carrier."@en;
+#	rdfs:subPropertyOf work:isMaterializedInValue;
+#	knora-base:subjectClassConstraint work:Expression;
+#	knora-base:objectClassConstraint knora-base:LinkValue.
+
+work:isPublishedIn
+	a owl:ObjectProperty;
+	rdfs:label "is published in"@en, "ist publiziert in"@de;
+	rdfs:comment "Relating a publication expression to a publication thereof."@en;
+	rdfs:subPropertyOf work:isMaterializedIn;
+	knora-base:subjectClassConstraint work:PublicationExpression;
+	knora-base:objectClassConstraint work:Publication.
+
+work:isPublishedInValue
+	a owl:ObjectProperty;
+	rdfs:label "is published in - value"@en, "ist publiziert in - Wert"@de;
+	rdfs:comment "Relating a publication expression to a reification statement of the relation between the publication expression and a publication thereof."@en;
+	rdfs:subPropertyOf work:isMaterializedInValue;
+	knora-base:subjectClassConstraint work:PublicationExpression;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
+work:hasPublicationDate
+	a owl:ObjectProperty;
+	rdfs:label "has publication date"@en, "hat Publikationsdatum"@de;
 	rdfs:comment "Relating a publication to the date it was published on."@en;
 	rdfs:subPropertyOf knora-base:hasValue;
-	knora-base:subjectClassConstraint :Publication;
+	knora-base:subjectClassConstraint work:Publication;
 	knora-base:objectClassConstraint knora-base:DateValue;
 	salsah-gui:guiElement salsah-gui:Date.
 
-:hasPublicationTitle
+work:hasPublicationTitle
 	a owl:ObjectProperty;
-	rdfs:label "has publication title"@en;
+	rdfs:label "has publication title"@en, "hat Publikationstitel"@de;
 	rdfs:comment "Relating a publication to its title (as object)."@en;
 	rdfs:subPropertyOf text:hasTitle;
-	knora-base:subjectClassConstraint :Publication;
+	knora-base:subjectClassConstraint work:Publication;
 	knora-base:objectClassConstraint knora-base:TextValue;
 	salsah-gui:guiElement salsah-gui:Richtext.
 
-:hasPublisher
+work:hasPublisher
 	a owl:ObjectProperty;
-	rdfs:label "has publisher"@en;
+	rdfs:label "has publisher"@en, "hat Herausgeber"@de;
 	rdfs:comment "Relating a publication to its publisher."@en;
 	rdfs:subPropertyOf knora-base:hasLinkTo;
-	knora-base:subjectClassConstraint :Publication;
+	knora-base:subjectClassConstraint work:Publication;
 	knora-base:objectClassConstraint event:Agent. # [rdfs:subClassOf foafAgent, [a owl:Restriction; owl:onProperty agent:hasRole; owl:someValuesFrom :Publisher]].
 
-:hasPublisherValue
+work:hasPublisherValue
 	a owl:ObjectProperty;
-	rdfs:label "has publisher value"@en;
+	rdfs:label "has publisher - value"@en, "hat Herausgeber - Wert"@de;
 	rdfs:comment "Relating a publication to a reification statement of the relation between the publication and its publisher."@en;
 	rdfs:subPropertyOf knora-base:hasLinkToValue;
-	knora-base:subjectClassConstraint :Publication;
+	knora-base:subjectClassConstraint work:Publication;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
-:hasPublisherDescription
+work:hasPublisherDescription
 	a owl:ObjectProperty;
-	rdfs:label "has publisher description"@en;
+	rdfs:label "has publisher description"@en, "hat Herausgeberbeschreibung"@de;
 	rdfs:comment "Relating a publication to its publisher's description (as object)."@en;
 	rdfs:subPropertyOf text:hasDescription;
-	knora-base:subjectClassConstraint :Publication;
+	knora-base:subjectClassConstraint work:Publication;
 	knora-base:objectClassConstraint knora-base:TextValue;
 	salsah-gui:guiElement salsah-gui:Richtext.
 
-:hasPrinterDescription
+work:hasPrinterDescription
 	a owl:ObjectProperty;
-	rdfs:label "has printer description"@en;
+	rdfs:label "has printer description"@en, "hat Druckerbeschreibung"@de;
 	rdfs:comment "Relating a publication to its printer's description (as object)."@en;
 	rdfs:subPropertyOf text:hasDescription;
-	knora-base:subjectClassConstraint :Publication;
+	knora-base:subjectClassConstraint work:Publication;
 	knora-base:objectClassConstraint knora-base:TextValue;
 	salsah-gui:guiElement salsah-gui:Richtext.
 
-#:hasPage
+#work:hasPage
 #	a owl:ObjectProperty;
 #	rdfs:label "has page"@en;
 #	rdfs:comment """Relating a book to a page thereof."""@en;
 #	rdfs:subPropertyOf knora-base:hasLinkTo;
-#	knora-base:subjectClassConstraint :Book; # owl:propertyChainAxiom (:hasLeaf :hasSide)
-#	knora-base:objectClassConstraint :Page.
+#	knora-base:subjectClassConstraint work:Book; # owl:propertyChainAxiom (:hasLeaf :hasSide)
+#	knora-base:objectClassConstraint work:Page.
 
-#:hasPageValue
+#work:hasPageValue
 #	a owl:ObjectProperty;
-#	rdfs:label "has page value"@en;
+#	rdfs:label "has page - value"@en;
 #	rdfs:comment """Relating a book to a reification statement of the relation between the book and a page thereof."""@en;
 #	rdfs:subPropertyOf knora-base:hasLinkToValue;
-#	knora-base:subjectClassConstraint :Book;
+#	knora-base:subjectClassConstraint work:Book;
 #	knora-base:objectClassConstraint knora-base:LinkValue.
 
-:isPageOf
+work:isPageOf
 	a owl:ObjectProperty;
-	rdfs:label "is page of"@en;
+	rdfs:label "is page of"@en, "ist Seite von"@de;
 	rdfs:comment """Relating a page to its leaf, single or in a book."""@en;
-	rdfs:subPropertyOf :isPartOf;
-	knora-base:subjectClassConstraint :Page;
+	rdfs:subPropertyOf work:isPartOf;
+	knora-base:subjectClassConstraint work:Page;
 	knora-base:objectClassConstraint knora-base:Resource. # to change to leaf
 
-:isPageOfValue
+work:isPageOfValue
 	a owl:ObjectProperty;
-	rdfs:label "is page of value"@en;
+	rdfs:label "is page of - value"@en, "ist Seite von - Wert"@de;
 	rdfs:comment """Relating a page to a reification statement of the relation between the page and its leaf, single or in a book."""@en;
-	rdfs:subPropertyOf :isPartOfValue;
-	knora-base:subjectClassConstraint :Page;
+	rdfs:subPropertyOf work:isPartOfValue;
+	knora-base:subjectClassConstraint work:Page;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
-:hasNumber
+work:hasPageNumber
 	a owl:ObjectProperty;
-	rdfs:label "has number"@en;
+	rdfs:label "has page number"@en, "hat Seitennummer"@de;
 	rdfs:comment """Relating a page to the number (as object) it has."""@en;
 	rdfs:subPropertyOf knora-base:hasValue;
-	knora-base:subjectClassConstraint :Page;
-	knora-base:objectClassConstraint knora-base:IntValue.
+	knora-base:subjectClassConstraint work:Page;
+	knora-base:objectClassConstraint knora-base:TextValue.
 
-:isOnPage
+work:isOnPage
 	a owl:ObjectProperty;
-	rdfs:label "is on page"@en;
+	rdfs:label "is on page"@en, "ist auf Seite"@de;
 	rdfs:comment """Relating an expression to a carrier page it is on."""@en;
-	rdfs:subPropertyOf :isMaterializedIn;
-	knora-base:subjectClassConstraint :Expression; # owl:propertyChainAxiom (:isMaterializedIn :hasPage)
-	knora-base:objectClassConstraint :Page.
+	rdfs:subPropertyOf work:isMaterializedIn;
+	knora-base:subjectClassConstraint work:Expression; # owl:propertyChainAxiom (:isMaterializedIn :hasPage)
+	knora-base:objectClassConstraint work:Page.
 
-:isOnPageValue
+work:isOnPageValue
 	a owl:ObjectProperty;
-	rdfs:label "is on page value"@en;
+	rdfs:label "is on page - value"@en, "ist auf Seite - Wert"@de;
 	rdfs:comment """Relating an expression to a reification statement of the relation between the expression and the carrier page it is on."""@en;
-	rdfs:subPropertyOf :isMaterializedInValue;
-	knora-base:subjectClassConstraint :Expression;
+	rdfs:subPropertyOf work:isMaterializedInValue;
+	knora-base:subjectClassConstraint work:Expression;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
-:hasPageNumber
-	a owl:ObjectProperty;
-	rdfs:label "has page number"@en;
-	rdfs:comment """Relating an expression to the number (as object) of a page it is on."""@en;
-	rdfs:subPropertyOf knora-base:hasValue;
-	knora-base:subjectClassConstraint :Expression; # owl:propertyChainAxiom (:isOnPage :hasNumber)
-	knora-base:objectClassConstraint knora-base:IntValue.
+#work:hasPageNumber
+#	a owl:ObjectProperty;
+#	rdfs:label "has page number"@en;
+#	rdfs:comment """Relating an expression to the number (as object) of a page it is on."""@en;
+#	rdfs:subPropertyOf knora-base:hasValue;
+#	knora-base:subjectClassConstraint work:Expression; # owl:propertyChainAxiom (:isOnPage :hasNumber)
+#	knora-base:objectClassConstraint knora-base:IntValue.
 
-:isPartOfArchive
+work:isPartOfArchive
 	a owl:ObjectProperty;
-	rdfs:label "is part of archive"@en;
+	rdfs:label "is part of archive"@en, "ist Teil Archivs"@de;
 	rdfs:comment """Relating an element to an archive it is in."""@en;
-	rdfs:subPropertyOf :isPartOf;
-	knora-base:subjectClassConstraint :ArchiveElement;
-	knora-base:objectClassConstraint :Archive.
+	rdfs:subPropertyOf work:isPartOf;
+	knora-base:subjectClassConstraint work:ArchiveElement;
+	knora-base:objectClassConstraint work:Archive.
 
-:isPartOfArchiveValue
+work:isPartOfArchiveValue
 	a owl:ObjectProperty;
-	rdfs:label "is part of archive value"@en;
+	rdfs:label "is part of archive - value"@en, "ist Teil Archivs - Wert"@de;
 	rdfs:comment """Relating an element to a reification statement of the relation between the element and an archive it is in."""@en;
-	rdfs:subPropertyOf :isPartOfValue;
-	knora-base:subjectClassConstraint :ArchiveElement;
+	rdfs:subPropertyOf work:isPartOfValue;
+	knora-base:subjectClassConstraint work:ArchiveElement;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
-:hasArchiveSignature
+work:hasArchiveSignature
 	a owl:ObjectProperty;
-	rdfs:label "has archive signature";
+	rdfs:label "has archive signature"@en, "hat Archivsignatur"@de;
 	rdfs:comment """Relating en element of an archive to its signature (as object) as identifier."""@en;
 	rdfs:subPropertyOf text:hasIdentifier;
-	knora-base:subjectClassConstraint :ArchiveElement;
+	knora-base:subjectClassConstraint work:ArchiveElement;
 	knora-base:objectClassConstraint knora-base:TextValue.
