@@ -30,7 +30,7 @@ work:Work
 	a owl:Class;
 	rdfs:label "work"@en, "Werk"@de;
 	rdfs:comment """Intellectual product as an abstract conceptual thing."""@en;
-	rdfs:comment """See http://iflastandards.info/ns/fr/frbr/frbroo/F1_Work."""@en; 
+	rdfs:comment """See http://iflastandards.info/ns/fr/frbr/frbroo/F1_Work."""@en;
 	rdfs:subClassOf human:Creation, [ # frbroo:F1_Work, [
 		a owl:Restriction; owl:onProperty work:isExpressedIn; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty work:isExpressedInValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].

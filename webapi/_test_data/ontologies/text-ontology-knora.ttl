@@ -92,7 +92,7 @@ text:Revisor
 	a owl:Class;
 	rdfs:label "revisor"@en, "Revisor"@de;
 	rdfs:comment """Role of a person checking on certain aspects of a text."""@en;
-	rdfs:subClassOf human:Role. 
+	rdfs:subClassOf human:Role.
 
 text:Derivative
 	a owl:Class;
@@ -592,7 +592,7 @@ text:isInDiaryValue
 	rdfs:subPropertyOf text:isOnCarrierValue;
 	knora-base:subjectClassConstraint text:DiaryEntry;
 	knora-base:objectClassConstraint knora-base:LinkValue.
-																										   
+
 text:hasEnteringDate
 	a owl:ObjectProperty;
 	rdfs:label "has entering date"@en, "hat Eintragsdatum"@de;
