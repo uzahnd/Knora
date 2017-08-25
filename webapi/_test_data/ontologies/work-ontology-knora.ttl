@@ -30,7 +30,7 @@ work:Work
 	a owl:Class;
 	rdfs:label "work"@en, "Werk"@de;
 	rdfs:comment """Intellectual product as an abstract conceptual thing."""@en;
-	rdfs:comment """See http://iflastandards.info/ns/fr/frbr/frbroo/F1_Work."""@en; 
+	rdfs:comment """See http://iflastandards.info/ns/fr/frbr/frbroo/F1_Work."""@en;
 	rdfs:subClassOf human:Creation, [ # frbroo:F1_Work, [
 		a owl:Restriction; owl:onProperty work:isExpressedIn; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty work:isExpressedInValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
@@ -223,8 +223,8 @@ work:isExpressedIn
 	rdfs:label "is expressed in"@en, "ist ausgedruckt in"@de;
 	rdfs:comment "Relating a work to an expression thereof."@en;
 	rdfs:subPropertyOf knora-base:hasLinkTo; # frbroo:R9_is_realised_in
-	knora-base:subjectClassConstraint :Work;
-	knora-base:objectClassConstraint :Expression.
+	knora-base:subjectClassConstraint work:Work;
+	knora-base:objectClassConstraint work:Expression.
 
 work:isExpressedInValue
 	a owl:ObjectProperty;

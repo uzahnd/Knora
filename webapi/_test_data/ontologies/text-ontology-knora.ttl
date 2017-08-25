@@ -55,7 +55,7 @@ text:WrittenText
 	a owl:Class;
 	rdfs:label "written text"@en, "geschriebener Text"@de;
 	rdfs:comment """Text written by any method, e.g. manually, with an analogue or digital typewriter, or on a computer."""@en;
-	rdfs:subClassOf :Expression, [
+	rdfs:subClassOf text:Expression, [
 		a owl:Restriction; owl:onProperty text:isOnCarrier; owl:cardinality "1"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text:isOnCarrierValue; owl:cardinality "1"^^xsd:nonNegativeInteger].
 
@@ -63,7 +63,7 @@ text:HandwrittenText
 	a owl:Class;
 	rdfs:label "handwritten text"@en, "handgeschriebener Text"@de;
 	rdfs:comment """Text written by hand."""@en;
-	rdfs:subClassOf :WrittenText, [
+	rdfs:subClassOf text:WrittenText, [
 		a owl:Restriction; owl:onProperty text:isInManuscript; owl:cardinality "1"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text:isInManuscriptValue; owl:cardinality "1"^^xsd:nonNegativeInteger].
 
@@ -71,7 +71,7 @@ text:TypewrittenText
 	a owl:Class;
 	rdfs:label "typewritten text"@en, "maschinengeschriebener Text"@de;
 	rdfs:comment """Text written with a typewriter."""@en;
-	rdfs:subClassOf :WrittenText, [
+	rdfs:subClassOf text:WrittenText, [
 		a owl:Restriction; owl:onProperty text:isInTypescript; owl:cardinality "1"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text:isInTypescriptValue; owl:cardinality "1"^^xsd:nonNegativeInteger].
 
@@ -92,7 +92,7 @@ text:Revisor
 	a owl:Class;
 	rdfs:label "revisor"@en, "Revisor"@de;
 	rdfs:comment """Role of a person checking on certain aspects of a text."""@en;
-	rdfs:subClassOf human:Role. 
+	rdfs:subClassOf human:Role.
 
 text:Derivative
 	a owl:Class;
@@ -594,7 +594,7 @@ text:isInDiaryValue
 	rdfs:subPropertyOf text:isOnCarrierValue;
 	knora-base:subjectClassConstraint text:DiaryEntry;
 	knora-base:objectClassConstraint knora-base:LinkValue.
-																										   
+
 text:hasEnteringDate
 	a owl:ObjectProperty;
 	rdfs:label "has entering date"@en, "hat Eintragsdatum"@de;
@@ -608,7 +608,7 @@ text:hasCarrierDescription
 	a owl:ObjectProperty;
 	rdfs:label "has text carrier description"@en, "hat Träger-Beschreibung"@de;
 	rdfs:comment """Relating a text carrier to a description (as object) thereof."""@en;
-	rdfs:subPropertyOf :hasDescription;
+	rdfs:subPropertyOf text:hasDescription;
 	knora-base:subjectClassConstraint text:Carrier;
 	knora-base:objectClassConstraint knora-base:TextValue;
 	salsah-gui:guiElement salsah-gui:Richtext.
