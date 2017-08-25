@@ -39,28 +39,28 @@ human:Person
 	rdfs:comment """A real born living human."""@en;
 #	skos:note """A foaf:Person class member is born, but can be alive or dead, real or imaginary. In this more restricted meaning a person can do things during life and can be talked about after dead, having done things during life. An imaginary person is a thing that can have every conceivable property, very unlike a real person."""@en;
 	rdfs:subClassOf human:Human, [ # rdfs:subClassOf frbroo:F10_Person, foaf:Person
-#		a owl:Restriction; owl:onProperty :hasBiologicalGender; owl:someValuesFrom :BiologicalGender], [
-		a owl:Restriction; owl:onProperty :hasBiologicalGender; owl:maxCardinality "1"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty :hasBiologicalGenderValue; owl:maxCardinality "1"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty :hasName; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty :hasFamilyName; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty :hasGivenName; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty :hasPreferredName; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty :hasAlias; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty :hasBirthDate; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty :hasDeathDate; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty :hasDescription; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-#		a owl:Restriction; owl:onProperty :hasRole; owl:someValuesFrom :Role], [
-		a owl:Restriction; owl:onProperty :hasRole; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty :hasRoleValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty :hasFloruit; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty :hasFloruitValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+#		a owl:Restriction; owl:onProperty human:hasBiologicalGender; owl:someValuesFrom human:BiologicalGender], [
+		a owl:Restriction; owl:onProperty human:hasBiologicalGender; owl:maxCardinality "1"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty human:hasBiologicalGenderValue; owl:maxCardinality "1"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty human:hasName; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty human:hasFamilyName; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty human:hasGivenName; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty human:hasPreferredName; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty human:hasAlias; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty human:hasBirthDate; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty human:hasDeathDate; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty human:hasDescription; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+#		a owl:Restriction; owl:onProperty human:hasRole; owl:someValuesFrom human:Role], [
+		a owl:Restriction; owl:onProperty human:hasRole; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty human:hasRoleValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty human:hasFloruit; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty human:hasFloruitValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
-human:PersonLike # can also be :Fantasy
+human:PersonLike # can also be human:Fantasy
 	a owl:Class;
 	rdfs:label "person-like resource"@en, "Person-ähnliche Entität"@en;
 	rdfs:comment """Person like resource having additional non-human features."""@en;
-#	skos:note """E.g. Jesus is for a believer a person having also non-human features, i.e. he is in the intersection of :Person and :PersonLike."""@en;
+#	skos:note """E.g. Jesus is for a believer a person having also non-human features, i.e. he is in the intersection of human:Person and human:PersonLike."""@en;
 	rdfs:subClassOf human:Person.
 
 human:Action
@@ -82,7 +82,7 @@ human:BiologicalGender
 	rdfs:label "biological gender"@en, "biologisches Geschlecht"@de;
 	rdfs:comment """Biological gender of a human."""@en;
 	rdfs:subClassOf knora-base:Resource.
-#	owl:disjointUnionOf (:FemaleGender :IntersexualGender :MaleGender).
+#	owl:disjointUnionOf (human:FemaleGender human:IntersexualGender human:MaleGender).
 
 human:FemaleGender
 	a owl:Class;
@@ -104,7 +104,7 @@ human:Role
 	rdfs:label "role"@en, "Rolle"@de;
 	rdfs:comment """A role a person has as a social entity."""@en;
 	rdfs:subClassOf knora-base:Resource. # , [
-#		a owl:Restriction; owl:onProperty agent:roleOf; owl:allValuesFrom :Person].
+#		a owl:Restriction; owl:onProperty agent:roleOf; owl:allValuesFrom human:Person].
 
 human:Occupation
 	a owl:Class;
@@ -116,7 +116,7 @@ human:OccupationalRole
 	a owl:Class;
 	rdfs:label "occupational role"@en, "Tätigkeitsrolle"@de;
 	rdfs:comment """Role of a person in an occupation."""@en;
-	rdfs:subClassOf :Role.
+	rdfs:subClassOf human:Role.
 
 human:Floruit # to do: move to agent
 	a owl:Class;
@@ -318,7 +318,7 @@ human:hasCreationDate
 	rdfs:label "has creation date"@en, "hat Kreationsdatum"@de;
 	rdfs:comment "Relating a creation by a person to a date it was created on."@en;
 	rdfs:subPropertyOf knora-base:hasValue;
-	knora-base:subjectClassConstraint human:Creation; # owl:propertyChainAxiom (:isOutputOf :hasEndDate)
+	knora-base:subjectClassConstraint human:Creation; # owl:propertyChainAxiom (event:isOutputOf event:hasEndDate)
 	knora-base:objectClassConstraint knora-base:DateValue;
 	salsah-gui:guiElement salsah-gui:Date.
 

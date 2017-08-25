@@ -55,7 +55,7 @@ text:WrittenText
 	a owl:Class;
 	rdfs:label "written text"@en, "geschriebener Text"@de;
 	rdfs:comment """Text written by any method, e.g. manually, with an analogue or digital typewriter, or on a computer."""@en;
-	rdfs:subClassOf :Expression, [
+	rdfs:subClassOf text:Expression, [
 		a owl:Restriction; owl:onProperty text:isOnCarrier; owl:cardinality "1"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text:isOnCarrierValue; owl:cardinality "1"^^xsd:nonNegativeInteger].
 
@@ -63,7 +63,7 @@ text:HandwrittenText
 	a owl:Class;
 	rdfs:label "handwritten text"@en, "handgeschriebener Text"@de;
 	rdfs:comment """Text written by hand."""@en;
-	rdfs:subClassOf :WrittenText, [
+	rdfs:subClassOf text:WrittenText, [
 		a owl:Restriction; owl:onProperty text:isInManuscript; owl:cardinality "1"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text:isInManuscriptValue; owl:cardinality "1"^^xsd:nonNegativeInteger].
 
@@ -71,7 +71,7 @@ text:TypewrittenText
 	a owl:Class;
 	rdfs:label "typewritten text"@en, "maschinengeschriebener Text"@de;
 	rdfs:comment """Text written with a typewriter."""@en;
-	rdfs:subClassOf :WrittenText, [
+	rdfs:subClassOf text:WrittenText, [
 		a owl:Restriction; owl:onProperty text:isInTypescript; owl:cardinality "1"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text:isInTypescriptValue; owl:cardinality "1"^^xsd:nonNegativeInteger].
 
@@ -252,8 +252,6 @@ text:RhythmicProse
 	rdfs:comment """Prose ... ."""@en;
 	rdfs:subClassOf text:Structure.
 
-# Briefentwurf
-
 text:Poem # Poetry
 	a owl:Class;
 	rdfs:label "poem"@en, "Gedicht"@de;
@@ -432,8 +430,8 @@ text:hasEditionValue
 #	a owl:ObjectProperty;
 #	rdfs:label "has edited content"@en;
 #	rdfs:comment """Relating an edition to its content (as object)."""@en;
-#	rdfs:subPropertyOf :hasContent;
-#	knora-base:subjectClassConstraint :Edition;
+#	rdfs:subPropertyOf text:hasContent;
+#	knora-base:subjectClassConstraint text:Edition;
 #	knora-base:objectClassConstraint knora-base:TextValue;
 #	salsah-gui:guiElement salsah-gui:Richtext.
 
@@ -514,7 +512,7 @@ text:hasAuthor
 #	skos:note """A text can have more than one author."""@en;
 	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint text:Expression;
-	knora-base:objectClassConstraint human:Person. # [rdfs:subClassOf human:Person, [a owl:Restriction; owl:onProperty event:hasRole; owl:someValuesFrom :Author]]
+	knora-base:objectClassConstraint human:Person. # [rdfs:subClassOf human:Person, [a owl:Restriction; owl:onProperty event:hasRole; owl:someValuesFrom text:Author]]
 
 text:hasAuthorValue
 	a owl:ObjectProperty;
@@ -524,12 +522,12 @@ text:hasAuthorValue
 	knora-base:subjectClassConstraint text:Expression;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
-#:authorOf
+#text:isAuthorOf
 #	a owl:ObjectProperty;
 #	rdfs:label "author of"@en;
 #	rdfs:comment """Relating a person with author role to a text the person authored."""@en;
-#	knora-base:subjectClassConstraint human:Person; # [rdfs:subClassOf human:Person, [a owl:Restriction; owl:onProperty event:hasRole; owl:someValuesFrom :Author]];
-#	knora-base:objectClassConstraint :Expression.
+#	knora-base:subjectClassConstraint human:Person; # [rdfs:subClassOf human:Person, [a owl:Restriction; owl:onProperty event:hasRole; owl:someValuesFrom text:Author]];
+#	knora-base:objectClassConstraint text:Expression.
 
 text:isOnCarrier
 	a owl:ObjectProperty;
@@ -608,7 +606,7 @@ text:hasCarrierDescription
 	a owl:ObjectProperty;
 	rdfs:label "has text carrier description"@en, "hat Träger-Beschreibung"@de;
 	rdfs:comment """Relating a text carrier to a description (as object) thereof."""@en;
-	rdfs:subPropertyOf :hasDescription;
+	rdfs:subPropertyOf text:hasDescription;
 	knora-base:subjectClassConstraint text:Carrier;
 	knora-base:objectClassConstraint knora-base:TextValue;
 	salsah-gui:guiElement salsah-gui:Richtext.
@@ -619,7 +617,7 @@ text:hasSender
 	rdfs:comment """Relating a letter to one or more persons who send it."""@en; # or an organization that sends it -> foaf:Agent
 	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint text:Letter;
-	knora-base:objectClassConstraint human:Person. # [rdfs:subClassOf human:Person, [a owl:Restriction; owl:onProperty event:hasRole; owl:someValuesFrom :Sender]]
+	knora-base:objectClassConstraint human:Person. # [rdfs:subClassOf human:Person, [a owl:Restriction; owl:onProperty event:hasRole; owl:someValuesFrom text:Sender]]
 
 text:hasSenderValue
 	a owl:ObjectProperty;
@@ -635,7 +633,7 @@ text:hasReceiver
 	rdfs:comment """Relating a letter to one or more persons who receive it."""@en; # or an organization that receives it -> foaf:Agent
 	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint text:Letter;
-	knora-base:objectClassConstraint human:Person. # [rdfs:subClassOf human:Person, [a owl:Restriction; owl:onProperty event:hasRole; owl:someValuesFrom :Receiver]]
+	knora-base:objectClassConstraint human:Person. # [rdfs:subClassOf human:Person, [a owl:Restriction; owl:onProperty event:hasRole; owl:someValuesFrom text:Receiver]]
 
 text:hasReceiverValue
 	a owl:ObjectProperty;

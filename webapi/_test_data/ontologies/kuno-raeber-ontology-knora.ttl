@@ -124,7 +124,8 @@ kuno-raeber:PublicationPoem
 		a owl:Restriction; owl:onProperty work:isPublishedIn; owl:minCardinality "1"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty work:isPublishedInValue; owl:minCardinality "1"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty work:isOnPage; owl:minCardinality "1"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty work:isOnPageValue; owl:minCardinality "1"^^xsd:nonNegativeInteger].
+		a owl:Restriction; owl:onProperty work:isOnPageValue; owl:minCardinality "1"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty work:hasNachlassPublicationDescription; owl:minCardinality "1"^^xsd:nonNegativeInteger].
 
 kuno-raeber:Page # to be removed when knora-base:hasRepresentation will be implemented in Knora2
 	a owl:Class;

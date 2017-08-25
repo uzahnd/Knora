@@ -65,7 +65,7 @@ work:Manifestation
  	rdfs:label "manifestation"@en,"Manifestation"@de;
  	rdfs:comment """Carrier of an expression."""@en;
 #	skos:note """Includes both F4_Manifestation_Singleton and F5_Item as declared in FRBROO."""@en;
-	rdfs:subClassOf human:Creation, cidoc:E84_Information_Carrier. # cardinality on StillImage and Document impossible because knora-base:hasRepresentation not usable in Knora1 AND ALSO impossible to make :Manifestation :subClassOf knora-base:StillImageRepresentation (and knora-base:DocumentRepresentation), otherwise all :subClassOf :Manifestation must have at least 1 knora-base:hasStillImageFileValue.
+	rdfs:subClassOf human:Creation, cidoc:E84_Information_Carrier. # cardinality on StillImage and Document impossible because knora-base:hasRepresentation not usable in Knora1 AND ALSO impossible to make work:Manifestation rdfs:subClassOf knora-base:StillImageRepresentation (and knora-base:DocumentRepresentation), otherwise all rdfs:subClassOf work:Manifestation must have at least 1 knora-base:hasStillImageFileValue.
 #		, [
 #		a owl:Restriction; owl:onProperty image:hasPhotoRepresentation; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 #		a owl:Restriction; owl:onProperty image:hasPhotoRepresentationValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
@@ -223,8 +223,8 @@ work:isExpressedIn
 	rdfs:label "is expressed in"@en, "ist ausgedruckt in"@de;
 	rdfs:comment "Relating a work to an expression thereof."@en;
 	rdfs:subPropertyOf knora-base:hasLinkTo; # frbroo:R9_is_realised_in
-	knora-base:subjectClassConstraint :Work;
-	knora-base:objectClassConstraint :Expression.
+	knora-base:subjectClassConstraint work:Work;
+	knora-base:objectClassConstraint work:Expression.
 
 work:isExpressedInValue
 	a owl:ObjectProperty;
@@ -372,7 +372,7 @@ work:hasPublisher
 	rdfs:comment "Relating a publication to its publisher."@en;
 	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint work:Publication;
-	knora-base:objectClassConstraint event:Agent. # [rdfs:subClassOf foafAgent, [a owl:Restriction; owl:onProperty agent:hasRole; owl:someValuesFrom :Publisher]].
+	knora-base:objectClassConstraint event:Agent. # [rdfs:subClassOf foafAgent, [a owl:Restriction; owl:onProperty agent:hasRole; owl:someValuesFrom work:Publisher]].
 
 work:hasPublisherValue
 	a owl:ObjectProperty;
@@ -414,7 +414,7 @@ work:hasVolumeNumber
 #	rdfs:label "has page"@en;
 #	rdfs:comment """Relating a book to a page thereof."""@en;
 #	rdfs:subPropertyOf knora-base:hasLinkTo;
-#	knora-base:subjectClassConstraint work:Book; # owl:propertyChainAxiom (:hasLeaf :hasSide)
+#	knora-base:subjectClassConstraint work:Book; # owl:propertyChainAxiom (work:hasLeaf work:hasSide)
 #	knora-base:objectClassConstraint work:Page.
 
 #work:hasPageValue
@@ -454,7 +454,7 @@ work:isOnPage
 	rdfs:label "is on page"@en, "ist auf Seite"@de;
 	rdfs:comment """Relating an expression to a carrier page it is on."""@en;
 	rdfs:subPropertyOf work:isMaterializedIn;
-	knora-base:subjectClassConstraint work:Expression; # owl:propertyChainAxiom (:isMaterializedIn :hasPage)
+	knora-base:subjectClassConstraint work:Expression; # owl:propertyChainAxiom (work:isMaterializedIn work:hasPage)
 	knora-base:objectClassConstraint work:Page.
 
 work:isOnPageValue
@@ -470,7 +470,7 @@ work:isOnPageValue
 #	rdfs:label "has page number"@en;
 #	rdfs:comment """Relating an expression to the number (as object) of a page it is on."""@en;
 #	rdfs:subPropertyOf knora-base:hasValue;
-#	knora-base:subjectClassConstraint work:Expression; # owl:propertyChainAxiom (:isOnPage :hasNumber)
+#	knora-base:subjectClassConstraint work:Expression; # owl:propertyChainAxiom (work:isOnPage work:hasNumber)
 #	knora-base:objectClassConstraint knora-base:IntValue.
 
 work:isPartOfArchive
