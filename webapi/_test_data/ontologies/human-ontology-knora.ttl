@@ -159,7 +159,7 @@ human:actsIn
 
 human:actsInValue
 	a owl:ObjectProperty;
-	rdfs:label "acts in - value"@en, "agiert in - Wert"@de;
+	rdfs:label "acts in - statement"@en, "agiert in - Äusserung"@de;
 	rdfs:comment """Relating a person to a reification statement of the relation between the person and an action s/he is in."""@en;
 	rdfs:subPropertyOf knora-base:hasLinkToValue;
 #	knora-base:subjectClassConstraint human:Person;
@@ -175,7 +175,7 @@ human:hasLife
 
 human:hasLifeValue
 	a owl:ObjectProperty;
-	rdfs:label "has life - value"@en, "hat Leben - Wert"@de;
+	rdfs:label "has life - statement"@en, "hat Leben - Äusserung"@de;
 	rdfs:comment """Relating a person to a reification statement of the relation between the person and her/his life."""@en;
 	rdfs:subPropertyOf human:actsInValue;
 	knora-base:subjectClassConstraint human:Person;
@@ -191,7 +191,7 @@ human:hasBiologicalGender
 
 human:hasBiologicalGenderValue
 	a owl:ObjectProperty;
-	rdfs:label "has biological gender - value"@en, "hat biologisches Geschlecht - Wert"@de;
+	rdfs:label "has biological gender - statement"@en, "hat biologisches Geschlecht - Äusserung"@de;
 	rdfs:comment """Relating a person to a reification statement of the relation between the person and her/his biological gender."""@en;
 	rdfs:subPropertyOf knora-base:hasLinkToValue;
 	knora-base:subjectClassConstraint human:Human;
@@ -275,7 +275,7 @@ human:hasRole
 
 human:hasRoleValue
 	a owl:ObjectProperty;
-	rdfs:label "has role - value"@en, "hat Rolle - Wert"@de;
+	rdfs:label "has role - statement"@en, "hat Rolle - Äusserung"@de;
 	rdfs:comment """Relating a person to a reification statement of the relation between the person and a role s/he has."""@en;
 	rdfs:subPropertyOf knora-base:hasLinkToValue;
 	knora-base:subjectClassConstraint human:Person;
@@ -291,7 +291,7 @@ human:hasOccupationalRole
 
 human:hasOccupationalRoleValue
 	a owl:ObjectProperty;
-	rdfs:label "has occupational role - value"@en, "hat Tätigkeitsrolle - Wert"@de;
+	rdfs:label "has occupational role - statement"@en, "hat Tätigkeitsrolle - Äusserung"@de;
 	rdfs:comment """Relating a person to a reification statement of the relation between the person and a current occupational role s/he has."""@en;
 	rdfs:subPropertyOf human:hasRoleValue;
 	knora-base:subjectClassConstraint human:Person;
@@ -307,7 +307,7 @@ human:hasFloruit
 
 human:hasFloruitValue
 	a owl:ObjectProperty;
-	rdfs:label "has floruit - value"@en, "hat Floruit - Wert"@de;
+	rdfs:label "has floruit - statement"@en, "hat Floruit - Äusserung"@de;
 	rdfs:comment """Relating a person to a reification statement of the relation between the person and her/his floruit."""@en;
 	rdfs:subPropertyOf human:actsInValue;
 	knora-base:subjectClassConstraint human:Person;
@@ -332,7 +332,7 @@ human:hasCreatingPeriod
 
 human:hasCreatingPeriodValue
 	a owl:ObjectProperty;
-	rdfs:label "has creating period - value"@en, "hat Kreierungsperiode - Wert"@de;
+	rdfs:label "has creating period - statement"@en, "hat Kreierungsperiode - Äusserung"@de;
 	rdfs:comment "Relating a creation by a person to a reification statement of the relation between the creation and the creating thereof."@en;
 	rdfs:subPropertyOf event:isOutputOfValue;
 	knora-base:subjectClassConstraint human:Creation;

@@ -49,11 +49,13 @@ work:Expression
 	rdfs:comment """See http://iflastandards.info/ns/fr/frbr/frbroo/F2_Expression and http://iflastandards.info/ns/fr/frbr/frbroo/F22_Self-Contained_Expression."""@en;
 	rdfs:subClassOf human:Creation, frbroo:F22_Self-Contained_Expression, [
 		a owl:Restriction; owl:onProperty work:isMaterializedIn; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty work:isMaterializedInValue; owl:minCardinality "0"^^xsd:nonNegativeInteger] #, [
-#		a owl:Restriction; owl:onProperty work:hasPublishingState; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-#		a owl:Restriction; owl:onProperty work:hasPublishingStateValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-#		a owl:Restriction; owl:onProperty work:hasPublication; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-#		a owl:Restriction; owl:onProperty work:hasPublicationValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty work:isMaterializedInValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty work:hasPublishingState; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty work:hasPublishingStateValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty work:hasPublication; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty work:hasPublicationValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty work:hasLastPublication; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty work:hasLastPublicationValue; owl:minCardinality "0"^^xsd:nonNegativeInteger]
 #		a owl:Restriction; owl:onProperty work:hasMonoAuthorPublication; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 #		a owl:Restriction; owl:onProperty work:hasMonoAuthorPublicationValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 #		a owl:Restriction; owl:onProperty work:hasPolyAuthorPublication; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
@@ -102,24 +104,30 @@ work:PublicationExpression
 		a owl:Restriction; owl:onProperty work:isPublishedIn; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty work:isPublishedInValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
-work:Book
+work:Book # used as information carrier
 	a owl:Class;
 	rdfs:label "book"@en, "Buch"@de;
-	rdfs:comment """Set of leafs, e.g. sheets of paper or parchment, used as information carrier, fastened together along one side, with a front and back cover."""@en;
-	rdfs:subClassOf work:Manifestation.
+	rdfs:comment """Set of leafs, e.g. sheets of paper or parchment, fastened together along one side, with a front and back cover."""@en;
+	rdfs:subClassOf human:Creation.
+
+work:Leaf # used as information carrier
+	a owl:Class;
+	rdfs:label "leaf"@en, "Blatt"@de;
+	rdfs:comment """Sheet of a writable substance, e.g. paper or parchment."""@en;
+	rdfs:subClassOf human:Creation.
 
 work:Volume
 	a owl:Class;
 	rdfs:label "volume"@en, "Band"@de;
 	rdfs:comment """ One of the books carrying an expression materialized in more than one book."""@en;
-	rdfs:subClassOf work:Book, [
+	rdfs:subClassOf work:Book, work:Manifestation, [
 		a owl:Restriction; owl:onProperty work:hasVolumeNumber; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 work:Page # the concept of leaf is cut short and can be interposed later
 	a owl:Class;
 	rdfs:label "page"@en, "Seite"@de;
-	rdfs:comment """One of the 2 surfaces of a leaf, e.g. a sheet of paper or parchment, e.g. a manuscript, or of a leaf of a book."""@en;
-	rdfs:subClassOf work:Manifestation, [
+	rdfs:comment """One of the 2 surfaces of a leaf, e.g. a manuscript, or of a leaf of a book."""@en;
+	rdfs:subClassOf human:Creation, [
 		a owl:Restriction; owl:onProperty work:isPageOf; owl:cardinality "1"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty work:isPageOfValue; owl:cardinality "1"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty work:hasPageNumber; owl:minCardinality "0"^^xsd:nonNegativeInteger].
@@ -161,7 +169,7 @@ work:Magazine
 	a owl:Class;
 	rdfs:label "magazine"@en, "Zeitschrift"@de;
 	rdfs:comment """Periodically published book."""@en;
-	rdfs:subClassOf work:Publication.
+	rdfs:subClassOf work:Book, work:Publication.
 
 work:Archive
 	a owl:Class;
@@ -212,7 +220,7 @@ work:isPartOf
 
 work:isPartOfValue
 	a owl:ObjectProperty;
-	rdfs:label "is part of - value"@en, "ist Teil von - Wert"@de;
+	rdfs:label "is part of - statement"@en, "ist Teil von - Äusserung"@de;
 	rdfs:comment "Relating something to a reification statement of the relation between that something and something else it is part of."@en;
 	rdfs:subPropertyOf knora-base:isPartOfValue;
 	knora-base:subjectClassConstraint knora-base:Resource;
@@ -228,7 +236,7 @@ work:isExpressedIn
 
 work:isExpressedInValue
 	a owl:ObjectProperty;
-	rdfs:label "is expressed in - value"@en, "ist ausgedruckt in - Wert"@de;
+	rdfs:label "is expressed in - statement"@en, "ist ausgedruckt in - Äusserung"@de;
 	rdfs:comment "Relating a work to a reification statement of the relation between the work and an expression thereof."@en;
 	rdfs:subPropertyOf knora-base:hasLinkToValue;
 	knora-base:subjectClassConstraint work:Work;
@@ -246,7 +254,7 @@ work:isMaterializedIn
 
 work:isMaterializedInValue
 	a owl:ObjectProperty;
-	rdfs:label "is materialized in - value"@en, "ist materialisiert in - Wert"@de;
+	rdfs:label "is materialized in - statement"@en, "ist materialisiert in - Äusserung"@de;
 	rdfs:comment "Relating an expression to a reification statement of the relation between the expression and a manifestation thereof."@en;
 	rdfs:subPropertyOf knora-base:hasLinkToValue;
 	knora-base:subjectClassConstraint work:Expression;
@@ -262,7 +270,7 @@ work:hasPublishingState
 
 work:hasPublishingStateValue
 	a owl:ObjectProperty;
-	rdfs:label "has publishing state - value"@en, "hat Publikationszustand - Wert"@de;
+	rdfs:label "has publishing state - statement"@en, "hat Publikationszustand - Äusserung"@de;
 	rdfs:comment "Relating an expression to a reification statement of the relation between the expression and a publishing state thereof."@en;
 	rdfs:subPropertyOf event:hasStateValue;
 	knora-base:subjectClassConstraint work:Expression;
@@ -278,9 +286,25 @@ work:hasPublication
 
 work:hasPublicationValue
 	a owl:ObjectProperty;
-	rdfs:label "has publication - value"@en, "hat Publikation - Wert"@de;
+	rdfs:label "has publication - statement"@en, "hat Publikation - Äusserung"@de;
 	rdfs:comment "Relating an expression to a reification statement of the relation between the expression and a publication thereof."@en;
 	rdfs:subPropertyOf work:isMaterializedInValue;
+	knora-base:subjectClassConstraint work:Expression;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
+work:hasLastPublication # can be formally inferred with an N3 rule
+	a owl:ObjectProperty;
+	rdfs:label "has last publication"@en, "hat letzte Publikation"@de;
+	rdfs:comment "Relating an expression to its last publication."@en;
+	rdfs:subPropertyOf work:hasPublication;
+	knora-base:subjectClassConstraint work:Expression;
+	knora-base:objectClassConstraint work:Publication.
+
+work:hasLastPublicationValue
+	a owl:ObjectProperty;
+	rdfs:label "has last publication - statement"@en, "hat letzte Publikation - Äusserung"@de;
+	rdfs:comment "Relating an expression to a reification statement of the relation between the expression and its last publication."@en;
+	rdfs:subPropertyOf work:hasPublicationValue;
 	knora-base:subjectClassConstraint work:Expression;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
@@ -294,7 +318,7 @@ work:hasMonoAuthorPublication
 
 work:hasMonoAuthorPublicationValue
 	a owl:ObjectProperty;
-	rdfs:label "has mono-author publication - value"@en, "hat Publikation eines einzelnen Autors - Wert"@de;
+	rdfs:label "has mono-author publication - statement"@en, "hat Publikation eines einzelnen Autors - Äusserung"@de;
 	rdfs:comment "Relating an expression to a reification statement of the relation between the expression and a publication thereof of one author."@en;
 	rdfs:subPropertyOf work:hasPublicationValue;
 	knora-base:subjectClassConstraint work:Expression;
@@ -310,7 +334,7 @@ work:hasPolyAuthorPublication
 
 work:hasPolyAuthorPublicationValue
 	a owl:ObjectProperty;
-	rdfs:label "has poly-author publication - value"@en, "hat Publikation mehrerer Autoren - Wert"@de;
+	rdfs:label "has poly-author publication - statement"@en, "hat Publikation mehrerer Autoren - Äusserung"@de;
 	rdfs:comment "Relating an expression to a reification statement of the relation between the expression and a publication thereof containing also expressions of other authors."@en;
 	rdfs:subPropertyOf work:hasPublicationValue;
 	knora-base:subjectClassConstraint work:Expression;
@@ -326,7 +350,7 @@ work:hasPolyAuthorPublicationValue
 
 #work:hasCarrierUnpublishedValue
 #	a owl:ObjectProperty;
-#	rdfs:label "has carrier unpublished - value"@en, "hat Träger unpubliziert - Wert"@de;
+#	rdfs:label "has carrier unpublished - statement"@en, "hat Träger unpubliziert - Äusserung"@de;
 #	rdfs:comment "Relating an expression that has not been published in collaboration with the author, to a reification statement of the relation between the expression and a #carrier."@en;
 #	rdfs:subPropertyOf work:isMaterializedInValue;
 #	knora-base:subjectClassConstraint work:Expression;
@@ -342,7 +366,7 @@ work:isPublishedIn
 
 work:isPublishedInValue
 	a owl:ObjectProperty;
-	rdfs:label "is published in - value"@en, "ist publiziert in - Wert"@de;
+	rdfs:label "is published in - statement"@en, "ist publiziert in - Äusserung"@de;
 	rdfs:comment "Relating a publication expression to a reification statement of the relation between the publication expression and a publication thereof."@en;
 	rdfs:subPropertyOf work:isMaterializedInValue;
 	knora-base:subjectClassConstraint work:PublicationExpression;
@@ -376,7 +400,7 @@ work:hasPublisher
 
 work:hasPublisherValue
 	a owl:ObjectProperty;
-	rdfs:label "has publisher - value"@en, "hat Herausgeber - Wert"@de;
+	rdfs:label "has publisher - statement"@en, "hat Herausgeber - Äusserung"@de;
 	rdfs:comment "Relating a publication to a reification statement of the relation between the publication and its publisher."@en;
 	rdfs:subPropertyOf knora-base:hasLinkToValue;
 	knora-base:subjectClassConstraint work:Publication;
@@ -419,7 +443,7 @@ work:hasVolumeNumber
 
 #work:hasPageValue
 #	a owl:ObjectProperty;
-#	rdfs:label "has page - value"@en;
+#	rdfs:label "has page - statement"@en;
 #	rdfs:comment """Relating a book to a reification statement of the relation between the book and a page thereof."""@en;
 #	rdfs:subPropertyOf knora-base:hasLinkToValue;
 #	knora-base:subjectClassConstraint work:Book;
@@ -435,7 +459,7 @@ work:isPageOf
 
 work:isPageOfValue
 	a owl:ObjectProperty;
-	rdfs:label "is page of - value"@en, "ist Seite von - Wert"@de;
+	rdfs:label "is page of - statement"@en, "ist Seite von - Äusserung"@de;
 	rdfs:comment """Relating a page to a reification statement of the relation between the page and its leaf, single or in a book."""@en;
 	rdfs:subPropertyOf work:isPartOfValue;
 	knora-base:subjectClassConstraint work:Page;
@@ -459,7 +483,7 @@ work:isOnPage
 
 work:isOnPageValue
 	a owl:ObjectProperty;
-	rdfs:label "is on page - value"@en, "ist auf Seite - Wert"@de;
+	rdfs:label "is on page - statement"@en, "ist auf Seite - Äusserung"@de;
 	rdfs:comment """Relating an expression to a reification statement of the relation between the expression and the carrier page it is on."""@en;
 	rdfs:subPropertyOf work:isMaterializedInValue;
 	knora-base:subjectClassConstraint work:Expression;
@@ -483,7 +507,7 @@ work:isPartOfArchive
 
 work:isPartOfArchiveValue
 	a owl:ObjectProperty;
-	rdfs:label "is part of archive - value"@en, "ist Teil Archivs - Wert"@de;
+	rdfs:label "is part of archive - statement"@en, "ist Teil Archivs - Äusserung"@de;
 	rdfs:comment """Relating an element of an archive to a reification statement of the relation between the element and the archive."""@en;
 	rdfs:subPropertyOf work:isPartOfValue;
 	knora-base:subjectClassConstraint work:ArchiveElement;
@@ -507,7 +531,7 @@ work:isPartOfNachlass
 
 work:isPartOfNachlassValue
 	a owl:ObjectProperty;
-	rdfs:label "is part of nachlass - value"@en, "ist Teil Nachlasses - Wert"@de;
+	rdfs:label "is part of nachlass - statement"@en, "ist Teil Nachlasses - Äusserung"@de;
 	rdfs:comment """Relating an element of a nachlass to a reification statement of the relation between the element and the nachlass."""@en;
 	rdfs:subPropertyOf work:isPartOfValue;
 	knora-base:subjectClassConstraint work:NachlassElement;

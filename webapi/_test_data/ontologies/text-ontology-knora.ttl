@@ -377,7 +377,7 @@ text:hasStructure
 
 text:hasStructureValue
 	a owl:ObjectProperty;
-	rdfs:label "has structure - value"@en, "hat Struktur - Wert"@de;
+	rdfs:label "has structure - statement"@en, "hat Struktur - Äusserung"@de;
 	rdfs:comment """Relating a text expression to a reification statement of the relation between the text expression and its structure."""@en;
 	rdfs:subPropertyOf knora-base:hasLinkToValue;
 	knora-base:subjectClassConstraint text:Expression;
@@ -420,7 +420,7 @@ text:hasEdition
 
 text:hasEditionValue
 	a owl:ObjectProperty;
-	rdfs:label "has edition - value"@en, "hat Edition - Wert"@de;
+	rdfs:label "has edition - statement"@en, "hat Edition - Äusserung"@de;
 	rdfs:comment "Relating a text to a reification statement of the relation between the text and an edition thereof."@en;
 	rdfs:subPropertyOf knora-base:hasLinkToValue;
 	knora-base:subjectClassConstraint text:Expression;
@@ -445,7 +445,7 @@ text:hasDiplomaticTranscription
 
 text:hasDiplomaticTranscriptionValue
 	a owl:ObjectProperty;
-	rdfs:label "has diplomatic transcription - value"@en, "hat diplomatische Umschrift - Wert"@de;
+	rdfs:label "has diplomatic transcription - statement"@en, "hat diplomatische Umschrift - Äusserung"@de;
 	rdfs:comment "Relating a text to a reification statement of the relation between the text and a diplomatic transcription thereof."@en;
 	rdfs:subPropertyOf knora-base:hasLinkToValue;
 	knora-base:subjectClassConstraint text:Expression;
@@ -516,7 +516,7 @@ text:hasAuthor
 
 text:hasAuthorValue
 	a owl:ObjectProperty;
-	rdfs:label "has author - value"@en, "hat Autor - Wert"@de;
+	rdfs:label "has author - statement"@en, "hat Autor - Äusserung"@de;
 	rdfs:comment """Relating a text to a reification statement of the relation between the text and one or more persons who authored it."""@en;
 	rdfs:subPropertyOf knora-base:hasLinkToValue;
 	knora-base:subjectClassConstraint text:Expression;
@@ -539,7 +539,7 @@ text:isOnCarrier
 
 text:isOnCarrierValue
 	a owl:ObjectProperty;
-	rdfs:label "is on carrier - value"@en, "ist auf Träger - Wert"@de;
+	rdfs:label "is on carrier - statement"@en, "ist auf Träger - Äusserung"@de;
 	rdfs:comment "Relating a text to a reification statement of the relation between the text and a carrier it is on."@en;
 	rdfs:subPropertyOf work:isMaterializedInValue;
 	knora-base:subjectClassConstraint text:Expression;
@@ -555,7 +555,7 @@ text:isInManuscript
 
 text:isInManuscriptValue
 	a owl:ObjectProperty;
-	rdfs:label "is in manuscript - value"@en, "ist in Manuskript - Wert"@de;
+	rdfs:label "is in manuscript - statement"@en, "ist in Manuskript - Äusserung"@de;
 	rdfs:comment "Relating a handwritten text to a reification statement of the relation between the handwritten text and the manuscript that carries it."@en;
 	rdfs:subPropertyOf text:isOnCarrierValue;
 	knora-base:subjectClassConstraint text:HandwrittenText;
@@ -571,7 +571,7 @@ text:isInTypescript
 
 text:isInTypescriptValue
 	a owl:ObjectProperty;
-	rdfs:label "is in typescript - value"@en, "ist in Typoskript - Wert"@de;
+	rdfs:label "is in typescript - statement"@en, "ist in Typoskript - Äusserung"@de;
 	rdfs:comment "Relating a typewritten text to a reification statement of the relation between the typewritten text and the typescript that carries it."@en;
 	rdfs:subPropertyOf text:isOnCarrierValue;
 	knora-base:subjectClassConstraint text:TypewrittenText;
@@ -587,7 +587,7 @@ text:isInDiary
 
 text:isInDiaryValue
 	a owl:ObjectProperty;
-	rdfs:label "is in diary - value"@en, "ist in Tagebuch - Wert"@de;
+	rdfs:label "is in diary - statement"@en, "ist in Tagebuch - Äusserung"@de;
 	rdfs:comment """Relating a diary entry to a reification statement of the relation between the diary entry and a diary it is in."""@en;
 	rdfs:subPropertyOf text:isOnCarrierValue;
 	knora-base:subjectClassConstraint text:DiaryEntry;
@@ -621,7 +621,7 @@ text:hasSender
 
 text:hasSenderValue
 	a owl:ObjectProperty;
-	rdfs:label "has sender - value"@en, "hat Absender - Wert"@de;
+	rdfs:label "has sender - statement"@en, "hat Absender - Äusserung"@de;
 	rdfs:comment """Relating a letter to a reification statement of the relation between the letter and one or more persons who send it."""@en;
 	rdfs:subPropertyOf knora-base:hasLinkToValue;
 	knora-base:subjectClassConstraint text:Letter;
@@ -637,7 +637,7 @@ text:hasReceiver
 
 text:hasReceiverValue
 	a owl:ObjectProperty;
-	rdfs:label "has receiver - value"@en, "hat Empfänger - Wert"@de;
+	rdfs:label "has receiver - statement"@en, "hat Empfänger - Äusserung"@de;
 	rdfs:comment """Relating a letter to a reification statement of the relation between the letter and one or more persons who receive it."""@en;
 	rdfs:subPropertyOf knora-base:hasLinkToValue;
 	knora-base:subjectClassConstraint text:Letter;
@@ -689,7 +689,7 @@ text:containsEarlierStagesOf
 
 text:containsEarlierStagesOfValue
 	a owl:ObjectProperty;
-	rdfs:label "contains earlier stages of - value"@en, "enthält frühere Stufen von - Wert"@de;
+	rdfs:label "contains earlier stages of - statement"@en, "enthält frühere Stufen von - Äusserung"@de;
 	rdfs:comment """Relating a convolute to a reification statement of the relation between the convolute and another one whose text carriers are later stages of the text carriers of the former."""@en;
 	rdfs:subPropertyOf knora-base:hasLinkToValue;
 	knora-base:subjectClassConstraint text:Convolute;
@@ -705,7 +705,7 @@ text:containsEarlierStagesOfPublication
 
 text:containsEarlierStagesOfPublicationValue
 	a owl:ObjectProperty;
-	rdfs:label "contains earlier stages of publication - value"@en, "enthält frühere Stufen von Herausgabe - Wert"@de;
+	rdfs:label "contains earlier stages of publication - statement"@en, "enthält frühere Stufen von Herausgabe - Äusserung"@de;
 	rdfs:comment """Relating a convolute to a reification statement of the relation between the convolute and another one whose text carriers are later publication stages of the text carriers of the former."""@en;
 	rdfs:subPropertyOf text:containsEarlierStagesOfValue;
 	knora-base:subjectClassConstraint text:Convolute;
@@ -721,7 +721,7 @@ text:containsLaterStagesOf
 
 text:containsLaterStagesOfValue
 	a owl:ObjectProperty;
-	rdfs:label "contains later stages of - value"@en, "enthält spätere Stufen von - Wert"@de;
+	rdfs:label "contains later stages of - statement"@en, "enthält spätere Stufen von - Äusserung"@de;
 	rdfs:comment """Relating a convolute to a reification statement of the relation between the convolute and another one whose text carriers are earlier stages of the text carriers of the former."""@en;
 	rdfs:subPropertyOf knora-base:hasLinkToValue;
 	knora-base:subjectClassConstraint text:Convolute;

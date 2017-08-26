@@ -185,7 +185,7 @@ schola:hasRole
 
 schola:hasRoleValue
 	a owl:ObjectProperty;
-	rdfs:label "has role - value"@en, "hat Rolle - Wert"@de;
+	rdfs:label "has role - statement"@en, "hat Rolle - Äusserung"@de;
 	rdfs:comment """Relating a scholastic to a statement as reification of the relation between the scholastic and a role."""@en;
 	rdfs:subPropertyOf knora-base:hasLinkToValue;
 	knora-base:subjectClassConstraint schola:Scholastic;
@@ -201,7 +201,7 @@ schola:hasMethod
 
 schola:hasMethodValue
 	a owl:ObjectProperty;
-	rdfs:label "has method - value"@en, "hat Methode - Wert"@de;
+	rdfs:label "has method - statement"@en, "hat Methode - Äusserung"@de;
 	rdfs:comment """Relating a scholastic commentary to a statement as reification of the relation between the scholastic commentary and a method it adheres to."""@en;
 	rdfs:subPropertyOf knora-base:hasLinkToValue;
 	knora-base:subjectClassConstraint schola:Commentary;

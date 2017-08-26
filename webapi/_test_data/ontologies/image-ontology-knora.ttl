@@ -47,7 +47,7 @@ image:hasImage
 
 image:hasImageValue
 	a owl:ObjectProperty;
-	rdfs:label "has image - value", "hat Foto - Wert"@de;
+	rdfs:label "has image - statement", "hat Foto - Äusserung"@de;
 	rdfs:comment """Relating a resource to a reification statement of the relation between the resource and an image thereof."""@en;
 	rdfs:subPropertyOf knora-base:hasLinkToValue;
 	knora-base:subjectClassConstraint knora-base:Resource;
@@ -63,7 +63,7 @@ image:hasImageValue
 
 #image:hasPhotoRepresentationValue # can be activated when Knora2 is released
 #	a owl:ObjectProperty;
-#	rdfs:label "has photograph representation - value"@en;
+#	rdfs:label "has photograph representation - statement"@en;
 #	rdfs:comment """Relating a resource to a reification statement of the relation between the resource and a photograph thereof."""@en;
 #	rdfs:subPropertyOf knora-base:hasRepresentationValue;
 #	knora-base:subjectClassConstraint knora-base:Resource;
@@ -79,7 +79,7 @@ image:hasPhotographIn
 
 image:hasPhotographInValue
 	a owl:ObjectProperty;
-	rdfs:label "has image in - value", "hat Foto in - Wert"@de;
+	rdfs:label "has image in - statement", "hat Foto in - Äusserung"@de;
 	rdfs:comment """Relating something to a reification statement of the relation between that something and something else containing a photograph of the former."""@en;
 	rdfs:subPropertyOf knora-base:hasLinkToValue;
 	knora-base:subjectClassConstraint knora-base:Resource;

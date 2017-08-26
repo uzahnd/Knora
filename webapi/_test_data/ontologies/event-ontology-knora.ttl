@@ -152,7 +152,7 @@ event:hasEvent
 
 event:hasEventValue
 	a owl:ObjectProperty;
-	rdfs:label "has event - value"@en, "hat Ereignis - Wert"@de;
+	rdfs:label "has event - statement"@en, "hat Ereignis - Äusserung"@de;
 	rdfs:comment """Relating a resource to a reification statement of the relation between the resource and an event."""@en;
 	rdfs:subPropertyOf knora-base:hasLinkToValue;
 	knora-base:subjectClassConstraint knora-base:Resource;
@@ -168,7 +168,7 @@ event:hasState
 
 event:hasStateValue
 	a owl:ObjectProperty;
-	rdfs:label "has state - value"@en, "hat Zustand - Wert"@de;
+	rdfs:label "has state - statement"@en, "hat Zustand - Äusserung"@de;
 	rdfs:comment """Relating a resource to a reification statement of the relation between the resource and a state."""@en;
 	rdfs:subPropertyOf knora-base:hasLinkToValue;
 	knora-base:subjectClassConstraint knora-base:Resource;
@@ -184,7 +184,7 @@ event:isInputOf
 
 event:isInputOfValue
 	a owl:ObjectProperty;
-	rdfs:label "is input of - value"@en, "ist Input von - Wert"@de;
+	rdfs:label "is input of - statement"@en, "ist Input von - Äusserung"@de;
 	rdfs:comment """Relating an input to a reification statement of the relation between the input and a process."""@en;
 	rdfs:subPropertyOf knora-base:hasLinkToValue;
 	knora-base:subjectClassConstraint event:Input;
@@ -200,7 +200,7 @@ event:isOutputOf
 
 event:isOutputOfValue
 	a owl:ObjectProperty;
-	rdfs:label "is output of - value"@en, "ist Output von - Wert"@de;
+	rdfs:label "is output of - statement"@en, "ist Output von - Äusserung"@de;
 	rdfs:comment """Relating an output to a reification statement of the relation between the output and a process."""@en;
 	rdfs:subPropertyOf knora-base:hasLinkToValue;
 	knora-base:subjectClassConstraint event:Output;
@@ -216,7 +216,7 @@ event:hasStage
 
 event:hasStageValue
 	a owl:ObjectProperty;
-	rdfs:label "has stage - value"@en, "hat Stufe - Wert"@de;
+	rdfs:label "has stage - statement"@en, "hat Stufe - Äusserung"@de;
 	rdfs:comment """Relating a process to a reification statement of the relation between the process and a stage thereof."""@en;
 	rdfs:subPropertyOf knora-base:hasLinkToValue;
 	knora-base:subjectClassConstraint event:Process;
@@ -232,7 +232,7 @@ event:actsIn
 
 event:actsInValue
 	a owl:ObjectProperty;
-	rdfs:label "acts in - value"@en, "agiert in - Wert"@de;
+	rdfs:label "acts in - statement"@en, "agiert in - Äusserung"@de;
 	rdfs:comment """Relating an agent to a reification statement of the relation between the agent and an action it is in."""@en;
 	rdfs:subPropertyOf knora-base:hasLinkToValue;
 	knora-base:subjectClassConstraint event:Agent;
