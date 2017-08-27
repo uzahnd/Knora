@@ -143,7 +143,8 @@ human:Creation
 		a owl:Restriction; owl:onProperty text:hasDescription; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty human:hasCreationDate; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty human:hasCreatingPeriod; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty human:hasCreatingPeriodValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+		a owl:Restriction; owl:onProperty human:hasCreatingPeriodValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty human:hasModificationDateTime; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 #
 # PROPERTIES
@@ -337,3 +338,12 @@ human:hasCreatingPeriodValue
 	rdfs:subPropertyOf event:isOutputOfValue;
 	knora-base:subjectClassConstraint human:Creation;
 	knora-base:objectClassConstraint knora-base:LinkValue.
+
+human:hasModificationDateTime
+	a owl:ObjectProperty;
+	rdfs:label "has modification date time"@en, "hat Änderungsdatum"@de;
+	rdfs:comment """Relating a human creation to its modification date time."""@en;
+	rdfs:subPropertyOf knora-base:hasValue;
+	knora-base:subjectClassConstraint human:Creation;
+	knora-base:objectClassConstraint knora-base:DateValue;
+	salsah-gui:guiElement salsah-gui:Date.

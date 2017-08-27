@@ -2,6 +2,7 @@
 @prefix owl: <http://www.w3.org/2002/07/owl#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
 # @prefix dct: <http://purl.org/dc/terms/>.
+@prefix event: <http://www.knora.org/ontology/event#>.
 @prefix human: <http://www.knora.org/ontology/human#>.
 @prefix work: <http://www.knora.org/ontology/work#>.
 @prefix text: <http://www.knora.org/ontology/text#>.
@@ -40,7 +41,9 @@ kuno-raeber:Text
 		a owl:Restriction; owl:onProperty text:hasAlias; owl:cardinality "1"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty knora-base:seqnum; owl:cardinality "1"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty kuno-raeber:hasEdition; owl:cardinality "1"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty kuno-raeber:hasEditionValue; owl:cardinality "1"^^xsd:nonNegativeInteger].
+		a owl:Restriction; owl:onProperty kuno-raeber:hasEditionValue; owl:cardinality "1"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty human:hasModificationDateTime; owl:cardinality "1"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty kuno-raeber:isPublishedOnline; owl:cardinality "1"^^xsd:nonNegativeInteger].
 
 kuno-raeber:Poem
 	a owl:Class;
@@ -49,12 +52,27 @@ kuno-raeber:Poem
 	rdfs:subClassOf text:Poem, kuno-raeber:Text, [
 		a owl:Restriction; owl:onProperty human:hasCreationDate; owl:minCardinality "1"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text:hasDetailDescription; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty text:hasSpecialDescription; owl:minCardinality "0"^^xsd:nonNegativeInteger]#, [
+		a owl:Restriction; owl:onProperty text:hasSpecialDescription; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty kuno-raeber:hasSameEditionAs; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty kuno-raeber:hasSameEditionAsValue; owl:minCardinality "0"^^xsd:nonNegativeInteger]#, [
 #		a owl:Restriction; owl:onProperty work:hasPublishingState; owl:minCardinality "0"^^xsd:nonNegativeInteger], [ # declared at work:Expression
 #		a owl:Restriction; owl:onProperty work:hasPublishingStateValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [ # declared at work:Expression
 #		a owl:Restriction; owl:onProperty work:hasLastPublication; owl:minCardinality "0"^^xsd:nonNegativeInteger], [ # declared at work:Expression
 #		a owl:Restriction; owl:onProperty work:hasLastPublicationValue; owl:minCardinality "0"^^xsd:nonNegativeInteger] # declared at work:Expression
 		.
+
+
+# What life could be with N3 rules (and asserting the needed ontologies):
+# {
+#	?poem
+#	 	kuno-raeber:hasSameEditionAs ?anotherPoem;
+#		kuno-raeber:hasEdition ?edition.
+#	?edition text:hasContent ?textValue}
+# =>
+# {
+#	?textValue knora-base:valueHasStandoff ?standoffColorTag.
+#	?standoffColorTag knora-base:valueHasColor "b2b2b2"^^xsd:string}.
+
 
 kuno-raeber:DiaryEntry
 	a owl:Class;
@@ -495,4 +513,28 @@ kuno-raeber:isInDiaryConvoluteValue
 	rdfs:comment """Relating a diary entry by Kuno Raeber to a reification statement of the relation between the diary entry and the diary it is in."""@en;
 	rdfs:subPropertyOf text:isInDiaryValue;
 	knora-base:subjectClassConstraint kuno-raeber:DiaryEntry;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
+kuno-raeber:isPublishedOnline
+	a owl:ObjectProperty;
+	rdfs:label "is published online"@en, "ist online publiziert"@de;
+	rdfs:comment """Relating a text authored by Kuno Raeber to having been online published or not."""@en;
+	rdfs:subPropertyOf knora-base:hasValue;
+	knora-base:subjectClassConstraint kuno-raeber:Text;
+	knora-base:objectClassConstraint knora-base:BooleanValue.
+
+kuno-raeber:hasSameEditionAs # different from https://www.w3.org/TR/owl-ref/#sameAs-def
+	a owl:ObjectProperty;
+	rdfs:label "has same edition as"@en, "hat gleiche Edition als"@de;
+	rdfs:comment """Relating two poems authored by Kuno Raeber and with a same edition."""@en;
+	rdfs:subPropertyOf knora-base:hasLinkTo;
+	knora-base:subjectClassConstraint kuno-raeber:Poem;
+	knora-base:objectClassConstraint kuno-raeber:Poem.
+
+kuno-raeber:hasSameEditionAsValue
+	a owl:ObjectProperty;
+	rdfs:label "has same edition as - statement"@en, "hat gleiche Edition als - Äusserung"@de;
+	rdfs:comment """Relating a poem authored by Kuno Raeber to a reification statement of the relation between the poem and another poem authored by Kuno Raeber with a same edition."""@en;
+	rdfs:subPropertyOf knora-base:hasLinkToValue;
+	knora-base:subjectClassConstraint kuno-raeber:Poem;
 	knora-base:objectClassConstraint knora-base:LinkValue.
