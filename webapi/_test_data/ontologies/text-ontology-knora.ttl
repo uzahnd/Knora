@@ -49,8 +49,11 @@ text:Expression
 		a owl:Restriction; owl:onProperty text:hasPageNumberIndicator; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text:hasColumnIndicator; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text:hasLineNumber; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty text:hasPublicationNumber; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text:hasVersionIndicator; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty text:isInDialect; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+		a owl:Restriction; owl:onProperty text:isFinalVersion; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty text:isInDialect; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty text:isPartOfCycle; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 text:WrittenText
 	a owl:Class;
@@ -58,7 +61,9 @@ text:WrittenText
 	rdfs:comment """Text written by any method, e.g. manually, with an analogue or digital typewriter, or on a computer."""@en;
 	rdfs:subClassOf text:Expression, [
 		a owl:Restriction; owl:onProperty text:isOnCarrier; owl:cardinality "1"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty text:isOnCarrierValue; owl:cardinality "1"^^xsd:nonNegativeInteger].
+		a owl:Restriction; owl:onProperty text:isOnCarrierValue; owl:cardinality "1"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty text:isWrittenWith; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty text:isWrittenWithValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 text:HandwrittenText
 	a owl:Class;
@@ -86,8 +91,14 @@ text:Author
 text:Version
 	a owl:Class;
 	rdfs:label "text version"@en, "Textversion"@de;
-	rdfs:comment """Version of a text."""@en;
+	rdfs:comment """Version of a text expression."""@en;
 	rdfs:subClassOf text:Expression.
+
+text:EndVersion
+	a owl:Class;
+	rdfs:label "end version"@en, "Endfassung"@de;
+	rdfs:comment """End Version of a text expression."""@en;
+	rdfs:subClassOf text:Version.
 
 text:Commentary
 	a owl:Class;
@@ -124,6 +135,30 @@ text:DiplomaticTranscription
 	rdfs:label "diplomatic transcription"@en, "diplomatische Umschrift"@de;
 	rdfs:comment """Transcription of a text with diacritical signs indicating visual textual properties to describe the textual state."""@en;
 	rdfs:subClassOf text:Derivative.
+
+text:WritingUtensil
+	a owl:Class;
+	rdfs:label "writing utensil"@en, "Schreibzeug"@de;
+	rdfs:comment """Object to write with."""@en;
+	rdfs:subClassOf knora-base:Resource.
+
+text:Pencil
+	a owl:Class;
+	rdfs:label "pencil"@en, "Bleistift"@de;
+	rdfs:comment """Elongated cylindrical(-like) object containing a thin rod of graphite for writing or drawing."""@en;
+	rdfs:subClassOf text:WritingUtensil.
+
+text:Pen
+	a owl:Class;
+	rdfs:label "pen"@en, "Tintenstift"@de;
+	rdfs:comment """Elongated cylindrical(-like) hollow object containing ink for writing or drawing."""@en;
+	rdfs:subClassOf text:WritingUtensil.
+
+text:Typewriter
+	a owl:Class;
+	rdfs:label "typewriter"@en, "Schreibmaschine"@de;
+	rdfs:comment """Writing device with moving parts for letter printing."""@en; # mechanical or electronic 
+	rdfs:subClassOf text:WritingUtensil.
 
 text:Carrier
  	a owl:Class;
@@ -180,12 +215,20 @@ text:DiaryEntry
 text:Letter
 	a owl:Class;
 	rdfs:label "letter"@en, "Brief"@de;
-	rdfs:comment """Written text intended to be sent from (a) person(s) or (an) organization(s) to another one, e.g. through a postal system."""@en;
+	rdfs:comment """Written text on a leaf intended to be sent from (a) person(s) or (an) organization(s) to another one, e.g. through a postal system."""@en;
 	rdfs:subClassOf text:Carrier, frbroo:F4_Manifestation_Singleton, [
 		a owl:Restriction; owl:onProperty text:hasSender; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text:hasSenderValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text:hasReceiver; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text:hasReceiverValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+
+text:LetterExpression
+	a owl:Class;
+	rdfs:label "letter expression"@en, "Brief-Expression"@de;
+	rdfs:comment """Written text expression formatted as a letter."""@en;
+	rdfs:subClassOf text:Expression, [
+		a owl:Restriction; owl:onProperty text:isInLetter; owl:cardinality "1"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty text:isInLetterValue; owl:cardinality "1"^^xsd:nonNegativeInteger].
 
 text:Postcard
 	a owl:Class;
@@ -257,6 +300,12 @@ text:RhythmicProse
 	a owl:Class;
 	rdfs:label "rhythmic Prose"@en, "rhythmische Prosa"@de;
 	rdfs:comment """Prose ... ."""@en;
+	rdfs:subClassOf text:Structure.
+
+text:LetterStructure
+	a owl:Class;
+	rdfs:label "letter structure"@en, "Brief-Struktur"@de;
+	rdfs:comment """Text with letter structure."""@en;
 	rdfs:subClassOf text:Structure.
 
 text:Poem # Poetry
@@ -555,6 +604,22 @@ text:isOnCarrierValue
 	knora-base:subjectClassConstraint text:Expression;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
+text:isWrittenWith
+	a owl:ObjectProperty;
+	rdfs:label "is written with"@en, "ist geschrieben mit"@de;
+	rdfs:comment "Relating a text to a utensil it is written with."@en;
+	rdfs:subPropertyOf knora-base:hasLinkTo;
+	knora-base:subjectClassConstraint text:Expression;
+	knora-base:objectClassConstraint text:WritingUtensil.
+
+text:isWrittenWithValue
+	a owl:ObjectProperty;
+	rdfs:label "is is written with - statement"@en, "ist geschrieben mit - Äusserung"@de;
+	rdfs:comment "Relating a text to a reification statement of the relation between the text and a utensil it is written with."@en;
+	rdfs:subPropertyOf knora-base:hasLinkToValue;
+	knora-base:subjectClassConstraint text:Expression;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
 text:isInManuscript
 	a owl:ObjectProperty;
 	rdfs:label "is in manuscript"@en, "ist in Manuskript"@de;
@@ -737,18 +802,43 @@ text:containsLaterStagesOfValue
 	knora-base:subjectClassConstraint text:Convolute;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
+text:hasPublicationNumber
+	a owl:ObjectProperty;
+	rdfs:label "has publication number"@en, "hat Publikationsnummer"@de;
+	rdfs:comment """Relating a text expression to its number (as object) in a publication."""@en;
+	rdfs:subPropertyOf text:hasText;
+	knora-base:subjectClassConstraint text:Expression;
+	knora-base:objectClassConstraint knora-base:TextValue; # to be changed to int
+	salsah-gui:guiElement salsah-gui:Richtext.
+
+text:isFinalVersion
+	a owl:ObjectProperty;
+	rdfs:label "is final version"@en, "ist Endfassung"@de;
+	rdfs:comment """Relating a text expression to being a last version or not."""@en;
+	rdfs:subPropertyOf knora-base:hasValue;
+	knora-base:subjectClassConstraint text:Expression;
+	knora-base:objectClassConstraint knora-base:BooleanValue. # to be changed to Version
+
+text:isInDialect
+	a owl:ObjectProperty;
+	rdfs:label "is in dialect"@en, "ist in Mundart"@de;
+	rdfs:comment """Relating a text expression to being expressed in dialect or not."""@en;
+	rdfs:subPropertyOf knora-base:hasValue;
+	knora-base:subjectClassConstraint text:Expression;
+	knora-base:objectClassConstraint knora-base:BooleanValue. # to be changed to Dialect
+
+text:isPartOfCycle
+	a owl:ObjectProperty;
+	rdfs:label "is part of cycle"@en, "ist Teil eines Zyklus"@de;
+	rdfs:comment """Relating a text expression to being part of a cycle or not."""@en;
+	rdfs:subPropertyOf knora-base:hasValue;
+	knora-base:subjectClassConstraint text:Expression;
+	knora-base:objectClassConstraint knora-base:BooleanValue. # to be changed to Cycle
+
 text:hasStrophe
 	a owl:ObjectProperty;
 	rdfs:label "has strophe"@en, "hat Strophe"@de;
 	rdfs:comment """Relating a poem to having a strophe or not."""@en;
 	rdfs:subPropertyOf knora-base:hasValue;
 	knora-base:subjectClassConstraint text:Poem;
-	knora-base:objectClassConstraint knora-base:BooleanValue.
-
-text:isInDialect
-	a owl:ObjectProperty;
-	rdfs:label "is in dialect"@en, "ist in Mundart"@de;
-	rdfs:comment """Relating a text to being expressed in dialect or not."""@en;
-	rdfs:subPropertyOf knora-base:hasValue;
-	knora-base:subjectClassConstraint text:Expression;
-	knora-base:objectClassConstraint knora-base:BooleanValue.
+	knora-base:objectClassConstraint knora-base:BooleanValue. # to be changed to Strophe

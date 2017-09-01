@@ -55,7 +55,8 @@ work:Expression
 		a owl:Restriction; owl:onProperty work:hasPublication; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty work:hasPublicationValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty work:hasLastPublication; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty work:hasLastPublicationValue; owl:minCardinality "0"^^xsd:nonNegativeInteger]
+		a owl:Restriction; owl:onProperty work:hasLastPublicationValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty work:isPublishedOnline; owl:minCardinality "0"^^xsd:nonNegativeInteger]
 #		a owl:Restriction; owl:onProperty work:hasMonoAuthorPublication; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 #		a owl:Restriction; owl:onProperty work:hasMonoAuthorPublicationValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 #		a owl:Restriction; owl:onProperty work:hasPolyAuthorPublication; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
@@ -434,6 +435,14 @@ work:hasPublisherDescription
 	knora-base:subjectClassConstraint work:Publication;
 	knora-base:objectClassConstraint knora-base:TextValue;
 	salsah-gui:guiElement salsah-gui:Richtext.
+
+work:isPublishedOnline
+	a owl:ObjectProperty;
+	rdfs:label "is published online"@en, "ist online publiziert"@de;
+	rdfs:comment """Relating an expression to having been online published or not."""@en;
+	rdfs:subPropertyOf knora-base:hasValue;
+	knora-base:subjectClassConstraint work:Expression;
+	knora-base:objectClassConstraint knora-base:BooleanValue. # to be changed to Website
 
 work:hasPrinterDescription
 	a owl:ObjectProperty;
