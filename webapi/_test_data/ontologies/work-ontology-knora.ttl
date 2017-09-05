@@ -56,14 +56,17 @@ work:Expression
 		a owl:Restriction; owl:onProperty work:hasPublicationValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty work:hasLastPublication; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty work:hasLastPublicationValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty work:isPublishedOnline; owl:minCardinality "0"^^xsd:nonNegativeInteger]
+		a owl:Restriction; owl:onProperty work:hasLastAuthorizedPublication; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty work:hasLastAuthorizedPublicationValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty work:hasUnauthorizedRepublication; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty work:hasUnauthorizedRepublicationValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty work:isPublishedOnline; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 #		a owl:Restriction; owl:onProperty work:hasMonoAuthorPublication; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 #		a owl:Restriction; owl:onProperty work:hasMonoAuthorPublicationValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-#		a owl:Restriction; owl:onProperty work:hasPolyAuthorPublication; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-#		a owl:Restriction; owl:onProperty work:hasPolyAuthorPublicationValue; owl:minCardinality "0"^^xsd:nonNegativeInteger]
-		.
+		a owl:Restriction; owl:onProperty work:hasPolyAuthorPublication; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty work:hasPolyAuthorPublicationValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
-# work:PolyAuthorExpression
+# to do: work:PolyAuthorExpression
 
 work:Manifestation
  	a owl:Class;
@@ -154,6 +157,7 @@ work:Publication
 	rdfs:subClassOf work:Manifestation, frbroo:F5_Item, [
 		a owl:Restriction; owl:onProperty work:hasPublicationTitle; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty work:hasPublicationDate; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty work:hasPublicationDescription; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty work:hasPublisherDescription; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 work:PrintedPublication
@@ -184,13 +188,13 @@ work:Magazine
 	a owl:Class;
 	rdfs:label "magazine"@en, "Zeitschrift"@de;
 	rdfs:comment """Periodically published book."""@en;
-	rdfs:subClassOf work:Book, work:PolyAuthorPublication.
+	rdfs:subClassOf work:Book, work:Publication.
 
 work:Newspaper
 	a owl:Class;
 	rdfs:label "newspaper"@en, "Zeitung"@de;
 	rdfs:comment """Periodical publication with most recent event descriptions as core content."""@en;
-	rdfs:subClassOf work:PolyAuthorPublication.
+	rdfs:subClassOf work:Publication.
 
 work:Archive
 	a owl:Class;
@@ -226,6 +230,12 @@ work:NachlassPublication
 	rdfs:label "nachlass publication"@en, "Nachlassausgabe"@de;
 	rdfs:comment """Publication of a nachlass."""@en;
 	rdfs:subClassOf work:Publication.
+
+#work:UnauthorizedPublication
+#	a owl:Class;
+#	rdfs:label "unauthorized publication"@en, "nicht-autorisierte Ausgabe"@de;
+#	rdfs:comment """Publication without the author's authorization."""@en;
+#	rdfs:subClassOf work:Publication.
 
 #
 # PROPERTIES
@@ -329,6 +339,52 @@ work:hasLastPublicationValue
 	knora-base:subjectClassConstraint work:Expression;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
+work:hasLastAuthorizedPublication
+	a owl:ObjectProperty;
+	rdfs:label "has last authorized publication"@en, "hat letzte autorisierte Publikation"@de;
+	rdfs:comment "Relating an expression to its last publication with the author's authorization."@en;
+	rdfs:subPropertyOf work:hasPublication;
+	knora-base:subjectClassConstraint work:Expression;
+	knora-base:objectClassConstraint work:Publication.
+
+work:hasLastAuthorizedPublicationValue
+	a owl:ObjectProperty;
+	rdfs:label "has last authorized publication - statement"@en, "hat letzte autorisierte Publikation - Äusserung"@de;
+	rdfs:subPropertyOf work:hasPublicationValue;
+	knora-base:subjectClassConstraint work:Expression;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
+work:hasUnauthorizedPublication
+	a owl:ObjectProperty;
+	rdfs:label "has unauthorized publication"@en, "hat nicht-autorisierte Publikation"@de;
+	rdfs:comment "Relating an expression to a publication thereof without the author's authorization."@en;
+	rdfs:subPropertyOf work:hasPublication;
+	knora-base:subjectClassConstraint work:Expression;
+	knora-base:objectClassConstraint work:Publication.
+
+work:hasUnauthorizedPublicationValue
+	a owl:ObjectProperty;
+	rdfs:label "has unauthorized publication - statement"@en, "hat nicht-autorisierte Publikation - Äusserung"@de;
+	rdfs:subPropertyOf work:hasPublicationValue;
+	knora-base:subjectClassConstraint work:Expression;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
+work:hasUnauthorizedRepublication
+	a owl:ObjectProperty;
+	rdfs:label "has unauthorized republication"@en, "hat nicht-autorisierte Wiederpublikation"@de;
+	rdfs:comment "Relating an expression to a republication thereof without the author's authorization."@en;
+	rdfs:subPropertyOf work:hasPublication;
+	knora-base:subjectClassConstraint work:Expression;
+	knora-base:objectClassConstraint work:Publication.
+
+work:hasUnauthorizedRepublicationValue
+	a owl:ObjectProperty;
+	rdfs:label "has unauthorized republication - statement"@en, "hat nicht-autorisierte Wiederpublikation - Äusserung"@de;
+	rdfs:comment "Relating an expression to a reification statement of the relation between the expression and a republication thereof without the author's authorization."@en;
+	rdfs:subPropertyOf work:hasPublicationValue;
+	knora-base:subjectClassConstraint work:Expression;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
 work:hasMonoAuthorPublication
 	a owl:ObjectProperty;
 	rdfs:label "has mono-author publication"@en, "hat Publikation eines einzelnen Autors"@de;
@@ -351,7 +407,7 @@ work:hasPolyAuthorPublication
 	rdfs:comment "Relating an expression to a publication thereof containing also expressions of other authors."@en;
 	rdfs:subPropertyOf work:hasPublication;
 	knora-base:subjectClassConstraint work:Expression;
-	knora-base:objectClassConstraint work:Publication.
+	knora-base:objectClassConstraint work:PolyAuthorPublication.
 
 work:hasPolyAuthorPublicationValue
 	a owl:ObjectProperty;
@@ -372,7 +428,6 @@ work:hasPolyAuthorPublicationValue
 #work:hasCarrierUnpublishedValue
 #	a owl:ObjectProperty;
 #	rdfs:label "has carrier unpublished - statement"@en, "hat Träger unpubliziert - Äusserung"@de;
-#	rdfs:comment "Relating an expression that has not been published in collaboration with the author, to a reification statement of the relation between the expression and a #carrier."@en;
 #	rdfs:subPropertyOf work:isMaterializedInValue;
 #	knora-base:subjectClassConstraint work:Expression;
 #	knora-base:objectClassConstraint knora-base:LinkValue.
@@ -392,6 +447,15 @@ work:isPublishedInValue
 	rdfs:subPropertyOf work:isMaterializedInValue;
 	knora-base:subjectClassConstraint work:PublicationExpression;
 	knora-base:objectClassConstraint knora-base:LinkValue.
+
+work:hasPublicationDescription
+	a owl:ObjectProperty;
+	rdfs:label "has publication description"@en, "hat Publikationsbeschreibung"@de;
+	rdfs:comment "Relating a publication to a description thereof."@en;
+	rdfs:subPropertyOf text:hasDescription;
+	knora-base:subjectClassConstraint work:Publication;
+	knora-base:objectClassConstraint knora-base:TextValue;
+	salsah-gui:guiElement salsah-gui:Richtext.
 
 work:hasPublicationDate
 	a owl:ObjectProperty;
