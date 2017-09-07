@@ -222,7 +222,8 @@ human:hasName
 	rdfs:comment """Relating a person to her/his name (as object)."""@en;
 	rdfs:subPropertyOf text:hasName;
 	knora-base:subjectClassConstraint human:Person;
-	knora-base:objectClassConstraint knora-base:TextValue.
+	knora-base:objectClassConstraint knora-base:TextValue;
+	salsah-gui:guiElement salsah-gui:Richtext.
 
 human:hasFamilyName
 	a owl:ObjectProperty;
@@ -231,7 +232,8 @@ human:hasFamilyName
 #	skos:note """Further restriction given along specific law; e.g. a person can have her/his family name legally changed."""@en;
 	rdfs:subPropertyOf human:hasName;
 	knora-base:subjectClassConstraint human:Person;
-	knora-base:objectClassConstraint knora-base:TextValue.
+	knora-base:objectClassConstraint knora-base:TextValue;
+	salsah-gui:guiElement salsah-gui:Richtext.
 
 human:hasGivenName
 	a owl:ObjectProperty;
@@ -240,7 +242,8 @@ human:hasGivenName
 #	skos:note """Further restriction given along specific law; e.g. a person can have her/his given name legally changed."""@en;
 	rdfs:subPropertyOf human:hasName;
 	knora-base:subjectClassConstraint human:Person;
-	knora-base:objectClassConstraint knora-base:TextValue.
+	knora-base:objectClassConstraint knora-base:TextValue;
+	salsah-gui:guiElement salsah-gui:Richtext.
 
 human:hasPreferredName
 	a owl:ObjectProperty;
@@ -248,7 +251,8 @@ human:hasPreferredName
 	rdfs:comment """Relating a person to her/his preferred name (as object)."""@en;
 	rdfs:subPropertyOf human:hasName, text:hasPreferredName;
 	knora-base:subjectClassConstraint human:Person;
-	knora-base:objectClassConstraint knora-base:TextValue.
+	knora-base:objectClassConstraint knora-base:TextValue;
+	salsah-gui:guiElement salsah-gui:Richtext.
 
 human:hasAlias
 	a owl:ObjectProperty;
@@ -256,7 +260,8 @@ human:hasAlias
 	rdfs:comment """Relating a person to an alias (as object) of that person."""@en;
 	rdfs:subPropertyOf text:hasAlias;
 	knora-base:subjectClassConstraint human:Person;
-	knora-base:objectClassConstraint knora-base:TextValue.
+	knora-base:objectClassConstraint knora-base:TextValue;
+	salsah-gui:guiElement salsah-gui:Richtext.
 
 human:hasDescription
 	a owl:ObjectProperty;
@@ -264,7 +269,8 @@ human:hasDescription
 	rdfs:comment """Relating a person to a description (as object) of that person."""@en;
 	rdfs:subPropertyOf text:hasDescription;
 	knora-base:subjectClassConstraint human:Person;
-	knora-base:objectClassConstraint knora-base:TextValue.
+	knora-base:objectClassConstraint knora-base:TextValue;
+	salsah-gui:guiElement salsah-gui:Richtext.
 
 human:hasRole
 	a owl:ObjectProperty;
@@ -339,11 +345,11 @@ human:hasCreatingPeriodValue
 	knora-base:subjectClassConstraint human:Creation;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
-human:hasModificationDateTime
+human:hasModificationDate
 	a owl:ObjectProperty;
-	rdfs:label "has modification date time"@en, "hat Änderungsdatum"@de;
-	rdfs:comment """Relating a human creation to its modification date time."""@en;
+	rdfs:label "has modification date"@en, "hat Änderungsdatum"@de;
+	rdfs:comment """Relating a human creation to its modification date."""@en;
 	rdfs:subPropertyOf knora-base:hasValue;
 	knora-base:subjectClassConstraint human:Creation;
-	knora-base:objectClassConstraint knora-base:DateValue;
-	salsah-gui:guiElement salsah-gui:Date.
+	knora-base:objectClassConstraint knora-base:TextValue;
+	salsah-gui:guiElement salsah-gui:Richtext.

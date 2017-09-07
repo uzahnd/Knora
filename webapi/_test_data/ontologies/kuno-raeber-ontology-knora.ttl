@@ -58,9 +58,9 @@ kuno-raeber:Poem
 	rdfs:subClassOf text:Poem, kuno-raeber:Text, [
 		a owl:Restriction; owl:onProperty human:hasCreationDate; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text:hasDetailDescription; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty text:hasSpecialDescription; owl:minCardinality "0"^^xsd:nonNegativeInteger]#, [
-#		a owl:Restriction; owl:onProperty text:hasSameEditionAs; owl:minCardinality "0"^^xsd:nonNegativeInteger], [ # declared at text:Expression
-#		a owl:Restriction; owl:onProperty text:hasSameEditionAsValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [ # declared at text:Expression
+		a owl:Restriction; owl:onProperty text:hasSpecialDescription; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty kuno-raeber:hasSameEditionAs; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty kuno-raeber:hasSameEditionAsValue; owl:minCardinality "0"^^xsd:nonNegativeInteger]#, [
 #		a owl:Restriction; owl:onProperty text:hasStrophe; owl:minCardinality "0"^^xsd:nonNegativeInteger], [ # declared at text:Poem
 #		a owl:Restriction; owl:onProperty work:hasPublishingState; owl:minCardinality "0"^^xsd:nonNegativeInteger], [ # declared at work:Expression
 #		a owl:Restriction; owl:onProperty work:hasPublishingStateValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [ # declared at work:Expression
@@ -105,8 +105,8 @@ kuno-raeber:HandwrittenPoem
 	rdfs:subClassOf kuno-raeber:Poem, text:HandwrittenText, [
 #		a owl:Restriction; owl:onProperty text:isInManuscript; owl:cardinality "1"^^xsd:nonNegativeInteger], [ # declared at text:HandwrittenText
 #		a owl:Restriction; owl:onProperty text:isInManuscriptValue; owl:cardinality "1"^^xsd:nonNegativeInteger], [ # declared at text:HandwrittenText
-		a owl:Restriction; owl:onProperty kuno-raeber:hasDiplomaticTranscription; owl:cardinality "1"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty kuno-raeber:hasDiplomaticTranscriptionValue; owl:cardinality "1"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty kuno-raeber:hasDiplomaticTranscription; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty kuno-raeber:hasDiplomaticTranscriptionValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty kuno-raeber:isOnPage; owl:minCardinality "1"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty kuno-raeber:isOnPageValue; owl:minCardinality "1"^^xsd:nonNegativeInteger]#, [
 #		a owl:Restriction; owl:onProperty text:isWrittenWith; owl:minCardinality "0"^^xsd:nonNegativeInteger], [ # declared at text:WrittenText
@@ -211,8 +211,7 @@ kuno-raeber:Convolute
 	rdfs:label "convolute"@en, "Konvolut"@de;
 	rdfs:comment """Text convolute of which the elements are authored by Kuno Raeber."""@en;
 	rdfs:subClassOf text:Convolute, [
-		a owl:Restriction; owl:onProperty text:hasConvoluteTitle; owl:cardinality "1"^^xsd:nonNegativeInteger], [	
-		a owl:Restriction; owl:onProperty text:hasTitle; owl:minCardinality "1"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty text:hasConvoluteTitle; owl:cardinality "1"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text:hasAlias; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text:hasConvoluteDescription; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text:hasComment; owl:minCardinality "0"^^xsd:nonNegativeInteger].
@@ -256,16 +255,16 @@ kuno-raeber:PoemManuscriptConvolute
 	rdfs:label "poem manuscript convolute"@en, "Gedicht-Manuskriptenkonvolut"@de;
 	rdfs:comment """Poem manuscript convolute with poems authored by Kuno Raeber."""@en;
 	rdfs:subClassOf kuno-raeber:Convolute, work:ArchiveElement, [
-		a owl:Restriction; owl:onProperty human:hasCreatingPeriod; owl:cardinality "1"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty human:hasCreatingPeriodValue; owl:cardinality "1"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty work:hasArchiveSignature; owl:minCardinality "1"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty text:containsLaterStagesOf; owl:minCardinality "1"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty text:containsLaterStagesOfValue; owl:minCardinality "1"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty text:containsEarlierStagesOf; owl:minCardinality "1"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty text:containsEarlierStagesOfValue; owl:minCardinality "1"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty human:hasCreatingPeriod; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty human:hasCreatingPeriodValue; owl:minCardinality "1"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty work:hasArchiveSignature; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty text:containsLaterStagesOf; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty text:containsLaterStagesOfValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty text:containsEarlierStagesOf; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty text:containsEarlierStagesOfValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 #		a owl:Restriction; owl:onProperty text:containsEarlierStagesOfPublication; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 #		a owl:Restriction; owl:onProperty text:containsEarlierStagesOfPublicationValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty text:hasConvoluteSizeDescription; owl:minCardinality "1"^^xsd:nonNegativeInteger].
+		a owl:Restriction; owl:onProperty text:hasConvoluteSizeDescription; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 kuno-raeber:PoemPostcard
 	a owl:Class;
@@ -381,7 +380,7 @@ kuno-raeber:Letter
 
 kuno-raeber:LetterConvolute
 	a owl:Class;
-	rdfs:label "letter convolute"@en,"Briefenkonvolut"@de;
+	rdfs:label "letter convolute"@en,"Briefekonvolut"@de;
 	rdfs:comment """Convolute of letters written by and to Kuno Raeber."""@en;
 	rdfs:subClassOf kuno-raeber:Convolute, work:ArchiveElement, [
 		a owl:Restriction; owl:onProperty text:hasConvoluteContentRepresentation; owl:cardinality "1"^^xsd:nonNegativeInteger], [
@@ -632,3 +631,19 @@ kuno-raeber:isInPolyAuthorPublicationConvolute
 	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint kuno-raeber:Letter;
 	knora-base:objectClassConstraint kuno-raeber:PolyAuthorPublicationConvolute.
+
+kuno-raeber:hasSameEditionAs
+	a owl:ObjectProperty;
+	rdfs:label "has same edition as"@en, "hat gleiche Edition als"@de;
+	rdfs:comment """Relating a poem by Kuno Raeber to a convolute containing a poem with the same edition."""@en;
+	rdfs:subPropertyOf knora-base:hasLinkTo;
+	knora-base:subjectClassConstraint kuno-raeber:Poem;
+	knora-base:objectClassConstraint kuno-raeber:Convolute.
+
+kuno-raeber:hasSameEditionAsValue
+	a owl:ObjectProperty;
+	rdfs:label "has same edition as - statement"@en, "hat gleiche Edition als - Äusserung"@de;
+	rdfs:comment """Relating a poem by Kuno Raeber to a reification statement of the relation between the poem and a convolute containing a poem with the same edition."""@en;
+	rdfs:subPropertyOf knora-base:hasLinkToValue;
+	knora-base:subjectClassConstraint kuno-raeber:Poem;
+	knora-base:objectClassConstraint knora-base:LinkValue.

@@ -800,7 +800,7 @@ text:hasConvoluteOriginDescription
 
 text:hasConvoluteContentRepresentation
 	a owl:ObjectProperty;
-	rdfs:label "has convolute content representation"@en, "hat Konvolutinhalt-Beschreibung"@de;
+	rdfs:label "has convolute content representation"@en, "hat Konvolutinhalt-Repräsentation"@de;
 	rdfs:comment """Relating a convolute to a description (as object) of its content representation."""@en;
 	rdfs:subPropertyOf text:hasDescription;
 	knora-base:subjectClassConstraint text:Convolute;
@@ -825,7 +825,7 @@ text:containsEarlierStagesOfValue
 
 text:containsEarlierStagesOfPublication
 	a owl:ObjectProperty; # , owl:TransitiveProperty;
-	rdfs:label "contains earlier stages of publication"@en, "enthält frühere Stufen von Herausgabe"@de;
+	rdfs:label "contains earlier stages of publication"@en, "enthält frühere Stufen von Publikation"@de;
 	rdfs:comment """Relating a convolute to another one whose text carriers are later publication stages of the text carriers of the former."""@en;
 	rdfs:subPropertyOf text:containsEarlierStagesOf;
 	knora-base:subjectClassConstraint text:Convolute;
