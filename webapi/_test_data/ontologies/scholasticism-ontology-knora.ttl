@@ -14,7 +14,7 @@
 #	dct:title "An ontology about Scholasticism"@en;
 #	dct:description """Formal description of elements in Scholasticism as the method of critical thought dominating * teaching by academics or scholastics (schoolmen) of universities in Europe from about 1100 to 1700."""@en;
 
-# * theological and philosophical study in Western Christianity
+# *theological and philosophical study in Western Christianity
 
 #	dct:creator "Hans Cools, software developer, NIE, University of Basel, Switzerland"@en;
 #	dct:contibutor "Prof. Dr. Ueli Zahnd, History of Philosophy in the Middle Ages, University of Basel, Switzerland"@en.
