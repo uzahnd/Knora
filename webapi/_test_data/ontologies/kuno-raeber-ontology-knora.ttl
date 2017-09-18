@@ -95,8 +95,10 @@ kuno-raeber:DiplomaticTranscription
 	rdfs:comment """Diplomatic transcription of a text authored by Kuno Raeber."""@en, """Diplomatische Umschrift eines von Kuno Raeber verfassten Texts."""@de;
 	rdfs:subClassOf text:DiplomaticTranscription, [
 		a owl:Restriction; owl:onProperty text:hasContent; owl:cardinality "1"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty text:hasLineNumber; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty text:hasVersionIndicator; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+#		a owl:Restriction; owl:onProperty text:hasLineNumber; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+#		a owl:Restriction; owl:onProperty text:hasVersionIndicator; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty text:isDiplomaticTranscriptionOfTextOnPage; owl:cardinality "1"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty text:isDiplomaticTranscriptionOfTextOnPageValue; owl:cardinality "1"^^xsd:nonNegativeInteger].
 
 kuno-raeber:HandwrittenPoem
 	a owl:Class;
@@ -107,7 +109,7 @@ kuno-raeber:HandwrittenPoem
 #		a owl:Restriction; owl:onProperty text:isInManuscriptValue; owl:cardinality "1"^^xsd:nonNegativeInteger], [ # declared at text:HandwrittenText
 		a owl:Restriction; owl:onProperty kuno-raeber:hasDiplomaticTranscription; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty kuno-raeber:hasDiplomaticTranscriptionValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty work:hasPageNumberDescription; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty work:hasPageNumberDescription; owl:cardinality "1"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty kuno-raeber:isOnPage; owl:minCardinality "1"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty kuno-raeber:isOnPageValue; owl:minCardinality "1"^^xsd:nonNegativeInteger]#, [
 #		a owl:Restriction; owl:onProperty text:isWrittenWith; owl:minCardinality "0"^^xsd:nonNegativeInteger], [ # declared at text:WrittenText
@@ -131,19 +133,18 @@ kuno-raeber:PostCardPoem
 		a owl:Restriction; owl:onProperty kuno-raeber:isOnPostcardValue; owl:cardinality "1"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty kuno-raeber:hasDiplomaticTranscription; owl:cardinality "1"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty kuno-raeber:hasDiplomaticTranscriptionValue; owl:cardinality "1"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty kuno-raeber:isOnPage; owl:cardinality "1"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty kuno-raeber:isOnPageValue; owl:cardinality "1"^^xsd:nonNegativeInteger]#, [
+#		a owl:Restriction; owl:onProperty work:isOnPage; owl:cardinality "1"^^xsd:nonNegativeInteger], [ # deleted from data
+#		a owl:Restriction; owl:onProperty work:isOnPageValue; owl:cardinality "1"^^xsd:nonNegativeInteger], [ # deleted from data
 #		a owl:Restriction; owl:onProperty text:isWrittenWith; owl:minCardinality "0"^^xsd:nonNegativeInteger], [ # declared at text:WrittenText
 #		a owl:Restriction; owl:onProperty text:isWrittenWithValue; owl:minCardinality "0"^^xsd:nonNegativeInteger] # declared at text:WrittenText
-		.
+		a owl:Restriction; owl:onProperty work:hasNachlassPublicationDescription; owl:minCardinality "1"^^xsd:nonNegativeInteger].
 
 kuno-raeber:TypewrittenPoem
 	a owl:Class;
 	rdfs:label "typewritten poem"@en, "maschinengeschriebenes Gedicht"@de;
 	rdfs:comment """Typewritten poem authored by Kuno Raeber."""@en, """Maschinengeschriebenes Gedicht von Kuno Raeber."""@de;
 	rdfs:subClassOf kuno-raeber:Poem, text:TypewrittenText, [
-		a owl:Restriction; owl:onProperty work:isOnPage; owl:minCardinality "1"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty work:isOnPageValue; owl:minCardinality "1"^^xsd:nonNegativeInteger]#, [
+		a owl:Restriction; owl:onProperty work:hasPageNumberDescription; owl:cardinality "1"^^xsd:nonNegativeInteger]#, [
 #		a owl:Restriction; owl:onProperty text:isWrittenWith; owl:minCardinality "0"^^xsd:nonNegativeInteger], [ # declared at text:WrittenText
 #		a owl:Restriction; owl:onProperty text:isWrittenWithValue; owl:minCardinality "0"^^xsd:nonNegativeInteger] # declared at text:WrittenText
 		.
@@ -155,15 +156,15 @@ kuno-raeber:PublicationPoem
 	rdfs:subClassOf kuno-raeber:Poem, work:PublicationExpression, [
 		a owl:Restriction; owl:onProperty work:isPublishedIn; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty work:isPublishedInValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty work:isOnPage; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty work:isOnPageValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty work:hasPageNumberDescription; owl:cardinality "1"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty work:hasNachlassPublicationDescription; owl:minCardinality "1"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty text:hasPublicationNumber; owl:minCardinality "0"^^xsd:nonNegativeInteger]#, [
+		a owl:Restriction; owl:onProperty text:hasPublicationNumber; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 #		a owl:Restriction; owl:onProperty text:hasUnauthorizedRepublication; owl:minCardinality "0"^^xsd:nonNegativeInteger], [ # declared at work:Expression
 #		a owl:Restriction; owl:onProperty text:hasUnauthorizedRepublicationValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [ # declared at work:Expression
 #		a owl:Restriction; owl:onProperty work:hasPolyAuthorPublication; owl:minCardinality "0"^^xsd:nonNegativeInteger], [ # declared at work:Expression
 #		a owl:Restriction; owl:onProperty work:hasPolyAuthorPublicationValue; owl:minCardinality "0"^^xsd:nonNegativeInteger] # declared at work:Expression
-		.
+		a owl:Restriction; owl:onProperty kuno-raeber:isInPolyAuthorPublicationConvolute; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty kuno-raeber:isInPolyAuthorPublicationConvoluteValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 kuno-raeber:DiaryEntry
 	a owl:Class;
@@ -175,8 +176,6 @@ kuno-raeber:DiaryEntry
 		a owl:Restriction; owl:onProperty text:hasEnteringDate; owl:cardinality "1"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text:hasStructure; owl:cardinality "1"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text:hasStructureValue; owl:cardinality "1"^^xsd:nonNegativeInteger], [
-#		a owl:Restriction; owl:onProperty work:isOnPage; owl:minCardinality "1"^^xsd:nonNegativeInteger], [
-#		a owl:Restriction; owl:onProperty work:isOnPageValue; owl:minCardinality "1"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty kuno-raeber:isInDiaryConvolute; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty kuno-raeber:isInDiaryConvoluteValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty work:hasNachlassPublicationDescription; owl:minCardinality "1"^^xsd:nonNegativeInteger].
@@ -193,8 +192,6 @@ kuno-raeber:LetterExpression
 		a owl:Restriction; owl:onProperty human:hasCreationDate; owl:cardinality "1"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text:hasStructure; owl:cardinality "1"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text:hasStructureValue; owl:cardinality "1"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty work:isOnPage; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty work:isOnPageValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty work:hasPublishingState; owl:cardinality "1"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty work:hasPublishingStateValue; owl:cardinality "1"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text:hasSpecialDescription; owl:minCardinality "0"^^xsd:nonNegativeInteger].
@@ -243,11 +240,7 @@ kuno-raeber:PoemManuscript
 	rdfs:subClassOf work:Leaf, text:Manuscript, work:ArchiveElement, [
 		a owl:Restriction; owl:onProperty kuno-raeber:isPartOfManuscriptConvolute; owl:cardinality "1"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty kuno-raeber:isPartOfManuscriptConvoluteValue; owl:cardinality "1"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty work:hasArchiveSignature; owl:cardinality "1"^^xsd:nonNegativeInteger]
-#		, [
-#		a owl:Restriction; owl:onProperty image:hasPhotoRepresentation; owl:minCardinality "1"^^xsd:nonNegativeInteger], [
-#		a owl:Restriction; owl:onProperty image:hasPhotoRepresentationValue; owl:minCardinality "1"^^xsd:nonNegativeInteger]
-		.
+		a owl:Restriction; owl:onProperty work:hasArchiveSignature; owl:cardinality "1"^^xsd:nonNegativeInteger].
 
 kuno-raeber:PoemManuscriptConvolute
 	a owl:Class;
@@ -271,9 +264,11 @@ kuno-raeber:PoemPostcard
 	a owl:Class;
 	rdfs:label "poem postcard"@en, "Gedicht-Postkarte"@de;
 	rdfs:comment """Postcard with a poem authored by Kuno Raeber."""@en;
-	rdfs:subClassOf text:Manuscript, text:Postcard, [
+	rdfs:subClassOf text:Manuscript, text:Postcard, knora-base:StillImageRepresentation, [
 		a owl:Restriction; owl:onProperty kuno-raeber:isPartOfPostcardConvolute; owl:cardinality "1"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty kuno-raeber:isPartOfPostcardConvoluteValue; owl:cardinality "1"^^xsd:nonNegativeInteger].
+		a owl:Restriction; owl:onProperty kuno-raeber:isPartOfPostcardConvoluteValue; owl:cardinality "1"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty work:hasArchiveSignature; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty knora-base:hasStillImageFileValue; owl:minCardinality "1"^^xsd:nonNegativeInteger]. # knora-base restriction
 
 kuno-raeber:PoemPostcardConvolute
 	a owl:Class;
@@ -344,7 +339,7 @@ kuno-raeber:PrintedPoemBookPublication
 
 kuno-raeber:PolyAuthorPublicationConvolute
 	a owl:Class;
-	rdfs:label "poly-author publication convolute"@en, "Mehrautorenpublikation-Konvolut"@de;
+	rdfs:label "poly-author publication convolute"@en, "Mehrautorenpublikationen-Konvolut"@de;
 	rdfs:comment """Convolute of poems authored by Kuno Raeber as published among expressions by other authors."""@en;
 	rdfs:subClassOf kuno-raeber:Convolute, [
 		a owl:Restriction; owl:onProperty text:hasConvoluteOriginDescription; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
@@ -481,6 +476,22 @@ kuno-raeber:isOnPostcardValue
 	rdfs:comment """Relating a poem by Kuno Raeber to a reification statement of the relation between the poem and a postcard it is on."""@en;
 	rdfs:subPropertyOf text:isInManuscriptValue;
 	knora-base:subjectClassConstraint kuno-raeber:PostcardPoem;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
+kuno-raeber:isInPolyAuthorPublicationConvolute
+	a owl:ObjectProperty;
+	rdfs:label "is in poly-author publication convolute"@en, "ist in Mehrautorenpublikationen-Konvolut"@de;
+	rdfs:comment """Relating a publication poem by Kuno Raeber to a poly-author publication it is in."""@en;
+	rdfs:subPropertyOf knora-base:hasLinkTo;
+	knora-base:subjectClassConstraint kuno-raeber:PublicationPoem;
+	knora-base:objectClassConstraint kuno-raeber:PolyAuthorPublicationConvolute.
+
+kuno-raeber:isInPolyAuthorPublicationConvoluteValue
+	a owl:ObjectProperty;
+	rdfs:label "is in poly-author publication convolute - statement"@en, "ist in Mehrautorenpublikationen-Konvolut - Äusserung"@de;
+	rdfs:comment """Relating a publication poem by Kuno Raeber to a reification statement of the relation between the poem and a poly-author publication it is in."""@en;
+	rdfs:subPropertyOf knora-base:hasLinkToValue;
+	knora-base:subjectClassConstraint kuno-raeber:PublicationPoem;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
 kuno-raeber:isPartOfManuscriptConvolute
@@ -626,14 +637,6 @@ kuno-raeber:isPartOfLetterConvoluteValue
 	rdfs:subPropertyOf knora-base:hasLinkToValue;
 	knora-base:subjectClassConstraint kuno-raeber:Letter;
 	knora-base:objectClassConstraint knora-base:LinkValue.
-
-kuno-raeber:isInPolyAuthorPublicationConvolute
-	a owl:ObjectProperty;
-	rdfs:label "is in  convolute"@en, "ist Teil eines Briefe-Konvolut"@de;
-	rdfs:comment """Relating a letter by Kuno Raeber to a convolute it is in."""@en;
-	rdfs:subPropertyOf knora-base:hasLinkTo;
-	knora-base:subjectClassConstraint kuno-raeber:Letter;
-	knora-base:objectClassConstraint kuno-raeber:PolyAuthorPublicationConvolute.
 
 kuno-raeber:hasSameEditionAs
 	a owl:ObjectProperty;

@@ -526,21 +526,30 @@ work:hasVolumeNumber
 	knora-base:objectClassConstraint knora-base:TextValue;
 	salsah-gui:guiElement salsah-gui:Richtext.
 
-#work:hasPage
-#	a owl:ObjectProperty;
-#	rdfs:label "has page"@en;
-#	rdfs:comment """Relating a book to a page thereof."""@en;
-#	rdfs:subPropertyOf knora-base:hasLinkTo;
-#	knora-base:subjectClassConstraint work:Book; # owl:propertyChainAxiom (work:hasLeaf work:hasSide)
-#	knora-base:objectClassConstraint work:Page.
+work:isOnPage
+	a owl:ObjectProperty;
+	rdfs:label "is on page"@en, "ist auf Seite"@de;
+	rdfs:comment """Relating an expression to a carrier page it is on."""@en;
+	rdfs:subPropertyOf work:isMaterializedIn;
+	knora-base:subjectClassConstraint work:Expression; # owl:propertyChainAxiom (work:isMaterializedIn work:hasPage)
+	knora-base:objectClassConstraint work:Page.
 
-#work:hasPageValue
-#	a owl:ObjectProperty;
-#	rdfs:label "has page - statement"@en;
-#	rdfs:comment """Relating a book to a reification statement of the relation between the book and a page thereof."""@en;
-#	rdfs:subPropertyOf knora-base:hasLinkToValue;
-#	knora-base:subjectClassConstraint work:Book;
-#	knora-base:objectClassConstraint knora-base:LinkValue.
+work:isOnPageValue
+	a owl:ObjectProperty;
+	rdfs:label "is on page - statement"@en, "ist auf Seite - Äusserung"@de;
+	rdfs:comment """Relating an expression to a reification statement of the relation between the expression and the carrier page it is on."""@en;
+	rdfs:subPropertyOf work:isMaterializedInValue;
+	knora-base:subjectClassConstraint work:Expression;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
+work:hasPageNumberDescription
+	a owl:ObjectProperty;
+	rdfs:label "has page number description"@en, "hat Seitennummerbeschreibung"@de;
+	rdfs:comment """Relating an expression to a description (as object) of the number(s) of and possibly a location on (a) pages it is on, examples (of the string of a value): "001-002", "01 recto", "O2 (bottom)"."""@en;
+	rdfs:subPropertyOf knora-base:hasValue;
+	knora-base:subjectClassConstraint work:Expression;
+	knora-base:objectClassConstraint knora-base:TextValue;
+	salsah-gui:guiElement salsah-gui:Richtext.
 
 work:isPageOf
 	a owl:ObjectProperty;
@@ -564,31 +573,24 @@ work:hasPageNumber
 	rdfs:comment """Relating a page to the number (as object) it has."""@en;
 	rdfs:subPropertyOf knora-base:hasValue;
 	knora-base:subjectClassConstraint work:Page;
-	knora-base:objectClassConstraint knora-base:TextValue.
+	knora-base:objectClassConstraint knora-base:TextValue;
+	salsah-gui:guiElement salsah-gui:Richtext.
 
-work:hasPageNumberDescription
-	a owl:ObjectProperty;
-	rdfs:label "has page number description"@en, "hat Seitennummerbeschreibung"@de;
-	rdfs:comment """Relating an expression to a description (as object) of the numbers of pages it is on."""@en;
-	rdfs:subPropertyOf knora-base:hasValue;
-	knora-base:subjectClassConstraint work:Expression;
-	knora-base:objectClassConstraint knora-base:TextValue.
+#work:hasPage
+#	a owl:ObjectProperty;
+#	rdfs:label "has page"@en;
+#	rdfs:comment """Relating a book to a page thereof."""@en;
+#	rdfs:subPropertyOf knora-base:hasLinkTo;
+#	knora-base:subjectClassConstraint work:Book; # owl:propertyChainAxiom (work:hasLeaf work:hasSide)
+#	knora-base:objectClassConstraint work:Page.
 
-work:isOnPage
-	a owl:ObjectProperty;
-	rdfs:label "is on page"@en, "ist auf Seite"@de;
-	rdfs:comment """Relating an expression to a carrier page it is on."""@en;
-	rdfs:subPropertyOf work:isMaterializedIn;
-	knora-base:subjectClassConstraint work:Expression; # owl:propertyChainAxiom (work:isMaterializedIn work:hasPage)
-	knora-base:objectClassConstraint work:Page.
-
-work:isOnPageValue
-	a owl:ObjectProperty;
-	rdfs:label "is on page - statement"@en, "ist auf Seite - Äusserung"@de;
-	rdfs:comment """Relating an expression to a reification statement of the relation between the expression and the carrier page it is on."""@en;
-	rdfs:subPropertyOf work:isMaterializedInValue;
-	knora-base:subjectClassConstraint work:Expression;
-	knora-base:objectClassConstraint knora-base:LinkValue.
+#work:hasPageValue
+#	a owl:ObjectProperty;
+#	rdfs:label "has page - statement"@en;
+#	rdfs:comment """Relating a book to a reification statement of the relation between the book and a page thereof."""@en;
+#	rdfs:subPropertyOf knora-base:hasLinkToValue;
+#	knora-base:subjectClassConstraint work:Book;
+#	knora-base:objectClassConstraint knora-base:LinkValue.
 
 #work:hasPageNumber
 #	a owl:ObjectProperty;

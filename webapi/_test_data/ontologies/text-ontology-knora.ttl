@@ -139,7 +139,9 @@ text:DiplomaticTranscription
 	a owl:Class;
 	rdfs:label "diplomatic transcription"@en, "diplomatische Umschrift"@de;
 	rdfs:comment """Transcription of a text with diacritical signs indicating visual textual properties to describe the textual state."""@en;
-	rdfs:subClassOf text:Derivative.
+	rdfs:subClassOf text:Derivative, [
+		a owl:Restriction; owl:onProperty text:isDiplomaticTranscriptionOfTextOnPage; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty text:isDiplomaticTranscriptionOfTextOnPageValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 text:WritingUtensil
 	a owl:Class;
@@ -575,6 +577,22 @@ text:hasColumnIndicator
 	knora-base:objectClassConstraint knora-base:TextValue;
 	salsah-gui:guiElement salsah-gui:Richtext.
 
+text:isDiplomaticTranscriptionOfTextOnPage
+	a owl:ObjectProperty;
+	rdfs:label "is diplomatic transcription of text on page"@en, "ist diplomatische Umschrift des Textes auf Seite"@de;
+	rdfs:comment "Relating a diplomatic transcription to a page its source text is on."@en;
+	rdfs:subPropertyOf knora-base:hasLinkTo;
+	knora-base:subjectClassConstraint text:DiplomaticTranscription;
+	knora-base:objectClassConstraint work:Page.
+
+text:isDiplomaticTranscriptionOfTextOnPageValue
+	a owl:ObjectProperty;
+	rdfs:label "is diplomatic transcription of text on page - statement"@en, "ist diplomatische Umschrift des Textes auf Seite - Äusserung"@de;
+	rdfs:comment "Relating a diplomatic transcription to a reification statement of the relation between the diplomatic transcription and a page its source text is on."@en;
+	rdfs:subPropertyOf knora-base:hasLinkToValue;
+	knora-base:subjectClassConstraint text:DiplomaticTranscription;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
 text:hasLineNumber
 	a owl:ObjectProperty;
 	rdfs:label "has line number"@en, "hat Liniennummer"@de;
@@ -711,6 +729,22 @@ text:isInDiaryValue
 	rdfs:comment """Relating a diary entry to a reification statement of the relation between the diary entry and a diary it is in."""@en;
 	rdfs:subPropertyOf text:isOnCarrierValue;
 	knora-base:subjectClassConstraint text:DiaryEntry;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
+text:isInLetter
+	a owl:ObjectProperty;
+	rdfs:label "is in letter"@en, "ist in Brief"@de;
+	rdfs:comment """Relating a letter expression to a letter it is in."""@en;
+	rdfs:subPropertyOf text:isOnCarrier;
+	knora-base:subjectClassConstraint text:LetterExpression;
+	knora-base:objectClassConstraint text:Letter.
+
+text:isInLetterValue
+	a owl:ObjectProperty;
+	rdfs:label "is in letter - statement"@en, "ist in Brief - Äusserung"@de;
+	rdfs:comment """Relating a letter expression to a reification statement of the relation between the letter expression and a letter it is in."""@en;
+	rdfs:subPropertyOf text:isOnCarrierValue;
+	knora-base:subjectClassConstraint text:LetterExpression;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 																										   
 text:hasEnteringDate
