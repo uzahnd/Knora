@@ -224,10 +224,10 @@ kuno-raeber:PoemNotebook
 		a owl:Restriction; owl:onProperty text:hasCarrierDescription; owl:minCardinality "1"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty work:hasArchiveSignature; owl:cardinality "1"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty knora-base:hasStillImageFileValue; owl:minCardinality "1"^^xsd:nonNegativeInteger], [ # knora-base restriction
-#		a owl:Restriction; owl:onProperty knora-base:hasDocumentFileValue; owl:minCardinality "1"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty text:containsEarlierStagesOf; owl:minCardinality "1"^^xsd:nonNegativeInteger], [
-#		a owl:Restriction; owl:onProperty text:containsEarlierStagesOf; owl:someValuesFrom kuno-raeber:PoemManuscriptConvolute], [
-		a owl:Restriction; owl:onProperty text:containsEarlierStagesOfValue; owl:minCardinality "1"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty kuno-raeber:containsEarlierStagesOfManuscriptConvolute; owl:minCardinality "1"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty kuno-raeber:containsEarlierStagesOfManuscriptConvoluteValue; owl:minCardinality "1"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty kuno-raeber:containsEarlierStagesOfTypescriptConvolute; owl:minCardinality "1"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty kuno-raeber:containsEarlierStagesOfTypescriptConvoluteValue; owl:minCardinality "1"^^xsd:nonNegativeInteger], [
 #		a owl:Restriction; owl:onProperty text:containsEarlierStagesOfPublication; owl:minCardinality "0"^^xsd:nonNegativeInteger], [ # declared at text:Convolute
 #		a owl:Restriction; owl:onProperty text:containsEarlierStagesOfPublicationValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [ # declared at text:Convolute
 		a owl:Restriction; owl:onProperty text:hasConvoluteSizeDescription; owl:minCardinality "1"^^xsd:nonNegativeInteger], [
@@ -250,10 +250,10 @@ kuno-raeber:PoemManuscriptConvolute
 		a owl:Restriction; owl:onProperty human:hasCreatingPeriod; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty human:hasCreatingPeriodValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty work:hasArchiveSignature; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty text:containsLaterStagesOf; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty text:containsLaterStagesOfValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty text:containsEarlierStagesOf; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty text:containsEarlierStagesOfValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty kuno-raeber:containsLaterStagesOfNotebook; owl:minCardinality "1"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty kuno-raeber:containsLaterStagesOfNotebookValue; owl:minCardinality "1"^^xsd:nonNegativeInteger], [		
+		a owl:Restriction; owl:onProperty kuno-raeber:containsEarlierStagesOfTypescriptConvolute; owl:minCardinality "1"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty kuno-raeber:containsEarlierStagesOfTypescriptConvoluteValue; owl:minCardinality "1"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text:containsEarlierStagesOfPublication; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text:containsEarlierStagesOfPublicationValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text:hasConvoluteSizeDescription; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
@@ -279,8 +279,8 @@ kuno-raeber:PoemPostcardConvolute
 		a owl:Restriction; owl:onProperty human:hasCreatingPeriod; owl:cardinality "1"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty human:hasCreatingPeriodValue; owl:cardinality "1"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text:hasConvoluteSizeDescription; owl:minCardinality "1"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty text:containsLaterStagesOf; owl:cardinality "1"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty text:containsLaterStagesOfValue; owl:cardinality "1"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty kuno-raeber:containsLaterStagesOfNotebook; owl:minCardinality "1"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty kuno-raeber:containsLaterStagesOfNotebookValue; owl:minCardinality "1"^^xsd:nonNegativeInteger], [		
 		a owl:Restriction; owl:onProperty text:containsEarlierStagesOfPublication; owl:minCardinality "1"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text:containsEarlierStagesOfPublicationValue; owl:minCardinality "1"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text:hasConvoluteOriginDescription; owl:cardinality "1"^^xsd:nonNegativeInteger], [
@@ -304,8 +304,10 @@ kuno-raeber:PoemTypescriptConvolute
 		a owl:Restriction; owl:onProperty human:hasCreatingPeriod; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty human:hasCreatingPeriodValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty work:hasArchiveSignature; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty text:containsLaterStagesOf; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty text:containsLaterStagesOfValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty kuno-raeber:containsLaterStagesOfNotebook; owl:minCardinality "1"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty kuno-raeber:containsLaterStagesOfNotebookValue; owl:minCardinality "1"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty kuno-raeber:containsLaterStagesOfManuscriptConvolute; owl:minCardinality "1"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty kuno-raeber:containsLaterStagesOfManuscriptConvoluteValue; owl:minCardinality "1"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text:containsEarlierStagesOfPublication; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text:containsEarlierStagesOfPublicationValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text:hasConvoluteOriginDescription; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
@@ -542,6 +544,38 @@ kuno-raeber:isPartOfTypescriptConvoluteValue
 	knora-base:subjectClassConstraint kuno-raeber:PoemTypescript;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
+kuno-raeber:containsEarlierStagesOfManuscriptConvolute
+	a owl:ObjectProperty;
+	rdfs:label "contains earlier stages of manuscript convolute"@en, "enthält Vorstufen von Manuskriptenkonvolut"@de;
+	rdfs:comment """Relating a convolute to another one containing manuscripts with later stages of poems by Kuno Raeber of the former convolute."""@en;
+	rdfs:subPropertyOf text:containsEarlierStagesOf;
+	knora-base:subjectClassConstraint kuno-raeber:PoemNotebook;
+	knora-base:objectClassConstraint kuno-raeber:PoemManuscriptConvolute.
+
+kuno-raeber:containsEarlierStagesOfManuscriptConvoluteValue
+	a owl:ObjectProperty;
+	rdfs:label "contains earlier stages of manuscript convolute - statement"@en, "enthält Vorstufen von Manuskriptenkonvolut - Äusserung"@de;
+	rdfs:comment """Relating a convolute to a reification statement of the relation between the convolute and another one containing manuscripts with later stages of poems by Kuno Raeber of the former convolute."""@en;
+	rdfs:subPropertyOf text:containsEarlierStagesOfValue;
+	knora-base:subjectClassConstraint kuno-raeber:PoemNotebook;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
+kuno-raeber:containsEarlierStagesOfTypescriptConvolute
+	a owl:ObjectProperty;
+	rdfs:label "contains earlier stages of typescript convolute"@en, "enthält Vorstufen von Typoskriptenonvolut"@de;
+	rdfs:comment """Relating a convolute to another one containing typescripts with later stages of poems by Kuno Raeber of the former convolute."""@en;
+	rdfs:subPropertyOf text:containsEarlierStagesOf;
+	knora-base:subjectClassConstraint kuno-raeber:Convolute;
+	knora-base:objectClassConstraint kuno-raeber:PoemTypescriptConvolute.
+
+kuno-raeber:containsEarlierStagesOfTypescriptConvoluteValue
+	a owl:ObjectProperty;
+	rdfs:label "contains earlier stages of typescript convolute - statement"@en, "enthält Vorstufen von Typoskriptenonvolut - Äusserung"@de;
+	rdfs:comment """Relating a convolute to a reification statement of the relation between the convolute and another one containing typescripts with later stages of poems by Kuno Raeber of the former convolute."""@en;
+	rdfs:subPropertyOf text:containsEarlierStagesOfValue;
+	knora-base:subjectClassConstraint kuno-raeber:Convolute;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
 kuno-raeber:containsLaterStagesOfNotebook
 	a owl:ObjectProperty;
 	rdfs:label "contains later stages of notebook"@en, "enthält spätere Stufen von Notizbuch"@de;
@@ -561,7 +595,7 @@ kuno-raeber:containsLaterStagesOfNotebookValue
 kuno-raeber:containsLaterStagesOfManuscriptConvolute
 	a owl:ObjectProperty;
 	rdfs:label "contains later stages of manuscript convolute"@en, "enthält spätere Stufen von Manuskriptenkonvolut"@de;
-	rdfs:comment """Relating a convolute to a manuscript convolute containing earlier stages of poems by Kuno Raeber of the former convolute."""@en;
+	rdfs:comment """Relating a convolute to another one containing manuscripts with earlier stages of poems by Kuno Raeber of the former convolute."""@en;
 	rdfs:subPropertyOf text:containsLaterStagesOf;
 	knora-base:subjectClassConstraint kuno-raeber:Convolute;
 	knora-base:objectClassConstraint kuno-raeber:PoemManuscriptConvolute.
@@ -569,7 +603,7 @@ kuno-raeber:containsLaterStagesOfManuscriptConvolute
 kuno-raeber:containsLaterStagesOfManuscriptConvoluteValue
 	a owl:ObjectProperty;
 	rdfs:label "contains later stages of manuscript convolute - statement"@en, "enthält spätere Stufen von Manuskriptenkonvolut - Äusserung"@de;
-	rdfs:comment """Relating a convolute to a reification statement of the relation between the convolute and a manuscript convolute containing earlier stages of poems by Kuno Raeber of the former convolute."""@en;
+	rdfs:comment """Relating a convolute to a reification statement of the relation between the convolute and another one containing manuscripts with earlier stages of poems by Kuno Raeber of the former convolute."""@en;
 	rdfs:subPropertyOf text:containsLaterStagesOfValue;
 	knora-base:subjectClassConstraint kuno-raeber:Convolute;
 	knora-base:objectClassConstraint knora-base:LinkValue.
@@ -577,17 +611,17 @@ kuno-raeber:containsLaterStagesOfManuscriptConvoluteValue
 kuno-raeber:containsLaterStagesOfTypescriptConvolute
 	a owl:ObjectProperty;
 	rdfs:label "contains later stages of typescript convolute"@en, "enthält spätere Stufen von Typoskriptenonvolut"@de;
-	rdfs:comment """Relating a convolute to a typescript convolute containing earlier stages of poems by Kuno Raeber of the former convolute."""@en;
+	rdfs:comment """Relating a convolute to another one containing typescripts with earlier stages of poems by Kuno Raeber of the former convolute."""@en;
 	rdfs:subPropertyOf text:containsLaterStagesOf;
-	knora-base:subjectClassConstraint kuno-raeber:Convolute;
+	knora-base:subjectClassConstraint kuno-raeber:PrintedPoemBookPublication;
 	knora-base:objectClassConstraint kuno-raeber:PoemTypescriptConvolute.
 
 kuno-raeber:containsLaterStagesOfTypescriptConvoluteValue
 	a owl:ObjectProperty;
 	rdfs:label "contains later stages of typescript convolute - statement"@en, "enthält spätere Stufen von Typoskriptenonvolut - Äusserung"@de;
-	rdfs:comment """Relating a convolute to a reification statement of the relation between the convolute and a typescript convolute containing earlier stages of poems by Kuno Raeber of the former convolute."""@en;
+	rdfs:comment """Relating a convolute to a reification statement of the relation between the convolute and another one containing typescripts with earlier stages of poems by Kuno Raeber of the former convolute."""@en;
 	rdfs:subPropertyOf text:containsLaterStagesOfValue;
-	knora-base:subjectClassConstraint kuno-raeber:Convolute;
+	knora-base:subjectClassConstraint kuno-raeber:PrintedPoemBookPublication;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
 kuno-raeber:isInDiary

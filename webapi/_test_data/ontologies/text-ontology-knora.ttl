@@ -854,7 +854,7 @@ text:hasConvoluteContentRepresentation
 text:containsEarlierStagesOf
 	a owl:ObjectProperty; # , owl:TransitiveProperty;
 	rdfs:label "contains earlier stages of"@en, "enthält frühere Stufen von"@de;
-	rdfs:comment """Relating a convolute to another one whose text carriers are later stages of the text carriers of the former."""@en;
+	rdfs:comment """Relating a convolute to another one whose text carriers bear later stages of the texts on the carriers of the former."""@en;
 	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint text:Convolute;
 	knora-base:objectClassConstraint text:Convolute.
@@ -862,7 +862,7 @@ text:containsEarlierStagesOf
 text:containsEarlierStagesOfValue
 	a owl:ObjectProperty;
 	rdfs:label "contains earlier stages of - statement"@en, "enthält frühere Stufen von - Äusserung"@de;
-	rdfs:comment """Relating a convolute to a reification statement of the relation between the convolute and another one whose text carriers are later stages of the text carriers of the former."""@en;
+	rdfs:comment """Relating a convolute to a reification statement of the relation between the convolute and another one whose text carriers bear later stages of the texts on the carriers of the former."""@en;
 	rdfs:subPropertyOf knora-base:hasLinkToValue;
 	knora-base:subjectClassConstraint text:Convolute;
 	knora-base:objectClassConstraint knora-base:LinkValue.
@@ -870,15 +870,15 @@ text:containsEarlierStagesOfValue
 text:containsEarlierStagesOfPublication
 	a owl:ObjectProperty; # , owl:TransitiveProperty;
 	rdfs:label "contains earlier stages of publication"@en, "enthält frühere Stufen von Publikation"@de;
-	rdfs:comment """Relating a convolute to another one whose text carriers are later publication stages of the text carriers of the former."""@en;
+	rdfs:comment """Relating a convolute to another one whose text carriers bear later publication stages of the texts on the carriers of the former."""@en;
 	rdfs:subPropertyOf text:containsEarlierStagesOf;
 	knora-base:subjectClassConstraint text:Convolute;
-	knora-base:objectClassConstraint text:Convolute.
+	knora-base:objectClassConstraint text:Convolute. # *
 
 text:containsEarlierStagesOfPublicationValue
 	a owl:ObjectProperty;
 	rdfs:label "contains earlier stages of publication - statement"@en, "enthält frühere Stufen von Herausgabe - Äusserung"@de;
-	rdfs:comment """Relating a convolute to a reification statement of the relation between the convolute and another one whose text carriers are later publication stages of the text carriers of the former."""@en;
+	rdfs:comment """Relating a convolute to a reification statement of the relation between the convolute and another one whose text carriers bear later publication stages of the texts on the carriers of the former."""@en;
 	rdfs:subPropertyOf text:containsEarlierStagesOfValue;
 	knora-base:subjectClassConstraint text:Convolute;
 	knora-base:objectClassConstraint knora-base:LinkValue.
@@ -886,7 +886,7 @@ text:containsEarlierStagesOfPublicationValue
 text:containsLaterStagesOf
 	a owl:ObjectProperty; # , owl:TransitiveProperty;
 	rdfs:label "contains later stages of"@en, "enthält spätere Stufen von"@de;
-	rdfs:comment """Relating a convolute to another one whose text carriers are earlier stages of the text carriers of the former."""@en;
+	rdfs:comment """Relating a convolute to another one whose text carriers bear earlier stages of the texts on the carriers of the former."""@en;
 	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint text:Convolute;
 	knora-base:objectClassConstraint text:Convolute.
@@ -894,7 +894,7 @@ text:containsLaterStagesOf
 text:containsLaterStagesOfValue
 	a owl:ObjectProperty;
 	rdfs:label "contains later stages of - statement"@en, "enthält spätere Stufen von - Äusserung"@de;
-	rdfs:comment """Relating a convolute to a reification statement of the relation between the convolute and another one whose text carriers are earlier stages of the text carriers of the former."""@en;
+	rdfs:comment """Relating a convolute to a reification statement of the relation between the convolute and another one whose text carriers bear later stages of the texts on the carriers of the former."""@en;
 	rdfs:subPropertyOf knora-base:hasLinkToValue;
 	knora-base:subjectClassConstraint text:Convolute;
 	knora-base:objectClassConstraint knora-base:LinkValue.
