@@ -358,15 +358,34 @@ object ResourcesRouteV1 extends Authenticator {
                 assert(intermediateResults.contains(OntologyConstants.KnoraBase.KnoraBaseOntologyIri))
 
                 for {
-                // Get a NamedGraphEntityInfoV1 listing the IRIs of the properties defined in the initial ontology.
+                // Get a NamedGraphEntityInfoV1 listing the IRIs of the classes and properties defined in the initial ontology.
                     initialNamedGraphInfo: NamedGraphEntityInfoV1 <- (responderManager ? NamedGraphEntityInfoRequestV1(initialOntologyIri, userProfile)).mapTo[NamedGraphEntityInfoV1]
 
-                    // Get details about those properties.
-                    propertyInfoResponse: EntityInfoGetResponseV1 <- (responderManager ? EntityInfoGetRequestV1(propertyIris = initialNamedGraphInfo.propertyIris, userProfile = userProfile)).mapTo[EntityInfoGetResponseV1]
+                    // Get details about those classes and properties.
+                    entityInfoResponse: EntityInfoGetResponseV1 <- (responderManager ? EntityInfoGetRequestV1(
+                        resourceClassIris = initialNamedGraphInfo.resourceClasses,
+                        propertyIris = initialNamedGraphInfo.propertyIris,
+                        userProfile = userProfile
+                    )).mapTo[EntityInfoGetResponseV1]
 
-                    // Look at the object class constraints of those properties. Make a set of the ontologies containing those classes,
+                    // Look at the properties that have cardinalities in the resource classes in the initial ontology.
+                    // Make a set of the ontologies containing the definitions of those properties, not including the initial ontology itself
+                    // or any other ontologies we've already looked at.
+                    ontologyIrisFromCardinalities: Set[IRI] = entityInfoResponse.resourceEntityInfoMap.foldLeft(Set.empty[IRI]) {
+                        case (acc, (resourceClassIri, resourceClassInfo)) =>
+                            val resourceCardinalityOntologies: Set[IRI] = resourceClassInfo.cardinalities.map {
+                                case (propertyIri, _) => InputValidation.getInternalOntologyIriFromInternalEntityIri(
+                                    internalEntityIri = propertyIri,
+                                    errorFun = () => throw InconsistentTriplestoreDataException(s"Class $resourceClassIri has a cardinality for an invalid property: $propertyIri")
+                                )
+                            }.toSet
+
+                            acc ++ resourceCardinalityOntologies
+                    } -- intermediateResults.keySet - initialOntologyIri
+
+                    // Look at the object class constraints of the properties in the initial ontology. Make a set of the ontologies containing those classes,
                     // not including the initial ontology itself or any other ontologies we've already looked at.
-                    ontologyIrisFromObjectClassConstraints: Set[IRI] = propertyInfoResponse.propertyEntityInfoMap.map {
+                    ontologyIrisFromObjectClassConstraints: Set[IRI] = entityInfoResponse.propertyEntityInfoMap.map {
                         case (propertyIri, propertyInfo) =>
                             val propertyObjectClassConstraint = propertyInfo.getPredicateObject(OntologyConstants.KnoraBase.ObjectClassConstraint).getOrElse {
                                 throw InconsistentTriplestoreDataException(s"Property $propertyIri has no knora-base:objectClassConstraint")
@@ -378,8 +397,11 @@ object ResourcesRouteV1 extends Authenticator {
                             )
                     }.toSet -- intermediateResults.keySet - initialOntologyIri
 
+                    // Make a set of all the ontologies referenced by the initial ontology.
+                    referencedOntologies: Set[IRI] = ontologyIrisFromCardinalities ++ ontologyIrisFromObjectClassConstraints
+
                     // Recursively get NamedGraphEntityInfoV1 instances for each of those ontologies.
-                    futuresOfNamedGraphInfosFromObjectClassConstraints: Set[Future[Map[IRI, NamedGraphEntityInfoV1]]] = ontologyIrisFromObjectClassConstraints.map {
+                    futuresOfNamedGraphInfosForReferencedOntologies: Set[Future[Map[IRI, NamedGraphEntityInfoV1]]] = referencedOntologies.map {
                         ontologyIri =>
                             getNamedGraphInfosRec(
                                 initialOntologyIri = ontologyIri,
@@ -388,11 +410,11 @@ object ResourcesRouteV1 extends Authenticator {
                             )
                     }
 
-                    namedGraphInfosFromObjectClassConstraints: Set[Map[IRI, NamedGraphEntityInfoV1]] <- Future.sequence(futuresOfNamedGraphInfosFromObjectClassConstraints)
+                    namedGraphInfosFromReferencedOntologies: Set[Map[IRI, NamedGraphEntityInfoV1]] <- Future.sequence(futuresOfNamedGraphInfosForReferencedOntologies)
 
                 // Return the previous intermediate results, plus the information about the initial ontology
-                // and the ontologies containing classes used in object class constraints.
-                } yield namedGraphInfosFromObjectClassConstraints.flatten.toMap ++ intermediateResults + (initialOntologyIri -> initialNamedGraphInfo)
+                // and the other referenced ontologies.
+                } yield namedGraphInfosFromReferencedOntologies.flatten.toMap ++ intermediateResults + (initialOntologyIri -> initialNamedGraphInfo)
             }
 
             for {
@@ -1268,5 +1290,4 @@ object ResourcesRouteV1 extends Authenticator {
             new ByteArrayLSInput(contents(namespaceURI))
         }
     }
-
 }
