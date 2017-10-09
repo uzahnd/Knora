@@ -46,9 +46,7 @@ kuno-raeber:Text
 		a owl:Restriction; owl:onProperty kuno-raeber:hasEdition; owl:cardinality "1"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty kuno-raeber:hasEditionValue; owl:cardinality "1"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty human:hasModificationDateTime; owl:cardinality "1"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty work:isPublishedOnline; owl:cardinality "1"^^xsd:nonNegativeInteger]#, [
-#		a owl:Restriction; owl:onProperty text:hasReferenceTextValue; owl:minCardinality "0"^^xsd:nonNegativeInteger]
-		.
+		a owl:Restriction; owl:onProperty work:isPublishedOnline; owl:cardinality "1"^^xsd:nonNegativeInteger].
 
 kuno-raeber:Poem
 	a owl:Class;
@@ -61,7 +59,8 @@ kuno-raeber:Poem
 		a owl:Restriction; owl:onProperty kuno-raeber:hasSameEditionAs; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty kuno-raeber:hasSameEditionAsValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty kuno-raeber:hasReferencePoem; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty kuno-raeber:hasReferencePoemValue; owl:minCardinality "0"^^xsd:nonNegativeInteger]#, [
+		a owl:Restriction; owl:onProperty kuno-raeber:hasReferencePoemValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty kuno-raeber:hasReferenceTitle; owl:minCardinality "0"^^xsd:nonNegativeInteger]#, [
 #		a owl:Restriction; owl:onProperty text:hasStrophe; owl:minCardinality "0"^^xsd:nonNegativeInteger], [ # declared at text:Poem
 #		a owl:Restriction; owl:onProperty work:hasPublishingState; owl:minCardinality "0"^^xsd:nonNegativeInteger], [ # declared at work:Expression
 #		a owl:Restriction; owl:onProperty work:hasPublishingStateValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [ # declared at work:Expression
@@ -706,3 +705,12 @@ kuno-raeber:hasReferencePoemValue
 	rdfs:subPropertyOf text:hasReferenceTextValue;
 	knora-base:subjectClassConstraint kuno-raeber:Poem;
 	knora-base:objectClassConstraint knora-base:LinkValue.
+
+kuno-raeber:hasReferenceTitle
+	a owl:ObjectProperty;
+	rdfs:label "has reference title"@en, "hat Bezugstitel"@de;
+	rdfs:comment """Relating a poem to a title (as object) of a reference poem."""@en;
+	rdfs:subPropertyOf text:hasTitle;
+	knora-base:subjectClassConstraint kuno-raeber:Poem;
+	knora-base:objectClassConstraint knora-base:TextValue;
+	salsah-gui:guiElement salsah-gui:Richtext.
