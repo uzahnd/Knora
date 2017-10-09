@@ -47,7 +47,6 @@ kuno-raeber:Text
 		a owl:Restriction; owl:onProperty kuno-raeber:hasEditionValue; owl:cardinality "1"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty human:hasModificationDateTime; owl:cardinality "1"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty work:isPublishedOnline; owl:cardinality "1"^^xsd:nonNegativeInteger]#, [
-#		a owl:Restriction; owl:onProperty text:hasReferenceText; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 #		a owl:Restriction; owl:onProperty text:hasReferenceTextValue; owl:minCardinality "0"^^xsd:nonNegativeInteger]
 		.
 
@@ -60,7 +59,9 @@ kuno-raeber:Poem
 		a owl:Restriction; owl:onProperty text:hasDetailDescription; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text:hasSpecialDescription; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty kuno-raeber:hasSameEditionAs; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty kuno-raeber:hasSameEditionAsValue; owl:minCardinality "0"^^xsd:nonNegativeInteger]#, [
+		a owl:Restriction; owl:onProperty kuno-raeber:hasSameEditionAsValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty kuno-raeber:hasReferencePoem; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty kuno-raeber:hasReferencePoemValue; owl:minCardinality "0"^^xsd:nonNegativeInteger]#, [
 #		a owl:Restriction; owl:onProperty text:hasStrophe; owl:minCardinality "0"^^xsd:nonNegativeInteger], [ # declared at text:Poem
 #		a owl:Restriction; owl:onProperty work:hasPublishingState; owl:minCardinality "0"^^xsd:nonNegativeInteger], [ # declared at work:Expression
 #		a owl:Restriction; owl:onProperty work:hasPublishingStateValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [ # declared at work:Expression
@@ -144,6 +145,8 @@ kuno-raeber:TypewrittenPoem
 	rdfs:label "typewritten poem"@en, "maschinengeschriebenes Gedicht"@de;
 	rdfs:comment """Typewritten poem authored by Kuno Raeber."""@en, """Maschinengeschriebenes Gedicht von Kuno Raeber."""@de;
 	rdfs:subClassOf kuno-raeber:Poem, text:TypewrittenText, [
+#		a owl:Restriction; owl:onProperty text:isInTypescript; owl:cardinality "1"^^xsd:nonNegativeInteger], [
+#		a owl:Restriction; owl:onProperty text:isInTypescriptValue; owl:cardinality "1"^^xsd:nonNegativeInteger], [		
 		a owl:Restriction; owl:onProperty work:hasPageNumberDescription; owl:cardinality "1"^^xsd:nonNegativeInteger]#, [
 #		a owl:Restriction; owl:onProperty text:isWrittenWith; owl:minCardinality "0"^^xsd:nonNegativeInteger], [ # declared at text:WrittenText
 #		a owl:Restriction; owl:onProperty text:isWrittenWithValue; owl:minCardinality "0"^^xsd:nonNegativeInteger] # declared at text:WrittenText
@@ -685,5 +688,21 @@ kuno-raeber:hasSameEditionAsValue
 	rdfs:label "has same edition as - statement"@en, "hat gleiche Edition als - Äusserung"@de;
 	rdfs:comment """Relating a poem by Kuno Raeber to a reification statement of the relation between the poem and a convolute containing a poem with the same edition."""@en;
 	rdfs:subPropertyOf knora-base:hasLinkToValue;
+	knora-base:subjectClassConstraint kuno-raeber:Poem;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
+kuno-raeber:hasReferencePoem
+	 a owl:ObjectProperty;
+	rdfs:label "has reference poem"@en, "hat Bezugsgedicht"@de;
+	rdfs:comment "Relating a poem to another as reference."@en;
+	rdfs:subPropertyOf text:hasReferenceText;
+	knora-base:subjectClassConstraint kuno-raeber:Poem;
+	knora-base:objectClassConstraint kuno-raeber:Poem.
+
+kuno-raeber:hasReferencePoemValue
+	a owl:ObjectProperty;
+	rdfs:label "has reference poem - statement"@en, "hat Bezugsgedicht - Äusserung"@de;
+	rdfs:comment "Relating a poem to a reification statement of the relation between the poem and another one as reference."@en;
+	rdfs:subPropertyOf text:hasReferenceTextValue;
 	knora-base:subjectClassConstraint kuno-raeber:Poem;
 	knora-base:objectClassConstraint knora-base:LinkValue.
