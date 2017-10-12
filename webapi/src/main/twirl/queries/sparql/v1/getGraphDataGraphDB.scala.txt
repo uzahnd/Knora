@@ -110,4 +110,4 @@ WHERE {
             knora-base:hasPermissions ?linkValuePermissions .
     }
 }
-LIMIT 50
+LIMIT 10000

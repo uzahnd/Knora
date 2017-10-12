@@ -69,7 +69,7 @@ WHERE {
             GRAPH <http://www.ontotext.com/explicit> {
                 ?referringResource ?linkProp ?resource .
             }
-        } LIMIT 50
+        } LIMIT 10000
     }
 
     {
