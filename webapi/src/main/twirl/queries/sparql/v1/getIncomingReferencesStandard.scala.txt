@@ -64,7 +64,7 @@ WHERE {
             ?referringResource ?linkProp ?resource ;
                 knora-base:isDeleted false .
 
-        } LIMIT 50
+        } LIMIT 10000
     }
 
     {
