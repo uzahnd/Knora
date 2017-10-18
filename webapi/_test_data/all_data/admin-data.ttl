@@ -634,6 +634,17 @@ Die Internetpublikation macht das digitalisierte Korpus dieser Frühdrucke  durc
 	knora-base:isInProject <http://data.knora.org/projects/kuno-raeber>;
 	knora-base:isInSystemAdminGroup "false"^^xsd:boolean.
 
+<http://data.knora.org/users/walterMorgenthaler> a knora-base:User;
+	knora-base:userid "walterMorgenthaler"^^xsd:string;
+	knora-base:familyName "Morgenthaler"^^xsd:string;
+	knora-base:givenName "Walter"^^xsd:string;
+	knora-base:password "$e0801$FGl9FDIWw+D83OeNPGmD9u2VTqIkJopIQECgmb2DSWQLS0TeKSvYoWAkbEv6KxePPlCI3CP9MmVHuvnWv8/kag==$mlegCYdGXt+ghuo8i0rLjgOiNnGDW604Q5g/v7zwBPU="^^xsd:string;
+	knora-base:email "info@wmorgenthaler.ch"^^xsd:string;
+	knora-base:preferredLanguage "de"^^xsd:string;
+	knora-base:status "true"^^xsd:boolean;
+	knora-base:isInProject <http://data.knora.org/projects/kuno-raeber>;
+	knora-base:isInSystemAdminGroup "false"^^xsd:boolean.
+
 #
 # Event
 #
@@ -656,4 +667,28 @@ Die Internetpublikation macht das digitalisierte Korpus dieser Frühdrucke  durc
 	knora-base:preferredLanguage "de"^^xsd:string;
 	knora-base:status "true"^^xsd:boolean;
 	knora-base:isInProject <http://data.knora.org/projects/event>;
+	knora-base:isInSystemAdminGroup "false"^^xsd:boolean.
+
+#
+# Kuno Raeber GUI
+#
+
+<http://data.knora.org/projects/kuno-raeber-gui> a knora-base:knoraProject;
+	knora-base:projectShortname "kuno-raeber-gui"^^xsd:string;
+	knora-base:projectLongname "An ontology about the kuno raeber gui"^^xsd:string;
+	knora-base:projectDescription "An ontology about the Kuno Raeber site gui."^^xsd:string;
+	knora-base:projectOntologyGraph "http://www.knora.org/ontology/kuno-raeber-gui"^^xsd:string;
+	knora-base:projectDataGraph "http://www.knora.org/data/kuno-raeber-gui"^^xsd:string;
+	knora-base:status "true"^^xsd:boolean;
+	knora-base:hasSelfJoinEnabled "false"^^xsd:boolean.
+
+<http://data.knora.org/users/hansCools> a knora-base:User;
+	knora-base:userid "hansCools"^^xsd:string;
+	knora-base:familyName "Cools"^^xsd:string;
+	knora-base:givenName "Hans"^^xsd:string;
+	knora-base:password "$e0801$FGl9FDIWw+D83OeNPGmD9u2VTqIkJopIQECgmb2DSWQLS0TeKSvYoWAkbEv6KxePPlCI3CP9MmVHuvnWv8/kag==$mlegCYdGXt+ghuo8i0rLjgOiNnGDW604Q5g/v7zwBPU="^^xsd:string;
+	knora-base:email "hans.cools@unibas.ch"^^xsd:string;
+	knora-base:preferredLanguage "de"^^xsd:string;
+	knora-base:status "true"^^xsd:boolean;
+	knora-base:isInProject <http://data.knora.org/projects/kuno-raeber-gui>;
 	knora-base:isInSystemAdminGroup "false"^^xsd:boolean.

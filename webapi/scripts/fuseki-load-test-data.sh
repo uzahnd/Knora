@@ -28,3 +28,4 @@ curl -F filedata=@../_test_data/ontologies/work-ontology-knora.ttl http://localh
 curl -F filedata=@../_test_data/ontologies/scholasticism-ontology-knora.ttl http://localhost:3030/knora-test/data?graph=http://www.knora.org/ontology/scholasticism > /dev/null
 curl -F filedata=@../_test_data/ontologies/kuno-raeber-ontology-knora.ttl http://localhost:3030/knora-test/data?graph=http://www.knora.org/ontology/kuno-raeber > /dev/null
 curl -F filedata=@../_test_data/ontologies/event-ontology-knora.ttl http://localhost:3030/knora-test/data?graph=http://www.knora.org/ontology/event > /dev/null
+curl -F filedata=@../_test_data/ontologies/kuno-raeber-gui-ontology-knora.ttl http://localhost:3030/knora-test/data?graph=http://www.knora.org/ontology/kuno-raeber-gui > /dev/null
