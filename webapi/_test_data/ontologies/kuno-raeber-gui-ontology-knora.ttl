@@ -4,8 +4,9 @@
 @prefix knora-base: <http://www.knora.org/ontology/knora-base#>.
 @prefix kuno-raeber-gui: <http://www.knora.org/ontology/kuno-raeber-gui#>.
 
-<http://www.knora.org/ontology/kuno-raeber-gui>
-	a owl:Ontology.
+<http://www.knora.org/ontology/kuno-raeber-gui> a owl:Ontology.
+
+# Just needed due to limits of the implementation of Semantic Web technology (SPARQL) in Knora1
 
 #
 # CLASSES
@@ -16,37 +17,42 @@ kuno-raeber-gui:Poem
 	rdfs:label "poem"@en, "Gedicht"@de;
 	rdfs:comment """Poem by Kuno Raeber."""@en, """Gedicht von Kuno Raeber."""@de;
 	rdfs:subClassOf knora-base:Resource, [
-		a owl:Restriction; owl:onProperty kuno-raeber-gui:hasConvoluteIRI; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty kuno-raeber-gui:hasConvoluteTitle; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty kuno-raeber-gui:hasPoemIRI; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty kuno-raeber-gui:hasPoemCreationDate; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty kuno-raeber-gui:hasPoemTitle; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty kuno-raeber-gui:hasPoemText; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty knora-base:seqnum; owl:cardinality "1"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty kuno-raeber-gui:hasConvoluteIRI; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty kuno-raeber-gui:hasConvoluteTitle; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty kuno-raeber-gui:hasSynopsisIRI; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty kuno-raeber-gui:hasSynopsisTitle; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+		a owl:Restriction; owl:onProperty kuno-raeber-gui:hasSynopsisTitle; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty kuno-raeber-gui:hasAlphabeticIndex; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty kuno-raeber-gui:hasDateIndex; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 #
 # PROPERTIES
 #
 
-kuno-raeber-gui:hasConvoluteIRI
+kuno-raeber-gui:hasPoemIRI
 	a owl:ObjectProperty;
-	rdfs:label "has convolute IRI "@en, "hat Konvolut-IRI"@de;
-#	rdfs:comment """Relating a poem by Kuno Raeber to ."""@en;
+	rdfs:label "has poem IRI"@en, "hat Gedicht-IRI"@de;
+	rdfs:comment """Relating a poem by Kuno Raeber for GUI representation to its general counterpart as literal."""@en;
 	rdfs:subPropertyOf knora-base:hasValue;
 	knora-base:subjectClassConstraint kuno-raeber-gui:Poem;
 	knora-base:objectClassConstraint knora-base:TextValue.
 
-kuno-raeber-gui:hasConvoluteTitle
+kuno-raeber-gui:hasPoemCreationDate
 	a owl:ObjectProperty;
-	rdfs:label "has convolute title"@en, "hat Konvoluttitel"@de;
-#	rdfs:comment """Relating a poem by Kuno Raeber to ."""@en;
+	rdfs:label "has poem creation date"@en, "hat Gedicht-Kreationsdatum"@de;
+	rdfs:comment """Relating a poem by Kuno Raeber for GUI representation to its creation date."""@en;
 	rdfs:subPropertyOf knora-base:hasValue;
 	knora-base:subjectClassConstraint kuno-raeber-gui:Poem;
-	knora-base:objectClassConstraint knora-base:TextValue.
+	knora-base:objectClassConstraint knora-base:DateValue.
 
 kuno-raeber-gui:hasPoemTitle
 	a owl:ObjectProperty;
 	rdfs:label "has poem title"@en, "hat Gedichttitel"@de;
-#	rdfs:comment """Relating a poem by Kuno Raeber to ."""@en;
+	rdfs:comment """Relating a poem by Kuno Raeber for GUI representation to its titel."""@en;
 	rdfs:subPropertyOf knora-base:hasValue;
 	knora-base:subjectClassConstraint kuno-raeber-gui:Poem;
 	knora-base:objectClassConstraint knora-base:TextValue.
@@ -54,7 +60,23 @@ kuno-raeber-gui:hasPoemTitle
 kuno-raeber-gui:hasPoemText
 	a owl:ObjectProperty;
 	rdfs:label "has poem text"@en, "hat Gedichttext"@de;
-#	rdfs:comment """Relating a poem by Kuno Raeber to ."""@en;
+	rdfs:comment """Relating a poem by Kuno Raeber for GUI representation to its text content."""@en;
+	rdfs:subPropertyOf knora-base:hasValue;
+	knora-base:subjectClassConstraint kuno-raeber-gui:Poem;
+	knora-base:objectClassConstraint knora-base:TextValue.
+
+kuno-raeber-gui:hasConvoluteIRI
+	a owl:ObjectProperty;
+	rdfs:label "has convolute IRI"@en, "hat Konvolut-IRI"@de;
+	rdfs:comment """Relating a poem by Kuno Raeber for GUI representation to the IRI as literal of its convolute."""@en;
+	rdfs:subPropertyOf knora-base:hasValue;
+	knora-base:subjectClassConstraint kuno-raeber-gui:Poem;
+	knora-base:objectClassConstraint knora-base:TextValue.
+
+kuno-raeber-gui:hasConvoluteTitle
+	a owl:ObjectProperty;
+	rdfs:label "has convolute title"@en, "hat Konvoluttitel"@de;
+	rdfs:comment """Relating a poem by Kuno Raeber for GUI representation to the title of its convolute."""@en;
 	rdfs:subPropertyOf knora-base:hasValue;
 	knora-base:subjectClassConstraint kuno-raeber-gui:Poem;
 	knora-base:objectClassConstraint knora-base:TextValue.
@@ -62,7 +84,7 @@ kuno-raeber-gui:hasPoemText
 kuno-raeber-gui:hasSynopsisIRI
 	a owl:ObjectProperty;
 	rdfs:label "has synopsis IRI"@en, "hat Synopse-IRI"@de;
-#	rdfs:comment """Relating a poem by Kuno Raeber to ."""@en;
+	rdfs:comment """Relating a poem by Kuno Raeber for GUI representation to the IRI as literal of its synopsis."""@en;
 	rdfs:subPropertyOf knora-base:hasValue;
 	knora-base:subjectClassConstraint kuno-raeber-gui:Poem;
 	knora-base:objectClassConstraint knora-base:TextValue.
@@ -70,7 +92,23 @@ kuno-raeber-gui:hasSynopsisIRI
 kuno-raeber-gui:hasSynopsisTitle
 	a owl:ObjectProperty;
 	rdfs:label "has synopsis title"@en, "hat Synopsetitel"@de;
-#	rdfs:comment """Relating a poem by Kuno Raeber to ."""@en;
+	rdfs:comment """Relating a poem by Kuno Raeber for GUI representation to the title of its synopsis."""@en;
 	rdfs:subPropertyOf knora-base:hasValue;
 	knora-base:subjectClassConstraint kuno-raeber-gui:Poem;
 	knora-base:objectClassConstraint knora-base:TextValue.
+
+kuno-raeber-gui:hasAlphabeticIndex
+	a owl:ObjectProperty;
+	rdfs:label "has alphabetic index"@en, "hat alphabetischen Index"@de;
+	rdfs:comment """Relating a poem by Kuno Raeber for GUI representation to its alphabetic index."""@en;
+	rdfs:subPropertyOf knora-base:hasValue;
+	knora-base:subjectClassConstraint kuno-raeber-gui:Poem;
+	knora-base:objectClassConstraint knora-base:IntValue.
+
+kuno-raeber-gui:hasDateIndex
+	a owl:ObjectProperty;
+	rdfs:label "has date index"@en, "hat Datumsindex"@de;
+	rdfs:comment """Relating a poem by Kuno Raeber for GUI representation to its date index."""@en;
+	rdfs:subPropertyOf knora-base:hasValue;
+	knora-base:subjectClassConstraint kuno-raeber-gui:Poem;
+	knora-base:objectClassConstraint knora-base:IntValue.

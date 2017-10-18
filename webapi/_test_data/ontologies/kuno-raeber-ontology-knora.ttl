@@ -97,6 +97,7 @@ kuno-raeber:DiplomaticTranscription
 		a owl:Restriction; owl:onProperty text:hasContent; owl:cardinality "1"^^xsd:nonNegativeInteger], [
 #		a owl:Restriction; owl:onProperty text:hasLineNumber; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 #		a owl:Restriction; owl:onProperty text:hasVersionIndicator; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty knora-base:seqnum; owl:cardinality "1"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text:isDiplomaticTranscriptionOfTextOnPage; owl:cardinality "1"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text:isDiplomaticTranscriptionOfTextOnPageValue; owl:cardinality "1"^^xsd:nonNegativeInteger].
 
@@ -340,6 +341,14 @@ kuno-raeber:PrintedPoemBookPublication
 		a owl:Restriction; owl:onProperty kuno-raeber:containsLaterStagesOfManuscriptConvoluteValue; owl:minCardinality "1"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty kuno-raeber:containsLaterStagesOfTypescriptConvolute; owl:minCardinality "1"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty kuno-raeber:containsLaterStagesOfTypescriptConvoluteValue; owl:minCardinality "1"^^xsd:nonNegativeInteger].
+
+kuno-raeber:PolyAuthorPublication
+	a owl:Class;
+	rdfs:label "poly-author publication"@en, "Mehrautorenpublikationen"@de;
+	rdfs:comment """Publication of a poem authored by Kuno Raeber among expressions by other authors."""@en;
+	rdfs:subClassOf work:PolyAuthorPublication, [
+		a owl:Restriction; owl:onProperty kuno-raeber:hasContentPartInPolyAuthorPublicationConvolute; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty kuno-raeber:hasContentPartInPolyAuthorPublicationConvoluteValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 kuno-raeber:PolyAuthorPublicationConvolute
 	a owl:Class;
@@ -714,3 +723,19 @@ kuno-raeber:hasReferenceTitle
 	knora-base:subjectClassConstraint kuno-raeber:Poem;
 	knora-base:objectClassConstraint knora-base:TextValue;
 	salsah-gui:guiElement salsah-gui:Richtext.
+
+kuno-raeber:hasContentPartInPolyAuthorPublicationConvolute
+	a owl:ObjectProperty;
+	rdfs:label "has part in poly-author publication convolute"@en, "ist Teilweise in einem Mehrautorenpublikationen-Konvolut"@de;
+	rdfs:comment "Relating a poly-author publication to a convolute it has part of its content in."@en;
+	rdfs:subPropertyOf knora-base:hasLinkTo;
+	knora-base:subjectClassConstraint kuno-raeber:PolyAuthorPublication;
+	knora-base:objectClassConstraint kuno-raeber:PolyAuthorPublicationConvolute.
+
+kuno-raeber:hasContentPartInPolyAuthorPublicationConvoluteValue
+	a owl:ObjectProperty;
+	rdfs:label "has part in poly-author publication convolute - statement"@en, "ist Teilweise in einem Mehrautorenpublikationen-Konvolut - Äusserung"@de;
+	rdfs:comment "Relating a poly-author publication to a reification statement of the relation between the publication and a convolute it has part of its content in."@en;
+	rdfs:subPropertyOf knora-base:hasLinkToValue;
+	knora-base:subjectClassConstraint kuno-raeber:PolyAuthorPublication;
+	knora-base:objectClassConstraint knora-base:LinkValue.
