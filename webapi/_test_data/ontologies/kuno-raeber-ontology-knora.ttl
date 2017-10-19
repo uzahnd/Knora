@@ -306,6 +306,7 @@ kuno-raeber:PoemTypescriptConvolute
 	rdfs:subClassOf kuno-raeber:Convolute, work:ArchiveElement, [
 		a owl:Restriction; owl:onProperty human:hasCreatingPeriod; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty human:hasCreatingPeriodValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty text:hasCarrierCollectionDescription; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty work:hasArchiveSignature; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty kuno-raeber:containsLaterStagesOfNotebook; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty kuno-raeber:containsLaterStagesOfNotebookValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
