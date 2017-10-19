@@ -21,6 +21,7 @@ kuno-raeber-gui:Poem
 		a owl:Restriction; owl:onProperty kuno-raeber-gui:hasPoemCreationDate; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty kuno-raeber-gui:hasPoemTitle; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty kuno-raeber-gui:hasPoemText; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty kuno-raeber-gui:isFinalVersion; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty knora-base:seqnum; owl:cardinality "1"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty kuno-raeber-gui:hasConvoluteIRI; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty kuno-raeber-gui:hasConvoluteTitle; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
@@ -64,6 +65,14 @@ kuno-raeber-gui:hasPoemText
 	rdfs:subPropertyOf knora-base:hasValue;
 	knora-base:subjectClassConstraint kuno-raeber-gui:Poem;
 	knora-base:objectClassConstraint knora-base:TextValue.
+
+kuno-raeber-gui:isFinalVersion
+	a owl:ObjectProperty;
+	rdfs:label "is final version"@en, "ist Endfassung"@de;
+	rdfs:comment """Relating a poem by Kuno Raeber for GUI representation to being a last version or not."""@en;
+	rdfs:subPropertyOf knora-base:hasValue;
+	knora-base:subjectClassConstraint kuno-raeber-gui:Poem;
+	knora-base:objectClassConstraint knora-base:BooleanValue.
 
 kuno-raeber-gui:hasConvoluteIRI
 	a owl:ObjectProperty;
