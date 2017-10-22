@@ -357,7 +357,7 @@ kuno-raeber:PolyAuthorPublicationConvolute
 	rdfs:comment """Convolute of poems authored by Kuno Raeber as published among expressions by other authors."""@en;
 	rdfs:subClassOf kuno-raeber:Convolute, [
 		a owl:Restriction; owl:onProperty text:hasConvoluteOriginDescription; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty work:hasArchiveSignature; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+		a owl:Restriction; owl:onProperty text:hasCarrierDescription; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 kuno-raeber:Diary # Note: different from :DiaryConvolute - in contrast to :PoemNotebook - because only selections from different diaries are published online
 	a owl:Class;
