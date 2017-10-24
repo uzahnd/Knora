@@ -21,9 +21,11 @@ kuno-raeber-gui:Poem
 		a owl:Restriction; owl:onProperty kuno-raeber-gui:hasPoemCreationDate; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty kuno-raeber-gui:hasPoemTitle; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty kuno-raeber-gui:hasPoemText; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty kuno-raeber-gui:isOnPage; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty kuno-raeber-gui:isFinalVersion; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty knora-base:seqnum; owl:cardinality "1"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty kuno-raeber-gui:hasSameEditionAs; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty kuno-raeber-gui:isWrittenWith; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty kuno-raeber-gui:hasConvoluteIRI; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty kuno-raeber-gui:hasConvoluteTitle; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty kuno-raeber-gui:hasSynopsisIRI; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
@@ -67,6 +69,14 @@ kuno-raeber-gui:hasPoemText
 	knora-base:subjectClassConstraint kuno-raeber-gui:Poem;
 	knora-base:objectClassConstraint knora-base:TextValue.
 
+kuno-raeber-gui:isOnPage
+	a owl:ObjectProperty;
+	rdfs:label "is on page"@en, "ist auf Seite"@de;
+	rdfs:comment """Relating a poem by Kuno Raeber to a carrier page it is on."""@en;
+	rdfs:subPropertyOf knora-base:hasValue;
+	knora-base:subjectClassConstraint kuno-raeber-gui:Poem;
+	knora-base:objectClassConstraint knora-base:TextValue.
+
 kuno-raeber-gui:isFinalVersion
 	a owl:ObjectProperty;
 	rdfs:label "is final version"@en, "ist Endfassung"@de;
@@ -82,6 +92,14 @@ kuno-raeber-gui:hasSameEditionAs
 	rdfs:subPropertyOf knora-base:hasValue;
 	knora-base:subjectClassConstraint kuno-raeber-gui:Poem;
 	knora-base:objectClassConstraint knora-base:BooleanValue.
+
+kuno-raeber-gui:isWrittenWith
+	a owl:ObjectProperty;
+	rdfs:label "is written with"@en, "ist geschrieben mit"@de;
+	rdfs:comment "Relating a poem by Kuno Raeber to a utensil it is written with."@en;
+	rdfs:subPropertyOf knora-base:hasValue;
+	knora-base:subjectClassConstraint kuno-raeber-gui:Poem;
+	knora-base:objectClassConstraint knora-base:TextValue.
 
 kuno-raeber-gui:hasConvoluteIRI
 	a owl:ObjectProperty;
