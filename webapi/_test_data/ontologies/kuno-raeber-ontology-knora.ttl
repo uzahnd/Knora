@@ -199,7 +199,7 @@ kuno-raeber:LetterExpression
 		a owl:Restriction; owl:onProperty work:hasPublishingStateValue; owl:cardinality "1"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text:hasSpecialDescription; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
-kuno-raeber:Page # to be removed when knora-base:hasRepresentation will be implemented in Knora2
+kuno-raeber:Page
 	a owl:Class;
 	rdfs:label "page"@en, "Seite"@de;
 	rdfs:comment """Page with a handwritten poem by Kuno Raeber."""@en, """Seite mit einem handgeschriebenen Gedicht Kuno Raebers."""@de;

@@ -26,6 +26,12 @@ kuno-raeber-gui:Poem
 		a owl:Restriction; owl:onProperty knora-base:seqnum; owl:cardinality "1"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty kuno-raeber-gui:hasSameEditionAs; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty kuno-raeber-gui:isWrittenWith; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty kuno-raeber-gui:hasStructure; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty kuno-raeber-gui:hasStrophe; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty kuno-raeber-gui:isInDialect; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty kuno-raeber-gui:isPartOfCycle; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty kuno-raeber-gui:hasNachlassIndex; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty kuno-raeber-gui:hasPublishingStateIndex; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty kuno-raeber-gui:hasConvoluteIRI; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty kuno-raeber-gui:hasConvoluteTitle; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty kuno-raeber-gui:hasSynopsisIRI; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
@@ -83,7 +89,7 @@ kuno-raeber-gui:isFinalVersion
 	rdfs:comment """Relating a poem by Kuno Raeber to being a last version or not."""@en;
 	rdfs:subPropertyOf knora-base:hasValue;
 	knora-base:subjectClassConstraint kuno-raeber-gui:Poem;
-	knora-base:objectClassConstraint knora-base:BooleanValue.
+	knora-base:objectClassConstraint knora-base:IntValue.
 
 kuno-raeber-gui:hasSameEditionAs
 	a owl:ObjectProperty;
@@ -91,7 +97,7 @@ kuno-raeber-gui:hasSameEditionAs
 	rdfs:comment """Relating a poem by Kuno Raeber to having or not the same edition as another poem in another convolute."""@en;
 	rdfs:subPropertyOf knora-base:hasValue;
 	knora-base:subjectClassConstraint kuno-raeber-gui:Poem;
-	knora-base:objectClassConstraint knora-base:BooleanValue.
+	knora-base:objectClassConstraint knora-base:IntValue.
 
 kuno-raeber-gui:isWrittenWith
 	a owl:ObjectProperty;
@@ -100,6 +106,54 @@ kuno-raeber-gui:isWrittenWith
 	rdfs:subPropertyOf knora-base:hasValue;
 	knora-base:subjectClassConstraint kuno-raeber-gui:Poem;
 	knora-base:objectClassConstraint knora-base:TextValue.
+
+kuno-raeber-gui:hasStructure
+	a owl:ObjectProperty;
+	rdfs:label "has structure"@en, "hat Struktur"@de;
+	rdfs:comment """Relating a poem by Kuno Raeber to its structure."""@en;
+	rdfs:subPropertyOf knora-base:hasValue;
+	knora-base:subjectClassConstraint kuno-raeber-gui:Poem;
+	knora-base:objectClassConstraint knora-base:TextValue.
+
+kuno-raeber-gui:hasStrophe
+	a owl:ObjectProperty;
+	rdfs:label "has strophe"@en, "hat Strophe"@de;
+	rdfs:comment """Relating a poem by Kuno Raeber to having a strophe or not."""@en;
+	rdfs:subPropertyOf knora-base:hasValue;
+	knora-base:subjectClassConstraint kuno-raeber-gui:Poem;
+	knora-base:objectClassConstraint knora-base:IntValue.
+
+kuno-raeber-gui:isInDialect
+	a owl:ObjectProperty;
+	rdfs:label "is in dialect"@en, "ist in Mundart"@de;
+	rdfs:comment """Relating a poem by Kuno Raeber to being expressed in dialect or not."""@en;
+	rdfs:subPropertyOf knora-base:hasValue;
+	knora-base:subjectClassConstraint kuno-raeber-gui:Poem;
+	knora-base:objectClassConstraint knora-base:IntValue.
+
+kuno-raeber-gui:isPartOfCycle
+	a owl:ObjectProperty;
+	rdfs:label "is part of cycle"@en, "ist Teil eines Zyklus"@de;
+	rdfs:comment """Relating a poem by Kuno Raeber to being part of a cycle or not."""@en;
+	rdfs:subPropertyOf knora-base:hasValue;
+	knora-base:subjectClassConstraint kuno-raeber-gui:Poem;
+	knora-base:objectClassConstraint knora-base:IntValue.
+
+kuno-raeber-gui:hasNachlassIndex
+	a owl:ObjectProperty;
+	rdfs:label "has nachlass index"@en, "hat Nachlassindex"@de;
+	rdfs:comment """Relating a poem by Kuno Raeber to its nachlass index."""@en;
+	rdfs:subPropertyOf knora-base:hasValue;
+	knora-base:subjectClassConstraint kuno-raeber-gui:Poem;
+	knora-base:objectClassConstraint knora-base:IntValue.
+
+kuno-raeber-gui:hasPublishingStateIndex
+	a owl:ObjectProperty;
+	rdfs:label "has publishing state index"@en, "hat Publikationszustandsindex"@de;
+	rdfs:comment """Relating a poem by Kuno Raeber to its publishing state index."""@en;
+	rdfs:subPropertyOf knora-base:hasValue;
+	knora-base:subjectClassConstraint kuno-raeber-gui:Poem;
+	knora-base:objectClassConstraint knora-base:IntValue.
 
 kuno-raeber-gui:hasConvoluteIRI
 	a owl:ObjectProperty;
