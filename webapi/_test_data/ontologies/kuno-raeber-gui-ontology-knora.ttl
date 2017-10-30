@@ -46,7 +46,7 @@ kuno-raeber-gui:Poem
 kuno-raeber-gui:hasPoemIRI
 	a owl:ObjectProperty;
 	rdfs:label "has poem IRI"@en, "hat Gedicht-IRI"@de;
-	rdfs:comment """Relating a poem by Kuno Raeber to its general counterpart as literal."""@en;
+	rdfs:comment """Relating a poem by Kuno Raeber (for search puropose) to its general counterpart (as IRI in a literal)."""@en;
 	rdfs:subPropertyOf knora-base:hasValue;
 	knora-base:subjectClassConstraint kuno-raeber-gui:Poem;
 	knora-base:objectClassConstraint knora-base:TextValue.
