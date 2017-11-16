@@ -11,6 +11,7 @@
 @prefix event: <http://www.knora.org/ontology/event#>.
 @prefix human: <http://www.knora.org/ontology/human#>.
 @prefix text: <http://www.knora.org/ontology/text#>.
+@prefix publication: <http://www.knora.org/ontology/publication#>.
 @prefix knora-base: <http://www.knora.org/ontology/knora-base#>.
 @prefix salsah-gui: <http://www.knora.org/ontology/salsah-gui#>.
 @prefix work: <http://www.knora.org/ontology/work#>.
@@ -49,21 +50,40 @@ work:Expression
 	rdfs:subClassOf human:Creation, frbroo:F22_Self-Contained_Expression, [
 		a owl:Restriction; owl:onProperty work:isMaterializedIn; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty work:isMaterializedInValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty work:hasPublishingState; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty work:hasPublishingStateValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty work:hasPublication; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty work:hasPublicationValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty work:hasLastPublication; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty work:hasLastPublicationValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty work:hasLastAuthorizedPublication; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty work:hasLastAuthorizedPublicationValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty work:hasUnauthorizedRepublication; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty work:hasUnauthorizedRepublicationValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty work:isPublishedOnline; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-#		a owl:Restriction; owl:onProperty work:hasMonoAuthorPublication; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-#		a owl:Restriction; owl:onProperty work:hasMonoAuthorPublicationValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty work:hasPolyAuthorPublication; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty work:hasPolyAuthorPublicationValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+		a owl:Restriction; owl:onProperty publication:hasPublishingState; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty publication:hasPublishingStateValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty publication:hasPublication; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty publication:hasPublicationValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty publication:hasLastPublication; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty publication:hasLastPublicationValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty publication:hasLastAuthorizedPublication; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty publication:hasLastAuthorizedPublicationValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty publication:hasUnauthorizedPublication; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty publication:hasUnauthorizedPublicationValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty publication:hasUnauthorizedRepublication; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty publication:hasUnauthorizedRepublicationValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty publication:isPublishedOnline; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty publication:isPublishedOnlineValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+#		a owl:Restriction; owl:onProperty publication:hasMonoAuthorPublication; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+#		a owl:Restriction; owl:onProperty publication:hasMonoAuthorPublicationValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty publication:hasPolyAuthorPublication; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty publication:hasPolyAuthorPublicationValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+
+		a owl:Restriction; owl:onProperty work:hasPublishingState; owl:minCardinality "0"^^xsd:nonNegativeInteger], [					# owl:DeprecatedProperty
+		a owl:Restriction; owl:onProperty work:hasPublishingStateValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [				# owl:DeprecatedProperty
+		a owl:Restriction; owl:onProperty work:hasPublication; owl:minCardinality "0"^^xsd:nonNegativeInteger], [						# owl:DeprecatedProperty
+		a owl:Restriction; owl:onProperty work:hasPublicationValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [					# owl:DeprecatedProperty
+		a owl:Restriction; owl:onProperty work:hasLastPublication; owl:minCardinality "0"^^xsd:nonNegativeInteger], [					# owl:DeprecatedProperty
+		a owl:Restriction; owl:onProperty work:hasLastPublicationValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [				# owl:DeprecatedProperty
+		a owl:Restriction; owl:onProperty work:hasLastAuthorizedPublication; owl:minCardinality "0"^^xsd:nonNegativeInteger], [			# owl:DeprecatedProperty
+		a owl:Restriction; owl:onProperty work:hasLastAuthorizedPublicationValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [	# owl:DeprecatedProperty
+		a owl:Restriction; owl:onProperty work:hasUnauthorizedRepublication; owl:minCardinality "0"^^xsd:nonNegativeInteger], [			# owl:DeprecatedProperty
+		a owl:Restriction; owl:onProperty work:hasUnauthorizedRepublicationValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [	# owl:DeprecatedProperty
+		a owl:Restriction; owl:onProperty work:isPublishedOnline; owl:minCardinality "0"^^xsd:nonNegativeInteger], [					# owl:DeprecatedProperty
+#		a owl:Restriction; owl:onProperty work:hasMonoAuthorPublication; owl:minCardinality "0"^^xsd:nonNegativeInteger], [				# owl:DeprecatedProperty
+#		a owl:Restriction; owl:onProperty work:hasMonoAuthorPublicationValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [		# owl:DeprecatedProperty
+		a owl:Restriction; owl:onProperty work:hasPolyAuthorPublication; owl:minCardinality "0"^^xsd:nonNegativeInteger], [				# owl:DeprecatedProperty
+		a owl:Restriction; owl:onProperty work:hasPolyAuthorPublicationValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].			# owl:DeprecatedProperty
 
 # to do: work:PolyAuthorExpression
 
@@ -84,25 +104,25 @@ work:Draft
 	rdfs:subClassOf work:Expression.
 
 work:PublishingState
-	a owl:Class;
+	a owl:Class, owl:DeprecatedClass;
 	rdfs:label "publishing state"@en, "Publikationszustand"@de;
 	rdfs:comment """State of an expression having been published or not."""@en;
 	rdfs:subClassOf event:State.
 
 work:Unpublished
-	a owl:Class;
+	a owl:Class, owl:DeprecatedClass;
 	rdfs:label "unpublished"@en, "unpubliziert"@de;
 	rdfs:comment """State of an expression not having been published."""@en;
 	rdfs:subClassOf work:PublishingState.
 
 work:Published
-	a owl:Class;
+	a owl:Class, owl:DeprecatedClass;
 	rdfs:label "published"@en, "publiziert"@de;
 	rdfs:comment """State of an expression having been published."""@en;
 	rdfs:subClassOf work:PublishingState.
 
 work:PublicationExpression
-	a owl:Class;
+	a owl:Class, owl:DeprecatedClass;
 	rdfs:label "publication expression"@en, "Publikation-Expression"@de;
 	rdfs:comment """See http://iflastandards.info/ns/fr/frbr/frbroo/F24_Publication_Expression."""@en;
 	rdfs:subClassOf work:Expression, frbroo:F24_Publication_Expression, [
@@ -112,7 +132,7 @@ work:PublicationExpression
 work:Book # used as information carrier
 	a owl:Class;
 	rdfs:label "book"@en, "Buch"@de;
-	rdfs:comment """Set of leafs, e.g. sheets of paper or parchment, fastened together along one side, with a front and back cover."""@en;
+	rdfs:comment """Set of leafs, e.g. sheets of paper or parchment, fastened together along one side, often with a front and back cover."""@en;
 	rdfs:subClassOf human:Creation.
 
 work:Leaf # used as information carrier
@@ -144,53 +164,53 @@ work:Print
 	rdfs:subClassOf work:Manifestation.
 
 work:Publisher
-	a owl:Class;
+	a owl:Class, owl:DeprecatedClass;
 	rdfs:label "publisher"@en, "Herausgeber"@de;
 	rdfs:comment """Role of an agent as publisher."""@en;
 	rdfs:subClassOf human:OccupationalRole.
 
-work:Publication
-	a owl:Class;
+work:Publication # *
+	a owl:Class, owl:DeprecatedClass;
 	rdfs:label "publication"@en, "Publikation"@de;
 	rdfs:comment """An expression published on a carrier."""@en;
 	rdfs:subClassOf work:Manifestation, frbroo:F5_Item, [
-		a owl:Restriction; owl:onProperty work:hasPublicationTitle; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty work:hasPublicationTitle; owl:minCardinality "0"^^xsd:nonNegativeInteger], [ # publicationHasTitle ?
 		a owl:Restriction; owl:onProperty work:hasPublicationDate; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty work:hasPublicationDescription; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty work:hasPublisherDescription; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+		a owl:Restriction; owl:onProperty work:hasPublisherDescription; owl:minCardinality "0"^^xsd:nonNegativeInteger]. # publicationHasPublisher ?
 
 work:PrintedPublication
-	a owl:Class;
+	a owl:Class, owl:DeprecatedClass;
 	rdfs:label "printed publication"@en, "gedruckte Publikation"@de;
 	rdfs:comment """Publication as print."""@en;
 	rdfs:subClassOf work:Print, work:Publication.
 
-work:ElectronicPublication # e.g. by Walter M.
-	a owl:Class;
+work:ElectronicPublication
+	a owl:Class, owl:DeprecatedClass;
 	rdfs:label "electronic publication"@en, "elektronische Publikation"@de;
 	rdfs:comment """Publication on an electronic carrier."""@en;
 	rdfs:subClassOf work:Publication.
 
 work:PolyAuthorPublication
-	a owl:Class;
+	a owl:Class, owl:DeprecatedClass;
 	rdfs:label "poly-author publication"@en, "Mehrautorenpublikation"@de;
 	rdfs:comment """Publication of different expressions by different authors."""@en;
 	rdfs:subClassOf work:Publication.
 
 # work:DependentPublication # to be discussed
-#	a owl:Class;
+#	a owl:Class, owl:DeprecatedClass;
 #	rdfs:label "dependent publication"@en, "abhängige Publikation"@de;
 #	rdfs:comment """Expression published together with other expressions from other authors."""@en;
 #	rdfs:subClassOf work:Publication.
 
 work:Magazine
-	a owl:Class;
+	a owl:Class, owl:DeprecatedClass;
 	rdfs:label "magazine"@en, "Zeitschrift"@de;
 	rdfs:comment """Periodically published book."""@en;
 	rdfs:subClassOf work:Book, work:Publication.
 
 work:Newspaper
-	a owl:Class;
+	a owl:Class, owl:DeprecatedClass;
 	rdfs:label "newspaper"@en, "Zeitung"@de;
 	rdfs:comment """Periodical publication with most recent event descriptions as core content."""@en;
 	rdfs:subClassOf work:Publication.
@@ -225,7 +245,7 @@ work:NachlassElement
 		a owl:Restriction; owl:onProperty work:isPartOfNachlassValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 work:NachlassPublication
-	a owl:Class;
+	a owl:Class, owl:DeprecatedClass;
 	rdfs:label "nachlass publication"@en, "Nachlassausgabe"@de;
 	rdfs:comment """Publication of a nachlass."""@en;
 	rdfs:subClassOf work:Publication.
@@ -291,7 +311,7 @@ work:isMaterializedInValue
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
 work:hasPublishingState
-	a owl:ObjectProperty;
+	a owl:ObjectProperty, owl:DeprecatedProperty;
 	rdfs:label "has publishing state"@en, "hat Publikationszustand"@de;
 	rdfs:comment "Relating an expression to a publishing state thereof."@en;
 	rdfs:subPropertyOf event:hasState;
@@ -299,7 +319,7 @@ work:hasPublishingState
 	knora-base:objectClassConstraint work:PublishingState.
 
 work:hasPublishingStateValue
-	a owl:ObjectProperty;
+	a owl:ObjectProperty, owl:DeprecatedProperty;
 	rdfs:label "has publishing state - statement"@en, "hat Publikationszustand - Äusserung"@de;
 	rdfs:comment "Relating an expression to a reification statement of the relation between the expression and a publishing state thereof."@en;
 	rdfs:subPropertyOf event:hasStateValue;
@@ -307,7 +327,7 @@ work:hasPublishingStateValue
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
 work:hasPublication
-	a owl:ObjectProperty;
+	a owl:ObjectProperty, owl:DeprecatedProperty;
 	rdfs:label "has publication"@en, "hat Publikation"@de;
 	rdfs:comment "Relating an expression to a publication thereof."@en;
 	rdfs:subPropertyOf work:isMaterializedIn;
@@ -315,7 +335,7 @@ work:hasPublication
 	knora-base:objectClassConstraint work:Publication.
 
 work:hasPublicationValue
-	a owl:ObjectProperty;
+	a owl:ObjectProperty, owl:DeprecatedProperty;
 	rdfs:label "has publication - statement"@en, "hat Publikation - Äusserung"@de;
 	rdfs:comment "Relating an expression to a reification statement of the relation between the expression and a publication thereof."@en;
 	rdfs:subPropertyOf work:isMaterializedInValue;
@@ -323,7 +343,7 @@ work:hasPublicationValue
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
 work:hasLastPublication # can be formally inferred with an N3 rule
-	a owl:ObjectProperty;
+	a owl:ObjectProperty, owl:DeprecatedProperty;
 	rdfs:label "has last publication"@en, "hat letzte Publikation"@de;
 	rdfs:comment "Relating an expression to its last publication."@en;
 	rdfs:subPropertyOf work:hasPublication;
@@ -331,7 +351,7 @@ work:hasLastPublication # can be formally inferred with an N3 rule
 	knora-base:objectClassConstraint work:Publication.
 
 work:hasLastPublicationValue
-	a owl:ObjectProperty;
+	a owl:ObjectProperty, owl:DeprecatedProperty;
 	rdfs:label "has last publication - statement"@en, "hat letzte Publikation - Äusserung"@de;
 	rdfs:comment "Relating an expression to a reification statement of the relation between the expression and its last publication."@en;
 	rdfs:subPropertyOf work:hasPublicationValue;
@@ -339,7 +359,7 @@ work:hasLastPublicationValue
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
 work:hasLastAuthorizedPublication
-	a owl:ObjectProperty;
+	a owl:ObjectProperty, owl:DeprecatedProperty;
 	rdfs:label "has last authorized publication"@en, "hat letzte autorisierte Publikation"@de;
 	rdfs:comment "Relating an expression to its last publication with the author's authorization."@en;
 	rdfs:subPropertyOf work:hasPublication;
@@ -347,14 +367,14 @@ work:hasLastAuthorizedPublication
 	knora-base:objectClassConstraint work:Publication.
 
 work:hasLastAuthorizedPublicationValue
-	a owl:ObjectProperty;
+	a owl:ObjectProperty, owl:DeprecatedProperty;
 	rdfs:label "has last authorized publication - statement"@en, "hat letzte autorisierte Publikation - Äusserung"@de;
 	rdfs:subPropertyOf work:hasPublicationValue;
 	knora-base:subjectClassConstraint work:Expression;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
 work:hasUnauthorizedPublication
-	a owl:ObjectProperty;
+	a owl:ObjectProperty, owl:DeprecatedProperty;
 	rdfs:label "has unauthorized publication"@en, "hat nicht-autorisierte Publikation"@de;
 	rdfs:comment "Relating an expression to a publication thereof without the author's authorization."@en;
 	rdfs:subPropertyOf work:hasPublication;
@@ -362,14 +382,14 @@ work:hasUnauthorizedPublication
 	knora-base:objectClassConstraint work:Publication.
 
 work:hasUnauthorizedPublicationValue
-	a owl:ObjectProperty;
+	a owl:ObjectProperty, owl:DeprecatedProperty;
 	rdfs:label "has unauthorized publication - statement"@en, "hat nicht-autorisierte Publikation - Äusserung"@de;
 	rdfs:subPropertyOf work:hasPublicationValue;
 	knora-base:subjectClassConstraint work:Expression;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
 work:hasUnauthorizedRepublication
-	a owl:ObjectProperty;
+	a owl:ObjectProperty, owl:DeprecatedProperty;
 	rdfs:label "has unauthorized republication"@en, "hat nicht-autorisierte Wiederpublikation"@de;
 	rdfs:comment "Relating an expression to a republication thereof without the author's authorization."@en;
 	rdfs:subPropertyOf work:hasPublication;
@@ -377,7 +397,7 @@ work:hasUnauthorizedRepublication
 	knora-base:objectClassConstraint work:Publication.
 
 work:hasUnauthorizedRepublicationValue
-	a owl:ObjectProperty;
+	a owl:ObjectProperty, owl:DeprecatedProperty;
 	rdfs:label "has unauthorized republication - statement"@en, "hat nicht-autorisierte Wiederpublikation - Äusserung"@de;
 	rdfs:comment "Relating an expression to a reification statement of the relation between the expression and a republication thereof without the author's authorization."@en;
 	rdfs:subPropertyOf work:hasPublicationValue;
@@ -385,7 +405,7 @@ work:hasUnauthorizedRepublicationValue
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
 work:hasMonoAuthorPublication
-	a owl:ObjectProperty;
+	a owl:ObjectProperty, owl:DeprecatedProperty;
 	rdfs:label "has mono-author publication"@en, "hat Publikation eines einzelnen Autors"@de;
 	rdfs:comment "Relating an expression to a publication thereof of one author."@en;
 	rdfs:subPropertyOf work:hasPublication;
@@ -393,7 +413,7 @@ work:hasMonoAuthorPublication
 	knora-base:objectClassConstraint work:Publication.
 
 work:hasMonoAuthorPublicationValue
-	a owl:ObjectProperty;
+	a owl:ObjectProperty, owl:DeprecatedProperty;
 	rdfs:label "has mono-author publication - statement"@en, "hat Publikation eines einzelnen Autors - Äusserung"@de;
 	rdfs:comment "Relating an expression to a reification statement of the relation between the expression and a publication thereof of one author."@en;
 	rdfs:subPropertyOf work:hasPublicationValue;
@@ -401,7 +421,7 @@ work:hasMonoAuthorPublicationValue
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
 work:hasPolyAuthorPublication
-	a owl:ObjectProperty;
+	a owl:ObjectProperty, owl:DeprecatedProperty;
 	rdfs:label "has poly-author publication"@en, "hat Publikation mehrerer Autoren"@de;
 	rdfs:comment "Relating an expression to a publication thereof containing also expressions of other authors."@en;
 	rdfs:subPropertyOf work:hasPublication;
@@ -409,7 +429,7 @@ work:hasPolyAuthorPublication
 	knora-base:objectClassConstraint work:PolyAuthorPublication.
 
 work:hasPolyAuthorPublicationValue
-	a owl:ObjectProperty;
+	a owl:ObjectProperty, owl:DeprecatedProperty;
 	rdfs:label "has poly-author publication - statement"@en, "hat Publikation mehrerer Autoren - Äusserung"@de;
 	rdfs:comment "Relating an expression to a reification statement of the relation between the expression and a publication thereof containing also expressions of other authors."@en;
 	rdfs:subPropertyOf work:hasPublicationValue;
@@ -417,7 +437,7 @@ work:hasPolyAuthorPublicationValue
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
 #work:hasCarrierUnpublished
-#	a owl:ObjectProperty;
+#	a owl:ObjectProperty, owl:DeprecatedProperty;
 #	rdfs:label "has carrier unpublished"@en, "hat Träger unpubliziert"@de;
 #	rdfs:comment "Relating an expression that has not been published in collaboration with the author, to a carrier."@en;
 #	rdfs:subPropertyOf work:isMaterializedIn;
@@ -425,14 +445,14 @@ work:hasPolyAuthorPublicationValue
 #	knora-base:objectClassConstraint work:Cararier.
 
 #work:hasCarrierUnpublishedValue
-#	a owl:ObjectProperty;
+#	a owl:ObjectProperty, owl:DeprecatedProperty;
 #	rdfs:label "has carrier unpublished - statement"@en, "hat Träger unpubliziert - Äusserung"@de;
 #	rdfs:subPropertyOf work:isMaterializedInValue;
 #	knora-base:subjectClassConstraint work:Expression;
 #	knora-base:objectClassConstraint knora-base:LinkValue.
 
 work:isPublishedIn
-	a owl:ObjectProperty;
+	a owl:ObjectProperty, owl:DeprecatedProperty;
 	rdfs:label "is published in"@en, "ist publiziert in"@de;
 	rdfs:comment "Relating a publication expression to a publication thereof."@en;
 	rdfs:subPropertyOf work:isMaterializedIn;
@@ -440,7 +460,7 @@ work:isPublishedIn
 	knora-base:objectClassConstraint work:Publication.
 
 work:isPublishedInValue
-	a owl:ObjectProperty;
+	a owl:ObjectProperty, owl:DeprecatedProperty;
 	rdfs:label "is published in - statement"@en, "ist publiziert in - Äusserung"@de;
 	rdfs:comment "Relating a publication expression to a reification statement of the relation between the publication expression and a publication thereof."@en;
 	rdfs:subPropertyOf work:isMaterializedInValue;
@@ -448,7 +468,7 @@ work:isPublishedInValue
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
 work:hasPublicationDescription
-	a owl:ObjectProperty;
+	a owl:ObjectProperty, owl:DeprecatedProperty;
 	rdfs:label "has publication description"@en, "hat Publikationsbeschreibung"@de;
 	rdfs:comment "Relating a publication to a description thereof."@en;
 	rdfs:subPropertyOf text:hasDescription;
@@ -457,7 +477,7 @@ work:hasPublicationDescription
 	salsah-gui:guiElement salsah-gui:Richtext.
 
 work:hasPublicationDate
-	a owl:ObjectProperty;
+	a owl:ObjectProperty, owl:DeprecatedProperty;
 	rdfs:label "has publication date"@en, "hat Publikationsdatum"@de;
 	rdfs:comment "Relating a publication to the date it was published on."@en;
 	rdfs:subPropertyOf knora-base:hasValue;
@@ -466,7 +486,7 @@ work:hasPublicationDate
 	salsah-gui:guiElement salsah-gui:Date.
 
 work:hasPublicationTitle
-	a owl:ObjectProperty;
+	a owl:ObjectProperty, owl:DeprecatedProperty;
 	rdfs:label "has publication title"@en, "hat Publikationstitel"@de;
 	rdfs:comment "Relating a publication to its title (as object)."@en;
 	rdfs:subPropertyOf text:hasTitle;
@@ -475,7 +495,7 @@ work:hasPublicationTitle
 	salsah-gui:guiElement salsah-gui:Richtext.
 
 work:hasPublisher
-	a owl:ObjectProperty;
+	a owl:ObjectProperty, owl:DeprecatedProperty;
 	rdfs:label "has publisher"@en, "hat Herausgeber"@de;
 	rdfs:comment "Relating a publication to its publisher."@en;
 	rdfs:subPropertyOf knora-base:hasLinkTo;
@@ -483,7 +503,7 @@ work:hasPublisher
 	knora-base:objectClassConstraint event:Agent. # [rdfs:subClassOf foafAgent, [a owl:Restriction; owl:onProperty agent:hasRole; owl:someValuesFrom work:Publisher]].
 
 work:hasPublisherValue
-	a owl:ObjectProperty;
+	a owl:ObjectProperty, owl:DeprecatedProperty;
 	rdfs:label "has publisher - statement"@en, "hat Herausgeber - Äusserung"@de;
 	rdfs:comment "Relating a publication to a reification statement of the relation between the publication and its publisher."@en;
 	rdfs:subPropertyOf knora-base:hasLinkToValue;
@@ -491,7 +511,7 @@ work:hasPublisherValue
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
 work:hasPublisherDescription
-	a owl:ObjectProperty;
+	a owl:ObjectProperty, owl:DeprecatedProperty;
 	rdfs:label "has publisher description"@en, "hat Herausgeberbeschreibung"@de;
 	rdfs:comment "Relating a publication to its publisher's description (as object)."@en;
 	rdfs:subPropertyOf text:hasDescription;
@@ -500,7 +520,7 @@ work:hasPublisherDescription
 	salsah-gui:guiElement salsah-gui:Richtext.
 
 work:isPublishedOnline
-	a owl:ObjectProperty;
+	a owl:ObjectProperty, owl:DeprecatedProperty;
 	rdfs:label "is published online"@en, "ist online publiziert"@de;
 	rdfs:comment """Relating an expression to having been online published or not."""@en;
 	rdfs:subPropertyOf knora-base:hasValue;
@@ -639,8 +659,8 @@ work:isPartOfNachlassValue
 	knora-base:subjectClassConstraint work:NachlassElement;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
-work:hasNachlassPublicationDescription # to be replaced by further formalization
-	a owl:ObjectProperty;
+work:hasNachlassPublicationDescription
+	a owl:ObjectProperty, owl:DeprecatedProperty;
 	rdfs:label "has nachlass publication description"@en, "hat Nachlassausgabebeschreibung"@de;
 	rdfs:comment """Relating an expression to a description (as object) of its nachlass publication."""@en;
 	rdfs:subPropertyOf text:hasDescription;

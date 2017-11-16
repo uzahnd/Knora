@@ -872,7 +872,7 @@ text:containsEarlierStagesOfPublication
 	rdfs:comment """Relating a convolute to another one whose text carriers bear later publication stages of the texts on the carriers of the former."""@en;
 	rdfs:subPropertyOf text:containsEarlierStagesOf;
 	knora-base:subjectClassConstraint text:Convolute;
-	knora-base:objectClassConstraint text:Convolute. # *
+	knora-base:objectClassConstraint text:Convolute.
 
 text:containsEarlierStagesOfPublicationValue
 	a owl:ObjectProperty;
