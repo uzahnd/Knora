@@ -4,10 +4,10 @@
 # @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 # @prefix dct: <http://purl.org/dc/terms/>.
 # @prefix geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>.
-# @prefix foaf: <http://xmlns.com/foaf/0.1/>.
+@prefix foaf: <http://xmlns.com/foaf/0.1/>.
 @prefix unicore: <http://purl.uniprot.org/core/>.
 @prefix cidoc: <http://www.cidoc-crm.org/cidoc-crm/>.
-# @prefix frbroo: <http://iflastandards.info/ns/fr/frbr/frbroo/>.
+@prefix frbroo: <http://iflastandards.info/ns/fr/frbr/frbroo/>.
 @prefix event: <http://www.knora.org/ontology/event#>.
 @prefix text: <http://www.knora.org/ontology/text#>.
 @prefix knora-base: <http://www.knora.org/ontology/knora-base#>.
@@ -31,14 +31,14 @@ human:Human
 #	skos:note """A human lives but is not necessarily born; one can speak about a human embryo or foetus.""";
 	unicore:scientificName """Homo sapiens sapiens"""@en;
 	unicore:rank unicore:Subspecies;
-	rdfs:subClassOf knora-base:Resource, <http://purl.uniprot.org/taxonomy/9606>. # rdfs:subClassOf foaf:Agent, species Homo sapiens, agent:Agent
+	rdfs:subClassOf foaf:Agent, knora-base:Resource, <http://purl.uniprot.org/taxonomy/9606>. # species Homo sapiens, agent:Agent
 
 human:Person
 	a owl:Class;
 	rdfs:label "person"@en, "Person"@de, "personne"@fr, "persona"@it;
 	rdfs:comment """A real born living human."""@en;
 #	skos:note """A foaf:Person class member is born, but can be alive or dead, real or imaginary. In this more restricted meaning a person can do things during life and can be talked about after dead, having done things during life. An imaginary person is a thing that can have every conceivable property, very unlike a real person."""@en;
-	rdfs:subClassOf human:Human, [ # rdfs:subClassOf frbroo:F10_Person, foaf:Person
+	rdfs:subClassOf human:Human, frbroo:F10_Person, foaf:Person, [
 #		a owl:Restriction; owl:onProperty :hasBiologicalGender; owl:someValuesFrom :BiologicalGender], [
 		a owl:Restriction; owl:onProperty human:hasBiologicalGender; owl:maxCardinality "1"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty human:hasBiologicalGenderValue; owl:maxCardinality "1"^^xsd:nonNegativeInteger], [
@@ -77,27 +77,27 @@ human:Life
 #	skos:note """No satisfying biological description of onset of a human life."""@en;
 	rdfs:subClassOf event:Action, event:Existence, knora-base:Resource.
 
-human:BiologicalGender
+human:BiologicalSex
 	a owl:Class;
-	rdfs:label "biological gender"@en, "biologisches Geschlecht"@de;
-	rdfs:comment """Biological gender of a human."""@en;
+	rdfs:label "biological sex"@en, "biologisches Geschlecht"@de;
+	rdfs:comment """Biological sex of a human."""@en;
 	rdfs:subClassOf knora-base:Resource.
 #	owl:disjointUnionOf (human:FemaleGender human:IntersexualGender human:MaleGender).
 
-human:FemaleGender
+human:FemaleSex
 	a owl:Class;
-	rdfs:label "female"@en, "weiblich"@de;
-	rdfs:comment """Being of a human female gender."""@en;
+	rdfs:label "female sex"@en, "weiblich"@de;
+	rdfs:comment """Being of a human female sex."""@en;
 #	rdfs:isDefinedBy <http://www.nie-ine.ch/ontology/human#>;
-	rdfs:subClassOf human:BiologicalGender.
+	rdfs:subClassOf human:BiologicalSex.
 
-human:MaleGender
+human:MaleSex
 	a owl:Class;
-	rdfs:label "male"@en, "männlich"@de;
-	rdfs:comment """Being of a human male gender."""@en;
+	rdfs:label "male sex"@en, "männlich"@de;
+	rdfs:comment """Being of a human male sex."""@en;
 #	skos:note """In adulthood producing spermatozoa for fertilizing female ova."""@en;
 #	rdfs:isDefinedBy <http://www.nie-ine.ch/ontology/human#>;
-	rdfs:subClassOf human:BiologicalGender.
+	rdfs:subClassOf human:BiologicalSex.
 
 human:Role
 	a owl:Class;
@@ -137,14 +137,20 @@ human:Creation
 	a owl:Class;
 	rdfs:label "creation"@en, "Kreation"@de;
 	rdfs:comment """Something created by a person."""@en;
-	rdfs:subClassOf event:Output, [ # cidoc:E71_Man-Made_Thing, [
+	rdfs:subClassOf event:Output, cidoc:E71_Man-Made_Thing, [
 		a owl:Restriction; owl:onProperty text:hasTitle; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text:hasAlias; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text:hasDescription; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty human:hasCreationDate; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty human:hasCreatingPeriod; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty human:hasCreatingPeriodValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty human:hasModificationDate; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+		a owl:Restriction; owl:onProperty human:hasModificationDate; owl:minCardinality "0"^^xsd:nonNegativeInteger]. # * human:Modification etc.
+
+human:Translator
+	a owl:Class;
+	rdfs:label "translator"@en, "Übersetzer"@de;
+	rdfs:comment """Role of a person as communicating from one language to another."""@en; # * -> agent: ?
+	rdfs:subClassOf human:Role.
 
 #
 # PROPERTIES
