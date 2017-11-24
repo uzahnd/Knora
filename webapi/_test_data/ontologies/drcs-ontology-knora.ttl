@@ -15,7 +15,7 @@
 #	dct:title "An ontology for the Digital Repertory of Commentaries on Peter Lombard’s Sentences"@en;
 #	dct:description """Formal description of specific concepts in the scientific study of Petrus Lombardus as in the Digital Repertory of Commentaries on Peter Lombard’s Sentences (DRCS)."""@en;
 #	dct:creator "Hans Cools, software developer, NIE, Basel University, Switzerland"@en;
-#	dct:contibutor "Prof. Dr. Ueli Zahnd, History of Philosophy in the Middle Ages, University of Basel, Switzerland"@en;
+#	dct:contributor "Prof. Dr. Ueli Zahnd, History of Christianity, University of Basel, Switzerland"@en;
 #	rdfs:seeAlso <https://de.wikipedia.org/wiki/Friedrich_Stegmüller>.
 
 #
@@ -31,7 +31,7 @@ drcs:Person
 
 drcs:Commentary # DB PL: RCS_XPRESSIONS - TYPE
 	a owl:Class;
-	rdfs:label "commentarium"@la, "commentary"@en, "Erläuterung"@de;
+	rdfs:label "commentarius"@la, "commentary"@en, "Kommentar"@de;
 	rdfs:comment """Commentary on Petrus Lombardus' Sentences."""@en;
 	rdfs:subClassOf schola:Commentary, [ # subClassOf text:Commentary subClassOf text:Expression subClassOf knora-base:Resource
 		a owl:Restriction; owl:onProperty drcs:hasStegmuellerExpressionDescription; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
