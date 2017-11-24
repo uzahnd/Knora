@@ -17,7 +17,7 @@
 # * theological and philosophical study in Western Christianity
 
 #	dct:creator "Hans Cools, software developer, NIE, University of Basel, Switzerland"@en;
-#	dct:contibutor "Prof. Dr. Ueli Zahnd, History of Philosophy in the Middle Ages, University of Basel, Switzerland"@en.
+#	dct:contributor "Prof. Dr. Ueli Zahnd, History of Christianity, University of Basel, Switzerland"@en.
 
 #
 # CLASSES
@@ -70,12 +70,12 @@ schola:Revisor # DB PL: RCS_REL_AID_XID - FUNCTION
 schola:Redactor # DB PL: RCS_REL_AID_XID - FUNCTION
 	a owl:Class;
 	rdfs:label "redactor"@la, "redactor"@en, "Redactor"@de;
-	rdfs:comment """Role of a scholastic changing a text."""@en;
+	rdfs:comment """Role of a scholastic assembling (pieces of) texts."""@en;
 	rdfs:subClassOf schola:Role.
 
 schola:Commentary # DB PL: RCS_XPRESSIONS
 	a owl:Class;
-	rdfs:label "commentarium scholasticum"@la, "scholastic commentary"@en, "scholastische Erläuterung"@de;
+	rdfs:label "commentarius scholasticus"@la, "scholastic commentary"@en, "scholastischer Kommentar"@de;
 	rdfs:comment """Commentary made by a scholastic."""@en;
 	rdfs:subClassOf text:Commentary, [
 		a owl:Restriction; owl:onProperty schola:hasMethod; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
@@ -83,38 +83,38 @@ schola:Commentary # DB PL: RCS_XPRESSIONS
 
 schola:CommentaryMethod
 	a owl:Class;
-	rdfs:label "scholastic commentary method"@en, "scholastische Erläuterungsmethode"@de;
+	rdfs:label "scholastic commentary method"@en, "scholastische Kommentarmethode"@de;
 	rdfs:comment """Scholastic method to comment."""@en;
 	rdfs:subClassOf knora-base:Resource. # cidoc:E29_Design_or_Procedure # to do: subClassOf more general method
 
 schola:Lectura # DB PL: RCS_XPRESSIONS - TYPE
 	a owl:Class;
 	rdfs:label "lectura"@la;
-	rdfs:comment """Scholastic commentary on a text with a lectura method."""@en;
+	rdfs:comment """Scholastic commentary on a text as presented by its author in an actual lecture."""@en;
 	rdfs:subClassOf schola:CommentaryMethod.
 
 schola:LecturaRevisa # DB PL: RCS_XPRESSIONS - TYPE
 	a owl:Class;
 	rdfs:label "lectura revisa"@la;
-	rdfs:comment """Scholastic commentary on a text with a lectura revisa method."""@en;
+	rdfs:comment """Scholastic commentary on a text asrevised by its author after its presentation in a lecture."""@en;
 	rdfs:subClassOf schola:CommentaryMethod.
 
 schola:Reportatio # DB PL: RCS_XPRESSIONS - TYPE
 	a owl:Class;
 	rdfs:label "reportatio"@la;
-	rdfs:comment """Scholastic commentary on a text with a reportatio method."""@en;
+	rdfs:comment """Scholastic commentary on a text as recorded by a student."""@en; #"listener", "auditor" instead of "student"?
 	rdfs:subClassOf schola:CommentaryMethod.
 
 schola:ReportatioApprobata # DB PL: RCS_XPRESSIONS - TYPE
 	a owl:Class;
 	rdfs:label "reportatio approbata"@la;
-	rdfs:comment """Scholastic commentary on a text with a reportatio approbata method."""@en;
+	rdfs:comment """Scholastic commentary on a text as student recordings approved by the master."""@en;
 	rdfs:subClassOf schola:CommentaryMethod.
 
 schola:Ordinatio # DB PL: RCS_XPRESSIONS - TYPE
 	a owl:Class;
 	rdfs:label "ordinatio"@la;
-	rdfs:comment """Scholastic commentary on a text with an ordinatio method."""@en;
+	rdfs:comment """Scholastic commentary on a text as composed for publication."""@en;
 	rdfs:subClassOf schola:CommentaryMethod.
 
 schola:Glosses # DB PL: RCS_XPRESSIONS - GENRES
@@ -125,8 +125,8 @@ schola:Glosses # DB PL: RCS_XPRESSIONS - GENRES
 
 schola:LiteralExposition # DB PL: RCS_XPRESSIONS - GENRES
 	a owl:Class;
-	rdfs:label "literal exposition"@en, "wörtliche Exposition"@de;
-	rdfs:comment """Scholastic commentary on a text in the form of literal exposition."""@en;
+	rdfs:label "literal exposition"@en, "wörtliche Auslegung"@de;
+	rdfs:comment """Scholastic commentary on a text in the form of a literal exposition."""@en;
 	rdfs:subClassOf schola:Commentary.
 
 schola:Questions # DB PL: RCS_XPRESSIONS - GENRES
@@ -137,7 +137,7 @@ schola:Questions # DB PL: RCS_XPRESSIONS - GENRES
 
 schola:Abbreviation # DB PL: RCS_XPRESSIONS - GENRES
 	a owl:Class;
-	rdfs:label "abbreviation"@en, "Abkürzung"@de;
+	rdfs:label "abbreviation"@en, "Kurzfassung"@de;
 	rdfs:comment """Scholastic commentary on a text in the form of a shortened version."""@en;
 	rdfs:subClassOf schola:Commentary.
 
@@ -150,13 +150,13 @@ schola:Paraphrase # DB PL: RCS_XPRESSIONS - GENRES
 schola:Table # DB PL: RCS_XPRESSIONS - GENRES
 	a owl:Class;
 	rdfs:label "table"@en, "Tabelle"@de;
-	rdfs:comment """Scholastic commentary on a text in the form of added information in a table."""@en;
+	rdfs:comment """Scholastic commentary on a text in the form of condensing information in a table."""@en;
 	rdfs:subClassOf schola:Commentary.
 
 schola:Metric # DB PL: RCS_XPRESSIONS - GENRES
 	a owl:Class;
-	rdfs:label "metric"@en, "Metrik"@de;
-	rdfs:comment """Scholastic commentary on a text in the form of added metric information."""@en;
+	rdfs:label "metric"@en, "Versform"@de;
+	rdfs:comment """Scholastic commentary on a text in the form of condensing information in verse form."""@en;
 	rdfs:subClassOf schola:Commentary.
 
 schola:Syllogisms # DB PL: RCS_XPRESSIONS - GENRES
@@ -178,14 +178,14 @@ schola:Conclusion # DB PL: RCS_XPRESSIONS - GENRES
 schola:hasRole
 	a owl:ObjectProperty;
 	rdfs:label "has role"@en, "hat Rolle"@de;
-	rdfs:comment """Relating a scholastic to a role s/he has."""@en;
+	rdfs:comment """Relating a scholastic to a role he has."""@en; # there are simply no female scholastics (women were not allowed to universities)
 	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint schola:Scholastic;
 	knora-base:objectClassConstraint schola:Role.
 
 schola:hasRoleValue
 	a owl:ObjectProperty;
-	rdfs:label "has role - statement"@en, "hat Rolle - Äusserung"@de;
+	rdfs:label "has role - statement"@en, "hat Rolle - Festlegung"@de;
 	rdfs:comment """Relating a scholastic to a statement as reification of the relation between the scholastic and a role."""@en;
 	rdfs:subPropertyOf knora-base:hasLinkToValue;
 	knora-base:subjectClassConstraint schola:Scholastic;
@@ -206,3 +206,5 @@ schola:hasMethodValue
 	rdfs:subPropertyOf knora-base:hasLinkToValue;
 	knora-base:subjectClassConstraint schola:Commentary;
 	knora-base:objectClassConstraint knora-base:LinkValue.
+
+# what about schola:hasForm, or schola:hasGenre (for the info in lines 120-172)
